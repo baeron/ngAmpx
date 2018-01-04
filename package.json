@@ -1,0 +1,23 @@
+{
+  "name": "ampx-auth-mean",
+  "version": "1.0.0",
+  "description": "ampx web app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "bcrypt": "*",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Baranoff Ievgen",
+  "license": "ISC"
+}
