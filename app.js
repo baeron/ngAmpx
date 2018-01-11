@@ -22,9 +22,11 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const users = require('./routes/users');
+const project = require('./routes/project');
 
 // Port Number
 //const port = 3000;
+//for deploy
 const port = process.env.PORT || 8080;
 
 // CORS Middleware
@@ -44,6 +46,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
+app.use('/project', project);
 
 // Index Route
 app.get('/', (req, res) => {

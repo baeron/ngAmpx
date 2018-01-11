@@ -23,7 +23,7 @@ module.exports.getUserById = function(id, callback){
   User.findById(id, callback);
 }
 
-/*odule.exports.getUserByUsername = function(userName, callback){
+/*module.exports.getUserByUsername = function(userName, callback){
   const query = {userName: userName}
   User.findOne(query, callback);
 }*/
