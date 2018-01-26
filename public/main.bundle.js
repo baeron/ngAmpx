@@ -2128,7 +2128,7 @@ var NavbarComponent = (function () {
     NavbarComponent.prototype.onLogoutClick = function () {
         this.authService.logout();
         this.flashMessage.show('You are logged out', { cssClass: 'alert-success', timeout: 3000 });
-        this.router.navigate(['/login']);
+        this.router.navigate(['/signin']);
         return false;
     };
     NavbarComponent = __decorate([
