@@ -97,7 +97,7 @@ var FlashMessagesComponent = (function () {
     FlashMessagesComponent.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'flash-messages',
-                    template: "\n      <div id=\"flashMessages\" class=\"flash-messages\">\n          <div id=\"grayOutDiv\" *ngIf='_grayOut && messages.length'></div>\n          <div class=\"alert flash-message {{message.cssClass}}\" [ngClass]=\"{'alert-dismissible':message.showCloseBtn}\" [style.cursor]=\"message.closeOnClick?'pointer':'inherit'\" *ngFor='let message of messages' (click)=\"alertClicked(message)\">\n              <button *ngIf=\"message.showCloseBtn\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" (click)=\"close(message)\"><span aria-hidden=\"true\">&times;</span></button>\n              <p>{{message.text}}</p>\n          </div> \n      </div>\n  "
+                    template: "\n      <div id=\"flashMessages\" class=\"flash-messages\" style=\"z-index:5;position:absolute;margin-top:10%;width:100%;opacity:0.75;text-align:center;\">\n          <div id=\"grayOutDiv\" *ngIf='_grayOut && messages.length'></div>\n          <div class=\"alert flash-message {{message.cssClass}}\" [ngClass]=\"{'alert-dismissible':message.showCloseBtn}\" [style.cursor]=\"message.closeOnClick?'pointer':'inherit'\" *ngFor='let message of messages' (click)=\"alertClicked(message)\">\n              <button *ngIf=\"message.showCloseBtn\" type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" (click)=\"close(message)\"><span aria-hidden=\"true\">&times;</span></button>\n              <p>{{message.text}}</p>\n          </div> \n      </div>\n  "
                 },] },
     ];
     /** @nocollapse */
@@ -66005,7 +66005,7 @@ function transition$$1(stateChangeExpr, steps) {
 /* unused harmony export NgControlStatus */
 /* unused harmony export NgControlStatusGroup */
 /* unused harmony export NgForm */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return NgModel; });
 /* unused harmony export NgModelGroup */
 /* unused harmony export RadioControlValueAccessor */
 /* unused harmony export FormControlDirective */
@@ -66025,14 +66025,14 @@ function transition$$1(stateChangeExpr, steps) {
 /* unused harmony export FormBuilder */
 /* unused harmony export AbstractControl */
 /* unused harmony export FormArray */
-/* unused harmony export FormControl */
-/* unused harmony export FormGroup */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormGroup; });
 /* unused harmony export NG_ASYNC_VALIDATORS */
 /* unused harmony export NG_VALIDATORS */
-/* unused harmony export Validators */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return Validators; });
 /* unused harmony export VERSION */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormsModule; });
-/* unused harmony export ReactiveFormsModule */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormsModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return ReactiveFormsModule; });
 /* unused harmony export ɵba */
 /* unused harmony export ɵz */
 /* unused harmony export ɵx */

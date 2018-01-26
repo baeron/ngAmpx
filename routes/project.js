@@ -106,6 +106,24 @@ router.get('/:id/electricals',function (req, res) {
   }
 });
 
+router.get('/:id/electrical',function (req, res){
+  if(req.params){
+    Project
+    .findById(req.params.id, 'electricals.equipmentTag electricals.totalConectedFla electricals.coordForX electricals.coordForY electricals.coordForZ')
+    .exec(function(err, project) {
+        if(!project){
+          res.json({success: false, msg:'Failed get electrical item'});
+          return;
+        } else if (err){
+          res.json({success: false, msg:'Failed get electrical item'});
+        }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get electrical item'});
+  }
+});
+
 /* GET SINGLE Electrical BY ID */
 router.get('/:id/electricals/:electricalid', function(req, res) {
   if (req.params && req.params.id && req.params.electricalid) {
@@ -290,6 +308,207 @@ router.delete('/:id/electricals/:electricalid', function (req, res) {
         }
         if (project.electricals && project.electricals.length > 0) {
           project.electricals.id(req.params.electricalid).remove();
+          //console.log(project);
+          project.save(function(err) {
+            if (err) {
+              res.json({success: false, msg:'Failed get electrical item'});
+            } else {
+              sendJSONresponse(res, 204, null);
+            }
+          });
+        } else {
+          res.json({success: false, msg:'Failed get electrical item'});
+        }
+    }
+  );
+});
+
+//CABLES
+/* GET ALL Cabels */
+router.get('/:id/cables',function (req, res) {
+  if(req.params){
+    Project
+    .findById(req.params.id, 'cabels._id cabels.cableTagFirst cabels.cableTagSecond cabels.cableTagThird cabels.cableTagFourth cabels.selectedCableTagIndex '+
+    'cabels.selectedService cabels.selectedVoltage cabels.selectedCableType cabels.itemNum cabels.selectedCableFrom cabels.selectedCableTo cabels.cableLenth '+
+    'cabels.itemNum cabels.selectedItemType cabels.selectedCableSize cabels.selectedConductorInsulationType')
+    .exec(function(err, project) {
+        if(!project){
+          res.json({success: false, msg:'Failed get electrical item'});
+          return;
+        } else if (err){
+          res.json({success: false, msg:'Failed get electrical item'});
+        }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get electrical item'});
+  }
+});
+
+/* CREATE NEW Cable */
+router.post('/:id/cable-create', function(req, res) {
+  if (req.params.id) {
+    Project
+      .findById(req.params.id)
+      .select('cabels')
+      .exec(
+        function(err, project) {
+          if (err) {
+            res.json({success: false, msg:'Failed get electrical item'});
+          } else {
+            if (!project) {
+              res.json({success: false, msg:'Failed get electrical item'});
+            } else {
+              project.cabels.push({});
+            project.save(function(err, project) {
+              if (err) {
+                res.json({success: false, msg:'Failed get electrical item'});
+              } else {
+                res.json(project.cabels);
+            }
+          });
+        }
+      }
+    });
+  } else {
+    res.json({success: false, msg:'Failed get electrical item'});
+  }
+});
+
+/* GET SINGLE Cable BY ID */
+router.get('/:id/cables/:cableId', function(req, res) {
+  if (req.params && req.params.id && req.params.cableId) {
+    Project
+      .findById(req.params.id)
+      .select('cabels')
+      .exec(
+        function(err, project) {
+          var response, cabel;
+          if (!project) {
+            res.json({success: false, msg:'Failed get electrical item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get electrical item'});
+            return;
+          }
+          if (project.cabels && project.cabels.length > 0) {
+            cabel = project.cabels.id(req.params.cableId);
+            if (!cabel) {
+              res.json({success: false, msg:'Failed get electrical item'});
+            } else {
+              response = {
+                cabel
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get electrical item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get electrical item'});
+  }
+});
+
+/* UPDATE Item Cabel*/
+router.patch('/:id/cable-update/:cabelId', function(req, res) {
+  if (req.params && req.params.id && req.params.cabelId) {
+    Project
+      .findById(req.params.id)
+      .exec(
+        function(err, project) {
+          var response, cabel;
+          cabel = project.cabels.id(req.params.cabelId);     
+        //Info part
+          cabel.cableTagFirst = req.body.cableTagFirst;
+          cabel.cableTagSecond = req.body.cableTagSecond;
+          cabel.cableTagThird = req.body.cableTagThird;
+          cabel.cableTagFourth = req.body.cableTagFourth;
+          cabel.cableTagIndex = req.body.cableTagIndex;
+          cabel.selectedCableTagIndex = req.body.selectedCableTagIndex;
+          cabel.selectedCableFrom = req.body.selectedCableFrom;
+          cabel.selectedCableTo = req.body.selectedCableTo;
+          cabel.selectedPowerSystem = req.body.selectedPowerSystem;
+          cabel.selectedConductorMaterial = req.body.selectedConductorMaterial;
+          cabel.selectedVoltage = req.body.selectedVoltage;
+          cabel.selectedService = req.body.selectedService;
+          cabel.selectedMaxAmbientTemp = req.body.selectedMaxAmbientTemp;
+        //Physical part
+          cabel.selectedCableType = req.body.selectedCableType;
+          cabel.selectedInsulationVoltage = req.body.selectedInsulationVoltage;
+          cabel.outJacket = req.body.outJacket;
+          cabel.selectedJacketColor = req.body.selectedJacketColor;
+          cabel.selectedInsulationRating = req.body.selectedInsulationRating;
+          cabel.selectedRaceway = req.body.selectedRaceway;
+          cabel.selectedConductorInsulationType = req.body.selectedConductorInsulationType;
+          cabel.selectedFtRating = req.body.selectedFtRating;
+          cabel.selectedInsulationTemperatureRating = req.body.selectedInsulationTemperatureRating;
+          cabel.selectedWireColor = req.body.selectedWireColor;
+          cabel.selectedShield = req.body.selectedShield;
+          cabel.selectedApproval = req.body.selectedApproval;
+          cabel.selectedArmour = req.body.selectedArmour;
+          cabel.od = req.body.od;
+          cabel.kgPerMetr = req.body.kgPerMetr;
+          cabel.itemNum = req.body.itemNum;
+          cabel.selectedItemType = req.body.selectedItemType;
+          cabel.selectedCableSize = req.body.selectedCableSize;
+        //Configuration part
+          cabel.selectedInstallMethod = req.body.selectedInstallMethod;
+          cabel.selectedSpacing = req.body.selectedSpacing;
+          cabel.selectedSpacingCorrection = req.body.selectedSpacingCorrection;
+          cabel.tempCorrection = req.body.tempCorrection;
+          cabel.selectedCec = req.body.selectedCec;
+          cabel.correctedCondAmp = req.body.correctedCondAmp;
+          cabel.numberOfRunsPerPhase = req.body.numberOfRunsPerPhase;
+          cabel.feederAmpacity = req.body.feederAmpacity;
+        //Voltage Drop part
+          cabel.cableLenth = req.body.cableLenth;
+          cabel.voltageDropPercent = req.body.voltageDropPercent;
+        //Load part
+          //cabel.connectedFLA = req.body.connectedFLA;                       пересмотреть
+          cabel.selectedAmpacityMultiplier = req.body.selectedAmpacityMultiplier;
+          cabel.minCondAmp = req.body.minCondAmp;
+          cabel.condAmpacity = req.body.condAmpacity;
+          cabel.ocAmpRating = req.body.ocAmpRating;
+          cabel.internalNotes = req.body.internalNotes;
+          project.save(function(err, cabel){
+            if(err){
+              sendJSONresponse(res, 404, err);
+            } else {
+              sendJSONresponse(res, 200, project);
+            }
+          });
+        }
+      );
+  } else {
+    sendJSONresponse(res, 404, {
+      "message": "Not found, project or electrical id"
+    });
+    return;
+  }
+});
+
+/* DELETE Cable by ID*/
+router.delete('/:id/cables/:cableId', function (req, res) { 
+  if (!req.params && !req.params.id && !req.params.cableId) {
+    res.json({success: false, msg:'Failed params'});
+    return;
+  }
+  Project
+    .findById(req.params.id)
+    .select('cabels')
+    .exec(
+      function(err, project) {
+        if (!project) {
+          res.json({success: false, msg:'Failed delete project item'});
+          return;
+        } else if (err) {
+          res.json({success: false, msg:'Error'});
+          return;
+        }
+        if (project.cabels && project.cabels.length > 0) {
+          project.cabels.id(req.params.cableId).remove();
           //console.log(project);
           project.save(function(err) {
             if (err) {
