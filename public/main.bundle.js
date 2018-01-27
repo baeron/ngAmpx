@@ -582,11 +582,11 @@ var CableItemComponent = (function () {
         data.ocAmpRating = this.cabelItem.ocAmpRating;
         data.internalNotes = this.cabelItem.internalNotes;
         this.cableService.updateCabelItem(this.projectId, idCable, data).subscribe(function (res) {
+            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'cables']);
         }, function (err) {
             console.log(err);
         });
-        this.spinnerService.hide();
     };
     CableItemComponent.prototype.deleteCable = function (cableItemId) {
         var _this = this;
