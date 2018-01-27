@@ -419,7 +419,6 @@ var CableItemComponent = (function () {
         this.spinnerService.show();
         this.cableService.getCableItem(this.projectId, this.cableId).subscribe(function (cables) {
             _this.cabelItem = cables.cabel;
-            _this.spinnerService.hide();
             _this.voltageAfterChangePowerSystem = cables.cabel.voltage.filter(function (p) { return p.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.conductorMaterialAfterChangePowerSystem = cables.cabel.conductorMaterial.filter(function (cm) { return cm.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.insTempRatingAfterChangeConductorMaterial = cables.cabel.insulationTemperatureRatingArray.filter(function (itr) { return itr.conductorMaterialType == cables.cabel.selectedConductorMaterial.name; });
@@ -427,11 +426,10 @@ var CableItemComponent = (function () {
             console.log(err);
             return false;
         });
-        this.spinnerService.show();
         this.cableService.getElectricalName(this.projectId).subscribe(function (electricals) {
             _this.electricalList = electricals.electricals;
-            _this.spinnerService.hide();
         });
+        this.spinnerService.hide();
     };
     CableItemComponent.prototype.setCabelToConnectedFLA = function (elecList, selectedCableTo) {
         var electricalsList = elecList;
@@ -517,6 +515,7 @@ var CableItemComponent = (function () {
     };
     CableItemComponent.prototype.saveCable = function (idCable, data) {
         var _this = this;
+        this.spinnerService.show();
         //Info part
         data.cableTagFirst = this.cabelItem.cableTagFirst;
         data.cableTagSecond = this.cabelItem.cableTagSecond;
@@ -582,23 +581,22 @@ var CableItemComponent = (function () {
         data.condAmpacity = this.cabelItem.condAmpacity;
         data.ocAmpRating = this.cabelItem.ocAmpRating;
         data.internalNotes = this.cabelItem.internalNotes;
-        this.spinnerService.show();
         this.cableService.updateCabelItem(this.projectId, idCable, data).subscribe(function (res) {
-            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'cables']);
         }, function (err) {
             console.log(err);
         });
+        this.spinnerService.hide();
     };
     CableItemComponent.prototype.deleteCable = function (cableItemId) {
         var _this = this;
         this.spinnerService.show();
         this.cableService.deleteCableItem(this.projectId, cableItemId).subscribe(function (res) {
-            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'cables']);
         }, function (err) {
             console.log(err);
         });
+        this.spinnerService.hide();
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('window:resize', ['$event']),
@@ -685,11 +683,11 @@ var CableListComponent = (function () {
         this.spinnerService.show();
         this.cableService.getCables(this.projectId).subscribe(function (cableList) {
             _this.cables = cableList;
-            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
         });
+        this.spinnerService.hide();
     };
     CableListComponent.prototype.saveCable = function () {
         var _this = this;
@@ -700,11 +698,11 @@ var CableListComponent = (function () {
             var id = res['_id'];
             var responseId = res[res.length - 1]['_id'];
             var routeToCableItem = '/project/' + _this.route.snapshot.params['id'] + '/cables/' + responseId;
-            _this.spinnerService.hide();
             _this.router.navigate([routeToCableItem]);
         }, function (err) {
             console.log(err);
         });
+        this.spinnerService.hide();
     };
     CableListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
