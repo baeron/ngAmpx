@@ -924,16 +924,13 @@ var ElectricalItemComponent = (function () {
         this.spinnerService.show();
         this.electricalService.getElectricalItem(this.projectId, this.electricalId).subscribe(function (electricals) {
             _this.electricalItem = electricals.electrical;
-            _this.spinnerService.hide();
             _this.productsAfterChangeEvent = electricals.electrical.voltage.filter(function (p) { return p.powerSystemType == electricals.electrical.selectedPowerSystem; });
         }, function (err) {
             console.log(err);
             return false;
         });
-        this.spinnerService.show();
         this.electricalService.getElectricals(this.projectId).subscribe(function (electricalList) {
             _this.project = electricalList;
-            _this.spinnerService.hide();
             _this.parentList = [];
             for (var key in _this.project.electricals) {
                 if (_this.project.electricals[key]._id == _this.electricalId) {
@@ -946,6 +943,7 @@ var ElectricalItemComponent = (function () {
             console.log(err);
             return false;
         });
+        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.ngDoCheck = function () {
         if (!this.electricalItem) {
@@ -956,7 +954,6 @@ var ElectricalItemComponent = (function () {
         }
     };
     ElectricalItemComponent.prototype.electricalChildList = function () {
-        var _this = this;
         if (this.electricalItem.selectedParentTag) {
             if (this.presetParentTag == this.electricalItem.selectedParentTag) {
                 return;
@@ -970,7 +967,6 @@ var ElectricalItemComponent = (function () {
                         if (childElement._id == this.electricalItem._id) {
                             tempElectricalItem.chiildList.splice(j, 1);
                             this.electricalService.updateElectricalItem(this.projectId, tempElectricalItem._id, tempElectricalItem).subscribe(function (res) {
-                                _this.spinnerService.hide();
                                 //console.log(res);
                             }, function (err) {
                                 console.log(err);
@@ -978,11 +974,9 @@ var ElectricalItemComponent = (function () {
                         }
                     }
                     if (tempElectricalItem.equipmentTag == this.electricalItem.selectedParentTag) {
-                        this.spinnerService.show();
                         this.project.electricals[i].chiildList.push(this.electricalItem);
                         var temp = this.project.electricals[i];
                         this.electricalService.updateElectricalItem(this.projectId, tempElectricalItem._id, temp).subscribe(function (res) {
-                            _this.spinnerService.hide();
                             //console.log(res);
                         }, function (err) {
                             console.log(err);
@@ -990,6 +984,7 @@ var ElectricalItemComponent = (function () {
                         return;
                     }
                 }
+                this.spinnerService.hide();
             }
         }
         else {
@@ -1041,25 +1036,24 @@ var ElectricalItemComponent = (function () {
         data.scenarioFirstKVA = this.electricalItem.scenarioFirstKVA || 0;
         //
         this.electricalService.updateElectricalItem(this.projectId, idElectrical, data).subscribe(function (res) {
-            _this.spinnerService.hide();
             var id = res['_id'];
             _this.router.navigate(['project', _this.projectId, 'electricals']);
         }, function (err) {
             console.log(err);
         });
+        this.spinnerService.hide();
         this.electricalChildList();
     };
     ElectricalItemComponent.prototype.deleteElectrical = function (electricalItemId) {
         var _this = this;
+        this.spinnerService.show();
         if (this.electricalItem.chiildList.length >= 1) {
             for (var i = 0; i < this.project.electricals.length; ++i) {
-                this.spinnerService.show();
                 var temporaryElectricalItem = this.project.electricals[i];
                 if (temporaryElectricalItem.selectedParentTag === this.electricalItem.equipmentTag) {
                     temporaryElectricalItem.selectedParentTag = '';
-                    console.log(temporaryElectricalItem);
+                    //console.log(temporaryElectricalItem);
                     this.electricalService.updateElectricalItem(this.projectId, temporaryElectricalItem._id, temporaryElectricalItem).subscribe(function (res) {
-                        _this.spinnerService.hide();
                         //console.log(res);
                     }, function (err) {
                         console.log(err);
@@ -1068,29 +1062,26 @@ var ElectricalItemComponent = (function () {
             }
         }
         for (var j = 0; j < this.project.electricals.length; ++j) {
-            this.spinnerService.show();
             var electricalItemElment = this.project.electricals[j];
             for (var k = 0; k < electricalItemElment.chiildList.length; ++k) {
                 var temporalChildElement = electricalItemElment.chiildList[k];
                 if (temporalChildElement._id === this.electricalItem._id) {
                     electricalItemElment.chiildList.splice(j, 1);
                     this.electricalService.updateElectricalItem(this.projectId, electricalItemElment._id, electricalItemElment).subscribe(function (res) {
-                        _this.spinnerService.hide();
                         //console.log(res);
                     }, function (err) {
                         console.log(err);
                     });
                 }
-                console.log(electricalItemElment);
+                //console.log(electricalItemElment);
             }
         }
-        this.spinnerService.show();
         this.electricalService.deleteElectricalItem(this.projectId, electricalItemId).subscribe(function (res) {
-            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'electricals']);
         }, function (err) {
             console.log(err);
         });
+        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.changeVoltageArrayObject = function (productsAfterChange, projectData) {
         var arayObjectsAfterFilter = projectData.filter(function (p) { return p.powerSystemType != productsAfterChange[0].powerSystemType; });
