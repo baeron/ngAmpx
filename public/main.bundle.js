@@ -2328,11 +2328,11 @@ var ProjectDashboardComponent = (function () {
         this.spinnerService.show();
         this.projectService.getProjectById(this.projectId).subscribe(function (project) {
             _this.project = project;
-            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
         });
+        this.spinnerService.hide();
     };
     ProjectDashboardComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -2414,12 +2414,12 @@ var ProjectComponent = (function () {
         this.spinnerService.show();
         this.projectService.getProject().subscribe(function (projectList) {
             _this.project = projectList;
-            _this.spinnerService.hide();
             _this.projectLenth = projectList.length;
         }, function (err) {
             console.log(err);
             return false;
         });
+        this.spinnerService.hide();
     };
     ProjectComponent.prototype.ngDoCheck = function () {
         var _this = this;
@@ -2427,10 +2427,8 @@ var ProjectComponent = (function () {
             return;
         }
         else if (this.projectLenth < Object.keys(this.project).length || this.projectLenth > Object.keys(this.project).length) {
-            this.spinnerService.show();
             this.projectService.getProject().subscribe(function (projectList) {
                 _this.project = projectList;
-                _this.spinnerService.hide();
                 _this.projectLenth = projectList.length;
             }, function (err) {
                 console.log(err);
