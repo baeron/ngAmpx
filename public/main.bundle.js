@@ -1032,12 +1032,12 @@ var ElectricalItemComponent = (function () {
         data.scenarioFirstKVA = this.electricalItem.scenarioFirstKVA || 0;
         //
         this.electricalService.updateElectricalItem(this.projectId, idElectrical, data).subscribe(function (res) {
+            _this.spinnerService.hide();
             var id = res['_id'];
             _this.router.navigate(['project', _this.projectId, 'electricals']);
         }, function (err) {
             console.log(err);
         });
-        this.spinnerService.hide();
         this.electricalChildList();
     };
     ElectricalItemComponent.prototype.deleteElectrical = function (electricalItemId) {
