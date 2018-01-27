@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div>\n  <flash-messages></flash-messages>\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<app-navbar></app-navbar>\n<div>\n  <flash-messages></flash-messages>\n  <ng4-loading-spinner></ng4-loading-spinner>\n  <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -82,33 +82,35 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_navbar_navbar_component__ = __webpack_require__("../../../../../src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_home_home_component__ = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_about_us_about_us_component__ = __webpack_require__("../../../../../src/app/components/about-us/about-us.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_services_services_component__ = __webpack_require__("../../../../../src/app/components/services/services.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_contact_us_contact_us_component__ = __webpack_require__("../../../../../src/app/components/contact-us/contact-us.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_signin_signin_component__ = __webpack_require__("../../../../../src/app/components/signin/signin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_validate_service__ = __webpack_require__("../../../../../src/app/services/validate.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_login_login_component__ = __webpack_require__("../../../../../src/app/components/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_register_register_component__ = __webpack_require__("../../../../../src/app/components/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_project_project_component__ = __webpack_require__("../../../../../src/app/components/project/project.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_modals_projects_modal_projects_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/projects-modal/projects-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_project_dashboard_project_dashboard_component__ = __webpack_require__("../../../../../src/app/components/project-dashboard/project-dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_electrical_list_electrical_list_component__ = __webpack_require__("../../../../../src/app/components/electrical-list/electrical-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_electrical_item_electrical_item_component__ = __webpack_require__("../../../../../src/app/components/electrical-item/electrical-item.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_modals_electricals_modal_electricals_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/electricals-modal/electricals-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_cable_list_cable_list_component__ = __webpack_require__("../../../../../src/app/components/cable-list/cable-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_cable_item_cable_item_component__ = __webpack_require__("../../../../../src/app/components/cable-item/cable-item.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/cabels-modals/cable-distance-modal/cable-distance-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_navbar_navbar_component__ = __webpack_require__("../../../../../src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_home_home_component__ = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_about_us_about_us_component__ = __webpack_require__("../../../../../src/app/components/about-us/about-us.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_services_services_component__ = __webpack_require__("../../../../../src/app/components/services/services.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_contact_us_contact_us_component__ = __webpack_require__("../../../../../src/app/components/contact-us/contact-us.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_signin_signin_component__ = __webpack_require__("../../../../../src/app/components/signin/signin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_validate_service__ = __webpack_require__("../../../../../src/app/services/validate.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_login_login_component__ = __webpack_require__("../../../../../src/app/components/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_register_register_component__ = __webpack_require__("../../../../../src/app/components/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_project_project_component__ = __webpack_require__("../../../../../src/app/components/project/project.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_modals_projects_modal_projects_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/projects-modal/projects-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_project_dashboard_project_dashboard_component__ = __webpack_require__("../../../../../src/app/components/project-dashboard/project-dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_electrical_list_electrical_list_component__ = __webpack_require__("../../../../../src/app/components/electrical-list/electrical-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_electrical_item_electrical_item_component__ = __webpack_require__("../../../../../src/app/components/electrical-item/electrical-item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_modals_electricals_modal_electricals_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/electricals-modal/electricals-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_cable_list_cable_list_component__ = __webpack_require__("../../../../../src/app/components/cable-list/cable-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_cable_item_cable_item_component__ = __webpack_require__("../../../../../src/app/components/cable-item/cable-item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/cabels-modals/cable-distance-modal/cable-distance-modal.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -116,6 +118,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 //MAIN SOLUTION COMPONENTS
+
 
 
 
@@ -158,25 +161,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 //TODO move to separate component
 var appRoutes = [
     //main pages
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_7__components_home_home_component__["a" /* HomeComponent */] },
-    { path: 'about_us', component: __WEBPACK_IMPORTED_MODULE_8__components_about_us_about_us_component__["a" /* AboutUsComponent */] },
-    { path: 'services', component: __WEBPACK_IMPORTED_MODULE_9__components_services_services_component__["a" /* ServicesComponent */] },
-    { path: 'contact_us', component: __WEBPACK_IMPORTED_MODULE_10__components_contact_us_contact_us_component__["a" /* ContactUsComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_8__components_home_home_component__["a" /* HomeComponent */] },
+    { path: 'about_us', component: __WEBPACK_IMPORTED_MODULE_9__components_about_us_about_us_component__["a" /* AboutUsComponent */] },
+    { path: 'services', component: __WEBPACK_IMPORTED_MODULE_10__components_services_services_component__["a" /* ServicesComponent */] },
+    { path: 'contact_us', component: __WEBPACK_IMPORTED_MODULE_11__components_contact_us_contact_us_component__["a" /* ContactUsComponent */] },
     //registration and authentication
-    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_18__components_register_register_component__["a" /* RegisterComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_17__components_login_login_component__["a" /* LoginComponent */] },
-    { path: 'signin', component: __WEBPACK_IMPORTED_MODULE_11__components_signin_signin_component__["a" /* SigninComponent */] },
+    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_19__components_register_register_component__["a" /* RegisterComponent */] },
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_18__components_login_login_component__["a" /* LoginComponent */] },
+    { path: 'signin', component: __WEBPACK_IMPORTED_MODULE_12__components_signin_signin_component__["a" /* SigninComponent */] },
     //projects
-    { path: 'project', component: __WEBPACK_IMPORTED_MODULE_20__components_project_project_component__["a" /* ProjectComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */]] },
-    { path: 'project/:id', component: __WEBPACK_IMPORTED_MODULE_22__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project', component: __WEBPACK_IMPORTED_MODULE_21__components_project_project_component__["a" /* ProjectComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id', component: __WEBPACK_IMPORTED_MODULE_23__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */]] },
     //electricals
-    { path: 'project/:id/electricals', component: __WEBPACK_IMPORTED_MODULE_24__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */]] },
-    { path: 'project/:id/electricals/:electricalid', component: __WEBPACK_IMPORTED_MODULE_25__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/electricals', component: __WEBPACK_IMPORTED_MODULE_25__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/electricals/:electricalid', component: __WEBPACK_IMPORTED_MODULE_26__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */]] },
     //cables
-    { path: 'project/:id/cables', component: __WEBPACK_IMPORTED_MODULE_28__components_cable_list_cable_list_component__["a" /* CableListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */]] },
-    { path: 'project/:id/cables/:cableId', component: __WEBPACK_IMPORTED_MODULE_29__components_cable_item_cable_item_component__["a" /* CableItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/cables', component: __WEBPACK_IMPORTED_MODULE_29__components_cable_list_cable_list_component__["a" /* CableListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/cables/:cableId', component: __WEBPACK_IMPORTED_MODULE_30__components_cable_item_cable_item_component__["a" /* CableItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */]] },
     //profile
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_12__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */]] }
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_13__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */]] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -184,25 +187,25 @@ var AppModule = (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__components_navbar_navbar_component__["a" /* NavbarComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__components_login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_18__components_register_register_component__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__components_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__components_project_project_component__["a" /* ProjectComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__components_profile_profile_component__["a" /* ProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__components_modals_projects_modal_projects_modal_component__["a" /* ProjectsModalComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__components_modals_electricals_modal_electricals_modal_component__["a" /* ElectricalsModalComponent */],
-                __WEBPACK_IMPORTED_MODULE_28__components_cable_list_cable_list_component__["a" /* CableListComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__components_cable_item_cable_item_component__["a" /* CableItemComponent */],
-                __WEBPACK_IMPORTED_MODULE_30__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__["a" /* CableDistanceModalComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__components_about_us_about_us_component__["a" /* AboutUsComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__components_services_services_component__["a" /* ServicesComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__components_contact_us_contact_us_component__["a" /* ContactUsComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__components_signin_signin_component__["a" /* SigninComponent */]
+                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__components_navbar_navbar_component__["a" /* NavbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__components_login_login_component__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__components_register_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__components_home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__components_project_project_component__["a" /* ProjectComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__components_profile_profile_component__["a" /* ProfileComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__components_modals_projects_modal_projects_modal_component__["a" /* ProjectsModalComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_modals_electricals_modal_electricals_modal_component__["a" /* ElectricalsModalComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__components_cable_list_cable_list_component__["a" /* CableListComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__components_cable_item_cable_item_component__["a" /* CableItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_31__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__["a" /* CableDistanceModalComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__components_about_us_about_us_component__["a" /* AboutUsComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__components_services_services_component__["a" /* ServicesComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__components_contact_us_contact_us_component__["a" /* ContactUsComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__components_signin_signin_component__["a" /* SigninComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -210,10 +213,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["HttpModule"],
                 __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(appRoutes),
-                __WEBPACK_IMPORTED_MODULE_15_angular2_flash_messages__["FlashMessagesModule"].forRoot()
+                __WEBPACK_IMPORTED_MODULE_16_angular2_flash_messages__["FlashMessagesModule"].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__["Ng4LoadingSpinnerModule"].forRoot()
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_13__services_validate_service__["a" /* ValidateService */], __WEBPACK_IMPORTED_MODULE_14__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_19__services_project_service__["a" /* ProjectService */], __WEBPACK_IMPORTED_MODULE_23__services_electrical_service__["a" /* ElectricalService */], __WEBPACK_IMPORTED_MODULE_27__services_cable_service__["a" /* CableService */]],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_14__services_validate_service__["a" /* ValidateService */], __WEBPACK_IMPORTED_MODULE_15__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_20__services_project_service__["a" /* ProjectService */], __WEBPACK_IMPORTED_MODULE_24__services_electrical_service__["a" /* ElectricalService */], __WEBPACK_IMPORTED_MODULE_28__services_cable_service__["a" /* CableService */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -373,6 +377,8 @@ module.exports = "<div class=\"ml-3 mr-3\" *ngIf=\"cabelItem\">\n  <div class=\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -385,12 +391,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CableItemComponent = (function () {
-    //
-    function CableItemComponent(router, route, cableService) {
+    function CableItemComponent(router, route, cableService, spinnerService) {
         this.router = router;
         this.route = route;
         this.cableService = cableService;
+        this.spinnerService = spinnerService;
         //
         this.dropElementFlag = true;
         this.voltage = "Voltage";
@@ -403,13 +410,13 @@ var CableItemComponent = (function () {
         this.cableId = this.route.snapshot.params['cableId'];
         this.sizeWindow = window.innerWidth;
     }
-    //
     CableItemComponent.prototype.onResize = function (event) {
         event.target.innerWidth;
         this.sizeWindow = event.target.innerWidth;
     };
     CableItemComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.spinnerService.show();
         this.cableService.getCableItem(this.projectId, this.cableId).subscribe(function (cables) {
             _this.cabelItem = cables.cabel;
             _this.voltageAfterChangePowerSystem = cables.cabel.voltage.filter(function (p) { return p.powerSystemType == cables.cabel.selectedPowerSystem; });
@@ -422,19 +429,17 @@ var CableItemComponent = (function () {
         this.cableService.getElectricalName(this.projectId).subscribe(function (electricals) {
             _this.electricalList = electricals.electricals;
         });
+        this.spinnerService.hide();
     };
     CableItemComponent.prototype.setCabelToConnectedFLA = function (elecList, selectedCableTo) {
         var electricalsList = elecList;
         for (var key in electricalsList) {
             if (electricalsList[key].equipmentTag === selectedCableTo) {
                 this.cabelItem.connectedFLA = electricalsList[key].totalConectedFla;
-                //console.log(this.electricalConectedFLA);
             }
             else {
             }
         }
-        //    console.log(elecList);
-        //    console.log(selectedCableTo);
     };
     CableItemComponent.prototype.getXYZValue = function (elList, from, to) {
         var listOfElecricals = elList;
@@ -474,9 +479,7 @@ var CableItemComponent = (function () {
     CableItemComponent.prototype.getVoltagePrefix = function (voltageData) {
         this.voltagePrefix = voltageData;
         var index = this.voltagePrefix.lastIndexOf(' ');
-        //console.log(index);
         this.voltagePrefix = this.voltagePrefix.substring(index + 1);
-        //console.log(this.voltagePrefix);
     };
     CableItemComponent.prototype.typeChanged = function () {
         var _this = this;
@@ -512,6 +515,7 @@ var CableItemComponent = (function () {
     };
     CableItemComponent.prototype.saveCable = function (idCable, data) {
         var _this = this;
+        this.spinnerService.show();
         //Info part
         data.cableTagFirst = this.cabelItem.cableTagFirst;
         data.cableTagSecond = this.cabelItem.cableTagSecond;
@@ -578,7 +582,7 @@ var CableItemComponent = (function () {
         data.ocAmpRating = this.cabelItem.ocAmpRating;
         data.internalNotes = this.cabelItem.internalNotes;
         this.cableService.updateCabelItem(this.projectId, idCable, data).subscribe(function (res) {
-            //let id = res['_id'];
+            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'cables']);
         }, function (err) {
             console.log(err);
@@ -586,7 +590,9 @@ var CableItemComponent = (function () {
     };
     CableItemComponent.prototype.deleteCable = function (cableItemId) {
         var _this = this;
+        this.spinnerService.show();
         this.cableService.deleteCableItem(this.projectId, cableItemId).subscribe(function (res) {
+            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'cables']);
         }, function (err) {
             console.log(err);
@@ -606,7 +612,8 @@ var CableItemComponent = (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_2__services_cable_service__["a" /* CableService */]])
+            __WEBPACK_IMPORTED_MODULE_2__services_cable_service__["a" /* CableService */],
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], CableItemComponent);
     return CableItemComponent;
 }());
@@ -648,6 +655,8 @@ module.exports = "<div class=\"container\">\n    <div class=\"pt-2 text-center\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -660,18 +669,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CableListComponent = (function () {
-    function CableListComponent(cableService, router, route) {
+    function CableListComponent(cableService, router, route, spinnerService) {
         this.cableService = cableService;
         this.router = router;
         this.route = route;
+        this.spinnerService = spinnerService;
         this.projectId = this.route.snapshot.params['id'];
     }
     CableListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.spinnerService.show();
         this.cableService.getCables(this.projectId).subscribe(function (cableList) {
             _this.cables = cableList;
-            //this.recalculationParentValeu(electricalList);
+            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
@@ -679,12 +691,14 @@ var CableListComponent = (function () {
     };
     CableListComponent.prototype.saveCable = function () {
         var _this = this;
+        this.spinnerService.show();
         this.cable = {};
         this.cable.length = 0;
         this.cableService.createCable(this.projectId, this.cable).subscribe(function (res) {
             var id = res['_id'];
             var responseId = res[res.length - 1]['_id'];
             var routeToCableItem = '/project/' + _this.route.snapshot.params['id'] + '/cables/' + responseId;
+            _this.spinnerService.hide();
             _this.router.navigate([routeToCableItem]);
         }, function (err) {
             console.log(err);
@@ -698,7 +712,8 @@ var CableListComponent = (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_cable_service__["a" /* CableService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], CableListComponent);
     return CableListComponent;
 }());
@@ -858,6 +873,8 @@ module.exports = "<div class=\"ml-3 mr-3\" (window:resize)=\"onResize($event)\" 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -871,11 +888,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ElectricalItemComponent = (function () {
-    function ElectricalItemComponent(router, route, electricalService) {
+    function ElectricalItemComponent(router, route, electricalService, spinnerService) {
         this.router = router;
         this.route = route;
         this.electricalService = electricalService;
+        this.spinnerService = spinnerService;
         this.productsAfterChangeEvent = [];
         //
         this.dropElementFlag = true;
@@ -900,6 +919,7 @@ var ElectricalItemComponent = (function () {
     };
     ElectricalItemComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.spinnerService.show();
         this.electricalService.getElectricalItem(this.projectId, this.electricalId).subscribe(function (electricals) {
             _this.electricalItem = electricals.electrical;
             _this.productsAfterChangeEvent = electricals.electrical.voltage.filter(function (p) { return p.powerSystemType == electricals.electrical.selectedPowerSystem; });
@@ -921,6 +941,7 @@ var ElectricalItemComponent = (function () {
             console.log(err);
             return false;
         });
+        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.ngDoCheck = function () {
         if (!this.electricalItem) {
@@ -931,6 +952,7 @@ var ElectricalItemComponent = (function () {
         }
     };
     ElectricalItemComponent.prototype.electricalChildList = function () {
+        this.spinnerService.show();
         if (this.electricalItem.selectedParentTag) {
             if (this.presetParentTag == this.electricalItem.selectedParentTag) {
                 return;
@@ -966,6 +988,7 @@ var ElectricalItemComponent = (function () {
         else {
             return;
         }
+        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.optionChanged = function ($event) {
         this.selectedHazlocZone.reset(null);
@@ -983,6 +1006,7 @@ var ElectricalItemComponent = (function () {
     };
     ElectricalItemComponent.prototype.saveElectrical = function (idElectrical, data) {
         var _this = this;
+        this.spinnerService.show();
         this.selectedItemVoltage = data.selectedVoltage;
         data.selectedVoltage = {};
         data.selectedVoltage.name = this.selectedItemVoltage;
@@ -1017,9 +1041,11 @@ var ElectricalItemComponent = (function () {
             console.log(err);
         });
         this.electricalChildList();
+        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.deleteElectrical = function (electricalItemId) {
         var _this = this;
+        this.spinnerService.show();
         if (this.electricalItem.chiildList.length >= 1) {
             for (var i = 0; i < this.project.electricals.length; ++i) {
                 var temporaryElectricalItem = this.project.electricals[i];
@@ -1054,6 +1080,7 @@ var ElectricalItemComponent = (function () {
         }, function (err) {
             console.log(err);
         });
+        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.changeVoltageArrayObject = function (productsAfterChange, projectData) {
         var arayObjectsAfterFilter = projectData.filter(function (p) { return p.powerSystemType != productsAfterChange[0].powerSystemType; });
@@ -1264,7 +1291,8 @@ var ElectricalItemComponent = (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_3__services_electrical_service__["a" /* ElectricalService */]])
+            __WEBPACK_IMPORTED_MODULE_3__services_electrical_service__["a" /* ElectricalService */],
+            __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], ElectricalItemComponent);
     return ElectricalItemComponent;
 }());
@@ -1306,6 +1334,8 @@ module.exports = "<div>\n  <div class=\"pt-2 text-center\">\n    <h1>Electricals
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1318,18 +1348,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ElectricalListComponent = (function () {
-    function ElectricalListComponent(electricalService, router, route) {
+    function ElectricalListComponent(electricalService, router, route, spinnerService) {
         this.electricalService = electricalService;
         this.router = router;
         this.route = route;
+        this.spinnerService = spinnerService;
         this.projectId = this.route.snapshot.params['id'];
     }
     ElectricalListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.spinnerService.show();
         this.electricalService.getElectricals(this.projectId).subscribe(function (electricalList) {
             _this.electricals = electricalList;
             _this.recalculationParentValeu(electricalList);
+            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
@@ -1337,12 +1371,14 @@ var ElectricalListComponent = (function () {
     };
     ElectricalListComponent.prototype.saveElectrical = function () {
         var _this = this;
+        this.spinnerService.show();
         this.electrical = {};
         this.electrical.length = 0;
         this.electricalService.createElectrical(this.projectId, this.electrical).subscribe(function (res) {
             var id = res['_id'];
             var responseId = res[res.length - 1]['_id'];
             var routeToElectricalItem = '/project/' + _this.route.snapshot.params['id'] + '/electricals/' + responseId;
+            _this.spinnerService.hide();
             _this.router.navigate([routeToElectricalItem]);
         }, function (err) {
             console.log(err);
@@ -1408,7 +1444,6 @@ var ElectricalListComponent = (function () {
                 //electricalItem.selectedMotorSF
                 electricalItem.scenarioFirstLoadFactor = Math.ceil((electricalItem.scenarioFirstLoadFactor / electricalItem.chiildList.length) * 100) / 100;
             }
-            //console.log(electricalItem)
         }
     };
     ElectricalListComponent = __decorate([
@@ -1419,7 +1454,8 @@ var ElectricalListComponent = (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_electrical_service__["a" /* ElectricalService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], ElectricalListComponent);
     return ElectricalListComponent;
 }());
@@ -2255,6 +2291,8 @@ module.exports = "<div class=\"container text-style\" *ngIf=\"project\">\n    <o
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2267,16 +2305,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProjectDashboardComponent = (function () {
-    function ProjectDashboardComponent(route, projectService) {
+    function ProjectDashboardComponent(route, projectService, spinnerService) {
         this.route = route;
         this.projectService = projectService;
+        this.spinnerService = spinnerService;
         this.projectId = this.route.snapshot.params['id'];
     }
     ProjectDashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.spinnerService.show();
         this.projectService.getProjectById(this.projectId).subscribe(function (project) {
             _this.project = project;
+            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
@@ -2289,7 +2331,8 @@ var ProjectDashboardComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/components/project-dashboard/project-dashboard.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */]])
+            __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */],
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], ProjectDashboardComponent);
     return ProjectDashboardComponent;
 }());
@@ -2331,6 +2374,8 @@ module.exports = "<!--\n<div *ngIf=\"project\">\n  <ul class=\"list-group\">\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2343,10 +2388,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProjectComponent = (function () {
-    function ProjectComponent(projectService, router) {
+    function ProjectComponent(projectService, router, spinnerService) {
         this.projectService = projectService;
         this.router = router;
+        this.spinnerService = spinnerService;
         this.createProjectModalHeader = "Project functionality";
         this.createProject = true;
         this.dropProject = true;
@@ -2354,9 +2401,11 @@ var ProjectComponent = (function () {
     }
     ProjectComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.spinnerService.show();
         this.projectService.getProject().subscribe(function (projectList) {
             _this.project = projectList;
             _this.projectLenth = projectList.length;
+            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
@@ -2368,9 +2417,11 @@ var ProjectComponent = (function () {
             return;
         }
         else if (this.projectLenth < Object.keys(this.project).length || this.projectLenth > Object.keys(this.project).length) {
+            this.spinnerService.show();
             this.projectService.getProject().subscribe(function (projectList) {
                 _this.project = projectList;
                 _this.projectLenth = projectList.length;
+                _this.spinnerService.hide();
             }, function (err) {
                 console.log(err);
                 return false;
@@ -2386,7 +2437,9 @@ var ProjectComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/project/project.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/project/project.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_project_service__["a" /* ProjectService */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_project_service__["a" /* ProjectService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], ProjectComponent);
     return ProjectComponent;
 }());
@@ -2729,11 +2782,13 @@ module.exports = "<div>\n  <section id=\"cover\">\n    <div id=\"cover-caption\"
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SigninComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__matchOtherValidator__ = __webpack_require__("../../../../../src/app/components/signin/matchOtherValidator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__matchOtherValidator__ = __webpack_require__("../../../../../src/app/components/signin/matchOtherValidator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2749,11 +2804,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SigninComponent = (function () {
-    function SigninComponent(flashMessage, router, authService) {
+    function SigninComponent(flashMessage, router, authService, spinnerService) {
         this.flashMessage = flashMessage;
         this.router = router;
         this.authService = authService;
+        this.spinnerService = spinnerService;
         this.windowType = 0;
         this.today = new Date();
         this.year = this.today.getFullYear();
@@ -2788,7 +2845,7 @@ var SigninComponent = (function () {
             "confirmUserEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required,
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].email,
-                Object(__WEBPACK_IMPORTED_MODULE_2__matchOtherValidator__["a" /* matchOtherValidator */])('userEmail')
+                Object(__WEBPACK_IMPORTED_MODULE_4__matchOtherValidator__["a" /* matchOtherValidator */])('userEmail')
             ]),
             "userName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required),
             "firstName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required),
@@ -2805,7 +2862,7 @@ var SigninComponent = (function () {
             "userConfirmPassword": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required,
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].minLength(6),
-                Object(__WEBPACK_IMPORTED_MODULE_2__matchOtherValidator__["a" /* matchOtherValidator */])('userPassword')
+                Object(__WEBPACK_IMPORTED_MODULE_4__matchOtherValidator__["a" /* matchOtherValidator */])('userPassword')
             ])
         });
     }
@@ -2830,6 +2887,7 @@ var SigninComponent = (function () {
     };
     SigninComponent.prototype.onLoginSubmit = function () {
         var _this = this;
+        this.spinnerService.show();
         var user = {
             companyName: this.loginForm.value.companyName,
             email: this.loginForm.value.userEmail,
@@ -2838,10 +2896,12 @@ var SigninComponent = (function () {
         this.authService.authenticateUser(user).subscribe(function (data) {
             if (data.success) {
                 _this.authService.storeUserData(data.token, data.user);
+                _this.spinnerService.hide();
                 _this.flashMessage.show('You are now logged in.', { cssClass: 'alert-success', timeout: 3000, showCloseBtn: true });
                 _this.router.navigate(['project']);
             }
             else {
+                _this.spinnerService.hide();
                 _this.flashMessage.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
                 _this.router.navigate(['signin']);
             }
@@ -2849,6 +2909,7 @@ var SigninComponent = (function () {
     };
     SigninComponent.prototype.onRegisterSubmit = function () {
         var _this = this;
+        this.spinnerService.show();
         var user = {
             email: this.registerForm.value.userEmail,
             userName: this.registerForm.value.userName,
@@ -2862,10 +2923,12 @@ var SigninComponent = (function () {
         //Register user
         this.authService.registerUser(user).subscribe(function (data) {
             if (data.success) {
+                _this.spinnerService.hide();
                 _this.flashMessage.show('You are now registered and can log in!', { cssClass: 'alert-success', timeout: 3000, showCloseBtn: true });
                 _this.router.navigate(['/']);
             }
             else {
+                _this.spinnerService.hide();
                 _this.flashMessage.show('Something went wrong!!', { cssClass: 'alert-danger', timeout: 3000, showCloseBtn: true });
                 _this.router.navigate(['/signin']);
             }
@@ -2883,9 +2946,10 @@ var SigninComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/signin/signin.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/signin/signin.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"],
-            __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__["FlashMessagesService"],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */],
+            __WEBPACK_IMPORTED_MODULE_6_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], SigninComponent);
     return SigninComponent;
 }());
@@ -2970,18 +3034,23 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         //for dev use
-        //'http://localhost:3000/users/register'
+        /*
+        return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
+        .map(res => res.json());
+        */
         //for deploy use
-        //'users/register'
         return this.http.post('users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         //for dev use
-        //'http://localhost:3000/users/authenticate'
+        /*
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers})
+          .map(res => res.json());
+        */
         //for deploy use
-        //'users/authenticate'
         headers.append('Content-Type', 'application/json');
         return this.http.post('users/authenticate', user, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -2991,11 +3060,13 @@ var AuthService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         //for dev use
+        /*
+        return this.http.get('http://localhost:3000/users/profile', {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
         return this.http.get('users/profile', { headers: headers })
             .map(function (res) { return res.json(); });
-        //for deploy
-        //return this.http.get('users/profile', {headers: headers})
-        //  .map(res => res.json());
     };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('id_token', token);
@@ -3093,7 +3164,8 @@ var CableService = (function () {
     CableService.prototype.getCableItem = function (projectId, cableId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         //for dev use
-        /*headers.append('Content-Type', 'application/json');
+        /*
+        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/cables/'+cableId, {headers: headers})
           .map(res => res.json());
         */
@@ -3105,7 +3177,8 @@ var CableService = (function () {
     CableService.prototype.updateCabelItem = function (projectId, cabelId, cabelItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         //for dev use
-        /*headers.append('Content-Type', 'application/json');
+        /*
+        headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/cable-update/'+cabelId, cabelItem, {headers: headers})
           .map(res => res.json());
         */
