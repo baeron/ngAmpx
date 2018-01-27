@@ -959,7 +959,6 @@ var ElectricalItemComponent = (function () {
                 return;
             }
             else {
-                this.spinnerService.show();
                 for (var i = 0; i < this.project.electricals.length; ++i) {
                     var tempElectricalItem = this.project.electricals[i];
                     for (var j = 0; j < tempElectricalItem.chiildList.length; ++j) {
@@ -984,7 +983,6 @@ var ElectricalItemComponent = (function () {
                         return;
                     }
                 }
-                this.spinnerService.hide();
             }
         }
         else {
