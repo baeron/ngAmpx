@@ -419,6 +419,7 @@ var CableItemComponent = (function () {
         this.spinnerService.show();
         this.cableService.getCableItem(this.projectId, this.cableId).subscribe(function (cables) {
             _this.cabelItem = cables.cabel;
+            _this.spinnerService.hide();
             _this.voltageAfterChangePowerSystem = cables.cabel.voltage.filter(function (p) { return p.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.conductorMaterialAfterChangePowerSystem = cables.cabel.conductorMaterial.filter(function (cm) { return cm.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.insTempRatingAfterChangeConductorMaterial = cables.cabel.insulationTemperatureRatingArray.filter(function (itr) { return itr.conductorMaterialType == cables.cabel.selectedConductorMaterial.name; });
@@ -426,10 +427,11 @@ var CableItemComponent = (function () {
             console.log(err);
             return false;
         });
+        this.spinnerService.show();
         this.cableService.getElectricalName(this.projectId).subscribe(function (electricals) {
             _this.electricalList = electricals.electricals;
+            _this.spinnerService.hide();
         });
-        this.spinnerService.hide();
     };
     CableItemComponent.prototype.setCabelToConnectedFLA = function (elecList, selectedCableTo) {
         var electricalsList = elecList;
@@ -515,7 +517,6 @@ var CableItemComponent = (function () {
     };
     CableItemComponent.prototype.saveCable = function (idCable, data) {
         var _this = this;
-        this.spinnerService.show();
         //Info part
         data.cableTagFirst = this.cabelItem.cableTagFirst;
         data.cableTagSecond = this.cabelItem.cableTagSecond;
@@ -581,6 +582,7 @@ var CableItemComponent = (function () {
         data.condAmpacity = this.cabelItem.condAmpacity;
         data.ocAmpRating = this.cabelItem.ocAmpRating;
         data.internalNotes = this.cabelItem.internalNotes;
+        this.spinnerService.show();
         this.cableService.updateCabelItem(this.projectId, idCable, data).subscribe(function (res) {
             _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'cables']);
@@ -691,9 +693,9 @@ var CableListComponent = (function () {
     };
     CableListComponent.prototype.saveCable = function () {
         var _this = this;
-        this.spinnerService.show();
         this.cable = {};
         this.cable.length = 0;
+        this.spinnerService.show();
         this.cableService.createCable(this.projectId, this.cable).subscribe(function (res) {
             var id = res['_id'];
             var responseId = res[res.length - 1]['_id'];
@@ -922,13 +924,16 @@ var ElectricalItemComponent = (function () {
         this.spinnerService.show();
         this.electricalService.getElectricalItem(this.projectId, this.electricalId).subscribe(function (electricals) {
             _this.electricalItem = electricals.electrical;
+            _this.spinnerService.hide();
             _this.productsAfterChangeEvent = electricals.electrical.voltage.filter(function (p) { return p.powerSystemType == electricals.electrical.selectedPowerSystem; });
         }, function (err) {
             console.log(err);
             return false;
         });
+        this.spinnerService.show();
         this.electricalService.getElectricals(this.projectId).subscribe(function (electricalList) {
             _this.project = electricalList;
+            _this.spinnerService.hide();
             _this.parentList = [];
             for (var key in _this.project.electricals) {
                 if (_this.project.electricals[key]._id == _this.electricalId) {
@@ -941,7 +946,6 @@ var ElectricalItemComponent = (function () {
             console.log(err);
             return false;
         });
-        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.ngDoCheck = function () {
         if (!this.electricalItem) {
@@ -952,12 +956,13 @@ var ElectricalItemComponent = (function () {
         }
     };
     ElectricalItemComponent.prototype.electricalChildList = function () {
-        this.spinnerService.show();
+        var _this = this;
         if (this.electricalItem.selectedParentTag) {
             if (this.presetParentTag == this.electricalItem.selectedParentTag) {
                 return;
             }
             else {
+                this.spinnerService.show();
                 for (var i = 0; i < this.project.electricals.length; ++i) {
                     var tempElectricalItem = this.project.electricals[i];
                     for (var j = 0; j < tempElectricalItem.chiildList.length; ++j) {
@@ -965,18 +970,20 @@ var ElectricalItemComponent = (function () {
                         if (childElement._id == this.electricalItem._id) {
                             tempElectricalItem.chiildList.splice(j, 1);
                             this.electricalService.updateElectricalItem(this.projectId, tempElectricalItem._id, tempElectricalItem).subscribe(function (res) {
-                                console.log(res);
+                                _this.spinnerService.hide();
+                                //console.log(res);
                             }, function (err) {
                                 console.log(err);
                             });
                         }
-                        console.log(tempElectricalItem.chiildList);
                     }
                     if (tempElectricalItem.equipmentTag == this.electricalItem.selectedParentTag) {
+                        this.spinnerService.show();
                         this.project.electricals[i].chiildList.push(this.electricalItem);
                         var temp = this.project.electricals[i];
                         this.electricalService.updateElectricalItem(this.projectId, tempElectricalItem._id, temp).subscribe(function (res) {
-                            console.log(res);
+                            _this.spinnerService.hide();
+                            //console.log(res);
                         }, function (err) {
                             console.log(err);
                         });
@@ -988,7 +995,6 @@ var ElectricalItemComponent = (function () {
         else {
             return;
         }
-        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.optionChanged = function ($event) {
         this.selectedHazlocZone.reset(null);
@@ -1035,25 +1041,26 @@ var ElectricalItemComponent = (function () {
         data.scenarioFirstKVA = this.electricalItem.scenarioFirstKVA || 0;
         //
         this.electricalService.updateElectricalItem(this.projectId, idElectrical, data).subscribe(function (res) {
+            _this.spinnerService.hide();
             var id = res['_id'];
             _this.router.navigate(['project', _this.projectId, 'electricals']);
         }, function (err) {
             console.log(err);
         });
         this.electricalChildList();
-        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.deleteElectrical = function (electricalItemId) {
         var _this = this;
-        this.spinnerService.show();
         if (this.electricalItem.chiildList.length >= 1) {
             for (var i = 0; i < this.project.electricals.length; ++i) {
+                this.spinnerService.show();
                 var temporaryElectricalItem = this.project.electricals[i];
                 if (temporaryElectricalItem.selectedParentTag === this.electricalItem.equipmentTag) {
                     temporaryElectricalItem.selectedParentTag = '';
                     console.log(temporaryElectricalItem);
                     this.electricalService.updateElectricalItem(this.projectId, temporaryElectricalItem._id, temporaryElectricalItem).subscribe(function (res) {
-                        console.log(res);
+                        _this.spinnerService.hide();
+                        //console.log(res);
                     }, function (err) {
                         console.log(err);
                     });
@@ -1061,13 +1068,15 @@ var ElectricalItemComponent = (function () {
             }
         }
         for (var j = 0; j < this.project.electricals.length; ++j) {
+            this.spinnerService.show();
             var electricalItemElment = this.project.electricals[j];
             for (var k = 0; k < electricalItemElment.chiildList.length; ++k) {
                 var temporalChildElement = electricalItemElment.chiildList[k];
                 if (temporalChildElement._id === this.electricalItem._id) {
                     electricalItemElment.chiildList.splice(j, 1);
                     this.electricalService.updateElectricalItem(this.projectId, electricalItemElment._id, electricalItemElment).subscribe(function (res) {
-                        console.log(res);
+                        _this.spinnerService.hide();
+                        //console.log(res);
                     }, function (err) {
                         console.log(err);
                     });
@@ -1075,12 +1084,13 @@ var ElectricalItemComponent = (function () {
                 console.log(electricalItemElment);
             }
         }
+        this.spinnerService.show();
         this.electricalService.deleteElectricalItem(this.projectId, electricalItemId).subscribe(function (res) {
+            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'electricals']);
         }, function (err) {
             console.log(err);
         });
-        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.changeVoltageArrayObject = function (productsAfterChange, projectData) {
         var arayObjectsAfterFilter = projectData.filter(function (p) { return p.powerSystemType != productsAfterChange[0].powerSystemType; });
@@ -1362,8 +1372,8 @@ var ElectricalListComponent = (function () {
         this.spinnerService.show();
         this.electricalService.getElectricals(this.projectId).subscribe(function (electricalList) {
             _this.electricals = electricalList;
-            _this.recalculationParentValeu(electricalList);
             _this.spinnerService.hide();
+            _this.recalculationParentValeu(electricalList);
         }, function (err) {
             console.log(err);
             return false;
@@ -2404,8 +2414,8 @@ var ProjectComponent = (function () {
         this.spinnerService.show();
         this.projectService.getProject().subscribe(function (projectList) {
             _this.project = projectList;
-            _this.projectLenth = projectList.length;
             _this.spinnerService.hide();
+            _this.projectLenth = projectList.length;
         }, function (err) {
             console.log(err);
             return false;
@@ -2420,8 +2430,8 @@ var ProjectComponent = (function () {
             this.spinnerService.show();
             this.projectService.getProject().subscribe(function (projectList) {
                 _this.project = projectList;
-                _this.projectLenth = projectList.length;
                 _this.spinnerService.hide();
+                _this.projectLenth = projectList.length;
             }, function (err) {
                 console.log(err);
                 return false;
@@ -2909,7 +2919,6 @@ var SigninComponent = (function () {
     };
     SigninComponent.prototype.onRegisterSubmit = function () {
         var _this = this;
-        this.spinnerService.show();
         var user = {
             email: this.registerForm.value.userEmail,
             userName: this.registerForm.value.userName,
@@ -2921,6 +2930,7 @@ var SigninComponent = (function () {
             password: this.registerForm.value.userPassword
         };
         //Register user
+        this.spinnerService.show();
         this.authService.registerUser(user).subscribe(function (data) {
             if (data.success) {
                 _this.spinnerService.hide();
