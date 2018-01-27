@@ -422,6 +422,7 @@ var CableItemComponent = (function () {
             _this.voltageAfterChangePowerSystem = cables.cabel.voltage.filter(function (p) { return p.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.conductorMaterialAfterChangePowerSystem = cables.cabel.conductorMaterial.filter(function (cm) { return cm.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.insTempRatingAfterChangeConductorMaterial = cables.cabel.insulationTemperatureRatingArray.filter(function (itr) { return itr.conductorMaterialType == cables.cabel.selectedConductorMaterial.name; });
+            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
@@ -429,7 +430,6 @@ var CableItemComponent = (function () {
         this.cableService.getElectricalName(this.projectId).subscribe(function (electricals) {
             _this.electricalList = electricals.electricals;
         });
-        this.spinnerService.hide();
     };
     CableItemComponent.prototype.setCabelToConnectedFLA = function (elecList, selectedCableTo) {
         var electricalsList = elecList;
@@ -592,11 +592,11 @@ var CableItemComponent = (function () {
         var _this = this;
         this.spinnerService.show();
         this.cableService.deleteCableItem(this.projectId, cableItemId).subscribe(function (res) {
+            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'cables']);
         }, function (err) {
             console.log(err);
         });
-        this.spinnerService.hide();
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('window:resize', ['$event']),
@@ -1033,7 +1033,7 @@ var ElectricalItemComponent = (function () {
         //
         this.electricalService.updateElectricalItem(this.projectId, idElectrical, data).subscribe(function (res) {
             _this.spinnerService.hide();
-            var id = res['_id'];
+            //let id = res['_id'];
             _this.router.navigate(['project', _this.projectId, 'electricals']);
         }, function (err) {
             console.log(err);
@@ -1072,12 +1072,13 @@ var ElectricalItemComponent = (function () {
                 //console.log(electricalItemElment);
             }
         }
+        ;
         this.electricalService.deleteElectricalItem(this.projectId, electricalItemId).subscribe(function (res) {
+            _this.spinnerService.hide();
             _this.router.navigate(['project', _this.projectId, 'electricals']);
         }, function (err) {
             console.log(err);
         });
-        this.spinnerService.hide();
     };
     ElectricalItemComponent.prototype.changeVoltageArrayObject = function (productsAfterChange, projectData) {
         var arayObjectsAfterFilter = projectData.filter(function (p) { return p.powerSystemType != productsAfterChange[0].powerSystemType; });
@@ -2315,11 +2316,11 @@ var ProjectDashboardComponent = (function () {
         this.spinnerService.show();
         this.projectService.getProjectById(this.projectId).subscribe(function (project) {
             _this.project = project;
+            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
         });
-        this.spinnerService.hide();
     };
     ProjectDashboardComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -2402,11 +2403,11 @@ var ProjectComponent = (function () {
         this.projectService.getProject().subscribe(function (projectList) {
             _this.project = projectList;
             _this.projectLenth = projectList.length;
+            _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
             return false;
         });
-        this.spinnerService.hide();
     };
     ProjectComponent.prototype.ngDoCheck = function () {
         var _this = this;
