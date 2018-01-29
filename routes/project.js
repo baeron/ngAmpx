@@ -86,7 +86,7 @@ router.get('/:id', function (req, res) {
 router.get('/:id/electricals',function (req, res) {
   if(req.params){
     Project
-    .findById(req.params.id, 'electricals._id electricals.revision electricals.equipmentTag electricals.selectedEquipmentType electricals.selectedVoltage '+
+    .findById(req.params.id, 'electricals._id electricals.dateCreate electricals.revision electricals.equipmentTag electricals.selectedEquipmentType electricals.selectedVoltage '+
     'electricals.selectedPowerSystem electricals.nameplateRating electricals.selectedUnits electricals.totalPF electricals.totalEFF electricals.selectedMotorSF '+
     'electricals.selectedMotorCode electricals.selectedLoadDuty electricals.selectedParentTag electricals.totalConectedFla electricals.totalConectedKW '+
     'electricals.totalConnectedKVAR electricals.totalConnectedKVA electricals.totalDemandFLA electricals.totalDemandKW electricals.totalDemandKVAR electricals.totalDemandKVA '+
@@ -202,6 +202,7 @@ router.patch('/:id/electrical-update/:electricalid', function(req, res) {
       //Equipment Entry
           //item number
           electrical.dateCreate = req.body.dateCreate;
+          console.log(electrical.dateCreate);
           electrical.quantity = req.body.quantity;
           electrical.revision = req.body.revision;
           electrical.equipmentType = req.body.equipmentType;
@@ -218,10 +219,7 @@ router.patch('/:id/electrical-update/:electricalid', function(req, res) {
           electrical.equipmentDescription = req.body.equipmentDescription;
           electrical.selectedEquipmentDescription = req.body.selectedEquipmentDescription;
           electrical.selectedParentTag = req.body.selectedParentTag;
-          //parent tag
           //equipment notes
-          //clone tag
-          //new tag
           electrical.length = req.body.length;
           electrical.depth = req.body.depth;
           electrical.height = req.body.height;

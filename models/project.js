@@ -4,7 +4,7 @@ const config = require('../config/database');
 //ELECTRICAL SCHEMA
 var electrucalSchema = new mongoose.Schema({
   itemNumber: String,
-  //dateCreate: { type: Date, default: Date.now },
+  dateCreate: { type: Date, default: Date.now },
   revision: {type: String, default: 'A'},
   quantity: {type: Number, default: 5},
   equipmentType: {
