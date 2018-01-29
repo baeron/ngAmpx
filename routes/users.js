@@ -95,14 +95,10 @@ router.post('/contacts', (req, res, next) => {
       auth: {
           user: 'baranoffei@gmail.com',
           pass: 'baeron314'
-      }
-      //for dev
-      /*
-      ,
+      },
       tls:{
         rejectUnautorized: false
       }
-      */
   });
 
   //email for USER
