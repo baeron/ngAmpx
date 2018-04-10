@@ -85,34 +85,39 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mydatepicker__ = __webpack_require__("../../../../mydatepicker/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_navbar_navbar_component__ = __webpack_require__("../../../../../src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_home_home_component__ = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_about_us_about_us_component__ = __webpack_require__("../../../../../src/app/components/about-us/about-us.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_services_services_component__ = __webpack_require__("../../../../../src/app/components/services/services.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_signin_signin_component__ = __webpack_require__("../../../../../src/app/components/signin/signin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_contact_us_contact_us_component__ = __webpack_require__("../../../../../src/app/components/contact-us/contact-us.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_contact_us_service__ = __webpack_require__("../../../../../src/app/services/contact-us.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_validate_service__ = __webpack_require__("../../../../../src/app/services/validate.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_login_login_component__ = __webpack_require__("../../../../../src/app/components/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_register_register_component__ = __webpack_require__("../../../../../src/app/components/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_project_project_component__ = __webpack_require__("../../../../../src/app/components/project/project.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_modals_projects_modal_projects_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/projects-modal/projects-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_project_dashboard_project_dashboard_component__ = __webpack_require__("../../../../../src/app/components/project-dashboard/project-dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_electrical_list_electrical_list_component__ = __webpack_require__("../../../../../src/app/components/electrical-list/electrical-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_electrical_item_electrical_item_component__ = __webpack_require__("../../../../../src/app/components/electrical-item/electrical-item.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_modals_electricals_modal_electricals_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/electricals-modal/electricals-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__services_cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_cable_list_cable_list_component__ = __webpack_require__("../../../../../src/app/components/cable-list/cable-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_cable_item_cable_item_component__ = __webpack_require__("../../../../../src/app/components/cable-item/cable-item.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/cabels-modals/cable-distance-modal/cable-distance-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angular2_ui_switch__ = __webpack_require__("../../../../angular2-ui-switch/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angular2_ui_switch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_angular2_ui_switch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_navbar_navbar_component__ = __webpack_require__("../../../../../src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_home_component__ = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_about_us_about_us_component__ = __webpack_require__("../../../../../src/app/components/about-us/about-us.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_services_services_component__ = __webpack_require__("../../../../../src/app/components/services/services.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_signin_signin_component__ = __webpack_require__("../../../../../src/app/components/signin/signin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_contact_us_contact_us_component__ = __webpack_require__("../../../../../src/app/components/contact-us/contact-us.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_contact_us_service__ = __webpack_require__("../../../../../src/app/services/contact-us.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/profile/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_validate_service__ = __webpack_require__("../../../../../src/app/services/validate.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_login_login_component__ = __webpack_require__("../../../../../src/app/components/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_register_register_component__ = __webpack_require__("../../../../../src/app/components/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_project_project_component__ = __webpack_require__("../../../../../src/app/components/project/project.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_modals_projects_modal_projects_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/projects-modal/projects-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_project_dashboard_project_dashboard_component__ = __webpack_require__("../../../../../src/app/components/project-dashboard/project-dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_electrical_list_electrical_list_component__ = __webpack_require__("../../../../../src/app/components/electrical-list/electrical-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_electrical_item_electrical_item_component__ = __webpack_require__("../../../../../src/app/components/electrical-item/electrical-item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_modals_electricals_modal_electricals_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/electricals-modal/electricals-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__services_cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_cable_list_cable_list_component__ = __webpack_require__("../../../../../src/app/components/cable-list/cable-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_cable_item_cable_item_component__ = __webpack_require__("../../../../../src/app/components/cable-item/cable-item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__ = __webpack_require__("../../../../../src/app/components/modals/cabels-modals/cable-distance-modal/cable-distance-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__services_sldschedule_service__ = __webpack_require__("../../../../../src/app/services/sldschedule.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_sld_schedule_list_sld_schedule_list_component__ = __webpack_require__("../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_sld_schedule_item_sld_schedule_item_component__ = __webpack_require__("../../../../../src/app/components/sld-schedule-item/sld-schedule-item.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -120,6 +125,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 //MAIN SOLUTION COMPONENTS
+
 
 
 
@@ -163,28 +169,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//SLD SHEDULES COMPONENTS
+
+
+
 //TODO move to separate component
 var appRoutes = [
     //main pages
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_9__components_home_home_component__["a" /* HomeComponent */] },
-    { path: 'about_us', component: __WEBPACK_IMPORTED_MODULE_10__components_about_us_about_us_component__["a" /* AboutUsComponent */] },
-    { path: 'services', component: __WEBPACK_IMPORTED_MODULE_11__components_services_services_component__["a" /* ServicesComponent */] },
-    { path: 'contact_us', component: __WEBPACK_IMPORTED_MODULE_13__components_contact_us_contact_us_component__["a" /* ContactUsComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_10__components_home_home_component__["a" /* HomeComponent */] },
+    { path: 'about_us', component: __WEBPACK_IMPORTED_MODULE_11__components_about_us_about_us_component__["a" /* AboutUsComponent */] },
+    { path: 'services', component: __WEBPACK_IMPORTED_MODULE_12__components_services_services_component__["a" /* ServicesComponent */] },
+    { path: 'contact_us', component: __WEBPACK_IMPORTED_MODULE_14__components_contact_us_contact_us_component__["a" /* ContactUsComponent */] },
     //registration and authentication
-    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_21__components_register_register_component__["a" /* RegisterComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_20__components_login_login_component__["a" /* LoginComponent */] },
-    { path: 'signin', component: __WEBPACK_IMPORTED_MODULE_12__components_signin_signin_component__["a" /* SigninComponent */] },
+    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_22__components_register_register_component__["a" /* RegisterComponent */] },
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_21__components_login_login_component__["a" /* LoginComponent */] },
+    { path: 'signin', component: __WEBPACK_IMPORTED_MODULE_13__components_signin_signin_component__["a" /* SigninComponent */] },
     //projects
-    { path: 'project', component: __WEBPACK_IMPORTED_MODULE_23__components_project_project_component__["a" /* ProjectComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */]] },
-    { path: 'project/:id', component: __WEBPACK_IMPORTED_MODULE_25__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project', component: __WEBPACK_IMPORTED_MODULE_24__components_project_project_component__["a" /* ProjectComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id', component: __WEBPACK_IMPORTED_MODULE_26__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
     //electricals
-    { path: 'project/:id/electricals', component: __WEBPACK_IMPORTED_MODULE_27__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */]] },
-    { path: 'project/:id/electricals/:electricalid', component: __WEBPACK_IMPORTED_MODULE_28__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/electricals', component: __WEBPACK_IMPORTED_MODULE_28__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/electricals/:electricalid', component: __WEBPACK_IMPORTED_MODULE_29__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
     //cables
-    { path: 'project/:id/cables', component: __WEBPACK_IMPORTED_MODULE_31__components_cable_list_cable_list_component__["a" /* CableListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */]] },
-    { path: 'project/:id/cables/:cableId', component: __WEBPACK_IMPORTED_MODULE_32__components_cable_item_cable_item_component__["a" /* CableItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/cables', component: __WEBPACK_IMPORTED_MODULE_32__components_cable_list_cable_list_component__["a" /* CableListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/cables/:cableId', component: __WEBPACK_IMPORTED_MODULE_33__components_cable_item_cable_item_component__["a" /* CableItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
+    //sld schedule
+    { path: 'project/:id/sldshedules', component: __WEBPACK_IMPORTED_MODULE_36__components_sld_schedule_list_sld_schedule_list_component__["a" /* SldScheduleListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: 'project/:id/sldshedules/:sldsheduleId', component: __WEBPACK_IMPORTED_MODULE_37__components_sld_schedule_item_sld_schedule_item_component__["a" /* SldScheduleItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
     //profile
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_15__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */]] }
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_16__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -192,38 +205,41 @@ var AppModule = (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__components_navbar_navbar_component__["a" /* NavbarComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__components_login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__components_register_register_component__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__components_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__components_project_project_component__["a" /* ProjectComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__components_profile_profile_component__["a" /* ProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__components_modals_projects_modal_projects_modal_component__["a" /* ProjectsModalComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */],
-                __WEBPACK_IMPORTED_MODULE_27__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */],
-                __WEBPACK_IMPORTED_MODULE_28__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__components_modals_electricals_modal_electricals_modal_component__["a" /* ElectricalsModalComponent */],
-                __WEBPACK_IMPORTED_MODULE_31__components_cable_list_cable_list_component__["a" /* CableListComponent */],
-                __WEBPACK_IMPORTED_MODULE_32__components_cable_item_cable_item_component__["a" /* CableItemComponent */],
-                __WEBPACK_IMPORTED_MODULE_33__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__["a" /* CableDistanceModalComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__components_about_us_about_us_component__["a" /* AboutUsComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__components_services_services_component__["a" /* ServicesComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__components_contact_us_contact_us_component__["a" /* ContactUsComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__components_signin_signin_component__["a" /* SigninComponent */]
+                __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__components_navbar_navbar_component__["a" /* NavbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__components_login_login_component__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__components_register_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__components_home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__components_project_project_component__["a" /* ProjectComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__components_profile_profile_component__["a" /* ProfileComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__components_modals_projects_modal_projects_modal_component__["a" /* ProjectsModalComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_project_dashboard_project_dashboard_component__["a" /* ProjectDashboardComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__components_electrical_list_electrical_list_component__["a" /* ElectricalListComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__components_electrical_item_electrical_item_component__["a" /* ElectricalItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__components_modals_electricals_modal_electricals_modal_component__["a" /* ElectricalsModalComponent */],
+                __WEBPACK_IMPORTED_MODULE_32__components_cable_list_cable_list_component__["a" /* CableListComponent */],
+                __WEBPACK_IMPORTED_MODULE_33__components_cable_item_cable_item_component__["a" /* CableItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_34__components_modals_cabels_modals_cable_distance_modal_cable_distance_modal_component__["a" /* CableDistanceModalComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__components_about_us_about_us_component__["a" /* AboutUsComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__components_services_services_component__["a" /* ServicesComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__components_contact_us_contact_us_component__["a" /* ContactUsComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__components_signin_signin_component__["a" /* SigninComponent */],
+                __WEBPACK_IMPORTED_MODULE_36__components_sld_schedule_list_sld_schedule_list_component__["a" /* SldScheduleListComponent */],
+                __WEBPACK_IMPORTED_MODULE_37__components_sld_schedule_item_sld_schedule_item_component__["a" /* SldScheduleItemComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* ReactiveFormsModule */],
+                __WEBPACK_IMPORTED_MODULE_7_angular2_ui_switch__["UiSwitchModule"],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["ReactiveFormsModule"],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["HttpModule"],
                 __WEBPACK_IMPORTED_MODULE_6_mydatepicker__["MyDatePickerModule"],
                 __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(appRoutes),
-                __WEBPACK_IMPORTED_MODULE_18_angular2_flash_messages__["FlashMessagesModule"].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_19_angular2_flash_messages__["FlashMessagesModule"].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__["Ng4LoadingSpinnerModule"].forRoot()
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_16__services_validate_service__["a" /* ValidateService */], __WEBPACK_IMPORTED_MODULE_17__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_19__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_22__services_project_service__["a" /* ProjectService */], __WEBPACK_IMPORTED_MODULE_26__services_electrical_service__["a" /* ElectricalService */], __WEBPACK_IMPORTED_MODULE_30__services_cable_service__["a" /* CableService */], __WEBPACK_IMPORTED_MODULE_14__services_contact_us_service__["a" /* ContactUsService */]],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_17__services_validate_service__["a" /* ValidateService */], __WEBPACK_IMPORTED_MODULE_18__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_23__services_project_service__["a" /* ProjectService */], __WEBPACK_IMPORTED_MODULE_27__services_electrical_service__["a" /* ElectricalService */], __WEBPACK_IMPORTED_MODULE_31__services_cable_service__["a" /* CableService */], __WEBPACK_IMPORTED_MODULE_35__services_sldschedule_service__["a" /* SldscheduleService */], __WEBPACK_IMPORTED_MODULE_15__services_contact_us_service__["a" /* ContactUsService */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -425,9 +441,11 @@ var CableItemComponent = (function () {
         this.spinnerService.show();
         this.cableService.getCableItem(this.projectId, this.cableId).subscribe(function (cables) {
             _this.cabelItem = cables.cabel;
+            //console.log(this.cabelItem);
             _this.voltageAfterChangePowerSystem = cables.cabel.voltage.filter(function (p) { return p.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.conductorMaterialAfterChangePowerSystem = cables.cabel.conductorMaterial.filter(function (cm) { return cm.powerSystemType == cables.cabel.selectedPowerSystem; });
             _this.insTempRatingAfterChangeConductorMaterial = cables.cabel.insulationTemperatureRatingArray.filter(function (itr) { return itr.conductorMaterialType == cables.cabel.selectedConductorMaterial.name; });
+            //console.log(this.cabelItem.jacketColorArray);
             _this.spinnerService.hide();
         }, function (err) {
             console.log(err);
@@ -791,14 +809,14 @@ var ContactUsComponent = (function () {
         this.today = new Date();
         this.year = this.today.getFullYear();
         this.sizeWindow = window.innerWidth;
-        this.contactUsForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
-            "userName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        this.contactUsForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormGroup"]({
+            "userName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
             ]),
-            "userPhone": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](""),
-            "message": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
+            "userPhone": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"](""),
+            "message": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
         });
     }
     ContactUsComponent.prototype.onResize = function (event) {
@@ -1304,15 +1322,15 @@ var ElectricalItemComponent = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('selectedHazlocZone'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* NgModel */])
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NgModel"])
     ], ElectricalItemComponent.prototype, "selectedHazlocZone", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('selectedHazlocTemperature'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* NgModel */])
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NgModel"])
     ], ElectricalItemComponent.prototype, "selectedHazlocTemperature", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('selectedHazlocGroup'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* NgModel */])
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NgModel"])
     ], ElectricalItemComponent.prototype, "selectedHazlocGroup", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('window:resize', ['$event']),
@@ -2316,7 +2334,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/project-dashboard/project-dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container text-style\" *ngIf=\"project\">\n    <ol class=\"breadcrumb\">\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" routerLink=\"/projects\">Projects</a></li>\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project-edit', projectId]\">{{project.title}}</a></li>\n      <li class=\"breadcrumb-item active\">Dashboard</li>\n    </ol>\n    <div class=\"d-flex justify-content-center pt-3\">\n      <h1>Project <strong>{{project.title}}</strong></h1>\n    </div>\n    <div class=\"d-flex justify-content-center pt-2\">\n      <h4>To start working</h4>\n    </div>\n    <div class=\"d-flex justify-content-center\">\n      <div class=\"d-flex flex-column\">\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'electricals']\"><strong>\n            Electrical Load List\n          </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">Electrical Equipment List</div>\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'cables']\"><strong>\n            Cable Schedule\n          </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">Controller Schedule</div>\n        <div class=\"p-2 h5 temporary-text-style\">Instrumentation Index</div>\n        <div class=\"p-2 h5 temporary-text-style\">IO Assignment</div>\n        <div class=\"p-2 h5 temporary-text-style\">IO List</div>\n      </div>\n    </div>    \n  </div>"
+module.exports = "<div class=\"container text-style\" *ngIf=\"project\">\n    <ol class=\"breadcrumb\">\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" routerLink=\"/projects\">Projects</a></li>\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project-edit', projectId]\">{{project.title}}</a></li>\n      <li class=\"breadcrumb-item active\">Dashboard</li>\n    </ol>\n    <div class=\"d-flex justify-content-center pt-3\">\n      <h1>Project <strong>{{project.title}}</strong></h1>\n    </div>\n    <div class=\"d-flex justify-content-center pt-2\">\n      <h4>To start working</h4>\n    </div>\n    <div class=\"d-flex justify-content-center\">\n      <div class=\"d-flex flex-column\">\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'electricals']\">\n            <strong>\n              Electrical Load List\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">Electrical Equipment List</div>\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'cables']\">\n            <strong>\n              Cable Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'sldshedules']\">\n            <strong>\n              Single Line Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">Instrumentation Index</div>\n        <div class=\"p-2 h5 temporary-text-style\">IO Assignment</div>\n        <div class=\"p-2 h5 temporary-text-style\">IO List</div>\n      </div>\n    </div>    \n  </div>"
 
 /***/ }),
 
@@ -2851,52 +2869,52 @@ var SigninComponent = (function () {
         this.year = this.today.getFullYear();
         this.sizeWindow = window.innerWidth;
         //login form
-        this.loginForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
-            "companyName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].email
+        this.loginForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormGroup"]({
+            "companyName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].email
             ]),
-            "userPassword": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(6)
+            "userPassword": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].minLength(6)
             ])
         });
         //forgot pass form
-        this.forgotPassForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
-            "companyName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern("/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/")
+        this.forgotPassForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormGroup"]({
+            "companyName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].pattern("/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/")
             ]),
         });
         //register form
-        this.registerForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
-            "companyName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].email
+        this.registerForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormGroup"]({
+            "companyName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "userEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].email
             ]),
-            "confirmUserEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].email,
+            "confirmUserEmail": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].email,
                 Object(__WEBPACK_IMPORTED_MODULE_4__matchOtherValidator__["a" /* matchOtherValidator */])('userEmail')
             ]),
-            "userName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "firstName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "lastName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "city": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required),
-            "phoneNumber": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(6)
+            "userName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "firstName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "lastName": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "city": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required),
+            "phoneNumber": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].minLength(6)
             ]),
-            "userPassword": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(6)
+            "userPassword": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].minLength(6)
             ]),
-            "userConfirmPassword": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]("", [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(6),
+            "userConfirmPassword": new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]("", [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].minLength(6),
                 Object(__WEBPACK_IMPORTED_MODULE_4__matchOtherValidator__["a" /* matchOtherValidator */])('userPassword')
             ])
         });
@@ -2987,6 +3005,260 @@ var SigninComponent = (function () {
             __WEBPACK_IMPORTED_MODULE_6_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], SigninComponent);
     return SigninComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sld-schedule-item/sld-schedule-item.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "thead th {\r\n    font-size: 0.4rem;\r\n  }\r\n  tbody tr td  {\r\n    font-size: 0.4rem;\r\n  }\r\n  .achievements-wrapper {\r\n    height: auto; \r\n    overflow: auto;\r\n  }\r\n  \r\n  button.btnPlus {\r\n    border-radius: 0 0 0 0!important;\r\n    /*color: black;*/\r\n  }\r\n  \r\n  button.btnMinus {\r\n    border-radius: 0 .25rem .25rem 0!important;\r\n    /*color: black;*/\r\n  }\r\n  \r\n  select.selectForOpenModal {\r\n    border-radius: .25rem 0 0 .25rem!important;\r\n  }\r\n\r\n  .border-eh-raiting {\r\n    border: 1px solid;\r\n    border-radius: 8px;\r\n  }\r\n\r\n  .inner-padding-eh-rating {\r\n    padding-bottom: 1.3rem!important;\r\n  }\r\n\r\n/**\r\n * toggle\r\n * --------------------------------------------------\r\n */\r\n .toggle {\r\n  height: 32px;\r\n}\r\n.toggle input[type=\"checkbox\"], .toggle input[type=\"radio\"] {\r\n  width: 0;\r\n  height: 0;\r\n  padding: 0;\r\n  margin: 0;\r\n  text-indent: -100000px;\r\n  filter: alpha(opacity=0);\r\n  opacity: 0;\r\n}\r\n.toggle .handle {\r\n  position: relative;\r\n  top: -20px;\r\n  left: 0;\r\n\r\n  display: block;\r\n  width: 72px;\r\n  height: 32px;\r\n  background-color: white;\r\n          border-radius: 19px;\r\n  box-shadow: inset 0 0 0 1px #b8bfc8;\r\n\r\n  -webkit-border-radius: 19px;\r\n     -moz-border-radius: 19px;\r\n}\r\n.toggle .handle:before, .toggle .handle:after {\r\n  position: absolute;\r\n  top: 1px;\r\n  left: 1px;\r\n  display: block;\r\n  width: 30px;\r\n  height: 30px;\r\n\r\n  content: \"\";\r\n  background-color: white;\r\n          border-radius: 30px;\r\n  box-shadow: inset 0 0 0 1px #b8bfc8, 1px 1px 1px #c7ccd3;\r\n  transition: all .25s ease-in-out;\r\n\r\n  -webkit-border-radius: 30px;\r\n     -moz-border-radius: 30px;\r\n}\r\n.toggle input[type=\"checkbox\"]:disabled + .handle, .toggle input[type=\"radio\"]:disabled + .handle, .toggle input[type=\"checkbox\"]:disabled + .handle:before, .toggle input[type=\"radio\"]:disabled + .handle:before, .toggle input[type=\"checkbox\"]:disabled + .handle:after, .toggle input[type=\"radio\"]:disabled + .handle:after {\r\n  background-color: #e6e9ed;\r\n  filter: alpha(opacity=60);\r\n\r\n  opacity: .6;\r\n}\r\n.toggle input[type=\"checkbox\"]:checked + .handle:before, .toggle input[type=\"radio\"]:checked + .handle:before {\r\n  width: 70px;\r\n  background-color: #a0d468;\r\n  content : \"Yes\";\r\n}\r\n.toggle input[type=\"checkbox\"]:checked + .handle:after, .toggle input[type=\"radio\"]:checked + .handle:after {\r\n  left: 40px;\r\n  content: \"\";\r\n  color: green;\r\n  box-shadow: inset 0 0 0 1px #f5f7fa, 1px 1px 1px #c7ccd3;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sld-schedule-item/sld-schedule-item.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"ml-3 mr-3\" *ngIf=\"sldScheduleItem\">\n  <div class=\"d-flex justify-content-center pt-3\">\n    <h1>SLD Schedule <strong> {{sldScheduleItem?.majorEquipmentDeviceTag}}</strong></h1>\n  </div>\n  <form (ngSubmit)=\"saveSldShedule(sldScheduleItem._id, sldSheduleForm.value)\" #sldSheduleForm=\"ngForm\">\n    <div class=\"row\">\n      <div class=\"col-12 col-xl-3 align-self-start\">\n        <div class=\"row\">\n          <div class=\"col-12 align-self-end\">\n            <div class=\"row\" style=\"border:1px solid black;border-radius:5px\">\n              <div class=\"col-12\">\n                <div class=\"d-flex justify-content-center\">\n                  <div><span>Equipment Info</span></div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"col-12 col-sm-6 align-self-end\" *ngIf=\"electricalList\">\n                    <div class=\"form-group\">\n                      <label for=\"selectedMajorEquipmentDevice\">Major Equipment Device</label>\n                      <select\n                        [disabled]=\"electricalList.length == 0\"\n                        id=\"selectedMajorEquipmentDevice\"\n                        class=\"form-control\"\n                        [(ngModel)]=\"sldScheduleItem.selectedMajorEquipmentDevice\"\n                        (change)=\"sldScheduleItem.selectedEquipmentDescriptionForMajorEquipmentDevice = setEquipmentDescription(electricalList, sldScheduleItem.selectedMajorEquipmentDevice);\n                        sldScheduleItem.selectedSystemVoltage = setSystemVoltage(electricalList, sldScheduleItem.selectedMajorEquipmentDevice)\"\n                        name=\"selectedMajorEquipmentDevice\"\n                      >\n                        <option\n                          *ngFor=\"let currentEquipmentTag of electricalList\" \n                          [ngValue]=\"currentEquipmentTag.equipmentTag\"\n                          [selected]=\"currentEquipmentTag.equipmentTag==sldScheduleItem.selectedMajorEquipmentDevice\"\n                        >\n                          {{currentEquipmentTag.equipmentTag}}\n                        </option>\n                    </select>\n                    </div>\n                  </div>\n                  <div class=\"col-12 col-sm-6 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"selectedEquipmentDescriptionForMajorEquipmentDevice\">Equipment Description</label>\n                      <input\n                        id=\"selectedEquipmentDescriptionForMajorEquipmentDevice\"\n                        type=\"text\"\n                        class=\"form-control\"\n                        [(ngModel)]=\"sldScheduleItem.selectedEquipmentDescriptionForMajorEquipmentDevice\"\n                        name=\"selectedEquipmentDescriptionForMajorEquipmentDevice\"\n                        [readonly]=\"true\"\n                      >\n                    </div>\n                  </div>\n                </div>\n                <!-- -->\n                <div class=\"row\">\n                  <div class=\"col-12 col-sm-6 align-self-end\" *ngIf=\"electricalList\">\n                    <div class=\"form-group\">\n                      <label for=\"selectedMajorEquipmentTag\">Major Equipment Tag</label>\n                      <select\n                        [disabled]=\"electricalList.length == 0\"\n                        id=\"selectedMajorEquipmentTag\"\n                        class=\"form-control\"\n                        [(ngModel)]=\"sldScheduleItem.selectedMajorEquipmentTag\"\n                        (change)=\"sldScheduleItem.selectedEquipmentDescriptionForMajorEquipmentTag = setEquipmentDescription(electricalList, sldScheduleItem.selectedMajorEquipmentTag)\"\n                        name=\"selectedMajorEquipmentTag\"\n                      >\n                        <option\n                          *ngFor=\"let currentEquipmentTag of electricalList\" \n                          [ngValue]=\"currentEquipmentTag.equipmentTag\"\n                          [selected]=\"currentEquipmentTag.equipmentTag==sldScheduleItem.selectedMajorEquipmentTag\"\n                        >\n                        {{currentEquipmentTag.equipmentTag}}\n                        </option>\n                      </select>\n                    </div>\n                  </div>\n                  <div class=\"col-12 col-sm-6 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"selectedEquipmentDescriptionForMajorEquipmentTag\">Equipment Description</label>\n                      <input\n                        type=\"text\"\n                        class=\"form-control\"\n                        [(ngModel)]=\"sldScheduleItem.selectedEquipmentDescriptionForMajorEquipmentTag\"\n                        name=\"selectedEquipmentDescriptionForMajorEquipmentTag\"\n                        [readonly]=\"true\"\n                      >\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"col-12 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"majorEquipmentDeviceTag\">Major Equipment Device Tag</label>\n                      <input type=\"text\" class=\"form-control\" [(ngModel)]=\"sldScheduleItem.majorEquipmentDeviceTag\" name=\"majorEquipmentDeviceTag\">\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"col-12 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"\">System Voltage</label>\n                      <input\n                        type=\"text\"\n                        class=\"form-control\"\n                        [(ngModel)]=\"sldScheduleItem.selectedSystemVoltage\"\n                        name=\"selectedSystemVoltage\"\n                        [readonly]=\"true\"\n                      >\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"row\" style=\"border:1px solid black;border-radius:5px\">\n              <div class=\"col-12\">\n                <div class=\"d-flex justify-content-center\">\n                  <div><span>Incoming Section</span></div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"col-12 col-sm-6 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"incomer\">Incomer</label>\n                      <label class=\"toggle col-sm-8\">\n                        <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.incomer\" name=\"incomer\" (click)=\"changeBooleanFlag(sldScheduleItem.incomer)\">\n                        <span class=\"handle\"></span>\n                      </label>\n                    </div>\n                  </div>\n                  <div class=\"col-12 col-sm-6 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"lightningArrestor\">Lightning Arrestor</label>\n                      <label class=\"toggle col-sm-8\">\n                        <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.lightningArrestor\" name=\"lightningArrestor\"  (click)=\"changeBooleanFlag(sldScheduleItem.lightningArrestor)\">\n                        <span class=\"handle\"></span>\n                      </label>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"col-12 col-sm-6 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"selectedFeederEntry\">Feeder Entry</label>\n                      <select\n                        id=\"selectedFeederEntry\"\n                        class=\"form-control\"\n                        [(ngModel)]=\"sldScheduleItem.selectedFeederEntry\"\n                        name=\"selectedFeederEntry\"\n                      >\n                        <option\n                          *ngFor=\"let currentFeederEntry of sldScheduleItem.feederEntry\" \n                          [ngValue]=\"currentFeederEntry\"\n                          [selected]=\"currentFeederEntry==sldScheduleItem.selectedFeederEntry\"\n                        >\n                          {{currentFeederEntry}}\n                        </option>\n                      </select>\n                    </div>\n                  </div>\n                  <div class=\"col-12 col-sm-6 align-self-end\">\n                    <div class=\"form-group\">\n                      <label for=\"surgeProtection\">Surge Protection</label>\n                      <label class=\"toggle col-sm-8\">\n                        <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.surgeProtection\" name=\"surgeProtection\"  (click)=\"changeBooleanFlag(sldScheduleItem.surgeProtection)\">\n                        <span class=\"handle\"></span>\n                      </label>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-12 col-xl-6 align-self-start\" style=\"border:1px solid black;border-radius:5px\">\n        <div class=\"row\">\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedOCDevice\">O/C Device</label>\n              <select\n                id=\"selectedOCDevice\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedOCDevice\"\n                name=\"selectedOCDevice\"\n              >\n                <option\n                  *ngFor=\"let currentOCDevice of sldScheduleItem.ocDevice\" \n                  [ngValue]=\"currentOCDevice\"\n                  [selected]=\"currentOCDevice==sldScheduleItem.selectedOCDevice\"\n                >\n                  {{currentOCDevice}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedContactorType\">Contactor Type</label>\n              <select\n                id=\"selectedContactorType\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedContactorType\"\n                name=\"selectedContactorType\"\n              >\n                <option\n                  *ngFor=\"let currentContactorType of sldScheduleItem.contactorType\" \n                  [ngValue]=\"currentContactorType\"\n                  [selected]=\"currentContactorType==sldScheduleItem.selectedContactorType\"\n                >\n                  {{currentContactorType}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedCPTQTY\">CPT QTY</label>\n              <select\n                id=\"selectedCPTQTY\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedCPTQTY\"\n                name=\"selectedCPTQTY\"\n              >\n                <option\n                  *ngFor=\"let currentsCPTQTY of sldScheduleItem.CPTQTY\" \n                  [ngValue]=\"currentsCPTQTY\"\n                  [selected]=\"currentsCPTQTY==sldScheduleItem.selectedCPTQTY\"\n                >\n                  {{currentsCPTQTY}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedCTQTY\">CT QTY</label>\n              <select\n                id=\"selectedCTQTY\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedCTQTY\"\n                name=\"selectedCTQTY\"\n              >\n                <option\n                  *ngFor=\"let currentCTQTY of sldScheduleItem.CTQTY\" \n                  [ngValue]=\"currentCTQTY\"\n                  [selected]=\"currentCTQTY==sldScheduleItem.selectedCTQTY\"\n                >\n                  {{currentCTQTY}}\n                </option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"tripRating\">Trip Rating</label>\n              <input id=\"tripRating\" type=\"number\" class=\"form-control\" [(ngModel)]=\"sldScheduleItem.tripRating\" name=\"tripRating\">\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedContactorSize\">Contactor Size</label>\n              <select\n                id=\"selectedContactorSize\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedContactorSize\"\n                name=\"selectedContactorSize\"\n              >\n                <option\n                  *ngFor=\"let currentContactorSize of sldScheduleItem.contactorSize\" \n                  [ngValue]=\"currentContactorSize\"\n                  [selected]=\"currentContactorSize==sldScheduleItem.selectedContactorSize\"\n                >\n                  {{currentContactorSize}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedCPTVoltage\">CPT Voltage</label>\n              <select\n                id=\"selectedCPTVoltage\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedCPTVoltage\"\n                name=\"selectedCPTVoltage\"\n              >\n                <option\n                  *ngFor=\"let currentCPTVoltage of sldScheduleItem.CPTVoltage\" \n                  [ngValue]=\"currentCPTVoltage\"\n                  [selected]=\"currentCPTVoltage==sldScheduleItem.selectedCPTVoltage\"\n                >\n                  {{currentCPTVoltage}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedCTRatio\">CT Ratio</label>\n              <select\n                id=\"selectedCTRatio\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedCTRatio\"\n                name=\"selectedCTRatio\"\n              >\n                <option\n                  *ngFor=\"let currentCTRatio of sldScheduleItem.CTRatio\" \n                  [ngValue]=\"currentCTRatio\"\n                  [selected]=\"currentCTRatio==sldScheduleItem.selectedCTRatio\"\n                >\n                  {{currentCTRatio}}\n                </option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedFrameRating\">Frame Rating</label>\n              <select\n                id=\"selectedFrameRating\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedFrameRating\"\n                name=\"selectedFrameRating\"\n              >\n                <option\n                  *ngFor=\"let currentFrameRating of sldScheduleItem.frameRating\" \n                  [ngValue]=\"currentFrameRating\"\n                  [selected]=\"currentFrameRating==sldScheduleItem.selectedFrameRating\"\n                >\n                  {{currentFrameRating}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedOverloadType\">Overload Type</label>\n              <select\n                id=\"selectedOverloadType\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedOverloadType\"\n                name=\"selectedOverloadType\"\n              >\n                <option\n                  *ngFor=\"let currentOverloadType of sldScheduleItem.overloadType\" \n                  [ngValue]=\"currentOverloadType\"\n                  [selected]=\"currentOverloadType==sldScheduleItem.selectedOverloadType\"\n                >\n                  {{currentOverloadType}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedCPTRating\">CPT Rating</label>\n              <select\n                id=\"selectedCPTRating\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedCPTRating\"\n                name=\"selectedCPTRating\"\n              >\n                <option\n                  *ngFor=\"let currentCPTRating of sldScheduleItem.CPTRating\" \n                  [ngValue]=\"currentCPTRating\"\n                  [selected]=\"currentCPTRating==sldScheduleItem.selectedCPTRating\"\n                >\n                  {{currentCPTRating}}\n                </option>\n              </select>\n            </div>\n          </div>\n          <div class=\"col-12 col-xl-3\">\n            <div class=\"form-group\">\n              <label for=\"selectedCTAccuracy\">CT Accuracy</label>\n              <select\n                id=\"selectedCTAccuracy\"\n                class=\"form-control\"\n                [(ngModel)]=\"sldScheduleItem.selectedCTAccuracy\"\n                name=\"selectedCTAccuracy\"\n              >\n                <option\n                  *ngFor=\"let currentCTAccuracy of sldScheduleItem.CTAccuracy\" \n                  [ngValue]=\"currentCTAccuracy\"\n                  [selected]=\"currentCTAccuracy==sldScheduleItem.selectedCTAccuracy\"\n                >\n                  {{currentCTAccuracy}}\n                </option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedFuseRating\">Fuse Rating</label>\n                <select\n                  id=\"selectedFuseRating\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedFuseRating\"\n                  name=\"selectedFuseRating\"\n                >\n                  <option\n                    *ngFor=\"let currentFuseRating of sldScheduleItem.fuseRating\" \n                    [ngValue]=\"currentFuseRating\"\n                    [selected]=\"currentFuseRating==sldScheduleItem.selectedFuseRating\"\n                  >\n                    {{currentFuseRating}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"overloadSize\">Overload Size</label>\n                <input id=\"overloadSize\" type=\"number\" class=\"form-control\" [(ngModel)]=\"sldScheduleItem.overloadSize\" name=\"overloadSize\">\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedVTQTY\">VT QTY</label>\n                <select\n                  id=\"selectedVTQTY\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedVTQTY\"\n                  name=\"selectedVTQTY\"\n                >\n                  <option\n                    *ngFor=\"let currentVTQTY of sldScheduleItem.VTQTY\" \n                    [ngValue]=\"currentVTQTY\"\n                    [selected]=\"currentVTQTY==sldScheduleItem.selectedVTQTY\"\n                  >\n                    {{currentVTQTY}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedGFCTRatio\">GFCT Ratio</label>\n                <select\n                  id=\"selectedGFCTRatio\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedGFCTRatio\"\n                  name=\"selectedGFCTRatio\"\n                >\n                  <option\n                    *ngFor=\"let currentGFCTRatio of sldScheduleItem.GFCTRatio\" \n                    [ngValue]=\"currentGFCTRatio\"\n                    [selected]=\"currentGFCTRatio==sldScheduleItem.selectedGFCTRatio\"\n                  >\n                    {{currentGFCTRatio}}\n                  </option>\n                </select>\n              </div>\n            </div>\n          </div>\n        <div class=\"row\">\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedSwitchRating\">Switch Rating</label>\n                <select\n                  id=\"selectedSwitchRating\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedSwitchRating\"\n                  name=\"selectedSwitchRating\"\n                >\n                  <option\n                    *ngFor=\"let currentSwitchRating of sldScheduleItem.SwitchRating\" \n                    [ngValue]=\"currentSwitchRating\"\n                    [selected]=\"currentSwitchRating==sldScheduleItem.selectedSwitchRating\"\n                  >\n                    {{currentGFCTRatio}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3 offset-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedVTVoltage\">VT Voltage</label>\n                <select\n                  id=\"selectedVTVoltage\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedVTVoltage\"\n                  name=\"selectedVTVoltage\"\n                >\n                  <option\n                    *ngFor=\"let currentVTVoltage of sldScheduleItem.VTVoltage\" \n                    [ngValue]=\"currentVTVoltage\"\n                    [selected]=\"currentVTVoltage==sldScheduleItem.selectedVTVoltage\"\n                  >\n                    {{currentVTVoltage}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedShuntCoil\">Shunt Coil</label>\n                <select\n                  id=\"selectedShuntCoil\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedShuntCoil\"\n                  name=\"selectedShuntCoil\"\n                >\n                  <option\n                    *ngFor=\"let currentShuntCoil of sldScheduleItem.ShuntCoil\" \n                    [ngValue]=\"currentShuntCoil\"\n                    [selected]=\"currentShuntCoil==sldScheduleItem.selectedShuntCoil\"\n                  >\n                    {{currentShuntCoil}}\n                  </option>\n                </select>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-12 col-xl-3 offset-xl-6\">\n              <div class=\"form-group\">\n                <label for=\"selectedVTAccuracy\">VT Accuracy</label>\n                <select\n                  id=\"selectedVTAccuracy\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedVTAccuracy\"\n                  name=\"selectedVTAccuracy\"\n                >\n                  <option\n                    *ngFor=\"let currentVTAccuracy of sldScheduleItem.VTAccuracy\" \n                    [ngValue]=\"currentVTAccuracy\"\n                    [selected]=\"currentVTAccuracy==sldScheduleItem.selectedVTAccuracy\"\n                  >\n                    {{currentVTAccuracy}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedKirkKey\">Kirk Key</label>\n                <select\n                  id=\"selectedKirkKey\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedKirkKey\"\n                  name=\"selectedKirkKey\"\n                >\n                  <option\n                    *ngFor=\"let currentKirkKey of sldScheduleItem.KirkKey\" \n                    [ngValue]=\"currentKirkKey\"\n                    [selected]=\"currentKirkKey==sldScheduleItem.selectedKirkKey\"\n                  >\n                    {{currentKirkKey}}\n                  </option>\n                </select>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedGroundStud\">Ground Stud</label>\n                <select\n                  id=\"selectedGroundStud\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedGroundStud\"\n                  name=\"selectedGroundStud\"\n                >\n                  <option\n                    *ngFor=\"let currentGroundStud of sldScheduleItem.GroundStud\" \n                    [ngValue]=\"currentGroundStud\"\n                    [selected]=\"currentGroundStud==sldScheduleItem.selectedGroundStud\"\n                  >\n                    {{currentGroundStud}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <!-- ДОПИСАТЬ ЛОГИКУ для Switch -->\n                <label for=\"TransformerPR\">Transformer PR</label>\n                <label class=\"toggle col-sm-8\">\n                  <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.TransformerPR\" name=\"TransformerPR\"  (click)=\"changeBooleanFlag(sldScheduleItem.TransformerPR)\">\n                  <span class=\"handle\"></span>\n                </label>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedIndicatingLights\">Indicating Lights</label>\n                <select\n                  id=\"selectedIndicatingLights\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedIndicatingLights\"\n                  name=\"selectedIndicatingLights\"\n                >\n                  <option\n                    *ngFor=\"let currentIndicatingLights of sldScheduleItem.IndicatingLights\" \n                    [ngValue]=\"currentIndicatingLights\"\n                    [selected]=\"currentIndicatingLights==sldScheduleItem.selectedIndicatingLights\"\n                  >\n                    {{currentIndicatingLights}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedNOAuxContact\">N.O.Aux Contact</label>\n                <select\n                  id=\"selectedNOAuxContact\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedNOAuxContact\"\n                  name=\"selectedNOAuxContact\"\n                >\n                  <option\n                    *ngFor=\"let currentNOAuxContact of sldScheduleItem.NOAuxContact\" \n                    [ngValue]=\"currentNOAuxContact\"\n                    [selected]=\"currentNOAuxContact==sldScheduleItem.selectedNOAuxContact\"\n                  >\n                    {{currentNOAuxContact}}\n                  </option>\n                </select>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"PQM\">PQM</label>\n                <label class=\"toggle col-sm-8\">\n                  <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.PQM\" name=\"PQM\"  (click)=\"changeBooleanFlag(sldScheduleItem.PQM)\">\n                  <span class=\"handle\"></span>\n                </label>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"MotorPR\">Motor PR</label>\n                <label class=\"toggle col-sm-8\">\n                  <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.MotorPR\" name=\"MotorPR\"  (click)=\"changeBooleanFlag(sldScheduleItem.MotorPR)\">\n                  <span class=\"handle\"></span>\n                </label>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"SpaceHeater\">Space Heater</label>\n                <input id=\"SpaceHeater\" type=\"number\" class=\"form-control\" [(ngModel)]=\"sldScheduleItem.SpaceHeater\" name=\"SpaceHeater\">\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedNCAuxContact\">N.C.Aux Contact</label>\n                <select\n                  id=\"selectedNCAuxContact\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedNCAuxContact\"\n                  name=\"selectedNCAuxContact\"\n                >\n                  <option\n                    *ngFor=\"let currentNCAuxContact of sldScheduleItem.NCAuxContact\" \n                    [ngValue]=\"currentNCAuxContact\"\n                    [selected]=\"currentNCAuxContact==sldScheduleItem.selectedNCAuxContact\"\n                  >\n                    {{currentNCAuxContact}}\n                  </option>\n                </select>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"FeederPR\">Feeder PR</label>\n                <label class=\"toggle col-sm-8\">\n                  <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.FeederPR\" name=\"FeederPR\"  (click)=\"changeBooleanFlag(sldScheduleItem.FeederPR)\">\n                  <span class=\"handle\"></span>\n                </label>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"NGRRelay\">NGR Relay</label>\n                <label class=\"toggle col-sm-8\">\n                  <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.NGRRelay\" name=\"NGRRelay\"  (click)=\"changeBooleanFlag(sldScheduleItem.NGRRelay)\">\n                  <span class=\"handle\"></span>\n                </label>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"HeaterCircuit\">Heater Circuit</label>\n                <label class=\"toggle col-sm-8\">\n                  <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.HeaterCircuit\" name=\"HeaterCircuit\"  (click)=\"changeBooleanFlag(sldScheduleItem.HeaterCircuit)\">\n                  <span class=\"handle\"></span>\n                </label>\n              </div>\n            </div>\n            <div class=\"col-12 col-xl-3\">\n              <div class=\"form-group\">\n                <label for=\"selectedInterposRelay\">Interpos. Relay</label>\n                <select\n                  id=\"selectedInterposRelay\"\n                  class=\"form-control\"\n                  [(ngModel)]=\"sldScheduleItem.selectedInterposRelay\"\n                  name=\"selectedInterposRelay\"\n                >\n                  <option\n                    *ngFor=\"let currentInterposRelay of sldScheduleItem.InterposRelay\" \n                    [ngValue]=\"currentInterposRelay\"\n                    [selected]=\"currentInterposRelay==sldScheduleItem.selectedInterposRelay\"\n                  >\n                    {{currentInterposRelay}}\n                  </option>\n                </select>\n              </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-12 col-xl-3 align-self-start\">\n        <div class=\"row\">\n          <div class=\"col-12\" style=\"border:1px solid black;border-radius:5px\">\n            <div class=\"row\">\n              <div class=\"col-12 d-flex justify-content-center\">\n                <span>PDP Detail</span>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-12\">\n                <div class=\"row\">\n                  <div class=\"col-12\">\n                    <span>Panel</span>\n                  </div>\n                </div>\n              <div class=\"row\">\n                <div class=\"col-12 col-xl-6\">\n                  <div class=\"form-group\">\n                    <div class=\"d-flex flex-row\">\n                      <select [disabled]=\"sldScheduleItem.firstPanelValue.length == 0\"\n                        id=\"selectedFirstPanelValue\"\n                        class=\"form-control selectForOpenModal\"\n                        [(ngModel)]=\"sldScheduleItem.selectedFirstPanelValue\"\n                        name=\"selectedFirstPanelValue\"\n                      >\n                        <option\n                          *ngFor=\"let currentFirstPanelValue of sldScheduleItem.firstPanelValue\" \n                          [ngValue]=\"currentFirstPanelValue\"\n                          [selected]=\"currentFirstPanelValue==sldScheduleItem.selectedFirstPanelValue\">\n                            {{currentFirstPanelValue}}\n                        </option>\n                      </select>\n                        <button\n                          type=\"button\"\n                          class=\"btn btn-outline-secondary btnPlus fa fa-plus\"\n                          data-toggle=\"tooltip\"\n                          data-placement=\"top\"\n                          title=\"Add new item\"\n                          (click)=\"firstPanelElementModal.showAddModal()\"\n                        ></button>\n                        <button\n                          type=\"button\"\n                          class=\"btn btn-outline-secondary btnMinus fa fa-minus\"\n                          data-toggle=\"tooltip\"\n                          data-placement=\"top\"\n                          title=\"Drop selected item\"\n                          (click)=\"firstPanelElementModal.showDropModal(dropElementFlag)\"\n                          [disabled]=\"sldScheduleItem.firstPanelValue.length == 0\"\n                        ></button>\n                      </div>\n                    </div>\n                  </div>\n                <div class=\"col-12 col-xl-6\">\n                  <div class=\"form-group\">\n                    <div class=\"d-flex flex-row\">\n                      <select [disabled]=\"sldScheduleItem.secondPanelValue.length == 0\"\n                        id=\"selectedSecondPanelValue\"\n                        class=\"form-control selectForOpenModal\"\n                        [(ngModel)]=\"sldScheduleItem.selectedSecondPanelValue\"\n                        name=\"selectedSecondPanelValue\"\n                      >\n                        <option\n                          *ngFor=\"let currentSecondPanelValue of sldScheduleItem.secondPanelValue\" \n                          [ngValue]=\"currentSecondPanelValue\"\n                          [selected]=\"currentSecondPanelValue==sldScheduleItem.selectedSecondPanelValue\">\n                            {{currentSecondPanelValue}}\n                        </option>\n                      </select>\n                      <button\n                        type=\"button\"\n                        class=\"btn btn-outline-secondary btnPlus fa fa-plus\"\n                        data-toggle=\"tooltip\"\n                        data-placement=\"top\"\n                        title=\"Add new item\"\n                        (click)=\"secondPanelElementModal.showAddModal()\"\n                      ></button>\n                      <button\n                        type=\"button\"\n                        class=\"btn btn-outline-secondary btnMinus fa fa-minus\"\n                        data-toggle=\"tooltip\"\n                        data-placement=\"top\"\n                        title=\"Drop selected item\"\n                        (click)=\"secondPanelElementModal.showDropModal(dropElementFlag)\"\n                        [disabled]=\"sldScheduleItem.secondPanelValue.length == 0\"\n                      ></button>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-12 col-xl-6\">\n                  <div class=\"form-group\">\n                    <div class=\"d-flex flex-row\">\n                      <select [disabled]=\"sldScheduleItem.thirdPanelValue.length == 0\"\n                        id=\"selectedThirdPanelValue\"\n                        class=\"form-control selectForOpenModal\"\n                        [(ngModel)]=\"sldScheduleItem.selectedThirdPanelValue\"\n                        name=\"selectedThirdPanelValue\"\n                      >\n                        <option\n                          *ngFor=\"let currentThirdPanelValue of sldScheduleItem.thirdPanelValue\" \n                          [ngValue]=\"currentThirdPanelValue\"\n                          [selected]=\"currentThirdPanelValue==sldScheduleItem.selectedThirdPanelValue\">\n                            {{currentThirdPanelValue}}\n                        </option>\n                      </select>\n                      <button\n                        type=\"button\"\n                        class=\"btn btn-outline-secondary btnPlus fa fa-plus\"\n                        data-toggle=\"tooltip\"\n                        data-placement=\"top\"\n                        title=\"Add new item\"\n                        (click)=\"thirdPanelElementModal.showAddModal()\"\n                      ></button>\n                      <button\n                        type=\"button\"\n                        class=\"btn btn-outline-secondary btnMinus fa fa-minus\"\n                        data-toggle=\"tooltip\"\n                        data-placement=\"top\"\n                        title=\"Drop selected item\"\n                        (click)=\"thirdPanelElementModal.showDropModal(dropElementFlag)\"\n                        [disabled]=\"sldScheduleItem.thirdPanelValue.length == 0\"\n                      ></button>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-12 col-xl-6\">\n                  <div class=\"form-group\">\n                    <label for=\"CircuitNumbers\">Circuit Numbers</label>\n                    <input type=\"number\" class=\"form-control\" [(ngModel)]=\"sldScheduleItem.CircuitNumbers\" name=\"CircuitNumbers\">\n                  </div>\n                </div>\n                <div class=\"col-12 col-xl-6\">\n                  <div class=\"form-group\">\n                    <label for=\"CFG\">CFG</label>\n                    <label class=\"toggle col-sm-8\">\n                      <input type=\"checkbox\" [(ngModel)]=\"sldScheduleItem.CFG\" name=\"CFG\" (click)=\"changeBooleanFlag(sldScheduleItem.CFG)\">\n                      <span class=\"handle\"></span>\n                    </label>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-12\" style=\"border:1px solid black;border-radius:5px\">\n            <div class=\"row\">\n              <div class=\"col-12\">\n                <span>Local Switch/PB</span>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-12 col-xl-6\">\n                <div class=\"form-group\">\n                  <select\n                    id=\"selectedFirstValueLocalSwitchPB\"\n                    class=\"form-control\"\n                    [(ngModel)]=\"sldScheduleItem.selectedFirstValueLocalSwitchPB\"\n                    name=\"selectedFirstValueLocalSwitchPB\"\n                  >\n                    <option\n                      *ngFor=\"let currentFirstValueLocalSwitchPB of sldScheduleItem.firstValueLocalSwitchPB\" \n                      [ngValue]=\"currentFirstValueLocalSwitchPB\"\n                      [selected]=\"currentFirstValueLocalSwitchPB==sldScheduleItem.selectedFirstValueLocalSwitchPB\"\n                    >\n                      {{currentFirstValueLocalSwitchPB}}\n                    </option>\n                  </select>\n                </div>\n              </div>\n              <div class=\"col-12 col-xl-6\">\n                <div class=\"form-group\">\n                  <select\n                    id=\"selectedSecondValueLocalSwitchPB\"\n                    class=\"form-control\"\n                    [(ngModel)]=\"sldScheduleItem.selectedSecondValueLocalSwitchPB\"\n                    name=\"selectedSecondValueLocalSwitchPB\"\n                  >\n                    <option\n                      *ngFor=\"let currentSecondValueLocalSwitchPB of sldScheduleItem.secondValueLocalSwitchPB\" \n                      [ngValue]=\"currentSecondValueLocalSwitchPB\"\n                      [selected]=\"currentSecondValueLocalSwitchPB==sldScheduleItem.selectedSecondValueLocalSwitchPB\"\n                    >\n                      {{currentSecondValueLocalSwitchPB}}\n                   </option>\n                  </select>\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-12 col-xl-6\">\n                <div class=\"form-group\">\n                  <select\n                    id=\"selectedThirdValueLocalSwitchPB\"\n                    class=\"form-control\"\n                    [(ngModel)]=\"sldScheduleItem.selectedThirdValueLocalSwitchPB\"\n                    name=\"selectedThirdValueLocalSwitchPB\"\n                  >\n                    <option\n                      *ngFor=\"let currentSelectedThirdValueLocalSwitchPB of sldScheduleItem.thirdValueLocalSwitchPB\" \n                      [ngValue]=\"currentSelectedThirdValueLocalSwitchPB\"\n                      [selected]=\"currentSelectedThirdValueLocalSwitchPB==sldScheduleItem.selectedThirdValueLocalSwitchPB\"\n                    >\n                      {{currentSelectedThirdValueLocalSwitchPB}}\n                    </option>\n                  </select>\n                </div>\n              </div>\n              <div class=\"col-12 col-xl-6\">\n                <div class=\"form-group\">\n                  <select\n                    id=\"selectedFourthValueLocalSwitchPB\"\n                    class=\"form-control\"\n                    [(ngModel)]=\"sldScheduleItem.selectedFourthValueLocalSwitchPB\"\n                    name=\"selectedFourthValueLocalSwitchPB\"\n                  >\n                    <option\n                      *ngFor=\"let currentFourthValueLocalSwitchPB of sldScheduleItem.fourthValueLocalSwitchPB\" \n                      [ngValue]=\"currentFourthValueLocalSwitchPB\"\n                      [selected]=\"currentFourthValueLocalSwitchPB==sldScheduleItem.selectedFourthValueLocalSwitchPB\"\n                    >\n                      {{currentFourthValueLocalSwitchPB}}\n                    </option>\n                  </select>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-12\" style=\"border:1px solid black;border-radius:5px\">\n            <div class=\"row\">\n              <div class=\"col-12\">\n                <span>Field Switch/PB</span>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col-12 col-xl-6\">\n                <div class=\"form-group\">\n                  <select\n                    id=\"selectedFirstValueFieldSwitchPB\"\n                    class=\"form-control\"\n                    [(ngModel)]=\"sldScheduleItem.selectedFirstValueFieldSwitchPB\"\n                    name=\"selectedFirstValueFieldSwitchPB\"\n                  >\n                    <option\n                      *ngFor=\"let currentFirstValueFieldSwitchPB of sldScheduleItem.firstValueFieldSwitchPB\" \n                      [ngValue]=\"currentFirstValueFieldSwitchPB\"\n                      [selected]=\"currentFirstValueFieldSwitchPB==sldScheduleItem.selectedFirstValueFieldSwitchPB\"\n                    >\n                      {{currentFirstValueFieldSwitchPB}}\n                    </option>\n                  </select>\n                </div>\n              </div>\n              <div class=\"col-12 col-xl-6\">\n                <div class=\"form-group\">\n                  <select\n                    id=\"selectedSecondValueFieldSwitchPB\"\n                    class=\"form-control\"\n                    [(ngModel)]=\"sldScheduleItem.selectedSecondValueFieldSwitchPB\"\n                    name=\"selectedSecondValueFieldSwitchPB\"\n                  >\n                    <option\n                      *ngFor=\"let currentSecondValueFieldSwitchPB of sldScheduleItem.secondValueFieldSwitchPB\" \n                      [ngValue]=\"currentSecondValueFieldSwitchPB\"\n                      [selected]=\"currentSecondValueFieldSwitchPB==sldScheduleItem.selectedSecondValueFieldSwitchPB\"\n                    >\n                      {{currentSecondValueFieldSwitchPB}}\n                    </option>\n                  </select>\n                </div>\n              </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-12 col-xl-6\">\n                  <div class=\"form-group\">\n                    <select\n                      id=\"selectedThirdValueFieldSwitchPB\"\n                      class=\"form-control\"\n                      [(ngModel)]=\"sldScheduleItem.selectedThirdValueFieldSwitchPB\"\n                      name=\"selectedThirdValueFieldSwitchPB\"\n                    >\n                      <option\n                        *ngFor=\"let currentThirdValueFieldSwitchPB of sldScheduleItem.thirdValueFieldSwitchPB\" \n                        [ngValue]=\"currentThirdValueFieldSwitchPB\"\n                        [selected]=\"currentThirdValueFieldSwitchPB==sldScheduleItem.selectedThirdValueFieldSwitchPB\"\n                      >\n                        {{currentThirdValueFieldSwitchPB}}\n                      </option>\n                    </select>\n                  </div>\n                </div>\n                <div class=\"col-12 col-xl-6\">\n                  <div class=\"form-group\">\n                    <select\n                      id=\"selectedFourthValueLocalFieldSwitchPB\"\n                      class=\"form-control\"\n                      [(ngModel)]=\"sldScheduleItem.selectedFourthValueLocalFieldSwitchPB\"\n                      name=\"selectedFourthValueLocalFieldSwitchPB\"\n                    >\n                      <option\n                        *ngFor=\"let currentFourthValueLocalFieldSwitchPB of sldScheduleItem.fourthValueLocalFieldSwitchPB\" \n                        [ngValue]=\"currentFourthValueLocalFieldSwitchPB\"\n                        [selected]=\"currentFourthValueLocalFieldSwitchPB==sldScheduleItem.fourthValueLocalFieldSwitchPB\"\n                      >\n                        {{currentFourthValueLocalFieldSwitchPB}}\n                      </option>\n                    </select>\n                  </div>\n                </div>\n              </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"d-flex justify-content-end\">\n      <div class=\"mr-auto p-2\">\n        <a routerLink=\"/project/{{projectId}}/sldshedules/\" class=\"btn btn-primary\">Back</a>\n      </div>\n      <div class=\"p-2 form-group\">\n        <button type=\"submit\" class=\"btn btn-success\">Update/Create</button>\n      </div>\n    </div>\n    <div class=\"ml-3 mr-3\" *ngIf=\"sizeWindow > 576; else werticalTable\">\n        <div class=\"row achievements-wrapper\">\n          <table class=\"table table-bordered\">\n          <thead>\n            <tr>\n              <th>Rev.</th>\n              <th>Major Equipment Device Tag</th>\n              <th>Equipment Description</th>\n              <th>Device Type</th>\n              <th>Frame Rating</th>\n              <th>Trip Rating</th>\n              <th>Fuse Rating</th>\n              <th>Contactor Type</th>\n              <th>Contactor Size</th>\n              <th>Overload Type</th>\n              <th>Overload Size</th>\n              <th>Cpt Qty</th>\n              <th>Cpt Voltage</th>\n              <th>Cpt Rating</th>\n              <th>Vt Qty</th>\n              <th>Vt Voltage</th>\n              <th>Vt Accuracy</th>\n              <th>Ct Qty</th>\n              <th>Ct Ratio</th>\n              <th>GF CT Ratio</th>\n              <th>Shunt Coil</th>\n              <th>Kirk key Intrlck</th>\n              <th>Ground Stud</th>\n              <th>Pqm</th>\n              <th>Fdr Pr</th>\n              <th>Tx Pr</th>\n              <th>Mtr Pr</th>\n              <th>MNgr Pr</th>\n              <th>Ind. Lts.</th>\n              <th>Spc. Htr.</th>\n              <th>Htr. Circ.</th>\n              <th>N.O. Aux.</th>\n              <th>N.C. Aux.</th>\n              <th>Ipos. Rly.</th>\n              <th>1</th>\n              <th>2</th>\n              <th>3</th>\n              <th>4</th>\n              <th> 1</th>\n              <th> 2</th>\n              <th> 3</th>\n              <th> 4</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td></td> <!-- Rev. -->                       \n              <td>{{sldScheduleItem?.majorEquipmentDeviceTag}}</td> <!-- Major Equipment Device Tag -->\n              <td></td> <!-- Equipment Description -->\n              <td>{{sldScheduleItem?.selectedOCDevice}}</td>                      <!-- Device Type -->\n              <td>{{sldScheduleItem?.selectedFrameRating}}</td>                   <!-- Frame Rating -->\n              <td>{{sldScheduleItem?.tripRating}}</td>                            <!-- Trip Rating -->\n              <td>{{sldScheduleItem?.selectedFuseRating}}</td>                    <!-- Fuse Rating -->\n              <td>{{sldScheduleItem?.selectedContactorType}}</td>                 <!-- Contactor Type -->\n              <td>{{sldScheduleItem?.selectedContactorSize}}</td>                 <!-- Contactor Size -->\n              <td>{{sldScheduleItem?.selectedOverloadType}}</td>                  <!-- Overload Type -->\n              <td>{{sldScheduleItem?.overloadSize}}</td>                          <!-- Overload Size -->\n              <td>{{sldScheduleItem?.selectedCPTQTY}}</td>                        <!-- Cpt Qty -->\n              <td>{{sldScheduleItem?.selectedCPTVoltage}}</td>                    <!-- Cpt Voltage -->\n              <td>{{sldScheduleItem?.selectedCPTRating}}</td>                     <!-- Cpt Rating -->\n              <td></td><!-- Vt Qty -->\n              <td>{{sldScheduleItem?.selectedVTVoltage}}</td>                     <!-- Vt Voltage -->\n              <td>{{sldScheduleItem?.selectedVTAccuracy}}</td>                    <!-- Vt Accuracy -->\n              <td>{{sldScheduleItem?.selectedCTQTY}}</td>                         <!-- Ct Qty -->\n              <td>{{sldScheduleItem?.selectedCTRatio}}</td>                       <!-- Ct Ratio -->\n              <td>{{sldScheduleItem?.selectedGFCTRatio}}</td>                     <!-- GFCT Ratio  -->\n              <td>{{sldScheduleItem?.selectedShuntCoil}}</td>                     <!-- Shunt Coil -->\n              <td>{{sldScheduleItem?.selectedKirkKey}}</td>                       <!-- Kirk key Intrlck -->\n              <td>{{sldScheduleItem?.selectedGroundStud}}</td>                    <!-- Ground Stud -->\n              <td></td> <!-- Pqm-->\n              <td></td> <!-- Fdr Pr -->\n              <td></td> <!-- Tx Pr -->\n              <td></td> <!-- Mtr Pr -->\n              <td></td> <!-- MNgr Pr -->\n              <td>{{sldScheduleItem?.selectedIndicatingLights}}</td>              <!-- Ind. Lts.-->\n              <td>{{sldScheduleItem?.SpaceHeater}}</td>                           <!-- Spc. Htr.-->\n              <td></td> <!-- Htr. Circ. -->\n              <td>{{sldScheduleItem?.selectedNOAuxContact}}</td>                  <!-- N.O. Aux. -->\n              <td>{{sldScheduleItem?.selectedNCAuxContact}}</td>                  <!-- N.C. Aux.-->\n              <td>{{sldScheduleItem?.selectedInterposRelay}}</td>                 <!-- Ipos. Rly.-->\n              <td>{{sldScheduleItem.selectedFirstValueLocalSwitchPB}}</td>        <!-- Local Switch / Pushbutton 1 -->\n              <td>{{sldScheduleItem?.selectedSecondValueLocalSwitchPB}}</td>      <!-- Local Switch / Pushbutton 2 -->\n              <td>{{sldScheduleItem?.selectedThirdValueLocalSwitchPB}}</td>       <!-- Local Switch / Pushbutton 3 -->\n              <td>{{sldScheduleItem?.selectedFourthValueLocalSwitchPB}}</td>      <!-- Local Switch / Pushbutton 4 -->\n              <td>{{sldScheduleItem?.selectedFirstValueFieldSwitchPB}}</td>       <!-- Field Switch / Pushbutton 1 -->\n              <td>{{sldScheduleItem?.selectedSecondValueFieldSwitchPB}}</td>      <!-- Field Switch / Pushbutton 2 -->\n              <td>{{sldScheduleItem?.selectedThirdValueFieldSwitchPB}}</td>       <!-- Field Switch / Pushbutton 3 -->\n              <td>{{sldScheduleItem?.selectedFourthValueLocalFieldSwitchPB}}</td> <!-- Field Switch / Pushbutton 4 -->\n            </tr>\n          </tbody>\n          </table>\n        </div>\n      </div>\n      <ng-template class=\"ml-3 mr-3\" #werticalTable>\n        <div class=\"row\">\n          <table class=\"table table-bordered\">\n            <tr>\n              <td><strong>Rev.</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>Major Equipment Device Tag</strong></td>\n              <td>{{sldScheduleItem?.majorEquipmentDeviceTag}}</td>\n            </tr>\n            <tr>\n              <td><strong>Equipment Description</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>Device Type</strong></td>\n              <td>{{sldScheduleItem?.selectedOCDevice}}</td>\n            </tr>\n            <tr>\n              <td><strong>Frame Rating</strong></td>\n              <td>{{sldScheduleItem?.selectedFrameRating}}</td>\n            </tr>\n            <tr>\n              <td><strong>Trip Rating</strong></td>\n              <td>{{sldScheduleItem?.tripRating}}</td>\n            </tr>\n            <tr>\n              <td><strong>Fuse Rating</strong></td>\n              <td>{{sldScheduleItem?.selectedFuseRating}}</td>\n            </tr>\n            <tr>\n              <td><strong>Contactor Type</strong></td>\n              <td>{{sldScheduleItem?.selectedContactorType}}</td>\n            </tr>\n            <tr>\n              <td><strong>Contactor Size</strong></td>\n              <td>{{sldScheduleItem?.selectedContactorSize}}</td>\n            </tr>\n            <tr>\n              <td><strong>Overload Type</strong></td>\n              <td>{{sldScheduleItem?.selectedOverloadType}}</td>\n            </tr>\n            <tr>\n              <td><strong>Overload Size</strong></td>\n              <td>{{sldScheduleItem?.overloadSize}}</td>\n            </tr>\n            <tr>\n              <td><strong>Cpt Qty</strong></td>\n              <td>{{sldScheduleItem?.selectedCPTQTY}}</td>\n            </tr>\n            <tr>\n              <td><strong>Cpt Voltage</strong></td>\n              <td>{{sldScheduleItem?.selectedCPTVoltage}}</td>\n            </tr>\n            <tr>\n              <td><strong>Cpt Rating</strong></td>\n              <td>{{sldScheduleItem?.selectedCPTRating}}</td>\n            </tr>\n            <tr>\n              <td><strong>Vt Qty</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>Vt Voltage</strong></td>\n              <td>{{sldScheduleItem?.selectedVTVoltage}}</td>\n            </tr>\n            <tr>\n              <td><strong>Vt Accuracy</strong></td>\n              <td>{{sldScheduleItem?.selectedVTAccuracy}}</td>\n            </tr>\n            <tr>\n              <td><strong>Ct Qty</strong></td>\n              <td>{{sldScheduleItem?.selectedCTQTY}}</td>\n            </tr>\n            <tr>\n              <td><strong>Ct Ratio</strong></td>\n              <td>{{sldScheduleItem?.selectedCTRatio}}</td>\n            </tr>\n            <tr>\n              <td><strong>GFCT Ratio</strong></td>\n              <td>{{sldScheduleItem?.selectedGFCTRatio}}</td>\n            </tr>\n            <tr>\n              <td><strong>Shunt Coil</strong></td>\n              <td>{{sldScheduleItem?.selectedShuntCoil}}</td>\n            </tr>\n            <tr>\n              <td><strong>Kirk key Intrlck</strong></td>\n              <td>{{sldScheduleItem?.selectedKirkKey}}</td>\n            </tr>\n            <tr>\n              <td><strong>Ground Stud</strong></td>\n              <td>{{sldScheduleItem?.selectedGroundStud}}</td>\n            </tr>\n            <tr>\n              <td><strong>Pqm</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>Fdr Pr</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>Tx Pr</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>Mtr Pr</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>MNgr Pr</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>Ind. Lts.</strong></td>\n              <td>{{sldScheduleItem?.selectedIndicatingLights}}</td>\n            </tr>\n            <tr>\n              <td><strong>Spc. Htr.</strong></td>\n              <td>{{sldScheduleItem?.SpaceHeater}}</td>\n            </tr>\n            <tr>\n              <td><strong>Htr. Circ.</strong></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td><strong>N.O. Aux.</strong></td>\n              <td>{{sldScheduleItem?.selectedNOAuxContact}}</td>\n            </tr>\n            <tr>\n              <td><strong>N.C. Aux.</strong></td>\n              <td>{{sldScheduleItem?.selectedNCAuxContact}}</td>\n            </tr>\n            <tr>\n              <td><strong>Ipos. Rly.</strong></td>\n              <td>{{sldScheduleItem?.selectedInterposRelay}}</td>\n            </tr>\n            <tr>\n              <td><strong>Local Switch / Pushbutton 1</strong></td>\n              <td>{{sldScheduleItem.selectedFirstValueLocalSwitchPB}}</td>\n            </tr>\n            <tr>\n              <td><strong>Local Switch / Pushbutton 2</strong></td>\n              <td>{{sldScheduleItem?.selectedSecondValueLocalSwitchPB}}</td>\n            </tr>\n            <tr>\n              <td><strong>Local Switch / Pushbutton 3</strong></td>\n              <td>{{sldScheduleItem?.selectedThirdValueLocalSwitchPB}}</td>\n            </tr>\n            <tr>\n              <td><strong>Local Switch / Pushbutton 4</strong></td>\n              <td>{{sldScheduleItem?.selectedFourthValueLocalSwitchPB}}</td>\n            </tr>\n            <tr>\n              <td><strong>Field Switch / Pushbutton 1</strong></td>\n              <td>{{sldScheduleItem?.selectedFirstValueFieldSwitchPB}}</td>\n            </tr>\n            <tr>\n              <td><strong>Field Switch / Pushbutton 2</strong></td>\n              <td>{{sldScheduleItem?.selectedSecondValueFieldSwitchPB}}</td>\n            </tr>\n            <tr>\n              <td><strong>Field Switch / Pushbutton 3</strong></td>\n              <td>{{sldScheduleItem?.selectedThirdValueFieldSwitchPB}}</td>\n            </tr>\n            <tr>\n              <td><strong>Field Switch / Pushbutton 4</strong></td>\n              <td>{{sldScheduleItem?.selectedFourthValueLocalFieldSwitchPB}}</td>\n            </tr>\n          </table>\n        </div>\n      </ng-template>\n  </form>\n  <div class=\"row m-3\">\n    <button class=\"btn btn-danger\" (click)=\"deleteSldSchedule(sldScheduleItem._id)\">Delete</button>\n  </div>\n  <!--START MODALS -->\n  <app-electricals-modal [dataValue]=\"sldScheduleItem?.firstPanelValue\" [selectedValue]=\"sldScheduleItem?.selectedFirstPanelValue\" [title]=\"firstPanelElementDescription\" #firstPanelElementModal></app-electricals-modal>\n  <app-electricals-modal [dataValue]=\"sldScheduleItem?.secondPanelValue\" [selectedValue]=\"sldScheduleItem?.selectedSecondPanelValue\" [title]=\"secondPanelElementDescription\" #secondPanelElementModal></app-electricals-modal>\n  <app-electricals-modal [dataValue]=\"sldScheduleItem?.thirdPanelValue\" [selectedValue]=\"sldScheduleItem?.selectedThirdPanelValue\" [title]=\"thirdPanelElementDescription\" #thirdPanelElementModal></app-electricals-modal>\n  <!-- END MODALS -->\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sld-schedule-item/sld-schedule-item.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SldScheduleItemComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_sldschedule_service__ = __webpack_require__("../../../../../src/app/services/sldschedule.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SldScheduleItemComponent = (function () {
+    function SldScheduleItemComponent(router, route, sldscheduleService, spinnerService) {
+        this.router = router;
+        this.route = route;
+        this.sldscheduleService = sldscheduleService;
+        this.spinnerService = spinnerService;
+        this.value = false;
+        this.firstPanelElementDescription = "First Panel Element Description";
+        this.secondPanelElementDescription = "Second Panel Element Description";
+        this.thirdPanelElementDescription = "Third Panel Element Description";
+        this.dropElementFlag = true;
+        this.projectId = this.route.snapshot.params['id'];
+        this.sldSheduleId = this.route.snapshot.params['sldsheduleId'];
+        this.sizeWindow = window.innerWidth;
+    }
+    SldScheduleItemComponent.prototype.onResize = function (event) {
+        event.target.innerWidth;
+        this.sizeWindow = event.target.innerWidth;
+    };
+    SldScheduleItemComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.spinnerService.show();
+        this.sldscheduleService.getSldScheduleItem(this.projectId, this.sldSheduleId).subscribe(function (sldShedules) {
+            _this.sldScheduleItem = sldShedules.sldschedule;
+            //console.log(this.sldScheduleItem.ocDevice);
+            _this.spinnerService.hide();
+        }, function (err) {
+            console.log(err);
+            return false;
+        });
+        this.sldscheduleService.getElectricalName(this.projectId).subscribe(function (electricals) {
+            _this.electricalList = electricals.electricals;
+            //console.log(this.electricalList);
+        });
+    };
+    SldScheduleItemComponent.prototype.changeBooleanFlag = function (boolValue) {
+        return boolValue = boolValue ? false : true;
+    };
+    SldScheduleItemComponent.prototype.setSystemVoltage = function (elecList, selectedMajorEquipmentElement) {
+        var selectMajorElement = selectedMajorEquipmentElement;
+        var electList = elecList;
+        for (var i = 0; i < electList.length; ++i) {
+            var element = electList[i];
+            //      console.log(element.selectedVoltage.name);
+            return element.selectedVoltage.name;
+            //      console.log(element);
+        }
+    };
+    SldScheduleItemComponent.prototype.setEquipmentDescription = function (elecList, selectedMajorEquipmentElement) {
+        var selectMajorElement = selectedMajorEquipmentElement;
+        var electList = elecList;
+        for (var i = 0; i < electList.length; ++i) {
+            var element = electList[i];
+            if (element.equipmentTag === selectMajorElement) {
+                //console.log('work');
+                //let temp = element.selectedEquipmentDescription;
+                //console.log(temp);
+                return element.selectedEquipmentDescription;
+            }
+        }
+    };
+    SldScheduleItemComponent.prototype.saveSldShedule = function (idSldScheduleItem, data) {
+        var _this = this;
+        this.spinnerService.show();
+        this.sldscheduleService.updateSldScheduleItem(this.projectId, idSldScheduleItem, data).subscribe(function (res) {
+            _this.spinnerService.hide();
+            _this.router.navigate(['project', _this.projectId, 'sldshedules']);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    SldScheduleItemComponent.prototype.deleteSldSchedule = function (sldScheduleId) {
+        var _this = this;
+        this.spinnerService.show();
+        this.sldscheduleService.deleteSldScheduleItem(this.projectId, sldScheduleId).subscribe(function (res) {
+            _this.spinnerService.hide();
+            _this.router.navigate(['project', _this.projectId, 'sldshedules']);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('window:resize', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], SldScheduleItemComponent.prototype, "onResize", null);
+    SldScheduleItemComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-sld-schedule-item',
+            template: __webpack_require__("../../../../../src/app/components/sld-schedule-item/sld-schedule-item.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/sld-schedule-item/sld-schedule-item.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_2__services_sldschedule_service__["a" /* SldscheduleService */],
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
+    ], SldScheduleItemComponent);
+    return SldScheduleItemComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@font-face {\r\n    font-family: \"Roboto-Light\";\r\n    src: url(" + __webpack_require__("../../../../../src/assets/fonts/Roboto-Light.ttf") + ");\r\n    font-style: normal;\r\n    font-weight: normal;\r\n  }\r\n  \r\n  @font-face {\r\n    font-family: \"Roboto-Bolt\";\r\n    src: url(" + __webpack_require__("../../../../../src/assets/fonts/Roboto-Bold.ttf") + ");\r\n    font-weight: bold;\r\n  }\r\n  .table-text-style{\r\n    font-family: Roboto-Bolt!important;\r\n    color: #4c4c4c!important;\r\n  }\r\n  \r\n  .disable-decoration {\r\n    text-decoration: none!important;\r\n  }\r\n  \r\n  .table-cursor {\r\n    cursor: pointer;\r\n  }\r\n  \r\n  thead th {\r\n    font-size: 0.6rem;\r\n  }\r\n  tbody tr td  {\r\n    font-size: 0.6rem;\r\n  }\r\n  .achievements-wrapper {\r\n    height: auto; \r\n    overflow: auto;\r\n  }", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <div class=\"pt-2 text-center\">\n    <h1>SLD Schedule List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new SLD Schedule\" (click)=\"saveSldShedule()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <th></th>                             \n          <th>Rev.</th>\n          <th>Major Equipment Device Tag</th>\n          <th>Equipment Description</th>\n          <th>Device Type</th>\n          <th>Frame Rating</th>\n          <th>Trip Rating</th>\n          <th>Fuse Rating</th>\n          <th>Contactor Type</th>\n          <th>Contactor Size</th>\n          <th>Overload Type</th>\n          <th>Overload Size</th>\n          <th>Cpt Qty</th>\n          <th>Cpt Voltage</th>\n          <th>Cpt Rating</th>\n          <th>Vt Qty</th>\n          <th>Vt Voltage</th>\n          <th>Vt Accuracy</th>\n          <th>Ct Qty</th>\n          <th>Ct Ratio</th>\n          <th>GF CT Ratio</th>\n          <th>Shunt Coil</th>\n          <th>Kirk key Intrlck</th>\n          <th>Ground Stud</th>\n          <th>Pqm</th>\n          <th>Fdr Pr</th>\n          <th>Tx Pr</th>\n          <th>Mtr Pr</th>\n          <th>Ngr Pr</th>\n          <th>Ind. Lts.</th>\n          <th>Spc. Htr.</th>\n          <th>Htr. Circ.</th>\n          <th>N.O. Aux.</th>\n          <th>N.C. Aux.</th>\n          <th>Ipos. Rly.</th>\n          <!--\n          <th>Local Switch / Pushbutton 1</th>\n          <th>Local Switch / Pushbutton 2</th>\n          <th>Local Switch / Pushbutton 3</th>\n          <th>Local Switch / Pushbutton 4</th>\n          <th>Field Switch / Pushbutton 1</th>\n          <th>Field Switch / Pushbutton 2</th>\n          <th>Field Switch / Pushbutton 3</th>\n          <th>Field Switch / Pushbutton 4</th>\n          -->\n        </tr>\n      </thead>\n      <tbody>\n          <tr *ngFor=\"let sldShedule of sldSchedules?.sldschedules\">\n            <td></td>\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Rev -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.majorEquipmentDeviceTag}}</a></td> <!-- Major Equipment Device Tag -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Equipment Description -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Device Type -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFrameRating}}</a></td>    <!-- Frame Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.tripRating}}</a></td>             <!-- Trip Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFuseRating}}</a></td>     <!-- Fuse Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedContactorType}}</a></td>  <!-- Contactor Type -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedContactorSize}}</a></td>  <!-- Contactor Size -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedOverloadType}}</a></td>   <!-- Overload Type -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.overloadSize}}</a></td>           <!-- Overload Size -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTQTY}}</a></td>         <!-- Cpt Qty -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTVoltage}}</a></td>     <!-- Cpt Voltage -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTRating}}</a></td>      <!-- Cpt Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Vt Qty -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTVoltage}}</a></td>      <!-- Vt Voltage -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTAccuracy}}</a></td>     <!-- Vt Accuracy -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCTQTY}}</a></td>          <!-- Ct Qty-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCTRatio}}</a></td>        <!-- Ct Ratio -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedGFCTRatio}}</a></td>      <!-- GF CT Ratio -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedShuntCoil}}</a></td>      <!-- Shunt Coil -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedKirkKey}}</a></td>        <!-- Kirk key Intrlck -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedGroundStud}}</a></td>     <!-- Ground Stud -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Pqm-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Fdr Pr -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Tx Pr-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Mtr Pr -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Ngr Pr -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedIndicatingLights}}</a></td><!-- Ind. Lts. -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.SpaceHeater}}</a></td>            <!-- Spc. Htr. -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td> <!-- Htr. Circ. -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedFirstValueLocalSwitchPB}}</a></td>--> <!-- Local Switch / Pushbutton 1 -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedSecondValueLocalSwitchPB}}</a></td>--> <!-- Local Switch / Pushbutton 2 -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedThirdValueLocalSwitchPB}}</a></td>--> <!-- Local Switch / Pushbutton 3 -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedFourthValueLocalSwitchPB}}</a></td>--> <!-- Local Switch / Pushbutton 4 -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedFirstValueFieldSwitchPB}}</a></td>--> <!-- Field Switch / Pushbutton 1 -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedSecondValueFieldSwitchPB}}</a></td>--> <!-- Field Switch / Pushbutton 2 -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedThirdValueFieldSwitchPB}}</a></td>--> <!-- Field Switch / Pushbutton 3 -->\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?selectedFourthValueLocalFieldSwitchPB}}</a></td>--> <!-- Field Switch / Pushbutton 4 -->\n          </tr>\n      </tbody>\n    </table>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SldScheduleListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_sldschedule_service__ = __webpack_require__("../../../../../src/app/services/sldschedule.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SldScheduleListComponent = (function () {
+    //sldSchedule: SldSchedule[];
+    function SldScheduleListComponent(sldscheduleService, router, route, spinnerService) {
+        this.sldscheduleService = sldscheduleService;
+        this.router = router;
+        this.route = route;
+        this.spinnerService = spinnerService;
+        this.projectId = this.route.snapshot.params['id'];
+    }
+    SldScheduleListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.spinnerService.show();
+        this.sldscheduleService.getSldSchedule(this.projectId).subscribe(function (sldSchedulesList) {
+            _this.sldSchedules = sldSchedulesList;
+        }, function (err) {
+            console.log(err);
+            return false;
+        });
+        this.spinnerService.hide();
+    };
+    SldScheduleListComponent.prototype.saveSldShedule = function () {
+        var _this = this;
+        this.sldSchedule = {};
+        this.sldSchedule.length = 0;
+        this.spinnerService.show();
+        this.sldscheduleService.createSldSchedule(this.projectId, this.sldSchedule).subscribe(function (res) {
+            var id = res['_id'];
+            var responseId = res[res.length - 1]['_id'];
+            var routeToCableItem = '/project/' + _this.route.snapshot.params['id'] + '/sldshedules/' + responseId;
+            _this.router.navigate([routeToCableItem]);
+        }, function (err) {
+            console.log(err);
+        });
+        this.spinnerService.hide();
+    };
+    SldScheduleListComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-sld-schedule-list',
+            template: __webpack_require__("../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_sldschedule_service__["a" /* SldscheduleService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
+    ], SldScheduleListComponent);
+    return SldScheduleListComponent;
 }());
 
 
@@ -3084,8 +3356,8 @@ var AuthService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers})
           .map(res => res.json());
-          //for deploy use
         */
+        //for deploy use
         headers.append('Content-Type', 'application/json');
         return this.http.post('users/authenticate', user, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3098,8 +3370,8 @@ var AuthService = (function () {
         /*
         return this.http.get('http://localhost:3000/users/profile', {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         return this.http.get('users/profile', { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -3163,8 +3435,8 @@ var CableService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/cables', {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/cables', { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3176,8 +3448,8 @@ var CableService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/electrical', {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/electrical', { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3190,8 +3462,8 @@ var CableService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/'+id+'/cable-create/', cable, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.post('project/' + id + '/cable-create/', cable, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3203,8 +3475,8 @@ var CableService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/cables/'+cableId, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/cables/' + cableId, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3216,8 +3488,8 @@ var CableService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/cable-update/'+cabelId, cabelItem, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.patch('project/' + projectId + '/cable-update/' + cabelId, cabelItem, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3229,8 +3501,8 @@ var CableService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/' + projectId + '/cables/' + cableId, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + projectId + '/cables/' + cableId, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3272,14 +3544,13 @@ var ContactUsService = (function () {
     }
     ContactUsService.prototype.sendContactUsEmail = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        //console.log(user);
         headers.append('Content-Type', 'application/json');
         //for dev use
         /*
         return this.http.post('http://localhost:3000/users/contacts', user, {headers: headers})
         .map(res => res.json());
-        //for deploy use
         */
+        //for deploy use
         return this.http.post('users/contacts', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -3325,8 +3596,8 @@ var ElectricalService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/electricals', {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/electricals', { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3338,8 +3609,8 @@ var ElectricalService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/'+id+'/electrical-create/', electrical, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.post('project/' + id + '/electrical-create/', electrical, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3351,8 +3622,8 @@ var ElectricalService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/electricals/'+electricalId, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/electricals/' + electricalId, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3364,8 +3635,8 @@ var ElectricalService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/electrical-update/'+electricalId, electricalItem, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.patch('project/' + projectId + '/electrical-update/' + electricalId, electricalItem, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3377,8 +3648,8 @@ var ElectricalService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/' + projectId + '/electricals/' + electricalId, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + projectId + '/electricals/' + electricalId, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3425,8 +3696,8 @@ var ProjectService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project', {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.get('project', { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3438,8 +3709,8 @@ var ProjectService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/project-create', project, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.post('project/project-create', project, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3449,8 +3720,8 @@ var ProjectService = (function () {
         /*
         return this.http.put('http://localhost:3000/project/'+ id, project)
         .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         return this.http.put('project/' + id, project)
             .map(function (res) { return res.json(); });
     };
@@ -3461,8 +3732,8 @@ var ProjectService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/'+ id, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + id, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3474,8 +3745,8 @@ var ProjectService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id, {headers: headers})
           .map(res => res.json());
-        //for deploy
         */
+        //for deploy
         headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id, { headers: headers })
             .map(function (res) { return res.json(); });
@@ -3485,6 +3756,119 @@ var ProjectService = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
     ], ProjectService);
     return ProjectService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/sldschedule.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SldscheduleService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SldscheduleService = (function () {
+    function SldscheduleService(http) {
+        this.http = http;
+    }
+    SldscheduleService.prototype.getSldSchedule = function (id) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        //for dev use
+        /*
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:3000/project/'+id+'/sld-schedules', {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('project/' + id + '/sld-schedules', { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    SldscheduleService.prototype.createSldSchedule = function (id, sldschedule) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        //for dev use
+        /*
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/project/'+id+'/sld-schedule-create/', sldschedule, {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('project/' + id + '/sld-schedule-create/', sldschedule, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    SldscheduleService.prototype.getSldScheduleItem = function (projectId, sldscheduleId) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        //for dev use
+        /*
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:3000/project/'+projectId+'/sld-schedules/'+sldscheduleId, {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('project/' + projectId + '/sld-schedules/' + sldscheduleId, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    SldscheduleService.prototype.getElectricalName = function (id) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        //for dev use
+        /*
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('http://localhost:3000/project/'+id+'/electrical-for-sld', {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        headers.append('Content-Type', 'application/json');
+        return this.http.get('project/' + id + '/electrical-for-sld', { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    SldscheduleService.prototype.updateSldScheduleItem = function (projectId, sldScheduleId, scheduleItem) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        //for dev use
+        /*
+        headers.append('Content-Type', 'application/json');
+        return this.http.patch('http://localhost:3000/project/'+ projectId+'/sld-schedule-update/'+sldScheduleId, scheduleItem, {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        headers.append('Content-Type', 'application/json');
+        return this.http.patch('project/' + projectId + '/sld-schedule-update/' + sldScheduleId, scheduleItem, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    SldscheduleService.prototype.deleteSldScheduleItem = function (projectId, sldScheduleId) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        //for dev use
+        /*
+        headers.append('Content-Type', 'application/json');
+        return this.http.delete('http://localhost:3000/project/' + projectId + '/sld-schedules/' + sldScheduleId, {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        headers.append('Content-Type', 'application/json');
+        return this.http.delete('project/' + projectId + '/sld-schedules/' + sldScheduleId, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    SldscheduleService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+    ], SldscheduleService);
+    return SldscheduleService;
 }());
 
 

@@ -553,6 +553,194 @@ var AuthModule_1;
 
 /***/ }),
 
+/***/ "../../../../angular2-ui-switch/dist/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var ui_switch_component_1 = __webpack_require__("../../../../angular2-ui-switch/dist/ui-switch.component.js");
+var UiSwitchModule = (function () {
+    function UiSwitchModule() {
+    }
+    UiSwitchModule = __decorate([
+        core_1.NgModule({
+            declarations: [ui_switch_component_1.UiSwitchComponent],
+            exports: [ui_switch_component_1.UiSwitchComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], UiSwitchModule);
+    return UiSwitchModule;
+}());
+exports.UiSwitchModule = UiSwitchModule;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../angular2-ui-switch/dist/ui-switch.component.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var forms_1 = __webpack_require__("../../../forms/esm5/forms.js");
+var UI_SWITCH_CONTROL_VALUE_ACCESSOR = {
+    provide: forms_1.NG_VALUE_ACCESSOR,
+    useExisting: core_1.forwardRef(function () { return UiSwitchComponent; }),
+    multi: true
+};
+var UiSwitchComponent = (function () {
+    function UiSwitchComponent() {
+        this.onTouchedCallback = function (v) {
+        };
+        this.onChangeCallback = function (v) {
+        };
+        this.size = 'medium';
+        this.change = new core_1.EventEmitter();
+        this.color = 'rgb(100, 189, 99)';
+        this.switchOffColor = '';
+        this.switchColor = '#fff';
+        this.defaultBgColor = '#fff';
+        this.defaultBoColor = '#dfdfdf';
+    }
+    Object.defineProperty(UiSwitchComponent.prototype, "checked", {
+        get: function () {
+            return this._checked;
+        },
+        set: function (v) {
+            this._checked = v !== false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UiSwitchComponent.prototype, "disabled", {
+        get: function () {
+            return this._disabled;
+        },
+        set: function (v) {
+            this._disabled = v !== false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(UiSwitchComponent.prototype, "reverse", {
+        get: function () {
+            return this._reverse;
+        },
+        set: function (v) {
+            this._reverse = v !== false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    UiSwitchComponent.prototype.getColor = function (flag) {
+        if (flag === 'borderColor')
+            return this.defaultBoColor;
+        if (flag === 'switchColor') {
+            if (this.reverse)
+                return !this.checked ? this.switchColor : this.switchOffColor || this.switchColor;
+            return this.checked ? this.switchColor : this.switchOffColor || this.switchColor;
+        }
+        if (this.reverse)
+            return !this.checked ? this.color : this.defaultBgColor;
+        return this.checked ? this.color : this.defaultBgColor;
+    };
+    UiSwitchComponent.prototype.onToggle = function () {
+        if (this.disabled)
+            return;
+        this.checked = !this.checked;
+        this.change.emit(this.checked);
+        this.onChangeCallback(this.checked);
+        this.onTouchedCallback(this.checked);
+    };
+    UiSwitchComponent.prototype.writeValue = function (obj) {
+        if (obj !== this.checked) {
+            this.checked = !!obj;
+        }
+    };
+    UiSwitchComponent.prototype.registerOnChange = function (fn) {
+        this.onChangeCallback = fn;
+    };
+    UiSwitchComponent.prototype.registerOnTouched = function (fn) {
+        this.onTouchedCallback = fn;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean), 
+        __metadata('design:paramtypes', [Boolean])
+    ], UiSwitchComponent.prototype, "checked", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean), 
+        __metadata('design:paramtypes', [Boolean])
+    ], UiSwitchComponent.prototype, "disabled", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean), 
+        __metadata('design:paramtypes', [Boolean])
+    ], UiSwitchComponent.prototype, "reverse", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], UiSwitchComponent.prototype, "size", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], UiSwitchComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], UiSwitchComponent.prototype, "color", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], UiSwitchComponent.prototype, "switchOffColor", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], UiSwitchComponent.prototype, "switchColor", void 0);
+    __decorate([
+        core_1.HostListener('click'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], UiSwitchComponent.prototype, "onToggle", null);
+    UiSwitchComponent = __decorate([
+        core_1.Component({
+            selector: 'ui-switch',
+            template: "\n  <span class=\"switch\" \n  [class.checked]=\"checked\" \n  [class.disabled]=\"disabled\"\n  [class.switch-large]=\"size === 'large'\"\n  [class.switch-medium]=\"size === 'medium'\"\n  [class.switch-small]=\"size === 'small'\"\n  [style.background-color]=\"getColor()\"\n  [style.border-color]=\"getColor('borderColor')\"\n  >\n  <small [style.background]=\"getColor('switchColor')\">\n  </small>\n  </span>\n  ",
+            styles: ["\n    .switch {\n    background: #f00;\n    border: 1px solid #dfdfdf;\n    position: relative;\n    display: inline-block;\n    box-sizing: content-box;\n    overflow: visible;\n    padding: 0;\n    margin: 0;            \n    cursor: pointer;\n    box-shadow: rgb(223, 223, 223) 0 0 0 0 inset;\n    transition: 0.3s ease-out all;\n    -webkit-transition: 0.3s ease-out all;\n    }        \n\n    small {\n    border-radius: 100%;\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);          \n    position: absolute;\n    top: 0;\n    left: 0;\n    transition: 0.3s ease-out all;\n    -webkit-transition: 0.3s ease-out all;\n    }\n\n    .switch-large {\n    width: 66px;\n    height: 40px;\n    border-radius: 40px;\n    }\n\n    .switch-large small {\n    width: 40px;\n    height: 40px;\n    }\n\n    .switch-medium {\n    width: 50px;\n    height: 30px;\n    border-radius: 30px;\n    }\n\n    .switch-medium small {\n    width: 30px;\n    height: 30px;\n    }\n\n    .switch-small {\n    width: 33px;\n    height: 20px;\n    border-radius: 20px;\n    }\n\n    .switch-small small {\n    width: 20px;\n    height: 20px;\n    }\n\n    .checked {\n    background: rgb(100, 189, 99);\n    border-color: rgb(100, 189, 99);\n    }\n\n    .switch-large.checked small {\n    left: 26px;\n    }\n\n    .switch-medium.checked small {\n    left: 20px;\n    }\n\n    .switch-small.checked small {\n    left: 13px;\n    }\n\n    .disabled {\n    opacity: .50;\n    cursor: not-allowed;\n    }\n    "],
+            providers: [UI_SWITCH_CONTROL_VALUE_ACCESSOR]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], UiSwitchComponent);
+    return UiSwitchComponent;
+}());
+exports.UiSwitchComponent = UiSwitchComponent;
+//# sourceMappingURL=ui-switch.component.js.map
+
+/***/ }),
+
 /***/ "../../../../css-loader/lib/css-base.js":
 /***/ (function(module, exports) {
 
@@ -785,7 +973,7 @@ var FocusDirective = (function () {
 
 
 var MYDP_VALUE_ACCESSOR = {
-    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* NG_VALUE_ACCESSOR */],
+    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
     useExisting: Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return MyDatePicker; }),
     multi: true
 };
@@ -1556,7 +1744,7 @@ var MyDatePickerModule = (function () {
     }
     MyDatePickerModule.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"], args: [{
-                    imports: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormsModule */]],
+                    imports: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormsModule"]],
                     declarations: [__WEBPACK_IMPORTED_MODULE_3__my_date_picker_component__["a" /* MyDatePicker */], __WEBPACK_IMPORTED_MODULE_4__directives_my_date_picker_focus_directive__["a" /* FocusDirective */]],
                     exports: [__WEBPACK_IMPORTED_MODULE_3__my_date_picker_component__["a" /* MyDatePicker */], __WEBPACK_IMPORTED_MODULE_4__directives_my_date_picker_focus_directive__["a" /* FocusDirective */]]
                 },] },
@@ -67921,77 +68109,78 @@ function transition$$1(stateChangeExpr, steps) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export AbstractControlDirective */
-/* unused harmony export AbstractFormGroupDirective */
-/* unused harmony export CheckboxControlValueAccessor */
-/* unused harmony export ControlContainer */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return NG_VALUE_ACCESSOR; });
-/* unused harmony export COMPOSITION_BUFFER_MODE */
-/* unused harmony export DefaultValueAccessor */
-/* unused harmony export NgControl */
-/* unused harmony export NgControlStatus */
-/* unused harmony export NgControlStatusGroup */
-/* unused harmony export NgForm */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return NgModel; });
-/* unused harmony export NgModelGroup */
-/* unused harmony export RadioControlValueAccessor */
-/* unused harmony export FormControlDirective */
-/* unused harmony export FormControlName */
-/* unused harmony export FormGroupDirective */
-/* unused harmony export FormArrayName */
-/* unused harmony export FormGroupName */
-/* unused harmony export NgSelectOption */
-/* unused harmony export SelectControlValueAccessor */
-/* unused harmony export SelectMultipleControlValueAccessor */
-/* unused harmony export CheckboxRequiredValidator */
-/* unused harmony export EmailValidator */
-/* unused harmony export MaxLengthValidator */
-/* unused harmony export MinLengthValidator */
-/* unused harmony export PatternValidator */
-/* unused harmony export RequiredValidator */
-/* unused harmony export FormBuilder */
-/* unused harmony export AbstractControl */
-/* unused harmony export FormArray */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormGroup; });
-/* unused harmony export NG_ASYNC_VALIDATORS */
-/* unused harmony export NG_VALIDATORS */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return Validators; });
-/* unused harmony export VERSION */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormsModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return ReactiveFormsModule; });
-/* unused harmony export ɵba */
-/* unused harmony export ɵz */
-/* unused harmony export ɵx */
-/* unused harmony export ɵy */
-/* unused harmony export ɵa */
-/* unused harmony export ɵb */
-/* unused harmony export ɵc */
-/* unused harmony export ɵd */
-/* unused harmony export ɵe */
-/* unused harmony export ɵf */
-/* unused harmony export ɵg */
-/* unused harmony export ɵbf */
-/* unused harmony export ɵbb */
-/* unused harmony export ɵbc */
-/* unused harmony export ɵh */
-/* unused harmony export ɵi */
-/* unused harmony export ɵbd */
-/* unused harmony export ɵbe */
-/* unused harmony export ɵj */
-/* unused harmony export ɵk */
-/* unused harmony export ɵl */
-/* unused harmony export ɵn */
-/* unused harmony export ɵm */
-/* unused harmony export ɵo */
-/* unused harmony export ɵq */
-/* unused harmony export ɵp */
-/* unused harmony export ɵs */
-/* unused harmony export ɵt */
-/* unused harmony export ɵv */
-/* unused harmony export ɵu */
-/* unused harmony export ɵw */
-/* unused harmony export ɵr */
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControlDirective", function() { return AbstractControlDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractFormGroupDirective", function() { return AbstractFormGroupDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxControlValueAccessor", function() { return CheckboxControlValueAccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ControlContainer", function() { return ControlContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NG_VALUE_ACCESSOR", function() { return NG_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COMPOSITION_BUFFER_MODE", function() { return COMPOSITION_BUFFER_MODE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultValueAccessor", function() { return DefaultValueAccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgControl", function() { return NgControl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgControlStatus", function() { return NgControlStatus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgControlStatusGroup", function() { return NgControlStatusGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgForm", function() { return NgForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgModel", function() { return NgModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgModelGroup", function() { return NgModelGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RadioControlValueAccessor", function() { return RadioControlValueAccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormControlDirective", function() { return FormControlDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormControlName", function() { return FormControlName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroupDirective", function() { return FormGroupDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormArrayName", function() { return FormArrayName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroupName", function() { return FormGroupName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgSelectOption", function() { return NgSelectOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectControlValueAccessor", function() { return SelectControlValueAccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectMultipleControlValueAccessor", function() { return SelectMultipleControlValueAccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxRequiredValidator", function() { return CheckboxRequiredValidator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailValidator", function() { return EmailValidator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MaxLengthValidator", function() { return MaxLengthValidator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MinLengthValidator", function() { return MinLengthValidator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PatternValidator", function() { return PatternValidator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequiredValidator", function() { return RequiredValidator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormBuilder", function() { return FormBuilder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControl", function() { return AbstractControl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormArray", function() { return FormArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormControl", function() { return FormControl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroup", function() { return FormGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NG_ASYNC_VALIDATORS", function() { return NG_ASYNC_VALIDATORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NG_VALIDATORS", function() { return NG_VALIDATORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Validators", function() { return Validators; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return VERSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormsModule", function() { return FormsModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReactiveFormsModule", function() { return ReactiveFormsModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵba", function() { return InternalFormsSharedModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵz", function() { return REACTIVE_DRIVEN_DIRECTIVES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵx", function() { return SHARED_FORM_DIRECTIVES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵy", function() { return TEMPLATE_DRIVEN_DIRECTIVES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return CHECKBOX_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return DEFAULT_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵc", function() { return AbstractControlStatus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵd", function() { return ngControlStatusHost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return formDirectiveProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵf", function() { return formControlBinding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵg", function() { return modelGroupProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbf", function() { return NgNoValidate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbb", function() { return NUMBER_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbc", function() { return NumberValueAccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵh", function() { return RADIO_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵi", function() { return RadioControlRegistry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbd", function() { return RANGE_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbe", function() { return RangeValueAccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵj", function() { return formControlBinding$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵk", function() { return controlNameBinding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵl", function() { return formDirectiveProvider$1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵn", function() { return formArrayNameProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵm", function() { return formGroupNameProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵo", function() { return SELECT_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵq", function() { return NgSelectMultipleOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵp", function() { return SELECT_MULTIPLE_VALUE_ACCESSOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵs", function() { return CHECKBOX_REQUIRED_VALIDATOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵt", function() { return EMAIL_VALIDATOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵv", function() { return MAX_LENGTH_VALIDATOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵu", function() { return MIN_LENGTH_VALIDATOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵw", function() { return PATTERN_VALIDATOR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵr", function() { return REQUIRED_VALIDATOR; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__("../../../../tslib/tslib.es6.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__ = __webpack_require__("../../../../rxjs/_esm5/observable/forkJoin.js");

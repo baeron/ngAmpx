@@ -185,7 +185,7 @@ const cableShema = mongoose.Schema({
   //selectedCableFromArray
   selectedCableFrom: String,
   //selectedCableToArray
-  selectedCableTo :String,
+  selectedCableTo: String,
   powerSystem: {
     type: Array,
     'default': ['AC-3P', 'AC-1P', 'DC']
@@ -384,11 +384,252 @@ const cableShema = mongoose.Schema({
   internalNotes: String
 });
 
+const sldScheduleShema = mongoose.Schema({
+  //Equipment Info
+  selectedMajorEquipmentDevice: String, //первый элемент
+  selectedEquipmentDescriptionForMajorEquipmentDevice: String, //второй элемент
+  selectedMajorEquipmentTag: String, //третий элемент
+  selectedEquipmentDescriptionForMajorEquipmentTag: String, //четвертый элемент
+  majorEquipmentDeviceTag: String, //название проекта
+  selectedSystemVoltage: String,  //вольтаж
+  //Incoming Section
+  incomer: {
+    type: Boolean,
+    'default': false
+  },
+  lightningArrestor: {
+    type: Boolean,
+    'default': false
+  },
+  feederEntry: {
+    type: Array,
+    'default': ["Top", "Button"]
+  },
+  selectedFeederEntry: String,
+  surgeProtection: {
+    type: Boolean,
+    'default': false
+  },
+  //Central Part
+  ocDevice: {
+    type: Array,
+    'default': ["TMCB", "HMCP", "FUSE", "MV52", "MCCB"]
+  },
+  selectedOCDevice: String,
+  contactorType: {
+    type: Array,
+    'default' : ["FVNR", "FVR", "CONTACTOR 2P", "CONTACTOR 3P", "CONTACTOR 4P", "RVAT", "RVSS", "VFD"]
+  },
+  selectedContactorType: String,
+  CPTQTY: {
+    type: Array,
+    'default': [0, 1]
+  },
+  selectedCPTQTY: Number,
+  CTQTY: {
+    type: Array,
+    'default': [1, 2, 3]
+  },
+  selectedCTQTY: Number,
+  tripRating: Number,
+  contactorSize: {
+    type: Array,
+    'default': ['00', '0', '1', '2', '3', '4', '5', '6']
+  },
+  selectedContactorSize: String,
+  CPTVoltage: {
+    type: Array,
+    'default': ["600-120v", "480-120v"]
+  },
+  selectedCPTVoltage: String,
+  CTRatio: {
+    type: Array,
+    'default': ["15/5A", "20/5A", "30/5A", "50/5A", "75/5A", "100/5A", "150/5A", "200/5A", "250/5A", "300/5A", "400/5A", "500/5A", "600/5A", "750/5A", "1000/5A", "1500/5A", "2000/5A", "2500/5A", "3000/5A"]
+  },
+  selectedCTRatio: String,
+  frameRating: {
+    type: Array,
+    'default': ["15A", "20A", "30A", "40A", "50A", "60A", "70A", "80A", "90A", "100A", "110A", "125A", "150A", "175A", "200A", "225A", "250A", "300A", "350A", "400A", "500A", "600A", "700A", "800A", "900A", "1000A", "1200A", "1400A", "1600A", "1800A", "2000A"]
+  },
+  selectedFrameRating: String,
+  overloadType: {
+    type: Array,
+    'default': ["Classic", "Elec", "Elec+"]
+  },
+  selectedOverloadType: String,
+  CPTRating: {
+    type: Array,
+    'default': ["100VA", "150VA", "200VA"]
+  },
+  selectedCPTRating: String,
+  CTAccuracy: {
+    type: Array,
+    'default': [1.2, 0.6, 0.3]
+  },
+  selectedCTAccuracy: Number,
+  fuseRating: {
+    type: Array,
+    'default': ["C", "J", "RK1", "2R", "3R", "4R", "5R", "6R", "9R", "12R", "10E", "15E", "20E", "25E", "30E", "40E", "50E", "65E", "80E", "100E"]
+  },
+  selectedFuseRating: String,
+  overloadSize: Number,
+  VTQTY: {
+    type: Array,
+    'default': [""]
+  },
+  selectedVTQTY: String,
+  GFCTRatio: {
+    type: Array,
+    'default': ["50/0.025A"] //TODO уточнить у Грега в этом поле только одно значение или значения в этом поле зависят от других полей
+  },
+  selectedGFCTRatio: String,
+  SwitchRating: {
+    type: Array,
+    'default': [""] //TODO уточнить у Грега в этом поле только одно значение или значения в этом поле зависят от других полей
+  },
+  selectedSwitchRating: String, //TODO зависит от предыдущего поля
+  VTVoltage: {
+    type: Array,
+    'default': ["600-120v", "480-120v"]
+  },
+  selectedVTVoltage: String,
+  ShuntCoil: {
+    type: Array,
+    'default': ["1-120VAC", "1-125VDC", "1-24VDC"]
+  },
+  selectedShuntCoil: String,
+  VTAccuracy: {
+    type: Array,
+    'default': [1.2, 0.6, 0.3]
+  },
+  selectedVTAccuracy: Number,
+  KirkKey: {
+    type: Array,
+    'default': [0, 1, 2]
+  },
+  selectedKirkKey: Number,
+  GroundStud: {
+    type: Array,
+    'default': [0, 1]
+  },
+  selectedGroundStud: Number,
+  TransformerPR: {
+    type: Boolean,
+    'default': false
+  },
+  IndicatingLights: {
+    type: Array,
+    'default': ["R/G", "R/G/A"]
+  },
+  selectedIndicatingLights: String,
+  NOAuxContact: {
+    type: Array,
+    'default': [1, 2, 3, 4, 5]
+  },
+  selectedNOAuxContact: Number,
+  PQM: {
+    type: Boolean,
+    'default': false
+  },
+  MotorPR: {
+    type: Boolean,
+    'default': false
+  },
+  SpaceHeater: Number,
+  NCAuxContact: {
+    type: Array,
+    'default': [1, 2, 3, 4, 5]
+  },
+  selectedNCAuxContact: Number,
+  FeederPR: {
+    type: Boolean,
+    'default': false
+  },
+  NGRRelay: {
+    type: Boolean,
+    'default': false
+  },
+  HeaterCircuit: {
+    type: Boolean,
+    'default': false
+  },
+  InterposRelay: {
+    type: Array,
+    'default': [1, 2, 3, 4, 5]
+  },
+  selectedInterposRelay: Number,
+  // PDP Detail
+  firstPanelValue: {
+    type: Array,
+    'default': ['asdad']
+  },
+  selectedFirstPanelValue: String,
+  secondPanelValue: {
+    type: Array,
+    'default': ['vcxxv']
+  },
+  selectedSecondPanelValue: String,
+  thirdPanelValue: {
+    type: Array,
+    'default': ['zxc']
+  },
+  selectedThirdPanelValue: String,
+  CircuitNumbers: Number,
+  CFG: {
+    type: Boolean,
+    'default': false
+  },
+  //Local Switch/PB
+  firstValueLocalSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedFirstValueLocalSwitchPB: String,
+  secondValueLocalSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedSecondValueLocalSwitchPB: String,
+  thirdValueLocalSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedThirdValueLocalSwitchPB: String,
+  fourthValueLocalSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedFourthValueLocalSwitchPB: String,
+  //Field Switch/PB
+  firstValueFieldSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedFirstValueFieldSwitchPB: String,
+  secondValueFieldSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedSecondValueFieldSwitchPB: String,
+  thirdValueFieldSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedThirdValueFieldSwitchPB: String,
+  fourthValueLocalFieldSwitchPB: {
+    type: Array,
+    'default': ["2 Pos. SW", "3 Pos. SW", "4 Pos. SW", "Red PB", "Green PB", "Black PB"]
+  },
+  selectedFourthValueLocalFieldSwitchPB: String
+});
+
+
 //PROJECT SHEMA
 const ProjectSchema = mongoose.Schema({
   title: String,
   electricals: [electrucalSchema],
-  cabels: [cableShema]
+  cabels: [cableShema],
+  sldschedules: [sldScheduleShema]
   //date_create: { type: Date, default: Date.now },
   //updated_date: { type: Date, default: Date.now },
 });

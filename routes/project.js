@@ -124,6 +124,24 @@ router.get('/:id/electrical',function (req, res){
   }
 });
 
+router.get('/:id/electrical-for-sld',function (req, res){
+  if(req.params){
+    Project
+    .findById(req.params.id, 'electricals.equipmentTag electricals.selectedEquipmentDescription electricals.selectedVoltage')
+    .exec(function(err, project) {
+        if(!project){
+          res.json({success: false, msg:'Failed get electrical item'});
+          return;
+        } else if (err){
+          res.json({success: false, msg:'Failed get electrical item'});
+        }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get electrical item'});
+  }
+});
+
 /* GET SINGLE Electrical BY ID */
 router.get('/:id/electricals/:electricalid', function(req, res) {
   if (req.params && req.params.id && req.params.electricalid) {
@@ -202,7 +220,7 @@ router.patch('/:id/electrical-update/:electricalid', function(req, res) {
       //Equipment Entry
           //item number
           electrical.dateCreate = req.body.dateCreate;
-          console.log(electrical.dateCreate);
+          //console.log(electrical.dateCreate);
           electrical.quantity = req.body.quantity;
           electrical.revision = req.body.revision;
           electrical.equipmentType = req.body.equipmentType;
@@ -352,15 +370,15 @@ router.post('/:id/cable-create', function(req, res) {
       .exec(
         function(err, project) {
           if (err) {
-            res.json({success: false, msg:'Failed get electrical item'});
+            res.json({success: false, msg:'Failed get cabel item'});
           } else {
             if (!project) {
-              res.json({success: false, msg:'Failed get electrical item'});
+              res.json({success: false, msg:'Failed get cabel item'});
             } else {
               project.cabels.push({});
             project.save(function(err, project) {
               if (err) {
-                res.json({success: false, msg:'Failed get electrical item'});
+                res.json({success: false, msg:'Failed get cabel item'});
               } else {
                 res.json(project.cabels);
             }
@@ -517,6 +535,212 @@ router.delete('/:id/cables/:cableId', function (req, res) {
           });
         } else {
           res.json({success: false, msg:'Failed get electrical item'});
+        }
+    }
+  );
+});
+
+//SLD-SCHEDULE
+/*GET ALL SLD-SCHEDULE*/
+router.get('/:id/sld-schedules',function (req, res) {
+  if(req.params){
+    Project
+    .findById(req.params.id)
+    .exec(function(err, project) {
+        if(!project){
+          res.json({success: false, msg:'Failed get sld-schedules item'});
+          return;
+        } else if (err){
+          res.json({success: false, msg:'Failed get sld-schedules item'});
+        }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get sld-schedules item'});
+  }
+});
+
+/* CREATE NEW SLD-SCHEDULE */
+router.post('/:id/sld-schedule-create', function(req, res) {
+  if (req.params.id) {
+    Project
+      .findById(req.params.id)
+      .select('sldschedules')
+      .exec(
+        function(err, project) {
+          if (err) {
+            res.json({success: false, msg:'Failed get sld-schedule item'});
+          } else {
+            if (!project) {
+              res.json({success: false, msg:'Failed get sld-schedule item'});
+            } else {
+              project.sldschedules.push({});
+            project.save(function(err, project) {
+              if (err) {
+                res.json({success: false, msg:'Failed get sld-schedule item'});
+              } else {
+                res.json(project.sldschedules);
+            }
+          });
+        }
+      }
+    });
+  } else {
+    res.json({success: false, msg:'Failed get sld-schedule item'});
+  }
+});
+
+/* GET SINGLE SLD-SCHEDULE BY ID */
+router.get('/:id/sld-schedules/:sldscheduleId', function(req, res) {
+  if (req.params && req.params.id && req.params.sldscheduleId) {
+    Project
+      .findById(req.params.id)
+      .select('sldschedules')
+      .exec(
+        function(err, project) {
+          var response, sldschedule;
+          if (!project) {
+            res.json({success: false, msg:'Failed get sldschedule item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get sldschedule item'});
+            return;
+          }
+          if (project.sldschedules && project.sldschedules.length > 0) {
+            sldschedule = project.sldschedules.id(req.params.sldscheduleId);
+            if (!sldschedule) {
+              res.json({success: false, msg:'Failed get sldschedule item'});
+            } else {
+              response = {
+                sldschedule
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get sldschedule item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get sldschedule item'});
+  }
+});
+
+/* UPDATE Item SLD-SCHEDULE*/
+router.patch('/:id/sld-schedule-update/:sldScheduleId', function(req, res) {
+  if (req.params && req.params.id && req.params.sldScheduleId) {
+    Project
+      .findById(req.params.id)
+      .exec(
+        function(err, project) {
+          var response, sldschedule;
+          sldschedule = project.sldschedules.id(req.params.sldScheduleId);
+      //Equipment Info   
+        sldschedule.selectedMajorEquipmentDevice = req.body.selectedMajorEquipmentDevice;
+        sldschedule.selectedEquipmentDescriptionForMajorEquipmentDevice = req.body.selectedEquipmentDescriptionForMajorEquipmentDevice;
+        sldschedule.selectedMajorEquipmentTag = req.body.selectedMajorEquipmentTag;
+        sldschedule.selectedEquipmentDescriptionForMajorEquipmentTag = req.body.selectedEquipmentDescriptionForMajorEquipmentTag;
+        sldschedule.majorEquipmentDeviceTag = req.body.majorEquipmentDeviceTag;
+        sldschedule.selectedSystemVoltage = req.body.selectedSystemVoltage;
+      //Incoming Section
+        sldschedule.incomer = req.body.incomer;
+        sldschedule.lightningArrestor = req.body.lightningArrestor;
+        sldschedule.selectedFeederEntry = req.body.selectedFeederEntry;
+        sldschedule.surgeProtection = req.body.surgeProtection;
+      //Central Part
+        sldschedule.selectedOCDevice = req.body.selectedOCDevice;
+        sldschedule.selectedContactorType = req.body.selectedContactorType;
+        sldschedule.selectedCPTQTY = req.body.selectedCPTQTY;
+        sldschedule.selectedCTQTY = req.body.selectedCTQTY;
+        sldschedule.tripRating = req.body.tripRating;
+        sldschedule.selectedContactorSize = req.body.selectedContactorSize;
+        sldschedule.selectedCPTVoltage = req.body.selectedCPTVoltage;
+        sldschedule.selectedCTRatio = req.body.selectedCTRatio;
+        sldschedule.selectedFrameRating = req.body.selectedFrameRating;
+        sldschedule.selectedOverloadType = req.body.selectedOverloadType;
+        sldschedule.selectedCPTRating = req.body.selectedCPTRating;
+        sldschedule.selectedCTAccuracy = req.body.selectedCTAccuracy;
+        sldschedule.selectedFuseRating = req.body.selectedFuseRating;
+        sldschedule.overloadSize = req.body.overloadSize;
+        sldschedule.selectedVTQTY = req.body.selectedVTQTY;
+        sldschedule.selectedGFCTRatio = req.body.selectedGFCTRatio;
+        sldschedule.selectedSwitchRating = req.body.selectedSwitchRating;
+        sldschedule.selectedVTVoltage = req.body.selectedVTVoltage;
+        sldschedule.selectedShuntCoil = req.body.selectedShuntCoil;
+        sldschedule.selectedVTAccuracy = req.body.selectedVTAccuracy;
+        sldschedule.selectedKirkKey = req.body.selectedKirkKey;
+        sldschedule.selectedGroundStud = req.body.selectedGroundStud;
+        sldschedule.TransformerPR = req.body.TransformerPR;
+        sldschedule.selectedIndicatingLights = req.body.selectedIndicatingLights;
+        sldschedule.selectedNOAuxContact = req.body.selectedNOAuxContact;
+        sldschedule.PQM = req.body.PQM;
+        sldschedule.MotorPR = req.body.MotorPR;
+        sldschedule.SpaceHeater = req.body.SpaceHeater;
+        sldschedule.selectedNCAuxContact = req.body.selectedNCAuxContact;
+        sldschedule.FeederPR = req.body.FeederPR;
+        sldschedule.NGRRelay = req.body.NGRRelay;
+        sldschedule.HeaterCircuit = req.body.HeaterCircuit;
+        sldschedule.selectedInterposRelay = req.body.selectedInterposRelay;
+      // PDP Detail
+        sldschedule.selectedFirstPanelValue = req.body.selectedFirstPanelValue;
+        sldschedule.selectedSecondPanelValue = req.body.selectedSecondPanelValue;
+        sldschedule.selectedThirdPanelValue = req.body.selectedThirdPanelValue;
+        sldschedule.CircuitNumbers = req.body.CircuitNumbers;
+        sldschedule.CFG = req.body.CFG;
+      //Field Switch/PB
+        sldschedule.selectedFirstValueLocalSwitchPB = req.body.selectedFirstValueLocalSwitchPB;
+        sldschedule.selectedSecondValueLocalSwitchPB = req.body.selectedSecondValueLocalSwitchPB;
+        sldschedule.selectedThirdValueLocalSwitchPB = req.body.selectedThirdValueLocalSwitchPB;
+        sldschedule.selectedFourthValueLocalSwitchPB = req.body.selectedFourthValueLocalSwitchPB;
+        sldschedule.selectedFirstValueFieldSwitchPB = req.body.selectedFirstValueFieldSwitchPB;
+        sldschedule.selectedSecondValueFieldSwitchPB = req.body.selectedSecondValueFieldSwitchPB;
+        sldschedule.selectedThirdValueFieldSwitchPB = req.body.selectedThirdValueFieldSwitchPB;
+        sldschedule.selectedFourthValueLocalFieldSwitchPB = req.body.selectedFourthValueLocalFieldSwitchPB;
+        project.save(function(err, sldschedule){
+          if(err){
+            sendJSONresponse(res, 404, err);
+          } else {
+            sendJSONresponse(res, 200, project);
+          }
+        });
+      }
+    );
+  } else {
+    sendJSONresponse(res, 404, {
+      "message": "Not found, project or sldSchedule id"
+    });
+    return;
+  }
+});
+/* DELETE SLD-SCHEDULE by ID*/
+router.delete('/:id/sld-schedules/:sldScheduleId', function (req, res) { 
+  if (!req.params && !req.params.id && !req.params.sldScheduleId) {
+    res.json({success: false, msg:'Failed params'});
+    return;
+  }
+  Project
+    .findById(req.params.id)
+    .select('sldschedules')
+    .exec(
+      function(err, project) {
+        if (!project) {
+          res.json({success: false, msg:'Failed delete project item'});
+          return;
+        } else if (err) {
+          res.json({success: false, msg:'Error'});
+          return;
+        }
+        if (project.sldschedules && project.sldschedules.length > 0) {
+          project.sldschedules.id(req.params.sldScheduleId).remove();
+          project.save(function(err) {
+            if (err) {
+              res.json({success: false, msg:'Failed get sldSchedule item'});
+            } else {
+              sendJSONresponse(res, 204, null);
+            }
+          });
+        } else {
+          res.json({success: false, msg:'Failed get sldSchedule item'});
         }
     }
   );
