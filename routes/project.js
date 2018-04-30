@@ -231,7 +231,7 @@ router.patch('/:id/electrical-update/:electricalid', function(req, res) {
           electrical.selectedLayoutDrawing = req.body.selectedLayoutDrawing;
           electrical.sldDraving = req.body.sldDraving;
           electrical.selectedSldDraving = req.body.selectedSldDraving;
-          electrical.equipmentTag = req.body.equipmentTag;
+          electrical.equipmentTag = req.body.equipmentTag || 'New Electrical';
           electrical.locationArea = req.body.locationArea;
           electrical.selectedLocationArea = req.body.selectedLocationArea;
           electrical.equipmentDescription = req.body.equipmentDescription;
@@ -542,7 +542,7 @@ router.delete('/:id/cables/:cableId', function (req, res) {
 
 //SLD-SCHEDULE
 /*GET ALL SLD-SCHEDULE*/
-router.get('/:id/sld-schedules',function (req, res) {
+router.get('/:id/sld-schedules', function (req, res) {
   if(req.params){
     Project
     .findById(req.params.id)
@@ -741,6 +741,270 @@ router.delete('/:id/sld-schedules/:sldScheduleId', function (req, res) {
           });
         } else {
           res.json({success: false, msg:'Failed get sldSchedule item'});
+        }
+    }
+  );
+});
+
+//CONTROLLER-SHEDULE
+/*GET ALL CONTROLLER-SHEDULE*/
+router.get('/:id/controllers', function (req, res) {
+  if(req.params){
+    Project
+      .findById(req.params.id)
+      .exec(function(err, project) {
+        if(!project){
+          res.json({ success: false, msg: 'Failed get controllers-shedule item'});
+          return;
+        } else if (err) {
+          res.json({success: false, msg: 'Failed get controllers-shedule item'})
+        }
+        res.json(project);
+      });
+  } else {}
+});
+/*CREATE NEW CONTROLLER-SHEDULE*/
+router.post('/:id/controller-create', function(req, res){
+  if (req.params.id) {
+    Project
+      .findById(req.params.id)
+      .select('controllers')
+      .exec(
+        function(err, project) {
+          if (err) {
+            res.json({success: false, msg:'Failed get controller-sld item'});
+          } else {
+            if (!project) {
+              res.json({success: false, msg:'Failed get controller-sld item'});
+            } else {
+              project.controllers.push({});
+            project.save(function(err, project) {
+              if (err) {
+                res.json({success: false, msg:'Failed get controllers-sld item'});
+              } else {
+                res.json(project.controllers);
+            }
+          });
+        }
+      }
+    });
+  } else {
+    res.json({success: false, msg:'Failed get controller-sld item'});
+  }
+});
+/*GET SINGLE CONTROLLER-SHEDULE BY ID*/
+router.get('/:id/controllers/:controllerId', function(req, res){
+  if (req.params && req.params.id && req.params.controllerId) {
+    Project
+      .findById(req.params.id)
+      .select('controllers')
+      .exec(
+        function(err, project) {
+          var response, controller;
+          if (!project) {
+            res.json({success: false, msg:'Failed get controller item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get controller item'});
+            return;
+          }
+          if (project.controllers && project.controllers.length > 0) {
+            controller = project.controllers.id(req.params.controllerId);
+            if (!controller) {
+              res.json({success: false, msg:'Failed get controller item'});
+            } else {
+              response = {
+                controller
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get controller item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get controller item'});
+  }
+});
+/*UPDATE Item CONTROLLER-SHEDULE*/
+router.patch('/:id/controller-update/:controllerId', function(req, res) {
+  if (req.params && req.params.id && req.params.controllerId) {
+    Project
+      .findById(req.params.id)
+      .exec(
+        function(err, project) {
+          var response, controller;
+          controller = project.controllers.id(req.params.controllerId);
+          //Controller Info
+            //missed Item Number - don`t have logic for thes element
+            controller.revision = req.body.revision;
+            //missed Date Added - don`t change, get this data when create new element
+            controller.controlsEquipmentTagFirst = req.body.controlsEquipmentTagFirst;
+            controller.controlsEquipmentTagSecond = req.body.controlsEquipmentTagSecond;
+            controller.controlsEquipmentParentTag = req.body.controlsEquipmentParentTag;
+            controller.selectedControlsEquipmentParentTag = req.body.selectedControlsEquipmentParentTag;
+            //missed New Tag - don`t have logic for thes element
+            controller.location = req.body.location;
+            controller.selectedLocation = req.body.selectedLocation;
+            controller.dataSheetNumber = req.body.dataSheetNumber;
+            controller.selectedDataSheetNumber = req.body.selectedDataSheetNumber;
+            controller.layoutDrawing = req.body.layoutDrawing;
+            controller.selectedLayoutDraving = req.body.selectedLayoutDraving;
+            controller.schematicDrawing = req.body.schematicDrawing;
+            controller.selectedSchematicDraving = req.body.selectedSchematicDraving;
+            controller.equipmentType = req.body.equipmentType;
+            controller.selectedEquipmentType = req.body.selectedEquipmentType;
+            controller.controllerType = req.body.controllerType;
+            controller.selectedControllerType = req.body.selectedControllerType;
+            controller.controllerFunction = req.body.controllerFunction;
+            controller.selectedControllerFunction = req.body.selectedControllerFunction;
+            controller.controllerManufacturer = req.body.controllerManufacturer;
+            controller.selectedControllerManufacturer = req.body.selectedControllerManufacturer;
+            controller.сontrollerSeries = req.body.сontrollerSeries;
+            controller.selectedControllerSeries = req.body.selectedControllerSeries;
+            controller.сloneEquipmentType = req.body.сloneEquipmentType;
+            controller.selectedCloneEquipmentType = req.body.selectedCloneEquipmentType;
+            controller.equipmentModel = req.body.equipmentModel;
+            controller.selectedEquipmentModel = req.body.selectedEquipmentModel;
+            //Node - Chassis - Slot - Data
+            controller.node = req.body.node;
+            controller.chassis = req.body.chassis;
+            controller.slot = req.body.slot;
+            controller.data = req.body.data;
+            //IP Address
+            controller.ipAdress = req.body.ipAdress;
+            controller.selectedIPAdress = req.body.selectedIPAdress;
+            //I/O Per Card
+            controller.ioPerCard = req.body.ioPerCard;
+            controller.selectedIOPerCard = req.body.selectedIOPerCard;
+            //Relay Quantity - DC Power - ESD Power
+            controller.relayQuantity = req.body.relayQuantity;
+            controller.dcPower = req.body.dcPower;
+            controller.esdPower = req.body.esdPower;
+            //I/O Tag
+            controller.ioTag = req.body.ioTag;
+            controller.selectedIOTag = req.body.selectedIOTag;
+            //I/O Type
+            controller.ioType = req.body.ioType;
+            controller.selectedIOType = req.body.selectedIOType;
+            //I/O Description
+            controller.ioDescription = req.body.ioDescription;
+            controller.selectedIODescription = req.body.selectedIODescription;
+            //Relay I/O Tag    
+            controller.relayIODescription = req.body.relayIODescription;
+            controller.selectedRelayIODescription = req.body.selectedRelayIODescription;
+            //Relay I/O Type
+            controller.relayIOType = req.body.relayIOType;
+            controller.selectedRelayIOType = req.body.selectedRelayIOType;
+            //Relai I/O Description
+            controller.IODescriptionRelay = req.body.IODescriptionRelay;
+            controller.selectedIODescriptionRelay = req.body.selectedIODescriptionRelay;
+
+
+            //controller.controlsEquipmentParentTag = req.body.controlsEquipmentParentTag;
+            //controls.controlsEquipmentParentTag = req.body.controlsEquipmentParentTag;
+            //controller.selectedControlsEquipmentParentTag = req.body.selectedControlsEquipmentParentTag;
+            //newTag
+            /*
+            controller.selectedLocation = req.body.selectedLocation;
+            //
+            controller.dataSheetNumber = req.body.dataSheetNumber;
+            // подправить 3 вниз
+            controller.selectedDataSheetNumber = req.body.selectedDataSheetNumber;
+            controller.selectedLayoutDraving = req.body.selectedLayoutDraving;
+            controller.selectedSchematicDraving = req.body.selectedSchematicDraving;
+            //
+            controller.selectedEquipmentType = req.body.selectedEquipmentType;
+            controller.controllerType = req.body.controllerType;
+            controller.selectedControllerType = req.body.selectedControllerType
+            controller.controllerFunction = req.body.controllerFunction;
+            controller.selectedControllerFunction = req.body.selectedControllerFunction;
+            controller.controllerManufacturer = req.body.controllerManufacturer;
+            controller.selectedControllerManufacturer = req.body.selectedControllerManufacturer;
+            controller.сontrollerSeries = req.body.сontrollerSeries;
+            controller.selectedControllerSeries = req.body.selectedControllerSeries;
+            controller.equipmentModel = req.body.equipmentModel;
+            controller.selectedEquipmentModel = req.body.selectedEquipmentModel;
+            controller.node = req.body.node;
+            controller.chassis = req.body.chassis;
+            controller.slot = req.body.slot;
+            controller.data = req.body.data;
+            controller.ipAdress = req.body.ipAdress;
+            controller.selectedIPAdress = req.body.selectedIPAdress;
+            controller.ioPerCard = req.body.ioPerCard;
+            controller.selectedIOPerCard = req.body.selectedIOPerCard;
+            controller.relayQuantity = req.body.relayQuantity;
+            controller.dcPower = req.body.dcPower;
+            controller.esdPower = req.body.esdPower;
+          //I/O Info
+            controller.ioTag = req.body.ioTag;
+            controller.selectedIOTag = req.body.selectedIOTag;
+            controller.ioType = req.body.ioType;
+            controller.selectedIOType = req.body.selectedIOType;
+            controller.ioDescription = req.body.ioDescription;
+            controller.selectedIODescription = req.body.selectedIODescription;
+            //
+            //selectedRelayIODescription
+            controller.relayIODescription = req.body.relayIODescription; //its Relay I/O Tag on view
+            controller.selectedRelayIODescription = req.body.selectedRelayIODescription; //its Relay I/O Tag on view
+            //
+            //selectedRelayIOType
+            controller.relayIOType = req.body.relayIOType;
+            controller.selectedRelayIOType = req.body.selectedRelayIOType;
+            //selectedIODescriptionRelay
+          //I/O Summary
+            //selectedControllerTag
+            //selectedRack
+            */
+//
+          project.save(function(err, controller){
+            if(err){
+              sendJSONresponse(res, 404, err);
+            } else {
+              sendJSONresponse(res, 200, project);
+            }
+          });
+        }
+      );
+    } else {
+      sendJSONresponse(res, 404, {
+        "message": "Not found, project or controller id"
+      });
+      return;
+    }
+});
+//TODO finished
+
+/*DELETE CONTROLLER-SHEDULE by ID*/
+router.delete('/:id/controllers/:controllerId', function (req, res){
+  if (!req.params && !req.params.id && !req.params.controllerId) {
+    res.json({success: false, msg:'Failed params'});
+    return;
+  }
+  Project
+    .findById(req.params.id)
+    .select('controllers')
+    .exec(
+      function(err, project) {
+        if (!project) {
+          res.json({success: false, msg:'Failed delete project item'});
+          return;
+        } else if (err) {
+          res.json({success: false, msg:'Error'});
+          return;
+        }
+        if (project.controllers && project.controllers.length > 0) {
+          project.controllers.id(req.params.controllerId).remove();
+          project.save(function(err) {
+            if (err) {
+              res.json({success: false, msg:'Failed get controller item'});
+            } else {
+              sendJSONresponse(res, 204, null);
+            }
+          });
+        } else {
+          res.json({success: false, msg:'Failed get controller item'});
         }
     }
   );

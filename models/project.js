@@ -6,7 +6,7 @@ var electrucalSchema = new mongoose.Schema({
   itemNumber: String,
   dateCreate: { type: Date, default: Date.now },
   revision: {type: String, default: 'A'},
-  quantity: {type: Number, default: 5},
+  quantity: {type: Number, default: 1},
   equipmentType: {
     type: Array,
     'default': ['UTILITY', 'TRANSFORMER', 'SWITCHGEAR', 'MCC', 'VFD', 'DISTRIBUTION PANEL', 'MOTOR', 'MOV',
@@ -20,7 +20,7 @@ var electrucalSchema = new mongoose.Schema({
   selectedLayoutDrawing: String,
   sldDraving: [{ type: String}],
   selectedSldDraving: String,
-  equipmentTag: {type: String, default: "New Electrical"},
+  equipmentTag: {type: String},
   chiildList: {
     type: Array,
     'default': []
@@ -623,13 +623,862 @@ const sldScheduleShema = mongoose.Schema({
   selectedFourthValueLocalFieldSwitchPB: String
 });
 
+//CONTROLLER SHEMA
+const controllerShema = mongoose.Schema({
+  //CONTROLLER INFO
+  itemNumber: String,
+  revision: {type: String, default: 'A'},
+  dataAdded: { type: Date, default: Date.now },
+  controlsEquipmentTagFirst: {type: String},
+  controlsEquipmentTagSecond: String,
+  controlsEquipmentParentTag: {
+    type: Array,
+    'default': ["CP-100", "PLC-100"]
+  },
+  selectedControlsEquipmentParentTag: String,
+  newTag: String,
+  location: {
+    type: Array,
+    'default': ['MCC BUILDING']
+  },
+  selectedLocation: String,
+  dataSheetNumber: Array,
+  selectedDataSheetNumber: String,
+  layoutDrawing: {
+    type: Array,
+    'default': ['LAY-100']
+  },
+  selectedLayoutDraving: String,
+  schematicDrawing: {
+    type: Array,
+    'default': ['ARCH-001']
+  },
+  selectedSchematicDraving: String,
+  equipmentType: {
+    type: Array,
+    'default': ['', 'POWER SUPPLY', 'CHASSIS', 'PROCESSOR CARD', 'ETHERNET CARD', 'DIGITAL INPUT CARD', 'DIGITAL OUTPUT CARD', 'ANALOG INPUT CARD', 'ANALOG OUTPUT CARD', 'SPARE CARD SLOT', 'SPARE CARD SLOT 1', 'SPARE CARD SLOT 2', 'SPARE CARD SLOT 3']
+  },
+  selectedEquipmentType: {
+    type: String, 
+    'default': ''},
+  //
+  controllerType: {
+    type: Array,
+    'default': [
+      //EMPTY
+        {name: 'SHUTDOWN PLC', equipmentElementType: ''},
+        {name: 'BPCS', equipmentElementType: ''},
+        {name: 'DCS', equipmentElementType: ''},
+        {name: 'SS', equipmentElementType: ''},
+        {name: 'SIS', equipmentElementType: ''},
+        {name: 'RTU', equipmentElementType: ''},
+        {name: 'BMS', equipmentElementType: ''},
+        {name: 'CONTROL RELAY', equipmentElementType: ''},
+        {name: 'PROTECTION RELAY', equipmentElementType: ''},
+      //POWER SUPPLY
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'BPCS', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'DCS', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'SS', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'SIS', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'RTU', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'BMS', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'POWER SUPPLY'},
+      //CHASSIS
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'CHASSIS'},
+        {name: 'BPCS', equipmentElementType: 'CHASSIS'},
+        {name: 'DCS', equipmentElementType: 'CHASSIS'},
+        {name: 'SS', equipmentElementType: 'CHASSIS'},
+        {name: 'SIS', equipmentElementType: 'CHASSIS'},
+        {name: 'RTU', equipmentElementType: 'CHASSIS'},
+        {name: 'BMS', equipmentElementType: 'CHASSIS'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'CHASSIS'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'CHASSIS'},
+      //PROCESSOR CARD
+        {name: 'PLC', equipmentElementType: 'PROCESSOR CARD'},
+      // ETHERNET CARD
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'BPCS', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'DCS', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'SS', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'SIS', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'RTU', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'BMS', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'ETHERNET CARD'},
+      // DIGITAL INPUT CARD
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'BPCS', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'DCS', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'SS', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'SIS', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'RTU', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'BMS', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'DIGITAL INPUT CARD'},
+      //DIGITAL OUTPUT CARD
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'BPCS', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'DCS', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'SS', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'SIS', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'RTU', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'BMS', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+      //ANALOG INPUT CARD
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'BPCS', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'DCS', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'SS', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'SIS', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'RTU', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'BMS', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'ANALOG INPUT CARD'},
+      //ANALOG OUTPUT CARD
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'BPCS', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'DCS', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'SS', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'SIS', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'RTU', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'BMS', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'ANALOG OUTPUT CARD'},
+      //SPARE CARD SLOT
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'BPCS', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'DCS', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'SS', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'SIS', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'RTU', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'BMS', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'SPARE CARD SLOT'},
+      //SPARE CARD SLOT 1
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'BPCS', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'DCS', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'SS', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'SIS', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'RTU', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'BMS', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'SPARE CARD SLOT 1'},
+      //SPARE CARD SLOT 2
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'BPCS', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'DCS', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'SS', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'SIS', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'RTU', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'BMS', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'SPARE CARD SLOT 2'},
+      //SPARE CARD SLOT 3
+        {name: 'SHUTDOWN PLC', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'BPCS', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'DCS', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'SS', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'SIS', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'RTU', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'BMS', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'CONTROL RELAY', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'PROTECTION RELAY', equipmentElementType: 'SPARE CARD SLOT 3'},
+    ]
+  },
+  selectedControllerType: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: ''
+    }
+  },
+  controllerFunction: {
+    type: Array,
+    'default': [
+      //EMPTY
+        {name: 'SHUTDOWN', equipmentElementType: ''},
+        {name: 'INDICATING', equipmentElementType: ''},
+        {name: 'CALCULATION', equipmentElementType: ''},
+        {name: 'SAFETY SYSTEM', equipmentElementType: ''},
+      //POWER SUPPLY
+        {name: 'SHUTDOWN', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'INDICATING', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'CALCULATION', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'POWER SUPPLY'},
+      //CHASSIS
+        {name: 'SHUTDOWN', equipmentElementType: 'CHASSIS'},
+        {name: 'INDICATING', equipmentElementType: 'CHASSIS'},
+        {name: 'CALCULATION', equipmentElementType: 'CHASSIS'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'CHASSIS'},
+      //PROCESSOR CARD
+        {name: 'CONTROL', equipmentElementType: 'PROCESSOR CARD'},
+      // ETHERNET CARD
+        {name: 'SHUTDOWN', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'INDICATING', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'CALCULATION', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'ETHERNET CARD'},
+      // DIGITAL INPUT CARD
+        {name: 'SHUTDOWN', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'INDICATING', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'CALCULATION', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'DIGITAL INPUT CARD'},
+      //DIGITAL OUTPUT CARD
+        {name: 'SHUTDOWN', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INDICATING', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'CALCULATION', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+      //ANALOG INPUT CARD
+        {name: 'SHUTDOWN', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'INDICATING', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'CALCULATION', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'ANALOG INPUT CARD'},
+      //ANALOG OUTPUT CARD
+        {name: 'SHUTDOWN', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'INDICATING', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'CALCULATION', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'ANALOG OUTPUT CARD'},
+      //SPARE CARD SLOT
+        {name: 'SHUTDOWN', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'INDICATING', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'CALCULATION', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'SPARE CARD SLOT'},
+      //SPARE CARD SLOT 1
+        {name: 'SHUTDOWN', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'INDICATING', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'CALCULATION', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'SPARE CARD SLOT 1'},
+      //SPARE CARD SLOT 2
+        {name: 'SHUTDOWN', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'INDICATING', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'CALCULATION', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'SPARE CARD SLOT 2'},
+      //SPARE CARD SLOT 3
+        {name: 'SHUTDOWN', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'INDICATING', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'CALCULATION', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'SAFETY SYSTEM', equipmentElementType: 'SPARE CARD SLOT 3'},
+    ]
+  },
+  selectedControllerFunction: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: ''
+    }
+  },
+  controllerManufacturer: {
+    type: Array,
+    'default': [
+      //EMPTY
+        {name: '', equipmentElementType: ''},
+      //POWER SUPPLY
+        {name: '', equipmentElementType: 'POWER SUPPLY'},
+      //CHASSIS
+        {name: '', equipmentElementType: 'CHASSIS'},
+      //PROCESSOR CARD
+        {name: 'ALLEN BRADLEY', equipmentElementType: 'PROCESSOR CARD'},
+      // ETHERNET CARD
+        {name: '', equipmentElementType: 'ETHERNET CARD'},
+      // DIGITAL INPUT CARD
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD'},
+      //DIGITAL OUTPUT CARD
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+      //ANALOG INPUT CARD
+        {name: '', equipmentElementType: 'ANALOG INPUT CARD'},
+      //ANALOG OUTPUT CARD
+        {name: '', equipmentElementType: 'ANALOG OUTPUT CARD'},
+      //SPARE CARD SLOT
+        {name: '', equipmentElementType: 'SPARE CARD SLOT'},
+      //SPARE CARD SLOT 1
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 1'},
+      //SPARE CARD SLOT 2
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 2'},
+      //SPARE CARD SLOT 2
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 3'},
+    ]
+  },
+  selectedControllerManufacturer: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: ''
+    }
+  },
+  сontrollerSeries: {
+    type: Array,
+    'default': [
+      //EMPTY
+        {name: 'AB Compact Logix', equipmentElementType: ''},
+        {name: 'AB Micro Logic', equipmentElementType: ''},
+        {name: 'AB SLC-500', equipmentElementType: ''},
+      //POWER SUPPLY
+        {name: 'AB Compact Logix', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'AB Micro Logic', equipmentElementType: 'POWER SUPPLY'},
+        {name: 'AB SLC-500', equipmentElementType: 'POWER SUPPLY'},
+      //CHASSIS
+        {name: 'AB Compact Logix', equipmentElementType: 'CHASSIS'},
+        {name: 'AB Micro Logic', equipmentElementType: 'CHASSIS'},
+        {name: 'AB SLC-500', equipmentElementType: 'CHASSIS'},
+      //PROCESSOR CARD
+        {name: 'AB Control Logix', equipmentElementType: 'PROCESSOR CARD'},
+      //ETHERNET CARD
+        {name: 'AB Compact Logix', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'AB Micro Logic', equipmentElementType: 'ETHERNET CARD'},
+        {name: 'AB SLC-500', equipmentElementType: 'ETHERNET CARD'},
+      //DIGITAL INPUT CARD
+        {name: 'AB Compact Logix', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'AB Micro Logic', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'AB SLC-500', equipmentElementType: 'DIGITAL INPUT CARD'},
+      //DIGITAL OUTPUT CARD
+        {name: 'AB Compact Logix', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'AB Micro Logic', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'AB SLC-500', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+      //ANALOG INPUT CARD
+        {name: 'AB Compact Logix', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'AB Micro Logic', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'AB SLC-500', equipmentElementType: 'ANALOG INPUT CARD'},
+      //ANALOG OUTPUT CARD
+        {name: 'AB Compact Logix', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'AB Micro Logic', equipmentElementType: 'ANALOG OUTPUT CARD'},
+        {name: 'AB SLC-500', equipmentElementType: 'ANALOG OUTPUT CARD'},
+      //SPARE CARD SLOT
+        {name: 'AB Compact Logix', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'AB Micro Logic', equipmentElementType: 'SPARE CARD SLOT'},
+        {name: 'AB SLC-500', equipmentElementType: 'SPARE CARD SLOT'},
+      //SPARE CARD SLOT 1
+        {name: 'AB Compact Logix', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'AB Micro Logic', equipmentElementType: 'SPARE CARD SLOT 1'},
+        {name: 'AB SLC-500', equipmentElementType: 'SPARE CARD SLOT 1'},
+      //SPARE CARD SLOT 2
+        {name: 'AB Compact Logix', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'AB Micro Logic', equipmentElementType: 'SPARE CARD SLOT 2'},
+        {name: 'AB SLC-500', equipmentElementType: 'SPARE CARD SLOT 2'},
+      //SPARE CARD SLOT 3
+        {name: 'AB Compact Logix', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'AB Micro Logic', equipmentElementType: 'SPARE CARD SLOT 3'},
+        {name: 'AB SLC-500', equipmentElementType: 'SPARE CARD SLOT 3'}
+    ]
+  },
+  selectedControllerSeries: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: ''
+    }
+  },
+  сloneEquipmentType: {
+    type: Object,
+    'default': [
+      //EMPTY
+        {name: '', equipmentElementType: ''},
+      //POWER SUPPLY
+      {name: '', equipmentElementType: 'POWER SUPPLY'},
+      //CHASSIS
+      {name: '', equipmentElementType: 'CHASSIS'},
+      //PROCESSOR CARD
+        {name: '', equipmentElementType: 'PROCESSOR CARD'},
+      //ETHERNET CARD
+        {name: '', equipmentElementType: 'ETHERNET CARD'},
+      //DIGITAL INPUT CARD
+        {name: 'PRESSURE SWITCH', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'TEMPERATURE SWITCH', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'FLOW SWITCH', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'POSITION SWITCH CLOSED', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'POSITION SWITCH OPEN', equipmentElementType: 'DIGITAL INPUT CARD'},
+        {name: 'MOTOR RUN STATUS', equipmentElementType: 'DIGITAL INPUT CARD'},
+      //DIGITAL OUTPUT CARD
+        {name: 'INTERPROSING RELAY', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INTERPROSING RELAY 1', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INTERPROSING RELAY 2', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INTERPROSING RELAY 3', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INTERPROSING RELAY 4', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INTERPROSING RELAY 5', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INTERPROSING RELAY 6', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+        {name: 'INTERPROSING RELAY 7', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+      //ANALOG INPUT CARD
+        {name: 'INLET PRESSURE TRANSMITTER', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'INLET TEMPERATURE TRANSMITTER', equipmentElementType: 'ANALOG INPUT CARD'},
+        {name: 'FLOW TRANSMITTER', equipmentElementType: 'ANALOG INPUT CARD'},
+      //ANALOG OUTPUT CARD
+        {name: 'CONTROL VALVE POSITION', equipmentElementType: 'ANALOG OUTPUT CARD'},
+      //SPARE CARD SLOT
+        {name: '', equipmentElementType: 'SPARE CARD SLOT'},
+      //SPARE CARD SLOT 1
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 1'},
+      //SPARE CARD SLOT 2
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 2'},
+      //SPARE CARD SLOT 3
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 3'}
+    ]
+  },
+  selectedCloneEquipmentType: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: ''
+    }
+  },
+  equipmentModel: {
+    type: Object,
+    'default': [
+    //EMPTY
+      {name: '', equipmentElementType: ''},
+    //POWER SUPPLY
+      {name: '1756-PA72', equipmentElementType: 'POWER SUPPLY'},
+      {name: '1756-PA75', equipmentElementType: 'POWER SUPPLY'},
+      {name: '1756-PB72', equipmentElementType: 'POWER SUPPLY'},
+      {name: '1756-PB75', equipmentElementType: 'POWER SUPPLY'},
+    //CHASSIS
+      {name: '1756-A4', equipmentElementType: 'CHASSIS'},
+      {name: '1756-A7', equipmentElementType: 'CHASSIS'},
+      {name: '1756-A10', equipmentElementType: 'CHASSIS'},
+      {name: '1756-A13', equipmentElementType: 'CHASSIS'},
+      {name: '1756-A17', equipmentElementType: 'CHASSIS'},
+    //PROCESSOR CARD
+      {name: '1756-L61', equipmentElementType: 'PROCESSOR CARD'},
+      {name: '1756-L62', equipmentElementType: 'PROCESSOR CARD'},
+      {name: '1756-L63', equipmentElementType: 'PROCESSOR CARD'},
+      {name: '1756-L64', equipmentElementType: 'PROCESSOR CARD'},
+      {name: '1756-L65', equipmentElementType: 'PROCESSOR CARD'},
+    //ETHERNET CARD
+      {name: '1756-ENBT', equipmentElementType: 'ETHERNET CARD'},
+    //DIGITAL INPUT CARD
+      {name: '1756-IB16', equipmentElementType: 'DIGITAL INPUT CARD'},
+      {name: '1756-IB32', equipmentElementType: 'DIGITAL INPUT CARD'},
+    //DIGITAL OUTPUT CARD
+      {name: '1756-OB16', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+      {name: '1756-OB32', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+    //ANALOG INPUT CARD
+      {name: '1756-IF16', equipmentElementType: 'ANALOG INPUT CARD'},
+      {name: '1756-IF16H', equipmentElementType: 'ANALOG INPUT CARD'},
+    //ANALOG OUTPUT CARD
+      {name: '1756-OF8', equipmentElementType: 'ANALOG OUTPUT CARD'},
+    //SPARE CARD SLOT
+      {name: '1756-N2', equipmentElementType: 'SPARE CARD SLOT'},
+    //SPARE CARD SLOT 1
+      {name: '1756-N2', equipmentElementType: 'SPARE CARD SLOT 1'},
+    //SPARE CARD SLOT 2
+      {name: '1756-N2', equipmentElementType: 'SPARE CARD SLOT 2'},
+    //SPARE CARD SLOT 3
+      {name: '1756-N2', equipmentElementType: 'SPARE CARD SLOT 3'}
+    ]
+  },
+  //
+  //equipmentModel: Array,
+  selectedEquipmentModel: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: ''
+    }
+  },
+  node: String,
+  chassis: String,
+  slot: String,
+  data: String,
+  ipAdress: {
+    type: Object,
+    'default': [
+    //EMPTY
+      {name: '', equipmentElementType: ''},
+    //POWER SUPPLY
+      {name: '', equipmentElementType: 'POWER SUPPLY'},
+    //CHASSIS
+      {name: '', equipmentElementType: 'CHASSIS'},
+    //PROCESSOR CARD
+      {name: '', equipmentElementType: 'PROCESSOR CARD'},
+    //ETHERNET CARD
+      {name: '70.50.152.01', equipmentElementType: 'ETHERNET CARD'},
+    //DIGITAL INPUT CARD
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD'},
+    //DIGITAL OUTPUT CARD
+      {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD'},
+    //ANALOG INPUT CARD
+      {name: '', equipmentElementType: 'ANALOG INPUT CARD'},
+    //ANALOG OUTPUT CARD
+      {name: '', equipmentElementType: 'ANALOG OUTPUT CARD'},
+    //SPARE CARD SLOT
+      {name: '', equipmentElementType: 'SPARE CARD SLOT'},
+    //SPARE CARD SLOT 1
+      {name: '', equipmentElementType: 'SPARE CARD SLOT 1'},
+    //SPARE CARD SLOT 2
+      {name: '', equipmentElementType: 'SPARE CARD SLOT 2'},
+    //SPARE CARD SLOT 3
+      {name: '', equipmentElementType: 'SPARE CARD SLOT 3'},
+    ]
+  },
+  selectedIPAdress: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: ''
+    }
+  },
+  ioPerCard: {
+    type: Object,
+    'default': [
+    //EMPTY && EMPTY
+      {name: '', equipmentElementType: '', equipmentModel: ''},
+    //POWER SUPPLY' && EMPTY || OTHER VALUE
+      {name: '', equipmentElementType: 'POWER SUPPLY', equipmentModel: ''},
+      {name: '', equipmentElementType: 'POWER SUPPLY', equipmentModel: '1756-PA72'},
+      {name: '', equipmentElementType: 'POWER SUPPLY', equipmentModel: '1756-PA75'},
+      {name: '', equipmentElementType: 'POWER SUPPLY', equipmentModel: '1756-PB72'},
+      {name: '', equipmentElementType: 'POWER SUPPLY', equipmentModel: '1756-PB75'},
+    //CHASSIS || OTHER VALUE Equipment Model
+      {name: '', equipmentElementType: 'CHASSIS', equipmentModel: '1756-A4'},
+      {name: '', equipmentElementType: 'CHASSIS', equipmentModel: '1756-A7'},
+      {name: '', equipmentElementType: 'CHASSIS', equipmentModel: '1756-A10'},
+      {name: '', equipmentElementType: 'CHASSIS', equipmentModel: '1756-A13'},
+      {name: '', equipmentElementType: 'CHASSIS', equipmentModel: '1756-A17'},
+    //PROCESSOR CARD || OTHER VALUE Equipment Model
+      {name: '', equipmentElementType: 'PROCESSOR CARD', equipmentModel: '1756-L61'},
+      {name: '', equipmentElementType: 'PROCESSOR CARD', equipmentModel: '1756-L62'},
+      {name: '', equipmentElementType: 'PROCESSOR CARD', equipmentModel: '1756-L63'},
+      {name: '', equipmentElementType: 'PROCESSOR CARD', equipmentModel: '1756-L64'},
+      {name: '', equipmentElementType: 'PROCESSOR CARD', equipmentModel: '1756-L65'},
+    //ETHERNET CARD
+      {name: '', equipmentElementType: 'ETHERNET CARD', equipmentModel: '1756-ENBT'},
+    //DIGITAL INPUT CARD
+      {name: '16', equipmentElementType: 'DIGITAL INPUT CARD', equipmentModel: '1756-IB16'},
+      {name: '32', equipmentElementType: 'DIGITAL INPUT CARD', equipmentModel: '1756-IB32'}, 
+    //DIGITAL OUTPUT CARD
+      {name: '16', equipmentElementType: 'DIGITAL OUTPUT CARD', equipmentModel: '1756-OB16'},
+      {name: '32', equipmentElementType: 'DIGITAL OUTPUT CARD', equipmentModel: '1756-OB32'},
+    //ANALOG INPUT CARD
+      {name: '16', equipmentElementType: 'ANALOG INPUT CARD', equipmentModel: '1756-IF16'},
+      {name: '16', equipmentElementType: 'ANALOG INPUT CARD', equipmentModel: '1756-IF16H'},
+    //ANALOG OUTPUT CARD
+      {name: '8', equipmentElementType: 'ANALOG OUTPUT CARD', equipmentModel: '1756-OF8'},
+    //SPARE CARD SLOT
+      {name: '', equipmentElementType: 'SPARE CARD SLOT', equipmentModel: '1756-N2'},
+    //SPARE CARD SLOT 1
+      {name: '', equipmentElementType: 'SPARE CARD SLOT 1', equipmentModel: '1756-N2'},
+    //SPARE CARD SLOT 2
+      {name: '', equipmentElementType: 'SPARE CARD SLOT 2', equipmentModel: '1756-N2'},
+    //SPARE CARD SLOT 3
+      {name: '', equipmentElementType: 'SPARE CARD SLOT 3', equipmentModel: '1756-N2'}
+    ]
+  },
+  selectedIOPerCard: {
+    type: Object,
+    'default': {
+      name: '',
+      equipmentElementType: '',
+      equipmentModel: ''
+    }
+  },
+  relayQuantity: String,
+  dcPower: String,
+  esdPower: String,
+  // I/O Info
+  ioTag: {
+    type: Object,
+    'default': [
+      //POWER SUPPLY
+        {name: 'N/A', equipmentElementType: 'POWER SUPPLY', cloneEquipmentTag: "" },   
+      //CHASSIS
+        {name: 'N/A', equipmentElementType: 'CHASSIS', cloneEquipmentTag: "" },   
+      //PROCESSOR CARD
+        {name: 'N/A', equipmentElementType: 'PROCESSOR CARD', cloneEquipmentTag: "" },      
+      //ETHERNET CARD
+        {name: 'N/A', equipmentElementType: 'ETHERNET CARD', cloneEquipmentTag: "" },
+      // DIGITAL INPUT CARD
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "" },
+      // DIGITAL INPUT CARD && PRESSURE SWITCH
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "PRESSURE SWITCH" },
+        {name: 'PSHH-100', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "PRESSURE SWITCH" },
+      // DIGITAL INPUT CARD && TEMPERATURE SWITCH
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "TEMPERATURE SWITCH" },
+        {name: 'TSHH-100', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "TEMPERATURE SWITCH" },
+      // DIGITAL INPUT CARD && FLOW SWITCH
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "FLOW SWITCH" },
+        {name: 'FSHH-100', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "FLOW SWITCH" },
+      // DIGITAL INPUT CARD && POSITION SWITCH CLOSED
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "POSITION SWITCH CLOSED" },
+        {name: 'ZCS-100', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "POSITION SWITCH CLOSED" },
+      // DIGITAL INPUT CARD && POSITION SWITCH OPEN
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "POSITION SWITCH OPEN" },
+        {name: 'ZCO-100', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "POSITION SWITCH OPEN" },
+      // DIGITAL INPUT CARD && MOTOR RUN STATUS
+        {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "MOTOR RUN STATUS" },
+        {name: 'XS-100', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "MOTOR RUN STATUS" },
+      // DIGITAL OUTPUT CARD
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "" },
+        {name: 'N/A', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY" },
+        {name: 'R-030', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY 1
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 1" },
+        {name: 'R-031', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 1" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY 2
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 2" },
+        {name: 'R-032', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 2" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY 3
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 3" },
+        {name: 'R-033', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 3" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY 4
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 4" },
+        {name: 'R-034', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 4" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY 5
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 5" },
+        {name: 'R-035', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 5" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY 6
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 6" },
+        {name: 'R-036', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 6" },
+      // DIGITAL OUTPUT CARD && INTERPOSING RELAY 7
+        {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 7" },
+        {name: 'R-037', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 7" },
+      //ANALOG INPUT CARD
+        {name: '', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "" },
+        {name: 'PIT-100', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "" },
+      //ANALOG INPUT CARD && INLET PRESSURE TRANSMITTER
+        {name: '', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "INLET PRESSURE TRANSMITTER" },
+        {name: 'PIT-100', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "INLET PRESSURE TRANSMITTER" },
+      //ANALOG INPUT CARD && INLET TEMPERATURE TRANSMITTER
+        {name: '', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "INLET TEMPERATURE TRANSMITTER" },
+        {name: 'TIT-100', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "INLET TEMPERATURE TRANSMITTER" },
+      //ANALOG INPUT CARD && FLOW TRANSMITTER
+        {name: '', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "FLOW TRANSMITTER" },
+        {name: 'FIT-100', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "FLOW TRANSMITTER" },
+      //ANALOG OUTPUT CARD
+        {name: '', equipmentElementType: 'ANALOG OUTPUT CARD', cloneEquipmentTag: "" },
+      //ANALOG OUTPUT CARD && CONTROL VALVE POSITION
+        {name: 'PY-100', equipmentElementType: 'ANALOG OUTPUT CARD', cloneEquipmentTag: "CONTROL VALVE POSITION" },
+      //SPARE CARD SLOT
+        {name: '', equipmentElementType: 'SPARE CARD SLOT', cloneEquipmentTag: ""},
+        {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT', cloneEquipmentTag: ""},
+      //SPARE CARD SLOT 1
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 1', cloneEquipmentTag: ""},
+        {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT 1', cloneEquipmentTag: ""},
+      //SPARE CARD SLOT 2
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 2', cloneEquipmentTag: ""},
+        {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT 2', cloneEquipmentTag: ""},
+      //SPARE CARD SLOT 2
+        {name: '', equipmentElementType: 'SPARE CARD SLOT 3', cloneEquipmentTag: ""},
+        {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT 3', cloneEquipmentTag: ""},
+    ]
+  },
+  selectedIOTag: {
+    type: Object,
+    'default':{name: '', equipmentElementType: '', cloneEquipmentTag: "" }
+  },
+  ioType: {
+    type: Object,
+    'default': [
+      //POWER SUPPLY
+        {name: 'N/A', equipmentElementType: 'POWER SUPPLY' },
+      //CHASSIS
+        {name: 'N/A', equipmentElementType: 'CHASSIS' },   
+      //PROCESSOR CARD
+        {name: 'N/A', equipmentElementType: 'PROCESSOR CARD' },      
+      //ETHERNET CARD
+        {name: 'N/A', equipmentElementType: 'ETHERNET CARD' },
+      // DIGITAL INPUT CARD
+        {name: 'DIGITAL INPUT', equipmentElementType: 'DIGITAL INPUT CARD' },
+      // DIGITAL OUTPUT CARD
+        {name: 'DIGITAL OUTPUT', equipmentElementType: 'DIGITAL OUTPUT CARD' },
+      //ANALOG INPUT CARD
+        {name: 'ANALOG INPUT', equipmentElementType: 'ANALOG INPUT CARD' },
+      //ANALOG OUTPUT CARD
+        {name: 'ANALOG OUTPUT', equipmentElementType: 'ANALOG OUTPUT CARD' },
+      //SPACE CARD SLOT
+        {name: 'N/A', equipmentElementType: 'SPACE CARD SLOT' },
+      //SPACE CARD SLOT 1
+        {name: 'N/A', equipmentElementType: 'SPACE CARD SLOT 1' },
+      //SPACE CARD SLOT 2
+        {name: 'N/A', equipmentElementType: 'SPACE CARD SLOT 2' },
+      //SPACE CARD SLOT 3
+        {name: 'N/A', equipmentElementType: 'SPACE CARD SLOT 3' },
+    ]
+  },
+  selectedIOType: {
+    type: Object,
+    'default':{name: '', equipmentElementType: '' }
+  },
+  //rellayIOTag: Array,
+  //selectedRelayIOTag: String,
+  //relayIOType: Array,
+  //selectedRelayIOType: String,
+  ioDescription: {
+    type: Array,
+    'default': [
+    // EMPTY && EMPTY
+      {name: '', equipmentElementType: '', cloneEquipmentTag: ""},
+      {name: 'PRESSURE SWITCH HIHI', equipmentElementType: '', cloneEquipmentTag: ""},
+    // POWER SUPPLY && EMPTY
+      {name: 'N/A', equipmentElementType: 'POWER SUPPLY', cloneEquipmentTag: ""},
+    // CHASSIS && EMPTY
+      {name: 'N/A', equipmentElementType: 'CHASSIS', cloneEquipmentTag: ""},
+    // PROCESSOR CARD && EMPTY
+      {name: 'N/A', equipmentElementType: 'PROCESSOR CARD', cloneEquipmentTag: ""},
+    // ETHERNET CARD && EMPTY
+      {name: 'N/A', equipmentElementType: 'ETHERNET CARD', cloneEquipmentTag: ""},
+    // DIGITAL INPUT CARD
+    // DIGITAL INPUT CARD && EMPTY
+      {name: 'N/A', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: ""},
+    // DIGITAL INPUT CARD && PRESSURE SWITCH
+      {name: 'INLET PRESSURE HIHI', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "PRESSURE SWITCH"},
+    // DIGITAL INPUT CARD && TEMPERATURE SWITCH
+      {name: 'INLET TEMPERATURE HIHI', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "TEMPERATURE SWITCH"},
+    // DIGITAL INPUT CARD && FLOW SWITCH
+      {name: 'INLET FLOW HIHI', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "FLOW SWITCH"},
+    // DIGITAL INPUT CARD && POSITION SWITCH CLOSED
+      {name: 'ESDV-100 POSITION SWITCH CLOSED', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "POSITION SWITCH CLOSED"},
+    // DIGITAL INPUT CARD && POSITION SWITCH OPEN
+      {name: 'ESDV-100 POSITION SWITCH OPEN', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "POSITION SWITCH OPEN"},
+    // DIGITAL INPUT CARD && MOTOR RUN STATUS
+      {name: 'M-100 RUN STATUS', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentTag: "MOTOR RUN STATUS"},
+    // DIGITAL OUTPUT CARD 
+    //TODO ЗАВИСИМОСТИ К RELAY I/O TAG - RELAY I/O TYPE - RELAY I/O DESCRIPTION
+    // DIGITAL OUTPUT CARD && EMPTY
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: ""},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY"},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY 1
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 1"},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY 2
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 2"},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY 3
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 3"},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY 4
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 4"},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY 5
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 5"},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY 6
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 6"},
+    // DIGITAL OUTPUT CARD && INTERPOSING RELAY 7
+      {name: 'N.O.CONTACT', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentTag: "INTERPOSING RELAY 7"},
+    // ANALOG INPUT CARD
+    // ANALOG INPUT CARD && EMPTY
+      {name: 'N/A', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: ""},
+    // ANALOG INPUT CARD && INLET PRESSURE TRANSMITTER
+      {name: 'INLET PRESSURE HIHI', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "INLET PRESSURE TRANSMITTER"},
+    // ANALOG INPUT CARD && INLET TEMPERATURE TRANSMITTER
+      {name: 'INLET TEMPERATURE HIHIS', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "INLET TEMPERATURE TRANSMITTER"},
+    // ANALOG INPUT CARD && FLOW TRANSMITTER
+      {name: 'INLET FLOW HIHI', equipmentElementType: 'ANALOG INPUT CARD', cloneEquipmentTag: "FLOW TRANSMITTER"},
+    // ANALOG OUTPUT CARD
+    // ANALOG OUTPUT CARD && EMPTY
+    {name: 'PRESSURE CONTROL VALVE', equipmentElementType: 'ANALOG OUTPUT CARD', cloneEquipmentTag: ""},
+    // ANALOG OUTPUT CARD && FLOW TRANSMITTER
+      {name: 'PRESSURE CONTROL VALVE', equipmentElementType: 'ANALOG OUTPUT CARD', cloneEquipmentTag: "CONTROL VALVE POSITION"},
+    //SPARE CARD SLOT && EMPTY
+      {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT', cloneEquipmentTag: ""},
+    //SPARE CARD SLOT 1 && EMPTY
+      {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT 1', cloneEquipmentTag: ""},
+    //SPARE CARD SLOT 2 && EMPTY
+      {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT 2', cloneEquipmentTag: ""},
+    //SPARE CARD SLOT 3 && EMPTY
+      {name: 'N/A', equipmentElementType: 'SPARE CARD SLOT 3', cloneEquipmentTag: ""},
+    ]
+  },
+  selectedIODescription: {
+    type: Object,
+    'default':{name: '', equipmentElementType: '', cloneEquipmentTag: '' }
+  },
+  relayIODescription: { //Relay I/O Tag
+    type: Array,
+    'default': [
+    //POWER SUPPLY && EMPTY
+      {name: 'N/A', equipmentElementType: 'POWER SUPPLY', cloneEquipmentType: '' },
+    //CHASSIS && EMPTY
+      {name: 'N/A', equipmentElementType: 'CHASSIS', cloneEquipmentType: '' },
+    //PROCESSOR CARD && EMPTY
+      {name: 'N/A', equipmentElementType: 'PROCESSOR CARD', cloneEquipmentType: '' },
+    //ETHERNET CARD && EMPTY
+      {name: 'N/A', equipmentElementType: 'ETHERNET CARD', cloneEquipmentType: '' },
+  //DIGITAL INPUT CARD
+    //DIGITAL INPUT CARD && EMPTY
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentType: '' },
+    //DIGITAL INPUT CARD && PRESSURE SWITCH
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentType: 'PRESSURE SWITCH' },
+    //DIGITAL INPUT CARD && TEMPERATURE SWITCH
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentType: 'TEMPERATURE SWITCH' },
+    //DIGITAL INPUT CARD && FLOW SWITCH
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentType: 'FLOW SWITCH' },
+    //DIGITAL INPUT CARD && POSITION SWITCH CLOSED
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentType: 'POSITION SWITCH CLOSED' },
+    //DIGITAL INPUT CARD && POSITION SWITCH OPEN
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentType: 'POSITION SWITCH OPEN' },
+    //DIGITAL INPUT CARD && MOTOR RUN STATUS
+      {name: '', equipmentElementType: 'DIGITAL INPUT CARD', cloneEquipmentType: 'MOTOR RUN STATUS' },
+  //DIGITAL OUTPUT CARD
+    //DIGITAL OUTPUT CARD && EMPTY
+      {name: 'XY-100', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: '' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY
+      {name: 'XY-100', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY 1
+      {name: 'BDV-100', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 1' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY 2
+      {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 2' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY 3
+      {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 3' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY 4
+      {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 4' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY 5
+      {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 5' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY 6
+      {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 6' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY 7
+      {name: '', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 7' },
+    ]
+  },
+  selectedRelayIODescription: {
+    type: Object,
+    'default':{name: '', equipmentElementType: '', cloneEquipmentType: '' }
+  },
+  relayIOType: {
+    type: Array,
+    'default': [
+    //DIGITAL OUTPUT CARD
+    //DIGITAL OUTPUT CARD && EMPTY
+      {name: 'SOLENOID', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: '' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY
+      {name: 'SOLENOID', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY' },
+      //DIGITAL OUTPUT CARD && INTERPROSING RELAY 1
+      {name: 'SOLENOID', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 1' },
+    ]
+  },
+  selectedRelayIOType: {
+    type: Object,
+    'default':{name: '', equipmentElementType: '', cloneEquipmentType: '' }
+  },
+  IODescriptionRelay: {
+    type: Array,
+    'default': [
+    //DIGITAL OUTPUT CARD
+    //DIGITAL OUTPUT CARD && EMPTY
+      {name: 'N/A', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: '' },
+    //DIGITAL OUTPUT CARD && INTERPROSING RELAY
+      {name: 'ESDV-100 SOLENOID', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY' },
+      //DIGITAL OUTPUT CARD && INTERPROSING RELAY 1
+      {name: 'BLOW DOWN VALVE', equipmentElementType: 'DIGITAL OUTPUT CARD', cloneEquipmentType: 'INTERPROSING RELAY 1' },
+    ]
+  },
+  selectedIODescriptionRelay: {
+    type: Object,
+    'default':{name: '', equipmentElementType: '', cloneEquipmentType: '' }
+  },
+  //I/O SUMMARY
+  controllerTag: Array,
+  selectedControllerTag: String,
+  rack: Array,
+  selectedRack: String
+});
 
 //PROJECT SHEMA
 const ProjectSchema = mongoose.Schema({
   title: String,
   electricals: [electrucalSchema],
   cabels: [cableShema],
-  sldschedules: [sldScheduleShema]
+  sldschedules: [sldScheduleShema],
+  controllers: [controllerShema]
   //date_create: { type: Date, default: Date.now },
   //updated_date: { type: Date, default: Date.now },
 });
