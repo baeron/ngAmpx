@@ -901,63 +901,6 @@ router.patch('/:id/controller-update/:controllerId', function(req, res) {
             controller.IODescriptionRelay = req.body.IODescriptionRelay;
             controller.selectedIODescriptionRelay = req.body.selectedIODescriptionRelay;
 
-
-            //controller.controlsEquipmentParentTag = req.body.controlsEquipmentParentTag;
-            //controls.controlsEquipmentParentTag = req.body.controlsEquipmentParentTag;
-            //controller.selectedControlsEquipmentParentTag = req.body.selectedControlsEquipmentParentTag;
-            //newTag
-            /*
-            controller.selectedLocation = req.body.selectedLocation;
-            //
-            controller.dataSheetNumber = req.body.dataSheetNumber;
-            // подправить 3 вниз
-            controller.selectedDataSheetNumber = req.body.selectedDataSheetNumber;
-            controller.selectedLayoutDraving = req.body.selectedLayoutDraving;
-            controller.selectedSchematicDraving = req.body.selectedSchematicDraving;
-            //
-            controller.selectedEquipmentType = req.body.selectedEquipmentType;
-            controller.controllerType = req.body.controllerType;
-            controller.selectedControllerType = req.body.selectedControllerType
-            controller.controllerFunction = req.body.controllerFunction;
-            controller.selectedControllerFunction = req.body.selectedControllerFunction;
-            controller.controllerManufacturer = req.body.controllerManufacturer;
-            controller.selectedControllerManufacturer = req.body.selectedControllerManufacturer;
-            controller.сontrollerSeries = req.body.сontrollerSeries;
-            controller.selectedControllerSeries = req.body.selectedControllerSeries;
-            controller.equipmentModel = req.body.equipmentModel;
-            controller.selectedEquipmentModel = req.body.selectedEquipmentModel;
-            controller.node = req.body.node;
-            controller.chassis = req.body.chassis;
-            controller.slot = req.body.slot;
-            controller.data = req.body.data;
-            controller.ipAdress = req.body.ipAdress;
-            controller.selectedIPAdress = req.body.selectedIPAdress;
-            controller.ioPerCard = req.body.ioPerCard;
-            controller.selectedIOPerCard = req.body.selectedIOPerCard;
-            controller.relayQuantity = req.body.relayQuantity;
-            controller.dcPower = req.body.dcPower;
-            controller.esdPower = req.body.esdPower;
-          //I/O Info
-            controller.ioTag = req.body.ioTag;
-            controller.selectedIOTag = req.body.selectedIOTag;
-            controller.ioType = req.body.ioType;
-            controller.selectedIOType = req.body.selectedIOType;
-            controller.ioDescription = req.body.ioDescription;
-            controller.selectedIODescription = req.body.selectedIODescription;
-            //
-            //selectedRelayIODescription
-            controller.relayIODescription = req.body.relayIODescription; //its Relay I/O Tag on view
-            controller.selectedRelayIODescription = req.body.selectedRelayIODescription; //its Relay I/O Tag on view
-            //
-            //selectedRelayIOType
-            controller.relayIOType = req.body.relayIOType;
-            controller.selectedRelayIOType = req.body.selectedRelayIOType;
-            //selectedIODescriptionRelay
-          //I/O Summary
-            //selectedControllerTag
-            //selectedRack
-            */
-//
           project.save(function(err, controller){
             if(err){
               sendJSONresponse(res, 404, err);
@@ -974,8 +917,6 @@ router.patch('/:id/controller-update/:controllerId', function(req, res) {
       return;
     }
 });
-//TODO finished
-
 /*DELETE CONTROLLER-SHEDULE by ID*/
 router.delete('/:id/controllers/:controllerId', function (req, res){
   if (!req.params && !req.params.id && !req.params.controllerId) {
@@ -1010,4 +951,206 @@ router.delete('/:id/controllers/:controllerId', function (req, res){
   );
 });
 
+//INSTRUMENTATION ITEM
+/*GET ALL INSTRUMENTSTION-ITEM */
+router.get('/:id/instrumentations', function (req, res) {
+  if(req.params){
+    Project
+      .findById(req.params.id)
+      .exec(function(err, project) {
+        if(!project){
+          res.json({ success: false, msg: 'Failed get  instrumentation item'});
+          return;
+        } else if (err) {
+          res.json({success: false, msg: 'Failed get instrumentation item'})
+        }
+        res.json(project);
+      });
+  } else {}
+});
+/*CREATE NEW INSTRUMENTSTION-ITEM*/
+router.post('/:id/instrumentation-create', function(req, res){
+  if (req.params.id) {
+    Project
+      .findById(req.params.id)
+      .select('instrumentations')
+      .exec(
+        function(err, project) {
+          if (err) {
+            res.json({success: false, msg:'Failed get instrumentation item'});
+          } else {
+            if (!project) {
+              res.json({success: false, msg:'Failed get instrumentation item'});
+            } else {
+              project.instrumentations.push({});
+              project.save(function(err, project) {
+              if (err) {
+                res.json({success: false, msg:'Failed get instrumentation item'});
+              } else {
+                res.json(project.instrumentations);
+            }
+          });
+        }
+      }
+    });
+  } else {
+    res.json({success: false, msg:'Failed get instrumentation item'});
+  }
+});
+/*GET SINGLE INSTRUMENTSTION-ITEM BY ID*/
+router.get('/:id/instrumentations/:instrumentationId', function(req, res){
+  if (req.params && req.params.id && req.params.instrumentationId) {
+    Project
+      .findById(req.params.id)
+      .select('instrumentations')
+      .exec(
+        function(err, project) {
+          var response, instrumentation;
+          if (!project) {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+            return;
+          }
+          if (project.instrumentations && project.instrumentations.length > 0) {
+            instrumentation = project.instrumentations.id(req.params.instrumentationId);
+            if (!instrumentation) {
+              res.json({success: false, msg:'Failed get instrumentations item'});
+            } else {
+              response = {
+                instrumentation
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get instrumentations item'});
+  }
+});
+/*UPDATE Item INSTRUMENTSTION-ITEM */
+router.patch('/:id/instrumentation-update/:instrumentationId', function (req, res){
+  if (req.params && req.params.id && req.params.instrumentationId) {
+    Project
+      .findById(req.params.id)
+      .exec(
+        function(err, project) {
+          var response, instrumentation;
+          instrumentation = project.instrumentations.id(req.params.instrumentationId);
+          //instrumentation.itemNumber = req.body.itemNumber;
+          instrumentation.instrumentationTag = req.body.instrumentationTag;
+          //instrumentation.hazlocClass = req.body.hazlocClass;
+          instrumentation.selectedHazlocClass = req.body.selectedHazlocClass;
+          instrumentation.hazlocZone = req.body.hazlocZone;
+          instrumentation.selectedHazlocZone = req.body.selectedHazlocZone;
+          //instrumentation.hazlocGroup = req.body.hazlocGroup;
+          instrumentation.selectedHazlocGroup = req.body.selectedHazlocGroup;
+          instrumentation.hazlocTemperature = req.body.hazlocTemperature;
+          instrumentation.selectedHazlocTemperature = req.body.selectedHazlocTemperature;
+          instrumentation.pidNumber = req.body.pidNumber;
+          instrumentation.selectedPidNumber = req.body.selectedPidNumber;
+          instrumentation.serviceDescription = req.body.serviceDescription;
+          instrumentation.selectedServiceDescription = req.body.selectedServiceDescription;
+          instrumentation.lineEquipmentNumber = req.body.lineEquipmentNumber ;
+          instrumentation.selectedLineEquipmentNumber = req.body.selectedLineEquipmentNumber;
+          instrumentation.firstInstrumentType = req.body.firstInstrumentType;
+          instrumentation.selectedFirstInstrumentType = req.body.selectedFirstInstrumentType;
+          instrumentation.manufacturer = req.body.manufacturer;
+          instrumentation.selectedManufacturer = req.body.selectedManufacturer;
+          instrumentation.modelNumber = req.body.modelNumber;
+          instrumentation.selectedModelNumber = req.body.selectedModelNumber;
+          instrumentation.dataSheetNumber = req.body.dataSheetNumber;
+          instrumentation.selectedDataSheetNumber = req.body.selectedDataSheetNumber;
+          instrumentation.mrPoNumber = req.body.mrPoNumber;
+          instrumentation.selectedMrPoNumber = req.body.selectedMrPoNumber;
+          instrumentation.installationDetail = req.body.installationDetail;
+          instrumentation.selectedInstallationDetail = req.body.selectedInstallationDetail;
+          instrumentation.wiringDrawing = req.body.wiringDrawing;
+          instrumentation.selectedWiringDrawing = req.body.selectedWiringDrawing;
+          instrumentation.location = req.body.location;
+          instrumentation.selectedLocation = req.body.selectedLocation;
+          instrumentation.system = req.body.system;
+          instrumentation.selectedSystem = req.body.selectedSystem;
+          instrumentation.secondInstrumentType = req.body.secondInstrumentType;
+          instrumentation.selectedSecondInstrumentType = req.body.selectedSecondInstrumentType;
+          instrumentation.status = req.body.status;
+          instrumentation.selectedStatus = req.body.selectedStatus;
+          instrumentation.vendor = req.body.vendor;
+          instrumentation.selectedVendor = req.body.selectedVendor;
+          instrumentation.cost = req.body.cost;
+          instrumentation.suppliedBy = req.body.suppliedBy;
+          instrumentation.selectedSuppliedBy = req.body.selectedSuppliedBy;
+          instrumentation.installedBy = req.body.installedBy;
+          instrumentation.selectedInstalledBy = req.body.selectedInstalledBy;
+          instrumentation.signalLevel = req.body.signalLevel;
+          instrumentation.selectedSignalLevel = req.body.selectedSignalLevel;
+          instrumentation.ioType = req.body.ioType;
+          instrumentation.selectedIOType = req.body.selectedIOType;
+          //instrumentation.dateInstrumentAdded = req.body.dateInstrumentAdded;
+          //instrumentation.cloneTag = req.body.cloneTag;
+          instrumentation.coordForX = req.body.coordForX;
+          instrumentation.coordForY = req.body.coordForY;
+          instrumentation.coordForZ = req.body.coordForZ;
+          instrumentation.powerSupply = req.body.powerSupply;
+          instrumentation.selectedPowerSupply = req.body.selectedPowerSupply;
+          instrumentation.instrumentFunction = req.body.instrumentFunction;
+          instrumentation.selectedInstrumentFunction = req.body.selectedInstrumentFunction;
+          instrumentation.instrumentationNotes = req.body.instrumentationNotes;
+          instrumentation.internalNotes = req.body.internalNotes;
+          instrumentation.instrumentDescription = req.body.instrumentDescription;
+          instrumentation.selectedInstrumentDescription = req.body.selectedInstrumentDescription;
+          //instrumentation.newTag = req.body.newTag;
+          project.save(function(err, instrumentation){
+            if(err){
+              sendJSONresponse(res, 404, err);
+            } else {
+              sendJSONresponse(res, 200, project);
+            }
+          });
+        }
+      );
+    } else {
+      sendJSONresponse(res, 404, {
+        "message": "Not found, project or controller id"
+      });
+      return;
+    }
+})
+/*DELETE INSTRUMENTSTION-ITEM by ID*/
+router.delete('/:id/instrumentations/:instrumentationId', function (req, res){
+  if (!req.params && !req.params.id && !req.params.instrumentationId) {
+    res.json({success: false, msg:'Failed params'});
+    return;
+  }
+  Project
+    .findById(req.params.id)
+    .select('instrumentations')
+    .exec(
+      function(err, project) {
+        if (!project) {
+          res.json({success: false, msg:'Failed delete project item'});
+          return;
+        } else if (err) {
+          res.json({success: false, msg:'Error'});
+          return;
+        }
+        if (project.instrumentations && project.instrumentations.length > 0) {
+          project.instrumentations.id(req.params.instrumentationId).remove();
+          project.save(function(err) {
+            if (err) {
+              res.json({success: false, msg:'Failed get instrumentation item'});
+            } else {
+              sendJSONresponse(res, 204, null);
+            }
+          });
+        } else {
+          res.json({success: false, msg:'Failed get instrumentation item'});
+        }
+    }
+  );
+});
 module.exports = router;

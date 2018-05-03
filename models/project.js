@@ -1472,13 +1472,120 @@ const controllerShema = mongoose.Schema({
   selectedRack: String
 });
 
+const instrumentationSchema = mongoose.Schema({
+  itemNumber: String,
+  instrumentationTag: String,
+  hazlocClass: {
+    type: Array,
+    'default': ["General", "Class 1", "Class 2", "Class 3"]
+  },
+  selectedHazlocClass: String,
+  hazlocZone:  {
+    type: Array,
+    'default': ["Zone 0", "Zone 1", "Zone 2", "Division 1", "Division 2"]
+  },
+  selectedHazlocZone: String,
+  hazlocGroup: {
+    type: Array,
+    'default': ["Group IIA", "Group IIB", "Group IIA"]
+  },
+  selectedHazlocGroup: String,
+  hazlocTemperature: {
+    type: Array,
+    'default': ["T1 450 \u00B0С", "T2 300 \u00B0С", "T2A 280 \u00B0С", "T2B 260 \u00B0С", "T2C 230 \u00B0С", "T2D 215 \u00B0С",
+      "T3 200 \u00B0С", "T3A 180 \u00B0С", "T3B 165 \u00B0С", "T3C 160 \u00B0С", "T4 135 \u00B0С", "T4A 120 \u00B0С", "T5 100 \u00B0С", "T6 85 \u00B0С"
+    ]
+  },
+  selectedHazlocTemperature: String,
+  pidNumber: [{type: String}],
+  selectedPidNumber: String,
+  serviceDescription: [{type: String}],
+  selectedServiceDescription: String,
+  lineEquipmentNumber: [{type: String}],
+  selectedLineEquipmentNumber: String,
+  firstInstrumentType: {
+    type: Array,
+    'default': ["PRESSURE", "TEMPERATURE", "LEVEL", "FLOW", "DENSITY"]
+  },
+  selectedFirstInstrumentType: String,
+  manufacturer: {
+    type: Array,
+    'default': ["ALLEN BRADLEY"]
+  },
+  selectedManufacturer: String,
+  modelNumber: [{type: String}],
+  selectedModelNumber: String,
+  dataSheetNumber: [{type: String}],
+  selectedDataSheetNumber: String,
+  mrPoNumber: [{type: String}],
+  selectedMrPoNumber: String,
+  installationDetail: [{type: String}],
+  selectedInstallationDetail: String,
+  wiringDrawing: [{type: String}],
+  selectedWiringDrawing: String,
+  location: [{type: String}],
+  selectedLocation: String,
+  system: {
+    type: Array,
+    'default': ["PLC", "DCS", "BPCS", "SS", "SIS", "RTU", "BMS", "FIELD"]
+  },
+  selectedSystem: String,
+  secondInstrumentType: {
+    type: Array,
+    'default': ["SWITCH", "TRANSMITTER", "CONTROL VALVE", "METER", "GUAGE", "DETECTOR", "ACTUATOR", "RTD", "ELEMENT", "THERMOWELL", "MOV", "COMPUTER"]
+  },
+  selectedSecondInstrumentType: String,
+  status: {
+    type: Array,
+    'default': ["NEW", "REPLACE", "DELETE", "RE-USE", "SURPLUS", "HOLD"]
+  },
+  selectedStatus: String,
+  vendor: [{type: String}],
+  selectedVendor: String,
+  cost: Number,
+  suppliedBy:  [{type: String}],
+  selectedSuppliedBy: String,
+  installedBy: [{type: String}],
+  selectedInstalledBy: String,
+  signalLevel: {
+    type: Array,
+    'default': ["4-20mA", "24 VDC", "1-5 mV", "120 VAC", "OHMS", "PNEUM"]
+  },
+  selectedSignalLevel: String,
+  ioType: {
+    type: Array,
+    'default': ["DI", "DO", "AI", "AO", "RTD", "TC", "HART AI", "HART AO", "RS-485"]
+  },
+  selectedIOType: String,
+  dateInstrumentAdded: { type: Date, default: Date.now },
+  cloneTag: String,
+  coordForX: Number,
+  coordForY: Number,
+  coordForZ: Number,
+  powerSupply: {
+    type: Array,
+    'default': ["3W LOOP", "4W LOOP", "3W FIELD", "4W FIELD"]
+  },
+  selectedPowerSupply: String,
+  instrumentFunction: {
+    type: Array,
+    'default': ["CONTROL", "ON/OFF", "INDICATING", "CALCULATING", "SAFETY SYSTEM", "SHUTDOWN", "SOFT"]
+  },
+  selectedInstrumentFunction: String,
+  instrumentationNotes: String,
+  internalNotes: String,
+  instrumentDescription: [{type: String}],
+  selectedInstrumentDescription: String,
+  newTag: String
+});
 //PROJECT SHEMA
 const ProjectSchema = mongoose.Schema({
   title: String,
   electricals: [electrucalSchema],
   cabels: [cableShema],
   sldschedules: [sldScheduleShema],
-  controllers: [controllerShema]
+  controllers: [controllerShema],
+  instrumentations: [instrumentationSchema]
   //date_create: { type: Date, default: Date.now },
   //updated_date: { type: Date, default: Date.now },
 });
