@@ -5,6 +5,5 @@ module.exports = {
   //for deploy
   database: 'mongodb://baeron:baeron314@ds241737.mlab.com:41737/ampx',
 
-  secret: 'mysecret'
-  
+  secret: 'mysecret' 
 }

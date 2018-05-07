@@ -346,7 +346,7 @@ router.get('/:id/cables',function (req, res) {
     Project
     .findById(req.params.id, 'cabels._id cabels.cableTagFirst cabels.cableTagSecond cabels.cableTagThird cabels.cableTagFourth cabels.selectedCableTagIndex '+
     'cabels.selectedService cabels.selectedVoltage cabels.selectedCableType cabels.itemNum cabels.selectedCableFrom cabels.selectedCableTo cabels.cableLenth '+
-    'cabels.itemNum cabels.selectedItemType cabels.selectedCableSize cabels.selectedConductorInsulationType')
+    'cabels.itemNum cabels.selectedItemType cabels.selectedCableSize cabels.selectedConductorInsulationType cables.selectedInsulationVoltage')
     .exec(function(err, project) {
         if(!project){
           res.json({success: false, msg:'Failed get electrical item'});
@@ -360,7 +360,9 @@ router.get('/:id/cables',function (req, res) {
     res.json({success: false, msg:'Failed get electrical item'});
   }
 });
+/*router.get('/:id/cables-list', function (req, res){
 
+});*/
 /* CREATE NEW Cable */
 router.post('/:id/cable-create', function(req, res) {
   if (req.params.id) {
@@ -541,6 +543,32 @@ router.delete('/:id/cables/:cableId', function (req, res) {
 });
 
 //SLD-SCHEDULE
+/* get ALL sldshedules for SLDSCEDULES-LIST*/
+router.get('/:id/sld-schedules-list', function (req, res){
+  if(req.params){
+    Project
+    .findById(req.params.id, 'sldschedules._id sldschedules.majorEquipmentDeviceTag sldschedules.selectedOCDevice '+ //пропустил Rev. и Equipment Description
+    'sldschedules.selectedFrameRating sldschedules.tripRating sldschedules.selectedFuseRating sldschedules.selectedContactorType sldschedules.selectedContactorSize '+
+    'sldschedules.selectedOverloadType sldschedules.overloadSize sldschedules.selectedCPTQTY sldschedules.selectedCPTVoltage sldschedules.selectedCPTRating sldschedules.selectedVTQTY '+
+    'sldschedules.selectedVTVoltage sldschedules.selectedVTAccuracy sldschedules.selectedCTQTY sldschedules.selectedCTRatio sldschedules.selectedGFCTRatio sldschedules.selectedShuntCoil '+
+    'sldschedules.selectedKirkKey sldschedules.selectedGroundStud sldschedules.PQM sldschedules.FeederPR sldschedules.TransformerPR sldschedules.MotorPR sldschedules.NGRRelay '+
+    'sldschedules.selectedIndicatingLights sldschedules.SpaceHeater sldschedules.HeaterCircuit sldschedules.selectedFirstValueLocalSwitchPB sldschedules. '+
+    'sldschedules.selectedNOAuxContact sldschedules.selectedInterposRelay sldschedules.selectedNCAuxContact '+
+    'sldschedules.selectedSecondValueLocalSwitchPB sldschedules.selectedThirdValueLocalSwitchPB sldschedules.selectedFourthValueLocalSwitchPB sldschedules.selectedFirstValueFieldSwitchPB '+
+    'sldschedules.selectedSecondValueFieldSwitchPB sldschedules.selectedThirdValueFieldSwitchPB sldschedules.selectedFourthValueLocalFieldSwitchPB')
+    .exec(function(err, project) {
+        if(!project){
+          res.json({success: false, msg:'Failed get sldschedule item'});
+          return;
+        } else if (err){
+          res.json({success: false, msg:'Failed get sldschedule item'});
+        }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get sldschedule item'});
+  }
+});
 /*GET ALL SLD-SCHEDULE*/
 router.get('/:id/sld-schedules', function (req, res) {
   if(req.params){
@@ -559,7 +587,6 @@ router.get('/:id/sld-schedules', function (req, res) {
     res.json({success: false, msg:'Failed get sld-schedules item'});
   }
 });
-
 /* CREATE NEW SLD-SCHEDULE */
 router.post('/:id/sld-schedule-create', function(req, res) {
   if (req.params.id) {
@@ -589,7 +616,6 @@ router.post('/:id/sld-schedule-create', function(req, res) {
     res.json({success: false, msg:'Failed get sld-schedule item'});
   }
 });
-
 /* GET SINGLE SLD-SCHEDULE BY ID */
 router.get('/:id/sld-schedules/:sldscheduleId', function(req, res) {
   if (req.params && req.params.id && req.params.sldscheduleId) {
@@ -625,7 +651,6 @@ router.get('/:id/sld-schedules/:sldscheduleId', function(req, res) {
     res.json({success: false, msg:'Failed get sldschedule item'});
   }
 });
-
 /* UPDATE Item SLD-SCHEDULE*/
 router.patch('/:id/sld-schedule-update/:sldScheduleId', function(req, res) {
   if (req.params && req.params.id && req.params.sldScheduleId) {
@@ -747,6 +772,29 @@ router.delete('/:id/sld-schedules/:sldScheduleId', function (req, res) {
 });
 
 //CONTROLLER-SHEDULE
+/* get ALL controllers for CONTROLLERS-LIST*/
+router.get('/:id/controllers-list', function (req, res){
+  if(req.params){
+    Project
+    .findById(req.params.id, 'controllers._id controllers.revision controllers.controlsEquipmentTagFirst controllers.selectedControlsEquipmentParentTag'+
+    'controllers.selectedControllerType.name controllers.selectedControllerManufacturer.name controllers.selectedControllerFunction.name '+
+    'controllers.selectedControllerSeries.name controllers.selectedEquipmentType controllers.selectedCloneEquipmentType.name controllers.selectedEquipmentModel.name'+
+    'controllers.node controllers.chassis controllers.slot controllers.data controllers.selectedIPAdress.name controllers.selectedIOPerCard.name'+
+    'controllers.dcPower controllers.relayQuantity controllers.esdPower controllers.selectedIOTag.name controllers.selectedIOType.name controllers.selectedIODescription.name ' +
+    'controllers.selectedRelayIODescription.name controllers.selectedRelayIOType.name controllers.selectedRelayIODescription.name')
+    .exec(function(err, project) {
+        if(!project){
+          res.json({success: false, msg:'Failed get controllers item'});
+          return;
+        } else if (err){
+          res.json({success: false, msg:'Failed get controllers item'});
+        }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get controllers item'});
+  }
+});
 /*GET ALL CONTROLLER-SHEDULE*/
 router.get('/:id/controllers', function (req, res) {
   if(req.params){
@@ -967,6 +1015,29 @@ router.get('/:id/instrumentations', function (req, res) {
         res.json(project);
       });
   } else {}
+});
+
+/*get ALL Instrumentations for INSTRIMENTATIONS-LIST*/
+router.get('/:id/instrumentations-list', function (req, res){
+  if(req.params){
+    Project
+    .findById(req.params.id, 'instrumentations._id instrumentations.itemNumber instrumentations.instrumentationTag instrumentations.selectedInstrumentDescription '+
+    'instrumentations.selectedPidNumber instrumentations.selectedServiceDescription instrumentations.selectedFirstInstrumentType instrumentations.selectedSecondInstrumentType '+
+    'instrumentations.selectedManufacturer instrumentations.selectedDataSheetNumber instrumentations.selectedMrPoNumber instrumentations.selectedIOType'+
+    'instrumentations.selectedModelNumber instrumentations.selectedStatus instrumentations.selectedLocation instrumentations.selectedSystem instrumentations.selectedSignalLevel '+
+    'instrumentations.selectedPowerSupply instrumentations.selectedInstrumentFunction instrumentations.selectedInstrumentDescription')
+    .exec(function(err, project) {
+        if(!project){
+          res.json({success: false, msg:'Failed get instrumentstion item'});
+          return;
+        } else if (err){
+          res.json({success: false, msg:'Failed get instrumentstion item'});
+        }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get instrumentstion item'});
+  }
 });
 /*CREATE NEW INSTRUMENTSTION-ITEM*/
 router.post('/:id/instrumentation-create', function(req, res){
