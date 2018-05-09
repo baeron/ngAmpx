@@ -2707,7 +2707,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/instrumentation-list/instrumentation-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Instrumentations List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Instrumentation List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new instrumentation\" (click)=\"saveInstrimentation()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper\" style=\"margin-right: 0px!important; margin-left: 0px!important\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                                   <!-- 1 -->\n          <th>Item.</th>                              <!-- 2 -->\n          <th>Instrumentation Tag</th>                <!-- 3 -->\n          <th>Instrument Description</th>             <!-- 4 -->\n          <th>PID Number</th>                         <!-- 5 -->\n          <th>Service Description</th>                <!-- 6 -->\n          <th>Instrument Type 1</th>                  <!-- 7 -->\n          <th>Instrument Type 2</th>                  <!-- 8 -->\n          <th>Manufacturer</th>                       <!-- 9 -->\n          <th>Data Sheet Number</th>                  <!-- 10 -->\n          <th>PO Number</th>                          <!-- 11 -->\n          <th>Model Number</th>                       <!-- 12 -->\n          <th>Status</th>                             <!-- 13 -->\n          <th>Location</th>                           <!-- 14 -->\n          <th>System</th>                             <!-- 15 -->\n          <th>I/O Type</th>                           <!-- 16 -->\n          <th>Signal Level</th>                       <!-- 17 -->\n          <th>Power Supply</th>                       <!-- 18 -->\n          <th>Instrument Function</th>                <!-- 19 -->\n          <th>Instrument Description</th>             <!-- 20 -->\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let instrumentationItem of instrumentation\">\n          <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\"><a class=\"table-cursor\"></a></td> -->                                                                  <!-- 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.itemNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                           <!-- 2 Item -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.instrumentationTag || 'New Instrumentation'}}<a class=\"table-cursor\"></a></td>   <!-- 3 Instrumentation Tag -->                                                                              <!-- 3 Cable Conduit Tag-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 4 Instrument Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPidNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                    <!-- 5 PID Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedServiceDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 6 Service Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedFirstInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>          <!-- 7 Instrument Type 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSecondInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- 8 Instrument Type 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedManufacturer || 'N/A'}}<a class=\"table-cursor\"></a></td>                 <!-- 9 Manufacturer -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedDataSheetNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>              <!-- 10 Data Sheet Number-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedMrPoNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                   <!-- 11 PO Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedModelNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 12 Model Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedStatus || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 13 Status -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedLocation || 'N/A'}}<a class=\"table-cursor\"></a></td>                     <!-- 14 Location -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSystem || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 15 System -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedIOType || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 16 I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSignalLevel || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 17 Signal Level -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPowerSupply || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 18 Power Supply -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentFunction || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 19 Instrument Function -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 20 Instrument Description -->\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"ml-auto\">\n        <button type=\"button\" class=\"btn btn-success\" (click)=\"saveToExcell()\">Export Instrumentation Index</button>\n    </div>\n  </div>\n</div>"
+module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Instrumentations List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Instrumentation List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new instrumentation\" (click)=\"saveInstrimentation()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper\" style=\"margin-right: 0px!important; margin-left: 0px!important\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                                   <!-- 1 -->\n          <th>Item.</th>                              <!-- 2 -->\n          <th>Instrumentation Tag</th>                <!-- 3 -->\n          <th>Instrument Description</th>             <!-- 4 -->\n          <th>PID Number</th>                         <!-- 5 -->\n          <th>Service Description</th>                <!-- 6 -->\n          <th>Instrument Type 1</th>                  <!-- 7 -->\n          <th>Instrument Type 2</th>                  <!-- 8 -->\n          <th>Manufacturer</th>                       <!-- 9 -->\n          <th>Data Sheet Number</th>                  <!-- 10 -->\n          <th>PO Number</th>                          <!-- 11 -->\n          <th>Model Number</th>                       <!-- 12 -->\n          <th>Status</th>                             <!-- 13 -->\n          <th>Location</th>                           <!-- 14 -->\n          <th>System</th>                             <!-- 15 -->\n          <th>I/O Type</th>                           <!-- 16 -->\n          <th>Signal Level</th>                       <!-- 17 -->\n          <th>Power Supply</th>                       <!-- 18 -->\n          <th>Instrument Function</th>                <!-- 19 -->\n          <th>Instrument Description</th>             <!-- 20 -->\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let instrumentationItem of instrumentation\">\n          <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\"><a class=\"table-cursor\"></a></td> -->                                                                  <!-- 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.itemNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                           <!-- 2 Item -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.instrumentationTag || 'New Instrumentation'}}<a class=\"table-cursor\"></a></td>   <!-- 3 Instrumentation Tag -->                                                                              <!-- 3 Cable Conduit Tag-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 4 Instrument Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPidNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                    <!-- 5 PID Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedServiceDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 6 Service Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedFirstInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>          <!-- 7 Instrument Type 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSecondInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- 8 Instrument Type 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedManufacturer || 'N/A'}}<a class=\"table-cursor\"></a></td>                 <!-- 9 Manufacturer -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedDataSheetNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>              <!-- 10 Data Sheet Number-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedMrPoNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                   <!-- 11 PO Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedModelNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 12 Model Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedStatus || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 13 Status -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedLocation || 'N/A'}}<a class=\"table-cursor\"></a></td>                     <!-- 14 Location -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSystem || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 15 System -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedIOType || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 16 I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSignalLevel || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 17 Signal Level -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPowerSupply || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 18 Power Supply -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentFunction || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 19 Instrument Function -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 20 Instrument Description -->\n          <td>\n            <input type=\"checkbox\" [(ngModel)]=\"instrumentationItem.isChecked\" (click)=\"puchToInstrumentationArray(instrumentationItem)\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto\">\n        <div class=\"form-group\">\n          <label for=\"isChecked\">Select All</label>\n          <input type=\"checkbox\" [(ngModel)]=\"isChecked\" (click)=\"changeFlag(isChecked)\">\n        </div>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto\">\n        <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcell()\">Export Instrumentation Index</button>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n      <div class=\"mt-1 ml-auto\">\n          <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcellUIData()\" [disabled]=\"instrumentationArrayList == 0\">Export Instrumentation UI Data</button>\n      </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -2751,14 +2751,17 @@ var InstrumentationListComponent = (function () {
         this.router = router;
         this.route = route;
         this.spinnerService = spinnerService;
+        this.isChecked = false;
         this.projectId = this.route.snapshot.params['id'];
+        this.instrumentationArrayList = [];
+        this.test = [];
     }
     InstrumentationListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.spinnerService.show();
         this.instrumentationService.getInstrumentationsList(this.projectId).subscribe(function (instrumentationList) {
             _this.instrumentation = instrumentationList.instrumentations;
-            console.log(_this.instrumentation);
+            //console.log(this.instrumentation);
         }, function (err) {
             console.log(err);
             return false;
@@ -2806,40 +2809,42 @@ var InstrumentationListComponent = (function () {
           fill: {
             fgColor: { rgb: "FFFFFFFF"}
           }
-        };
+        };XLSX.utils.aoa_to_sheet
         */
         var ws = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
         //var ws = XLSX.utils.table_to_book(document.getElementById('exportable'));
         //console.log(ws);
         ws['!cols'] = wscols;
+        /*
         for (var prop in ws) {
-            console.log(prop);
-            console.log(ws[prop]);
-            if (prop == 'A1') {
-                //ws[prop].s = headerText;
-                ws[prop].s = {
-                    fill: {
-                        patternType: "solid",
-                        fgColor: { rgb: "FF000000" },
-                        bgColor: { rgb: "FFFFFFFF" }
-                    },
-                    font: {
-                        name: 'Times New Roman',
-                        sz: 16,
-                        color: { rgb: "#FF000000" },
-                        bold: false,
-                        italic: false,
-                        underline: false
-                    },
-                    border: {
-                        top: { style: "thin", color: { auto: 1 } },
-                        right: { style: "thin", color: { auto: 1 } },
-                        bottom: { style: "thin", color: { auto: 1 } },
-                        left: { style: "thin", color: { auto: 1 } }
-                    }
-                };
-            }
-        }
+          console.log( prop );
+          console.log(ws[prop]);
+          if(prop == 'A1') {
+            //ws[prop].s = headerText;
+            
+            ws[prop].s = {
+              fill: {
+                patternType: "solid", // none / solid
+                fgColor: {rgb: "FF000000"},
+                bgColor: {rgb: "FFFFFFFF"}
+                  },
+              font: {
+                name: 'Times New Roman',
+                sz: 16,
+                color: {rgb: "#FF000000"},
+                bold: false,
+                italic: false,
+                underline: false
+                  },
+              border: {
+                top: {style: "thin", color: {auto: 1}},
+                right: {style: "thin", color: {auto: 1}},
+                bottom: {style: "thin", color: {auto: 1}},
+                left: {style: "thin", color: {auto: 1}}
+              }
+            };
+          }
+        }*/
         //}
         //console.log(ws);
         var wb = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_new();
@@ -2861,23 +2866,146 @@ var InstrumentationListComponent = (function () {
         }
         Object(__WEBPACK_IMPORTED_MODULE_3_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project instrumentals" + Date.now() + ".xlsx");
     };
-    /*
-      saveToExcell1(){
-        let ws = XLSX.utils.json_to_sheet(this.instrumentation);
-        console.log(ws);
-        let wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "People");
-        let wbout = XLSX.write(wb, {bookType:'xlsx', type:'binary'});
-        console.log(wbout);
-        function s2ab(s) {
-          let buf = new ArrayBuffer(s.length);
-          let view = new Uint8Array(buf);
-          for (let i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-          return buf;
+    InstrumentationListComponent.prototype.puchToInstrumentationArray = function (element) {
+        if (!element.isChecked) {
+            //console.log(element.isChecked);
+            //console.log("isChecked - true");
+            this.instrumentationArrayList.push(element._id);
+            console.log(this.instrumentationArrayList);
         }
-        importedSaveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), "sheetjs.xlsx");
-      }
-    */
+        else {
+            //console.log(element.isChecked);
+            //console.log("isChecked - false");
+            this.instrumentationArrayList.pop();
+        }
+    };
+    InstrumentationListComponent.prototype.changeFlag = function (isCheck) {
+        if (isCheck) {
+            this.isChecked = false;
+            for (var i = 0; i < this.instrumentation.length; ++i) {
+                this.instrumentation[i].isChecked = false;
+                this.instrumentationArrayList = [];
+            }
+        }
+        else {
+            this.isChecked = true;
+            for (var i = 0; i < this.instrumentation.length; ++i) {
+                this.instrumentation[i].isChecked = true;
+                this.instrumentationArrayList.push(this.instrumentation[i]._id);
+            }
+        }
+    };
+    InstrumentationListComponent.prototype.callMethod = function (someId) {
+        this.instrumentationService.getInstrumentationItem(this.projectId, someId).subscribe(function (instrupentations) {
+            if (instrupentations.success === 'success') {
+                console.log('success');
+                console.log(instrupentations.instrumentation);
+                return instrupentations.instrumentation;
+            }
+            else {
+                console.log("errorcode");
+            }
+        }, function (err) {
+            console.log(err);
+            return false;
+        });
+    };
+    InstrumentationListComponent.prototype.loopMethod = function (projectArray) {
+        var temp = [];
+        for (var i = 0; i < projectArray.length; ++i) {
+            temp.push(this.callMethod(projectArray[i]));
+            console.log(temp);
+        }
+        console.log(temp);
+        return temp;
+    };
+    InstrumentationListComponent.prototype.completeNethod = function () {
+        var projectArray = [];
+        for (var i = 0; i < this.instrumentation.length; ++i) {
+            if (this.instrumentation[i].isChecked === true) {
+                projectArray.push(this.instrumentation[i]._id);
+            }
+        }
+        var tmp = [];
+        tmp = this.loopMethod(projectArray);
+        console.log(tmp);
+        return tmp;
+    };
+    InstrumentationListComponent.prototype.saveToExcellUIData = function () {
+        var wscols = [
+            { wch: 12 },
+            { wch: 18 },
+            { wch: 12 },
+            { wch: 12 },
+            { wch: 14 },
+            { wch: 18 },
+            { wch: 12 },
+            { wch: 17 },
+            { wch: 22 },
+            { wch: 20 },
+            { wch: 12 },
+            { wch: 14 },
+            { wch: 17 },
+            { wch: 17 },
+            { wch: 17 },
+            { wch: 15 },
+            { wch: 10 },
+            { wch: 10 },
+            { wch: 18 },
+            { wch: 8 },
+            { wch: 8 },
+            { wch: 8 },
+            { wch: 13 },
+            { wch: 13 },
+            { wch: 13 },
+            { wch: 9 },
+            { wch: 22 },
+            { wch: 5 },
+            { wch: 5 },
+            { wch: 5 },
+            { wch: 13 },
+            { wch: 20 },
+            { wch: 22 },
+            { wch: 20 },
+            { wch: 22 },
+        ];
+        //let projectArray = this.completeNethod();
+        //console.log(projectArray);
+        var projectArray = [];
+        for (var i = 0; i < this.instrumentation.length; ++i) {
+            if (this.instrumentation[i].isChecked === true) {
+                projectArray.push(this.instrumentation[i]._id);
+            }
+        }
+        console.log(projectArray);
+        this.instrumentationService.getInstrumentationsCheckList2(this.projectId, projectArray).subscribe(function (instrupentations) {
+            var ttt = instrupentations[0];
+            console.log(ttt);
+            var tmp = [];
+            for (var index = 0; index < ttt.length; ++index) {
+                tmp.push(ttt[index].instrumentationItem);
+            }
+            console.log(tmp);
+            var ws = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].json_to_sheet(tmp, { cellDates: true });
+            ws['!cols'] = wscols;
+            console.log(ws);
+            var wb = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_new();
+            __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_append_sheet(wb, ws, "Instrumentations UI List");
+            var wbout = __WEBPACK_IMPORTED_MODULE_4_xlsx__["write"](wb, {
+                bookType: 'xlsx',
+                type: 'binary',
+                cellStyles: true
+            });
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i != s.length; ++i)
+                    view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+            Object(__WEBPACK_IMPORTED_MODULE_3_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project instrumentals UI " + Date.now() + ".xlsx");
+        });
+    };
     InstrumentationListComponent.prototype.saveInstrimentation = function () {
         var _this = this;
         this.instrumentation = {};
@@ -5419,7 +5547,6 @@ var CableService = (function () {
             .map(function (res) { return res.json(); });
     };
     CableService.prototype.createCable = function (id, cable) {
-        //  createElectrical(id, electrical){
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         //for dev use
         /*
@@ -5750,6 +5877,9 @@ var ElectricalService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/mergeMap.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5759,6 +5889,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
+
+//import { Observable } from 'rxjs/Observable';
+//import { forkJoin } from "rxjs/observable/forkJoin";
 
 
 
@@ -5817,6 +5952,45 @@ var InstrumentationService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/instrumentations/' + instrumentationId, { headers: headers })
             .map(function (res) { return res.json(); });
+    };
+    InstrumentationService.prototype.getObjectsById = function (id, arrayList) {
+        var _this = this;
+        var observableBatch = [];
+        arrayList.forEach(function (key) {
+            //for dev
+            //observableBatch.push(this.http.get('http://localhost:3000/project/'+id+'/instrumentations-item/'+key).map((res) => res.json()));
+            //for deploy
+            observableBatch.push(_this.http.get('project/' + id + '/instrumentations-item/' + key).map(function (res) { return res.json(); }));
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(observableBatch);
+    };
+    /*
+    getInstrumentationsCheckList(id, array): Observable<any> {
+      let headers = new Headers();
+      let instrumentation = [];
+        return Observable.forkJoin(
+          //for dev
+          
+          this.http.get('http://localhost:3000/project/'+id+'/instrumentations-item/'+array[0], {headers: headers}).map((res: any) => res.json()),
+          this.http.get('http://localhost:3000/project/'+id+'/instrumentations-item/'+array[1], {headers: headers}).map((res: any) => res.json())
+          
+          //for deploy
+          this.http.get('project/'+id+'/instrumentations-item/'+array[0], {headers: headers}).map((res: any) => res.json()),
+          this.http.get('project/'+id+'/instrumentations-item/'+array[1], {headers: headers}).map((res: any) => res.json())
+        )
+        .map((data: any[]) => {
+          let fisrt = data[0];
+          let second = data[1];
+          instrumentation.push(fisrt);
+          instrumentation.push(second);
+        return instrumentation;
+      });
+    }
+    */
+    InstrumentationService.prototype.getInstrumentationsCheckList2 = function (id, array) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        var instrumentation = [];
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array));
     };
     InstrumentationService.prototype.updateInstrumentationItem = function (projectId, instrumentationId, instrumentationItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();

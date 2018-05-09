@@ -1021,7 +1021,7 @@ router.get('/:id/instrumentations', function (req, res) {
 router.get('/:id/instrumentations-list', function (req, res){
   if(req.params){
     Project
-    .findById(req.params.id, 'instrumentations._id instrumentations.itemNumber instrumentations.instrumentationTag instrumentations.selectedInstrumentDescription '+
+    .findById(req.params.id, 'instrumentations._id instrumentations.isChecked instrumentations.itemNumber instrumentations.instrumentationTag instrumentations.selectedInstrumentDescription '+
     'instrumentations.selectedPidNumber instrumentations.selectedServiceDescription instrumentations.selectedFirstInstrumentType instrumentations.selectedSecondInstrumentType '+
     'instrumentations.selectedManufacturer instrumentations.selectedDataSheetNumber instrumentations.selectedMrPoNumber instrumentations.selectedIOType'+
     'instrumentations.selectedModelNumber instrumentations.selectedStatus instrumentations.selectedLocation instrumentations.selectedSystem instrumentations.selectedSignalLevel '+
@@ -1068,6 +1068,83 @@ router.post('/:id/instrumentation-create', function(req, res){
     res.json({success: false, msg:'Failed get instrumentation item'});
   }
 });
+
+/*GET SINGLE INSTRUMENTSTION-ITEM BY ID FOR EXCELL*/
+router.get('/:id/instrumentations-item/:instrumentationId', function(req, res){
+  if (req.params && req.params.id && req.params.instrumentationId) {
+    Project
+      .findById(req.params.id)
+      .select('instrumentations') 
+      .exec(
+        function(err, project) {
+          var response, instrumentation;
+          var instrumentationItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+            return;
+          }
+          if (project.instrumentations && project.instrumentations.length > 0) {
+            instrumentation = project.instrumentations.id(req.params.instrumentationId);
+            //console.log(instrumentation);
+            instrumentationItem.Item_Number = instrumentation.itemNumber || 'N/A';
+            instrumentationItem.Instrumentation_Tag = instrumentation.instrumentationTag || "New Instrumentation";
+            instrumentationItem.Hazloc_Class = instrumentation.selectedHazlocClass || 'N/A';
+            instrumentationItem.Hazloc_Zone = instrumentation.selectedHazlocZone || 'N/A';
+            instrumentationItem.Hazloc_Group = instrumentation.selectedHazlocGroup || 'N/A';
+            instrumentationItem.Hazloc_Temperature = instrumentation.selectedHazlocTemperature || 'N/A';
+            instrumentationItem.Pid_Number = instrumentation.selectedPidNumber || 'N/A';
+            instrumentationItem.Service_Description = instrumentation.selectedServiceDescription || 'N/A';
+            instrumentationItem.Line_Equipment_Number = instrumentation.selectedLineEquipmentNumber || 'N/A';
+            instrumentationItem.Instrument_Type_1 = instrumentation.selectedFirstInstrumentType || 'N/A';
+            instrumentationItem.Manufacturer = instrumentation.selectedManufacturer || 'N/A';
+            instrumentationItem.Model_Number = instrumentation.selectedModelNumber || 'N/A';
+            instrumentationItem.Data_Sheet_Number = instrumentation.selectedDataSheetNumber || 'N/A';
+            instrumentationItem.MR_PO_Number = instrumentation.selectedMrPoNumber || 'N/A';
+            instrumentationItem.Installation_Detail = instrumentation.selectedInstallationDetail || 'N/A';
+            instrumentationItem.Wiring_Drawing = instrumentation.selectedWiringDrawing || 'N/A';
+            instrumentationItem.Location = instrumentation.selectedLocation || 'N/A';
+            instrumentationItem.System = instrumentation.selectedSystem || 'N/A';
+            instrumentationItem.Instrument_Type_2 = instrumentation.selectedSecondInstrumentType || 'N/A';
+            instrumentationItem.Status = instrumentation.selectedStatus || 'N/A';
+            instrumentationItem.Vendor = instrumentation.selectedVendor || 'N/A';
+            instrumentationItem.Cost = instrumentation.cost || 0;
+            instrumentationItem.Supplied_By = instrumentation.selectedSuppliedBy || 'N/A';
+            instrumentationItem.Installed_By = instrumentation.selectedInstalledBy || 'N/A';
+            instrumentationItem.Signal_Level = instrumentation.selectedSignalLevel || 'N/A';
+            instrumentationItem.IO_Type = instrumentation.selectedIOType || 'N/A';
+            instrumentationItem.Data_Instrument_Added = instrumentation.dateInstrumentAdded || 'N/A';
+            instrumentationItem.X = instrumentation.coordForX || 0;
+            instrumentationItem.Y = instrumentation.coordForY || 0;
+            instrumentationItem.Z = instrumentation.coordForZ || 0;
+            instrumentationItem.Power_Supply = instrumentation.selectedPowerSupply || 'N/A';
+            instrumentationItem.Instrument_Function = instrumentation.selectedInstrumentFunction || 'N/A';
+            instrumentationItem.Instrumentation_Notes = instrumentation.instrumentationNotes || 'N/A';
+            instrumentationItem.Internal_Notes = instrumentation.internalNotes || 'N/A';
+            instrumentationItem.Instrument_Description = instrumentation.selectedInstrumentDescription || 'N/A';
+            //console.log(instrumentationItem);
+            if (!instrumentation) {
+              res.json({success: false, msg:'Failed get instrumentations item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                instrumentationItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get instrumentations item'});
+  }
+});
+
 /*GET SINGLE INSTRUMENTSTION-ITEM BY ID*/
 router.get('/:id/instrumentations/:instrumentationId', function(req, res){
   if (req.params && req.params.id && req.params.instrumentationId) {
@@ -1090,6 +1167,8 @@ router.get('/:id/instrumentations/:instrumentationId', function(req, res){
               res.json({success: false, msg:'Failed get instrumentations item'});
             } else {
               response = {
+                status  : 200,
+                success : 'success',
                 instrumentation
               };
               res.json(response);

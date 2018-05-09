@@ -1473,6 +1473,7 @@ const controllerShema = mongoose.Schema({
 });
 
 const instrumentationSchema = mongoose.Schema({
+  isChecked: {type: Boolean, default: false},
   itemNumber: String,
   instrumentationTag: String,
   hazlocClass: {
