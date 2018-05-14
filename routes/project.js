@@ -1312,7 +1312,7 @@ router.get('/:id/controllers-item-list/:controllerId', function(req, res){
       .exec(
         function(err, project) {
           var response, controller;
-          var controllersItem = {}; 
+          var controllerItem = {}; 
           if (!project) {
             res.json({success: false, msg:'Failed get controller item'});
             return;
@@ -1323,38 +1323,38 @@ router.get('/:id/controllers-item-list/:controllerId', function(req, res){
           if (project.controllers && project.controllers.length > 0) {
             controller = project.controllers.id(req.params.controllerId);
             //console.log(instrumentation);
-            controllersItem['REV.'] = controller.revision || 'N/A';
-            controllersItem['CONTROLS EQUIPMENT TAG'] = controller.controlsEquipmentTagFirst || "New Controller";
-            controllersItem['CONTROLS EQUIPMENT PARENT TAG'] = controller.selectedControlsEquipmentParentTag || 'N/A';
-            controllersItem['CONTROLLER TYPE'] = controller.selectedControllerType.name || 'N/A';
-            controllersItem['CONTROLLER MANUFACTURER'] = controller.selectedControllerManufacturer.name || 'N/A';
-            controllersItem['CONTROLLER FUNCTION'] = controller.selectedControllerFunction.name || 'N/A';
-            controllersItem['CONTROLLER SERIES'] = controller.selectedControllerSeries.name || 'N/A';
-            controllersItem['EQUIPMENT TYPE'] = controller.selectedEquipmentType || 'N/A';
-            controllersItem['CLONE EQUIPMENT TYPE'] = controller.selectedCloneEquipmentType.name || 'N/A';
-            controllersItem['EQUIPMENT MODEL'] = controller.selectedEquipmentModel.name || 'N/A';
-            controllersItem['NODE'] = controller.node || 'N/A';
-            controllersItem['CHASSIS'] = controller.chassis || 'N/A';
-            controllersItem['SLOT'] = controller.slot || 'N/A';
-            controllersItem['DATA'] = controller.data || 'N/A';
-            controllersItem['IP ADDRESS'] = controller.selectedIPAdress.name || 'N/A';
-            controllersItem['I/O PER CARD'] = controller.selectedIOPerCard.name || 'N/A'; ;
-            controllersItem['DC POWER'] = controller.dcPower || 'N/A';
-            controllersItem['RELAY QUANTITY'] = controller.relayQuantity || 'N/A';
-            controllersItem['ESD POWER'] = controller.esdPower || 'N/A';
-            controllersItem['I/O TAG'] = controller.selectedIOTag.name || 'N/A';
-            controllersItem['I/O TYPE'] = controller.selectedIOType.name || 'N/A';
-            controllersItem['I/O DESCRIPTION'] = controller.selectedIODescription.name || 'N/A';
-            controllersItem['RELAY I/O TAG'] = controller.selectedRelayIODescription.name || 'N/A';
-            controllersItem['RELAY I/O TYPE'] = controller.selectedRelayIOType.name || 'N/A';
-            controllersItem['RELAY I/O DESCRIPTION'] = controller.selectedIODescriptionRelay.name || 'N/A';
+            controllerItem['REV.'] = controller.revision || 'N/A';
+            controllerItem['CONTROLS EQUIPMENT TAG'] = controller.controlsEquipmentTagFirst || "New Controller";
+            controllerItem['CONTROLS EQUIPMENT PARENT TAG'] = controller.selectedControlsEquipmentParentTag || 'N/A';
+            controllerItem['CONTROLLER TYPE'] = controller.selectedControllerType.name || 'N/A';
+            controllerItem['CONTROLLER MANUFACTURER'] = controller.selectedControllerManufacturer.name || 'N/A';
+            controllerItem['CONTROLLER FUNCTION'] = controller.selectedControllerFunction.name || 'N/A';
+            controllerItem['CONTROLLER SERIES'] = controller.selectedControllerSeries.name || 'N/A';
+            controllerItem['EQUIPMENT TYPE'] = controller.selectedEquipmentType || 'N/A';
+            controllerItem['CLONE EQUIPMENT TYPE'] = controller.selectedCloneEquipmentType.name || 'N/A';
+            controllerItem['EQUIPMENT MODEL'] = controller.selectedEquipmentModel.name || 'N/A';
+            controllerItem['NODE'] = controller.node || 'N/A';
+            controllerItem['CHASSIS'] = controller.chassis || 'N/A';
+            controllerItem['SLOT'] = controller.slot || 'N/A';
+            controllerItem['DATA'] = controller.data || 'N/A';
+            controllerItem['IP ADDRESS'] = controller.selectedIPAdress.name || 'N/A';
+            controllerItem['I/O PER CARD'] = controller.selectedIOPerCard.name || 'N/A'; ;
+            controllerItem['DC POWER'] = controller.dcPower || 'N/A';
+            controllerItem['RELAY QUANTITY'] = controller.relayQuantity || 'N/A';
+            controllerItem['ESD POWER'] = controller.esdPower || 'N/A';
+            controllerItem['I/O TAG'] = controller.selectedIOTag.name || 'N/A';
+            controllerItem['I/O TYPE'] = controller.selectedIOType.name || 'N/A';
+            controllerItem['I/O DESCRIPTION'] = controller.selectedIODescription.name || 'N/A';
+            controllerItem['RELAY I/O TAG'] = controller.selectedRelayIODescription.name || 'N/A';
+            controllerItem['RELAY I/O TYPE'] = controller.selectedRelayIOType.name || 'N/A';
+            controllerItem['RELAY I/O DESCRIPTION'] = controller.selectedIODescriptionRelay.name || 'N/A';
             if (!controller) {
               res.json({success: false, msg:'Failed get controllers item'});
             } else {
               response = {
                 status  : 200,
                 success : 'success',
-                controllersItem
+                controllerItem
               };
               res.json(response);
             }
