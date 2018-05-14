@@ -125,6 +125,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__services_instrumentation_service__ = __webpack_require__("../../../../../src/app/services/instrumentation.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_instrumentation_list_instrumentation_list_component__ = __webpack_require__("../../../../../src/app/components/instrumentation-list/instrumentation-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__components_instrumentation_item_instrumentation_item_component__ = __webpack_require__("../../../../../src/app/components/instrumentation-item/instrumentation-item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_excel_service__ = __webpack_require__("../../../../../src/app/services/excel.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -190,7 +191,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 //EXCELL service
-//import { ExcelService } from './services/excel.service';
+
 //TODO move to separate component
 var appRoutes = [
     //main pages
@@ -277,7 +278,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_35__services_sldschedule_service__["a" /* SldscheduleService */],
                 __WEBPACK_IMPORTED_MODULE_38__services_controller_service__["a" /* ControllerService */],
                 __WEBPACK_IMPORTED_MODULE_42__services_instrumentation_service__["a" /* InstrumentationService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_contact_us_service__["a" /* ContactUsService */]
+                __WEBPACK_IMPORTED_MODULE_15__services_contact_us_service__["a" /* ContactUsService */],
+                __WEBPACK_IMPORTED_MODULE_45__services_excel_service__["a" /* ExcelService */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
         })
@@ -707,7 +709,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/cable-list/cable-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Cables List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Cables List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new cable\" (click)=\"saveCable()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                           <!-- 1 -->\n          <th>Rev.</th>                               <!-- 2 -->\n          <th>Cable Conduit Tag</th>                  <!-- 3 -->\n          <th>Service</th>                            <!-- 4 -->\n          <th>Load(A)</th>                            <!-- 5 -->\n          <th>Volts</th>                              <!-- 6 -->\n          <th>From Source</th>                        <!-- 7 -->\n          <th>To Destination</th>                     <!-- 8 -->\n          <th>Cable/Conduit Size/Type</th>            <!-- 9 -->\n          <th>Cable/Conduit Lenth(m) etc.</th>        <!-- 10 -->\n          <th>No. of Cond.</th>                       <!-- 11 -->\n          <th>Type of Cond</th>                       <!-- 12 -->\n          <th>Size (AWG)</th>                         <!-- 13 -->\n          <th>Insul</th>                              <!-- 14 -->\n          <th>Insul Volts</th>                        <!-- 15 -->\n          <th>Spare</th>                              <!-- 16 -->\n          <th>Comments/ Raceway/ Numbers</th>         <!-- 17 -->\n        </tr>\n      </thead>\n      <tbody>\n          <tr *ngFor=\"let cabel of cables?.cabels\">\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\"></a></td>-->                                              <!-- 1 -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\">{{\"N/A\"}}<a class=\"table-cursor\"></a></td>                                            <!-- 2 Rev-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\">\n                <a class=\"table-cursor\">\n                  {{cabel?.cableTagFirst}}-{{cabel?.cableTagSecond}}-{{cabel?.selectedCableTagIndex}}-{{cabel?.cableTagThird}}-{{cabel?.cableTagFourth}}\n                </a>\n            </td>                                                                                                                                                                   <!-- 3 Cable Conduit Tag-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedService || \"N/A\"}}</a></td>                  <!-- 4 Service -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 5 Load(A) -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedVoltage?.name || \"N/A\"}}</a></td>            <!-- 6 Volts -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedCableFrom || \"N/A\"}}</a></td>                <!-- 7 From Source -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedCableTo || \"N/A\"}}</a></td>                  <!-- 8 To Destination -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedCableType || \"N/A\"}}</a></td>                <!-- 9 Cable/Conduit Size/Type-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 10 Cable/Conduit Lenth(m) etc.-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.itemNum || \"N/A\"}}</a></td>                              <!-- 11 No. of Cond.-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedItemType || \"N/A\"}}</a></td>                     <!-- 12 Type of Cond-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 13 Size (AWG)-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedConductorInsulationType || \"N/A\"}}</a></td>  <!-- 14 Insul-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cable?.selectedInsulationVoltage || \"N/A\"}}</a></td>        <!-- 15 Insul Volts -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 16 Spare -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 17 Comments/ Raceway/ Numbers-->\n          </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"row ml-3 mr-1\">\n    <div class=\"col-12\">\n      <div class=\"d-flex\" >\n        <div class=\"ml-auto\">\n          <button type=\"button\" class=\"btn btn-success\" (click)=\"saveToExcell()\">Export Cable Shedule</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\" style=\"margin-left: 0px!important; margin-right: 0px!important\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard for Project {{projectName?.title}}</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Cables List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Cables List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new cable\" (click)=\"saveCable()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                           <!-- 1 -->\n          <th>Rev.</th>                               <!-- 2 -->\n          <th>Cable Conduit Tag</th>                  <!-- 3 -->\n          <th>Service</th>                            <!-- 4 -->\n          <th>Load(A)</th>                            <!-- 5 -->\n          <th>Volts</th>                              <!-- 6 -->\n          <th>From Source</th>                        <!-- 7 -->\n          <th>To Destination</th>                     <!-- 8 -->\n          <th>Cable/Conduit Size/Type</th>            <!-- 9 -->\n          <th>Cable/Conduit Lenth(m) etc.</th>        <!-- 10 -->\n          <th>No. of Cond.</th>                       <!-- 11 -->\n          <th>Type of Cond</th>                       <!-- 12 -->\n          <th>Size (AWG)</th>                         <!-- 13 -->\n          <th>Insul</th>                              <!-- 14 -->\n          <th>Insul Volts</th>                        <!-- 15 -->\n          <th>Spare</th>                              <!-- 16 -->\n          <th>Comments/ Raceway/ Numbers</th>         <!-- 17 -->\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n          <tr *ngFor=\"let cabel of cables?.cabels\">\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\"></a></td>-->                                              <!-- 1 -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\">{{\"N/A\"}}<a class=\"table-cursor\"></a></td>                                            <!-- 2 Rev-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\">\n                <a class=\"table-cursor\">\n                  {{cabel?.cableTagFirst}}-{{cabel?.cableTagSecond}}-{{cabel?.selectedCableTagIndex}}-{{cabel?.cableTagThird}}-{{cabel?.cableTagFourth}}\n                </a>\n            </td>                                                                                                                                                                   <!-- 3 Cable Conduit Tag-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedService || \"N/A\"}}</a></td>                  <!-- 4 Service -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 5 Load(A) -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedVoltage?.name || \"N/A\"}}</a></td>            <!-- 6 Volts -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedCableFrom || \"N/A\"}}</a></td>                <!-- 7 From Source -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedCableTo || \"N/A\"}}</a></td>                  <!-- 8 To Destination -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedCableType || \"N/A\"}}</a></td>                <!-- 9 Cable/Conduit Size/Type-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 10 Cable/Conduit Lenth(m) etc.-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.itemNum || \"N/A\"}}</a></td>                              <!-- 11 No. of Cond.-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedItemType || \"N/A\"}}</a></td>                     <!-- 12 Type of Cond-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 13 Size (AWG)-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cabel?.selectedConductorInsulationType || \"N/A\"}}</a></td>  <!-- 14 Insul-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{cable?.selectedInsulationVoltage || \"N/A\"}}</a></td>        <!-- 15 Insul Volts -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 16 Spare -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/cables/{{cabel._id}}\"><a class=\"table-cursor\">{{\"N/A\"}}</a></td>                                            <!-- 17 Comments/ Raceway/ Numbers-->\n            <td>\n              <input type=\"checkbox\" [(ngModel)]=\"cabel.isChecked\" (click)=\"puchToCabelArray(cabel)\">\n            </td>\n          </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <div class=\"form-group\">\n        <label for=\"isChecked\">Select All</label>\n        <input type=\"checkbox\" [(ngModel)]=\"isChecked\" (click)=\"changeFlag(isChecked)\">\n      </div>\n    </div>\n  </div>\n  <div class=\"d-flex\" >\n    <div class=\"ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcell()\">Export Cable Shedule</button>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcellUIData()\" [disabled]=\"cableArrayList == 0\">Export Cabels UI Data</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -721,10 +723,8 @@ module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_file_saver__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_xlsx__ = __webpack_require__("../../../../xlsx/xlsx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_xlsx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_xlsx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_excel_service__ = __webpack_require__("../../../../../src/app/services/excel.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -741,12 +741,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CableListComponent = (function () {
-    function CableListComponent(cableService, router, route, spinnerService) {
+    function CableListComponent(cableService, router, route, spinnerService, projectServise, excelService) {
         this.cableService = cableService;
         this.router = router;
         this.route = route;
         this.spinnerService = spinnerService;
+        this.projectServise = projectServise;
+        this.excelService = excelService;
+        this.isChecked = false;
         this.projectId = this.route.snapshot.params['id'];
+        this.cableArrayList = [];
     }
     CableListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -757,46 +761,96 @@ var CableListComponent = (function () {
             console.log(err);
             return false;
         });
+        this.projectServise.getProjectNameById(this.projectId).subscribe(function (project) {
+            _this.projectName = project;
+            //console.log(this.projectName);
+        }, function (err) {
+            _this.spinnerService.hide();
+            console.log(err);
+            return false;
+        });
         this.spinnerService.hide();
+    };
+    CableListComponent.prototype.puchToCabelArray = function (element) {
+        if (!element.isChecked) {
+            this.cableArrayList.push(element._id);
+            //console.log(this.instrumentationArrayList);
+        }
+        else {
+            this.cableArrayList.pop();
+        }
+    };
+    CableListComponent.prototype.changeFlag = function (isCheck) {
+        if (isCheck) {
+            this.isChecked = false;
+            for (var i = 0; i < this.cables.cabels.length; ++i) {
+                this.cables.cabels[i].isChecked = false;
+                this.cableArrayList = [];
+            }
+        }
+        else {
+            this.isChecked = true;
+            for (var i = 0; i < this.cables.cabels.length; ++i) {
+                this.cables.cabels[i].isChecked = true;
+                this.cableArrayList.push(this.cables.cabels[i]._id);
+            }
+        }
     };
     CableListComponent.prototype.saveToExcell = function () {
         var wscols = [
-            { wch: 5 },
-            { wch: 16 },
-            { wch: 12 },
-            { wch: 7 },
-            { wch: 10 },
-            { wch: 13 },
-            { wch: 14 },
-            { wch: 14 },
-            { wch: 25 },
-            { wch: 12 },
-            { wch: 12 },
-            { wch: 10 },
-            { wch: 7 },
-            { wch: 11 },
-            { wch: 7 },
-            { wch: 27 } //P
+            //A       //B       //C       //D     //E       //F       //G         //H     //I         //J       //K     //L       //M       //N       //O     //P
+            { wch: 5 }, { wch: 18 }, { wch: 12 }, { wch: 7 }, { wch: 10 }, { wch: 13 }, { wch: 18 }, { wch: 25 }, { wch: 29 }, { wch: 12 }, { wch: 15 }, { wch: 10 }, { wch: 7 }, { wch: 11 }, { wch: 7 }, { wch: 32 }
         ];
-        var ws = __WEBPACK_IMPORTED_MODULE_5_xlsx__["utils"].table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
-        ws['!cols'] = wscols;
-        var wb = __WEBPACK_IMPORTED_MODULE_5_xlsx__["utils"].book_new();
-        __WEBPACK_IMPORTED_MODULE_5_xlsx__["utils"].book_append_sheet(wb, ws, "Cabels List");
-        var wbout = __WEBPACK_IMPORTED_MODULE_5_xlsx__["write"](wb, {
-            bookType: 'xlsx',
-            type: 'binary',
-            cellStyles: true
+        /*
+          var ws = XLSX.utils.table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
+          ws['!cols'] = wscols;
+          let wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "Cabels List");
+          let wbout = XLSX.write(wb, {
+            bookType:'xlsx',
+            type:'binary',
+            cellStyles:true
             //bookSST:true
-        });
-        console.log(wbout);
-        function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i != s.length; ++i)
-                view[i] = s.charCodeAt(i) & 0xFF;
+          });
+          console.log(wbout);
+          function s2ab(s) {
+            let buf = new ArrayBuffer(s.length);
+            let view = new Uint8Array(buf);
+            for (let i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
             return buf;
+          }
+          importedSaveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), "Report from project cabels "+Date.now()+".xlsx");
+          */
+        var projectArray = [];
+        for (var i = 0; i < this.cables.cabels.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.cables.cabels[i]._id);
         }
-        Object(__WEBPACK_IMPORTED_MODULE_4_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project cabels " + Date.now() + ".xlsx");
+        var queryString = 'cable-item-list';
+        var scheetName = "Cabels List";
+        var controllerName = 'Cabel';
+        var fileName = "CABLE INDEX";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
+    };
+    CableListComponent.prototype.saveToExcellUIData = function () {
+        var wscols = [
+            //A       //B       //C       //D       //E       //F       //G         //H     //I         //J       //K     //L       //M       //N       //O       //P     //Q
+            { wch: 20 }, { wch: 15 }, { wch: 15 }, { wch: 7 }, { wch: 21 }, { wch: 17 }, { wch: 14 }, { wch: 17 }, { wch: 15 }, { wch: 20 }, { wch: 12 }, { wch: 25 }, { wch: 17 }, { wch: 10 }, { wch: 10 }, { wch: 7 }, { wch: 12 },
+            //R       //S       //T       //U       //V       //W     //X       //Y     //Z       //AA      //AB      //AC      //AD      //AE      //AF      //AG      //AH
+            { wch: 12 }, { wch: 12 }, { wch: 10 }, { wch: 12 }, { wch: 10 }, { wch: 7 }, { wch: 7 }, { wch: 7 }, { wch: 7 }, { wch: 16 }, { wch: 10 }, { wch: 20 }, { wch: 18 }, { wch: 12 }, { wch: 22 }, { wch: 22 }, { wch: 17 },
+            //AI      //AJ      //AK      //AL      //AM      //AN      //AO      //AP
+            { wch: 15 }, { wch: 17 }, { wch: 15 }, { wch: 20 }, { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 15 },
+        ];
+        var projectArray = [];
+        for (var i = 0; i < this.cables.cabels.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.cables.cabels[i]._id);
+        }
+        var queryString = 'cable-item';
+        var scheetName = "Cabels UI List";
+        var controllerName = 'Cabel';
+        var fileName = "CABLE REPORT";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
     };
     CableListComponent.prototype.saveCable = function () {
         var _this = this;
@@ -822,7 +876,9 @@ var CableListComponent = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_cable_service__["a" /* CableService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
+            __WEBPACK_IMPORTED_MODULE_4__services_project_service__["a" /* ProjectService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_excel_service__["a" /* ExcelService */]])
     ], CableListComponent);
     return CableListComponent;
 }());
@@ -1572,7 +1628,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/controllers-list/controllers-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Controllers List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Controllers List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new controller\" (click)=\"saveController()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                                 <!-- 1 -->\n          <th>Rev.</th>                             <!-- 2 -->\n          <th>Controls Equipment Tag</th>           <!-- 3 -->\n          <th>Controls Equipment Parent Tag</th>    <!-- 4 -->\n          <th>Controller Type</th>                  <!-- 5 -->\n          <th>Controller Manufacturer</th>          <!-- 6 -->\n          <th>Controller Function</th>              <!-- 7 -->\n          <th>Controller Series</th>                <!-- 8 -->\n          <th>Equipment Type</th>                   <!-- 9 -->\n          <th>Clone Equipment Type</th>             <!-- 10 -->\n          <th>Equipment Model</th>                  <!-- 11 -->\n          <th>Node</th>                             <!-- 12 -->\n          <th>Chassis</th>                          <!-- 13 -->\n          <th>Slot</th>                             <!-- 14 -->\n          <th>Data</th>                             <!-- 15 -->\n          <th>IP Address</th>                       <!-- 16 -->\n          <th>I/O Per Card</th>                     <!-- 17 -->\n          <th>Dc Power</th>                         <!-- 18 -->\n          <th>Relay Quantity</th>                   <!-- 19 -->\n          <th>Esd Power</th>                        <!-- 20 -->\n          <th>I/O Tag</th>                          <!-- 21 -->\n          <th>I/O Type</th>                         <!-- 22 -->\n          <th>I/O Description</th>                  <!-- 23 -->\n          <th>Relay I/O Tag</th>                    <!-- 24 -->\n          <th>Relay I/O Type</th>                   <!-- 25 -->\n          <th>Relay I/O Description</th>            <!-- 26 -->\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let controller of controllers?.controllers\">\n          <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\"><a class=\"table-cursor\"></a></td> -->                                                              <!-- check dox -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.revision || 'N/A'}}<a class=\"table-cursor\"></a></td>                             <!-- Rev -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.controlsEquipmentTagFirst || 'New Controller'}}<a class=\"table-cursor\"></a></td> <!-- Controls Equipment Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControlsEquipmentParentTag || 'N/A'}}<a class=\"table-cursor\"></a></td>   <!-- Controls Equipment Parent Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerType?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- Controller Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerManufacturer?.name || 'N/A'}}<a class=\"table-cursor\"></a></td> <!-- Controller Manufacturer -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerFunction?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- Controller Function -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerSeries?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>       <!-- Controller Series -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedEquipmentType || 'N/A'}}<a class=\"table-cursor\"></a></td>                <!-- Equipment Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedCloneEquipmentType?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- Clone Equipment Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedEquipmentModel?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- Equipment Model -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.node || 'N/A'}}<a class=\"table-cursor\"></a></td>                                 <!-- Node -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.chassis || 'N/A'}}<a class=\"table-cursor\"></a></td>                              <!-- Chassis -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.slot || 'N/A'}}<a class=\"table-cursor\"></a></td>                                 <!-- Slot -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.data || 'N/A'}}<a class=\"table-cursor\"></a></td>                                 <!-- Data -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIPAdress?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>               <!-- IP Address -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIOPerCard?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>                             <!-- 17 I/O Per Card -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.dcPower || 'N/A'}}<a class=\"table-cursor\"></a></td>                              <!-- 18 Dc Power -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.relayQuantity || 'N/A'}}<a class=\"table-cursor\"></a></td>                        <!-- 19 Relay Quantity -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.esdPower || 'N/A'}}<a class=\"table-cursor\"></a></td>                             <!-- 20 Esd Power -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIOTag?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 21 I/O Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIOType?.name}}<a class=\"table-cursor\"></a></td>                          <!-- 22 I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIODescription?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>          <!-- 23 I/O I/O Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedRelayIODescription?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- 24 Relay I/O Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedRelayIOType?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>            <!-- 25 Relay I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedRelayIODescription?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- 26 Relay I/O Description -->\n        </tr>\n    </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\" >\n    <div class=\"ml-auto\">\n      <button type=\"button\" class=\"btn btn-success\" (click)=\"saveToExcell()\">Export Controller Shedule</button>\n    </div>\n  </div>\n</div>"
+module.exports = "<div>\n  <div class=\"row\" style=\"margin-left: 0px!important; margin-right: 0px!important\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard for Project {{projectName?.title}}</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Controllers List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Controllers List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new controller\" (click)=\"saveController()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                                 <!-- 1 -->\n          <th>Rev.</th>                             <!-- 2 -->\n          <th>Controls Equipment Tag</th>           <!-- 3 -->\n          <th>Controls Equipment Parent Tag</th>    <!-- 4 -->\n          <th>Controller Type</th>                  <!-- 5 -->\n          <th>Controller Manufacturer</th>          <!-- 6 -->\n          <th>Controller Function</th>              <!-- 7 -->\n          <th>Controller Series</th>                <!-- 8 -->\n          <th>Equipment Type</th>                   <!-- 9 -->\n          <th>Clone Equipment Type</th>             <!-- 10 -->\n          <th>Equipment Model</th>                  <!-- 11 -->\n          <th>Node</th>                             <!-- 12 -->\n          <th>Chassis</th>                          <!-- 13 -->\n          <th>Slot</th>                             <!-- 14 -->\n          <th>Data</th>                             <!-- 15 -->\n          <th>IP Address</th>                       <!-- 16 -->\n          <th>I/O Per Card</th>                     <!-- 17 -->\n          <th>Dc Power</th>                         <!-- 18 -->\n          <th>Relay Quantity</th>                   <!-- 19 -->\n          <th>Esd Power</th>                        <!-- 20 -->\n          <th>I/O Tag</th>                          <!-- 21 -->\n          <th>I/O Type</th>                         <!-- 22 -->\n          <th>I/O Description</th>                  <!-- 23 -->\n          <th>Relay I/O Tag</th>                    <!-- 24 -->\n          <th>Relay I/O Type</th>                   <!-- 25 -->\n          <th>Relay I/O Description</th>            <!-- 26 -->\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let controller of controllers?.controllers\">\n          <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\"><a class=\"table-cursor\"></a></td> -->                                                              <!-- check dox -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.revision || 'N/A'}}<a class=\"table-cursor\"></a></td>                             <!-- Rev -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.controlsEquipmentTagFirst || 'New Controller'}}<a class=\"table-cursor\"></a></td> <!-- Controls Equipment Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControlsEquipmentParentTag || 'N/A'}}<a class=\"table-cursor\"></a></td>   <!-- Controls Equipment Parent Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerType?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- Controller Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerManufacturer?.name || 'N/A'}}<a class=\"table-cursor\"></a></td> <!-- Controller Manufacturer -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerFunction?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- Controller Function -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedControllerSeries?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>       <!-- Controller Series -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedEquipmentType || 'N/A'}}<a class=\"table-cursor\"></a></td>                <!-- Equipment Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedCloneEquipmentType?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- Clone Equipment Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedEquipmentModel?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- Equipment Model -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.node || 'N/A'}}<a class=\"table-cursor\"></a></td>                                 <!-- Node -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.chassis || 'N/A'}}<a class=\"table-cursor\"></a></td>                              <!-- Chassis -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.slot || 'N/A'}}<a class=\"table-cursor\"></a></td>                                 <!-- Slot -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.data || 'N/A'}}<a class=\"table-cursor\"></a></td>                                 <!-- Data -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIPAdress?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>               <!-- IP Address -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIOPerCard?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>                             <!-- 17 I/O Per Card -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.dcPower || 'N/A'}}<a class=\"table-cursor\"></a></td>                              <!-- 18 Dc Power -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.relayQuantity || 'N/A'}}<a class=\"table-cursor\"></a></td>                        <!-- 19 Relay Quantity -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.esdPower || 'N/A'}}<a class=\"table-cursor\"></a></td>                             <!-- 20 Esd Power -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIOTag?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 21 I/O Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIOType?.name}}<a class=\"table-cursor\"></a></td>                          <!-- 22 I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedIODescription?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>          <!-- 23 I/O I/O Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedRelayIODescription?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- 24 Relay I/O Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedRelayIOType?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>            <!-- 25 Relay I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/controllers/{{controller._id}}\">{{controller?.selectedRelayIODescription?.name || 'N/A'}}<a class=\"table-cursor\"></a></td>     <!-- 26 Relay I/O Description -->\n          <td>\n            <input type=\"checkbox\" [(ngModel)]=\"controller.isChecked\" (click)=\"pushToControllerArray(controller)\">\n          </td>\n        </tr>\n    </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <div class=\"form-group\">\n        <label for=\"isChecked\">Select All</label>\n        <input type=\"checkbox\" [(ngModel)]=\"isChecked\" (click)=\"changeFlag(isChecked)\">\n      </div>\n    </div>\n  </div>\n  <div class=\"d-flex\" >\n    <div class=\"ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcell()\">Export Controller Shedule</button>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcellUIData()\" [disabled]=\"controllersArrayList == 0\">Export Controllers UI Data</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1586,10 +1642,8 @@ module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_controller_service__ = __webpack_require__("../../../../../src/app/services/controller.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_xlsx__ = __webpack_require__("../../../../xlsx/xlsx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_xlsx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_xlsx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_file_saver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_file_saver__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_excel_service__ = __webpack_require__("../../../../../src/app/services/excel.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1603,15 +1657,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+//import * as XLSX from 'xlsx';
+//import {saveAs as importedSaveAs} from "file-saver";
 
 
 var ControllersListComponent = (function () {
-    function ControllersListComponent(controllerService, router, route, spinnerService) {
+    function ControllersListComponent(controllerService, router, route, spinnerService, projectServise, excelService) {
         this.controllerService = controllerService;
         this.router = router;
         this.route = route;
         this.spinnerService = spinnerService;
+        this.projectServise = projectServise;
+        this.excelService = excelService;
+        this.isChecked = false;
         this.projectId = this.route.snapshot.params['id'];
+        this.controllersArrayList = [];
     }
     ControllersListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1623,55 +1683,98 @@ var ControllersListComponent = (function () {
             console.log(err);
             return false;
         });
+        this.projectServise.getProjectNameById(this.projectId).subscribe(function (project) {
+            _this.projectName = project;
+            //console.log(this.projectName);
+        }, function (err) {
+            _this.spinnerService.hide();
+            console.log(err);
+            return false;
+        });
         this.spinnerService.hide();
+    };
+    ControllersListComponent.prototype.pushToControllerArray = function (element) {
+        if (!element.isChecked) {
+            this.controllersArrayList.push(element._id);
+            //console.log(this.instrumentationArrayList);
+        }
+        else {
+            this.controllersArrayList.pop();
+        }
+    };
+    ControllersListComponent.prototype.changeFlag = function (isCheck) {
+        if (isCheck) {
+            this.isChecked = false;
+            for (var i = 0; i < this.controllers.controllers.length; ++i) {
+                this.controllers.controllers[i].isChecked = false;
+                this.controllersArrayList = [];
+            }
+        }
+        else {
+            this.isChecked = true;
+            for (var i = 0; i < this.controllers.controllers.length; ++i) {
+                this.controllers.controllers[i].isChecked = true;
+                this.controllersArrayList.push(this.controllers.controllers[i]._id);
+            }
+        }
     };
     ControllersListComponent.prototype.saveToExcell = function () {
         var wscols = [
-            { wch: 5 },
-            { wch: 20 },
-            { wch: 27 },
-            { wch: 15 },
-            { wch: 19 },
-            { wch: 17 },
-            { wch: 15 },
-            { wch: 15 },
-            { wch: 20 },
-            { wch: 17 },
-            { wch: 7 },
-            { wch: 7 },
-            { wch: 7 },
-            { wch: 7 },
-            { wch: 10 },
-            { wch: 12 },
-            { wch: 12 },
-            { wch: 15 },
-            { wch: 12 },
-            { wch: 10 },
-            { wch: 10 },
-            { wch: 17 },
-            { wch: 12 },
-            { wch: 15 },
-            { wch: 22 },
+            //A       //B       //C       //D       //E       //F       //G       //H       //I       //J       //K     //L       //M       //N     //O       //P
+            { wch: 5 }, { wch: 25 }, { wch: 32 }, { wch: 17 }, { wch: 27 }, { wch: 22 }, { wch: 20 }, { wch: 17 }, { wch: 22 }, { wch: 18 }, { wch: 7 }, { wch: 7 }, { wch: 7 }, { wch: 7 }, { wch: 10 }, { wch: 12 },
+            //Q       //R       //S       //T       //U       //V       //W         //X     //Y
+            { wch: 12 }, { wch: 15 }, { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 17 }, { wch: 14 }, { wch: 15 }, { wch: 22 }
         ];
-        var ws = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
+        var projectArray = [];
+        for (var i = 0; i < this.controllers.controllers.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.controllers.controllers[i]._id);
+        }
+        var queryString = 'controllers-item-list';
+        var scheetName = " Controllers List";
+        var controllerName = 'Controllers';
+        var fileName = "CONTROLLER INDEX";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
+        /*
+        var ws = XLSX.utils.table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
         ws['!cols'] = wscols;
-        var wb = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_new();
-        __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_append_sheet(wb, ws, "Controller Shedule List");
-        var wbout = __WEBPACK_IMPORTED_MODULE_4_xlsx__["write"](wb, {
-            bookType: 'xlsx',
-            type: 'binary',
-            cellStyles: true
-            //bookSST:true
+        let wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Controller Shedule List");
+        let wbout = XLSX.write(wb, {
+          bookType:'xlsx',
+          type:'binary',
+          cellStyles:true
+          //bookSST:true
         });
         console.log(wbout);
         function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i != s.length; ++i)
-                view[i] = s.charCodeAt(i) & 0xFF;
-            return buf;
+          let buf = new ArrayBuffer(s.length);
+          let view = new Uint8Array(buf);
+          for (let i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+          return buf;
         }
-        Object(__WEBPACK_IMPORTED_MODULE_5_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project controllers" + Date.now() + ".xlsx");
+        importedSaveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), "Report from project controllers"+Date.now()+".xlsx");
+        */
+    };
+    ControllersListComponent.prototype.saveToExcellUIData = function () {
+        var wscols = [
+            //A       //B       //C       //D       //E       //F       //G       //H       //I       //J       //K       //L       //M       //N       //O       //P
+            { wch: 14 }, { wch: 10 }, { wch: 22 }, { wch: 28 }, { wch: 28 }, { wch: 32 }, { wch: 12 }, { wch: 18 }, { wch: 18 }, { wch: 21 }, { wch: 15 }, { wch: 17 }, { wch: 19 }, { wch: 27 }, { wch: 19 }, { wch: 22 },
+            //Q       //R       //S       //T       //U       //V       //W         //X     //Y     //Z       //AA      //AB      //AC      //AD      //AE      //AF
+            { wch: 19 }, { wch: 8 }, { wch: 8 }, { wch: 7 }, { wch: 7 }, { wch: 13 }, { wch: 12 }, { wch: 15 }, { wch: 13 }, { wch: 13 }, { wch: 9 }, { wch: 12 }, { wch: 16 }, { wch: 15 }, { wch: 15 }, { wch: 22 },
+            //AG      //AH
+            { wch: 16 }, { wch: 8 }
+        ];
+        var projectArray = [];
+        for (var i = 0; i < this.controllers.controllers.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.controllers.controllers[i]._id);
+        }
+        var queryString = 'controllers-item';
+        var scheetName = "Controllers UI List";
+        var controllerName = 'Controllers';
+        var fileName = "CONTROLLER REPORT";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
     };
     ControllersListComponent.prototype.saveController = function () {
         var _this = this;
@@ -1697,7 +1800,9 @@ var ControllersListComponent = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_controller_service__["a" /* ControllerService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
+            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
+            __WEBPACK_IMPORTED_MODULE_5__services_project_service__["a" /* ProjectService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_excel_service__["a" /* ExcelService */]])
     ], ControllersListComponent);
     return ControllersListComponent;
 }());
@@ -2201,7 +2306,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/electrical-list/electrical-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Electricals List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Electricals List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new electrical\" (click)=\"saveElectrical()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->\n          <th>Rev.</th>\n          <th>Equipment Tag</th>\n          <th>Equipment Description</th>\n          <th>Load Type</th>\n          <th>System Voltage</th>\n          <th>Power System</th>\n          <th>Nameplate Rating</th>\n          <th>Units</th>\n          <th>Total % PF</th>\n          <th>Total % EFF</th>\n          <th>Motor Sf</th>\n          <th>Motor Code</th>\n          <th>Load Duty</th>\n          <th>Total Connected FLA</th>\n          <th>Total Connected KW</th>\n          <th>Total Connected KVAR</th>\n          <th>Total Connected KVA</th>\n          <th>Load Factor %</th>\n          <th>Total Demand FLA</th>\n          <th>Total Demand KW</th>\n          <th>Total Demand KVAR</th>\n          <th>Total Demand KVA</th>\n          <th>Total Scenario 1 LoadFactor %</th>\n          <th>Total Scenario 1 FLA</th>\n          <th>Total Scenario 1 KW</th>\n          <th>Total Scenario 1 KVAR</th>\n          <th>Total Scenario1 KVA</th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let electrical of electricals?.electricals\">\n          <tr *ngIf=\"!electrical.selectedParentTag\">\n            <!--<td></td>-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.revision || 'N/A'}}</a></td>                 <!-- Rev -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.equipmentTag || 'N/A'}}</a></td>            <!-- Equipment Tag -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{'N/A'}}</a></td>                                        <!-- Equipment Description -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedEquipmentType || 'N/A'}}</a></td>   <!-- Load Type -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedVoltage.name || 'N/A'}}</a></td>    <!-- System Voltage -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedPowerSystem || 'N/A'}}</a></td>     <!-- Power System -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.nameplateRating || 'N/A'}}</a></td>         <!-- Nameplate Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedUnits || 'N/A'}}</a></td>           <!-- Units -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalPF || 'N/A'}}</a></td>                 <!-- Total % PF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalEFF || 'N/A'}}</a></td>                <!-- Total % EFF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedMotorSF || 'N/A'}}</a></td>         <!-- Motor Sf -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedMotorCode || 'N/A'}}</a></td>       <!-- Motor Code -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedLoadDuty || 'N/A'}}</a></td>        <!-- Load Duty -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConectedFla || 'N/A'}}</a></td>        <!-- Total Connected FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConectedKW || 'N/A'}}</a></td>         <!-- Total Connected KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConnectedKVAR || 'N/A'}}</a></td>      <!-- Total Connected KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConnectedKVA || 'N/A'}}</a></td>       <!-- Total Connected KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.loadFactor || 'N/A'}}</a></td>              <!-- Load Factor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandFLA || 'N/A'}}</a></td>          <!-- Total Demand FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandKW || 'N/A'}}</a></td>           <!-- Total Demand KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandKVAR || 'N/A'}}</a></td>         <!-- Total Demand KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandKVA || 'N/A'}}</a></td>          <!-- Total Demand KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstLoadFactor || 'N/A'}}</a></td> <!-- Total Scenario 1 LoadFactor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstFLA || 'N/A'}}</a></td>        <!-- Total Scenario 1 FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstKW || 'N/A'}}</a></td>         <!-- Total Scenario 1 KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstKVAR || 'N/A'}}</a></td>       <!-- Total Scenario 1 KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstKVA || 'N/A'}}</a></td>        <!-- Total Scenario1 KVA -->\n          </tr>\n          <tr class=\"childs\" bgcolor=\"#F5F5F5\" *ngFor=\"let electricalChilds of electrical.chiildList\">\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{'N/A'}}</a></td> -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds?.revision || 'N/A'}}</a></td>               <!-- Rev -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds?.equipmentTag || 'N/A'}}</a></td>          <!-- Equipment Tag -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{'N/A'}}</a></td>                                            <!-- Equipment Description -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedEquipmentType || 'N/A'}}</a></td>  <!-- Load Type -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedVoltage.name || 'N/A'}}</a></td>   <!-- System Voltage -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedPowerSystem || 'N/A'}}</a></td>    <!-- Power System -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.nameplateRating || 'N/A'}}</a></td>        <!-- Nameplate Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedUnits || 'N/A'}}</a></td>          <!-- Units -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalPF || 'N/A'}}</a></td>                <!-- Total % PF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalEFF || 'N/A'}}</a></td>               <!-- Total % EFF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedMotorSF || 'N/A'}}</a></td>        <!-- Motor Sf -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedMotorCode || 'N/A'}}</a></td>      <!-- Motor Code -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedLoadDuty || 'N/A'}}</a></td>       <!-- Load Duty -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConectedFla || 'N/A'}}</a></td>       <!-- Total Connected FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConectedKW || 'N/A'}}</a></td>        <!-- Total Connected KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConnectedKVAR || 'N/A'}}</a></td>     <!-- Total Connected KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConnectedKVA || 'N/A'}}</a></td>      <!-- Total Connected KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.loadFactor || 'N/A'}}</a></td>             <!-- Load Factor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandFLA || 'N/A'}}</a></td>         <!-- Total Demand FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandKW || 'N/A'}}</a></td>          <!-- Total Demand KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandKVAR || 'N/A'}}</a></td>        <!-- Total Demand KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandKVA || 'N/A'}}</a></td>         <!-- Total Demand KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstLoadFactor || 'N/A'}}</a></td><!-- Total Scenario 1 LoadFactor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstFLA || 'N/A'}}</a></td>       <!-- Total Scenario 1 FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstKW || 'N/A'}}</a></td>        <!-- Total Scenario 1 KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstKVAR || 'N/A'}}</a></td>      <!-- Total Scenario 1 KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstKVA || 'N/A'}}</a></td>       <!-- Total Scenario1 KVA -->\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"row ml-3 mr-1\">\n      <div class=\"col-12\">\n        <div class=\"d-flex\" >\n          <div class=\"ml-auto\">\n            <button type=\"button\" class=\"btn btn-success\" (click)=\"saveToExcell()\">Export Electricals</button>\n          </div>\n        </div>\n      </div>\n    </div>\n</div>"
+module.exports = "<div>\n  <div class=\"row\" style=\"margin-left: 0px!important; margin-right: 0px!important\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard for Project {{projectName?.title}}</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Electricals List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Electricals List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new electrical\" (click)=\"saveElectrical()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->\n          <th>Rev.</th>\n          <th>Equipment Tag</th>\n          <th>Equipment Description</th>\n          <th>Load Type</th>\n          <th>System Voltage</th>\n          <th>Power System</th>\n          <th>Nameplate Rating</th>\n          <th>Units</th>\n          <th>Total % PF</th>\n          <th>Total % EFF</th>\n          <th>Motor Sf</th>\n          <th>Motor Code</th>\n          <th>Load Duty</th>\n          <th>Total Connected FLA</th>\n          <th>Total Connected KW</th>\n          <th>Total Connected KVAR</th>\n          <th>Total Connected KVA</th>\n          <th>Load Factor %</th>\n          <th>Total Demand FLA</th>\n          <th>Total Demand KW</th>\n          <th>Total Demand KVAR</th>\n          <th>Total Demand KVA</th>\n          <th>Total Scenario 1 LoadFactor %</th>\n          <th>Total Scenario 1 FLA</th>\n          <th>Total Scenario 1 KW</th>\n          <th>Total Scenario 1 KVAR</th>\n          <th>Total Scenario1 KVA</th>\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <ng-container *ngFor=\"let electrical of electricals?.electricals\">\n          <tr *ngIf=\"!electrical.selectedParentTag\">\n            <!--<td></td>-->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.revision || 'N/A'}}</a></td>                 <!-- Rev -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.equipmentTag || 'N/A'}}</a></td>            <!-- Equipment Tag -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{'N/A'}}</a></td>                                        <!-- Equipment Description -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedEquipmentType || 'N/A'}}</a></td>   <!-- Load Type -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedVoltage.name || 'N/A'}}</a></td>    <!-- System Voltage -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedPowerSystem || 'N/A'}}</a></td>     <!-- Power System -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.nameplateRating || 'N/A'}}</a></td>         <!-- Nameplate Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedUnits || 'N/A'}}</a></td>           <!-- Units -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalPF || 'N/A'}}</a></td>                 <!-- Total % PF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalEFF || 'N/A'}}</a></td>                <!-- Total % EFF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedMotorSF || 'N/A'}}</a></td>         <!-- Motor Sf -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedMotorCode || 'N/A'}}</a></td>       <!-- Motor Code -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.selectedLoadDuty || 'N/A'}}</a></td>        <!-- Load Duty -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConectedFla || 'N/A'}}</a></td>        <!-- Total Connected FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConectedKW || 'N/A'}}</a></td>         <!-- Total Connected KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConnectedKVAR || 'N/A'}}</a></td>      <!-- Total Connected KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalConnectedKVA || 'N/A'}}</a></td>       <!-- Total Connected KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.loadFactor || 'N/A'}}</a></td>              <!-- Load Factor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandFLA || 'N/A'}}</a></td>          <!-- Total Demand FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandKW || 'N/A'}}</a></td>           <!-- Total Demand KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandKVAR || 'N/A'}}</a></td>         <!-- Total Demand KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.totalDemandKVA || 'N/A'}}</a></td>          <!-- Total Demand KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstLoadFactor || 'N/A'}}</a></td> <!-- Total Scenario 1 LoadFactor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstFLA || 'N/A'}}</a></td>        <!-- Total Scenario 1 FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstKW || 'N/A'}}</a></td>         <!-- Total Scenario 1 KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstKVAR || 'N/A'}}</a></td>       <!-- Total Scenario 1 KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electrical._id}}\"><a class=\"table-cursor\">{{electrical?.scenarioFirstKVA || 'N/A'}}</a></td>        <!-- Total Scenario1 KVA -->\n            <td>\n              <input type=\"checkbox\" [(ngModel)]=\"electrical.isChecked\" (click)=\"puchToElectricalArray(electrical)\">\n            </td>\n          </tr>\n          <tr class=\"childs\" bgcolor=\"#F5F5F5\" *ngFor=\"let electricalChilds of electrical.chiildList\">\n            <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{'N/A'}}</a></td> -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds?.revision || 'N/A'}}</a></td>               <!-- Rev -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds?.equipmentTag || 'N/A'}}</a></td>          <!-- Equipment Tag -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{'N/A'}}</a></td>                                            <!-- Equipment Description -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedEquipmentType || 'N/A'}}</a></td>  <!-- Load Type -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedVoltage.name || 'N/A'}}</a></td>   <!-- System Voltage -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedPowerSystem || 'N/A'}}</a></td>    <!-- Power System -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.nameplateRating || 'N/A'}}</a></td>        <!-- Nameplate Rating -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedUnits || 'N/A'}}</a></td>          <!-- Units -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalPF || 'N/A'}}</a></td>                <!-- Total % PF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalEFF || 'N/A'}}</a></td>               <!-- Total % EFF -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedMotorSF || 'N/A'}}</a></td>        <!-- Motor Sf -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedMotorCode || 'N/A'}}</a></td>      <!-- Motor Code -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.selectedLoadDuty || 'N/A'}}</a></td>       <!-- Load Duty -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConectedFla || 'N/A'}}</a></td>       <!-- Total Connected FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConectedKW || 'N/A'}}</a></td>        <!-- Total Connected KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConnectedKVAR || 'N/A'}}</a></td>     <!-- Total Connected KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalConnectedKVA || 'N/A'}}</a></td>      <!-- Total Connected KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.loadFactor || 'N/A'}}</a></td>             <!-- Load Factor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandFLA || 'N/A'}}</a></td>         <!-- Total Demand FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandKW || 'N/A'}}</a></td>          <!-- Total Demand KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandKVAR || 'N/A'}}</a></td>        <!-- Total Demand KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.totalDemandKVA || 'N/A'}}</a></td>         <!-- Total Demand KVA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstLoadFactor || 'N/A'}}</a></td><!-- Total Scenario 1 LoadFactor % -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstFLA || 'N/A'}}</a></td>       <!-- Total Scenario 1 FLA -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstKW || 'N/A'}}</a></td>        <!-- Total Scenario 1 KW -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstKVAR || 'N/A'}}</a></td>      <!-- Total Scenario 1 KVAR -->\n            <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/electricals/{{electricalChilds._id}}\"><a class=\"table-cursor\">{{electricalChilds.scenarioFirstKVA || 'N/A'}}</a></td>       <!-- Total Scenario1 KVA -->\n            <td>\n              <input type=\"checkbox\" [(ngModel)]=\"electricalChilds.isChecked\" (click)=\"puchToElectricalArray(electricalChilds)\">\n            </td>\n          </tr>\n        </ng-container>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <div class=\"form-group\">\n        <label for=\"isChecked\">Select All</label>\n        <input type=\"checkbox\" [(ngModel)]=\"isChecked\" (click)=\"changeFlag(isChecked)\">\n      </div>\n    </div>\n  </div>\n  <div class=\"d-flex\" >\n    <div class=\"ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcell()\">Export Electricals</button>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcellUIData()\" [disabled]=\"electricalArrayList == 0\">Export Electricals UI Data</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2212,13 +2317,15 @@ module.exports = "<div>\n  <div class=\"row\">\n    <div class=\"col-12\">\n    
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ElectricalListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_file_saver__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_xlsx__ = __webpack_require__("../../../../xlsx/xlsx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_xlsx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_xlsx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_excel_service__ = __webpack_require__("../../../../../src/app/services/excel.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_file_saver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_file_saver__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_xlsx__ = __webpack_require__("../../../../xlsx/xlsx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_xlsx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_xlsx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2234,13 +2341,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ElectricalListComponent = (function () {
-    function ElectricalListComponent(electricalService, router, route, spinnerService) {
+    function ElectricalListComponent(electricalService, excelService, projectServise, router, route, spinnerService) {
         this.electricalService = electricalService;
+        this.excelService = excelService;
+        this.projectServise = projectServise;
         this.router = router;
         this.route = route;
         this.spinnerService = spinnerService;
+        this.isChecked = false;
         this.projectId = this.route.snapshot.params['id'];
+        this.electricalArrayList = [];
     }
     ElectricalListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2253,31 +2366,50 @@ var ElectricalListComponent = (function () {
             console.log(err);
             return false;
         });
+        this.projectServise.getProjectNameById(this.projectId).subscribe(function (project) {
+            _this.projectName = project;
+            //console.log(this.projectName);
+        }, function (err) {
+            _this.spinnerService.hide();
+            console.log(err);
+            return false;
+        });
+    };
+    ElectricalListComponent.prototype.puchToElectricalArray = function (element) {
+        if (!element.isChecked) {
+            this.electricalArrayList.push(element._id);
+            //console.log(this.instrumentationArrayList);
+        }
+        else {
+            this.electricalArrayList.pop();
+        }
+    };
+    ElectricalListComponent.prototype.changeFlag = function (isCheck) {
+        if (isCheck) {
+            this.isChecked = false;
+            for (var i = 0; i < this.electricals.electricals.length; ++i) {
+                this.electricals.electricals[i].isChecked = false;
+                this.electricalArrayList = [];
+            }
+        }
+        else {
+            this.isChecked = true;
+            for (var i = 0; i < this.electricals.electricals.length; ++i) {
+                this.electricals.electricals[i].isChecked = true;
+                this.electricalArrayList.push(this.electricals.electricals[i]._id);
+            }
+        }
     };
     ElectricalListComponent.prototype.saveToExcell = function () {
         var wscols = [
-            { wch: 5 },
-            { wch: 16 },
-            { wch: 12 },
-            { wch: 7 },
-            { wch: 10 },
-            { wch: 13 },
-            { wch: 14 },
-            { wch: 14 },
-            { wch: 25 },
-            { wch: 12 },
-            { wch: 12 },
-            { wch: 10 },
-            { wch: 7 },
-            { wch: 11 },
-            { wch: 7 },
-            { wch: 27 } //P
+            //A       //B       //C       //D     //E       //F       //G       //H       //I       //J       //K       //L       //M       //N       //O     //P
+            { wch: 5 }, { wch: 16 }, { wch: 12 }, { wch: 7 }, { wch: 10 }, { wch: 13 }, { wch: 14 }, { wch: 14 }, { wch: 25 }, { wch: 12 }, { wch: 12 }, { wch: 10 }, { wch: 7 }, { wch: 11 }, { wch: 7 }, { wch: 27 }
         ];
-        var ws = __WEBPACK_IMPORTED_MODULE_5_xlsx__["utils"].table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
+        var ws = __WEBPACK_IMPORTED_MODULE_7_xlsx__["utils"].table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
         ws['!cols'] = wscols;
-        var wb = __WEBPACK_IMPORTED_MODULE_5_xlsx__["utils"].book_new();
-        __WEBPACK_IMPORTED_MODULE_5_xlsx__["utils"].book_append_sheet(wb, ws, "Electricals List");
-        var wbout = __WEBPACK_IMPORTED_MODULE_5_xlsx__["write"](wb, {
+        var wb = __WEBPACK_IMPORTED_MODULE_7_xlsx__["utils"].book_new();
+        __WEBPACK_IMPORTED_MODULE_7_xlsx__["utils"].book_append_sheet(wb, ws, "Electricals List");
+        var wbout = __WEBPACK_IMPORTED_MODULE_7_xlsx__["write"](wb, {
             bookType: 'xlsx',
             type: 'binary',
             cellStyles: true
@@ -2290,7 +2422,27 @@ var ElectricalListComponent = (function () {
                 view[i] = s.charCodeAt(i) & 0xFF;
             return buf;
         }
-        Object(__WEBPACK_IMPORTED_MODULE_4_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project electricals " + Date.now() + ".xlsx");
+        Object(__WEBPACK_IMPORTED_MODULE_6_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project electricals " + Date.now() + ".xlsx");
+    };
+    ElectricalListComponent.prototype.saveToExcellUIData = function () {
+        var projectArray = [];
+        var wscols = [
+            //A       //B       //C       //D       //E       //F       //G       //H       //I       //J       //K       //L       //M       //N       //O       //P
+            { wch: 13 }, { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 15 }, { wch: 12 }, { wch: 17 }, { wch: 13 }, { wch: 15 }, { wch: 17 }, { wch: 12 }, { wch: 17 }, { wch: 15 }, { wch: 22 }, { wch: 10 }, { wch: 12 },
+            //Q       //R       //S       //T       //U       //V       //W       //X       //Y       //Z       //AA      //AB      //AC      //AD      //AE      //AF
+            { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 25 }, { wch: 20 }, { wch: 15 }, { wch: 10 }, { wch: 12 }, { wch: 12 }, { wch: 17 }, { wch: 10 }, { wch: 12 }, { wch: 13 }, { wch: 12 },
+            //AG      //AH      //AI      //AJ      //AK      //AL      //AM      //AN      //AO      //AP      //AQ      //AR
+            { wch: 17 }, { wch: 15 }, { wch: 12 }, { wch: 17 }, { wch: 22 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 15 }, { wch: 15 }, { wch: 15 }, { wch: 20 }
+        ];
+        for (var i = 0; i < this.electricals.electricals.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.electricals.electricals[i]._id);
+        }
+        var queryString = 'electrical-item';
+        var scheetName = "Electricals UI List";
+        var controllerName = 'Electrical';
+        var fileName = "ELECTRICAL REPORT";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
     };
     ElectricalListComponent.prototype.saveElectrical = function () {
         var _this = this;
@@ -2375,10 +2527,12 @@ var ElectricalListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/electrical-list/electrical-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/electrical-list/electrical-list.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_electrical_service__["a" /* ElectricalService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_electrical_service__["a" /* ElectricalService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_excel_service__["a" /* ExcelService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
+            __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], ElectricalListComponent);
     return ElectricalListComponent;
 }());
@@ -2707,7 +2861,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/instrumentation-list/instrumentation-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Instrumentations List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Instrumentation List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new instrumentation\" (click)=\"saveInstrimentation()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper\" style=\"margin-right: 0px!important; margin-left: 0px!important\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                                   <!-- 1 -->\n          <th>Item.</th>                              <!-- 2 -->\n          <th>Instrumentation Tag</th>                <!-- 3 -->\n          <th>Instrument Description</th>             <!-- 4 -->\n          <th>PID Number</th>                         <!-- 5 -->\n          <th>Service Description</th>                <!-- 6 -->\n          <th>Instrument Type 1</th>                  <!-- 7 -->\n          <th>Instrument Type 2</th>                  <!-- 8 -->\n          <th>Manufacturer</th>                       <!-- 9 -->\n          <th>Data Sheet Number</th>                  <!-- 10 -->\n          <th>PO Number</th>                          <!-- 11 -->\n          <th>Model Number</th>                       <!-- 12 -->\n          <th>Status</th>                             <!-- 13 -->\n          <th>Location</th>                           <!-- 14 -->\n          <th>System</th>                             <!-- 15 -->\n          <th>I/O Type</th>                           <!-- 16 -->\n          <th>Signal Level</th>                       <!-- 17 -->\n          <th>Power Supply</th>                       <!-- 18 -->\n          <th>Instrument Function</th>                <!-- 19 -->\n          <th>Instrument Description</th>             <!-- 20 -->\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let instrumentationItem of instrumentation\">\n          <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\"><a class=\"table-cursor\"></a></td> -->                                                                  <!-- 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.itemNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                           <!-- 2 Item -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.instrumentationTag || 'New Instrumentation'}}<a class=\"table-cursor\"></a></td>   <!-- 3 Instrumentation Tag -->                                                                              <!-- 3 Cable Conduit Tag-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 4 Instrument Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPidNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                    <!-- 5 PID Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedServiceDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 6 Service Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedFirstInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>          <!-- 7 Instrument Type 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSecondInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- 8 Instrument Type 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedManufacturer || 'N/A'}}<a class=\"table-cursor\"></a></td>                 <!-- 9 Manufacturer -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedDataSheetNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>              <!-- 10 Data Sheet Number-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedMrPoNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                   <!-- 11 PO Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedModelNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 12 Model Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedStatus || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 13 Status -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedLocation || 'N/A'}}<a class=\"table-cursor\"></a></td>                     <!-- 14 Location -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSystem || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 15 System -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedIOType || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 16 I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSignalLevel || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 17 Signal Level -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPowerSupply || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 18 Power Supply -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentFunction || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 19 Instrument Function -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 20 Instrument Description -->\n          <td>\n            <input type=\"checkbox\" [(ngModel)]=\"instrumentationItem.isChecked\" (click)=\"puchToInstrumentationArray(instrumentationItem)\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto\">\n        <div class=\"form-group\">\n          <label for=\"isChecked\">Select All</label>\n          <input type=\"checkbox\" [(ngModel)]=\"isChecked\" (click)=\"changeFlag(isChecked)\">\n        </div>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto\">\n        <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcell()\">Export Instrumentation Index</button>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n      <div class=\"mt-1 ml-auto\">\n          <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcellUIData()\" [disabled]=\"instrumentationArrayList == 0\">Export Instrumentation UI Data</button>\n      </div>\n    </div>\n</div>"
+module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\"  style=\"margin-left: 0px!important; margin-right: 0px!important\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard for Project {{projectName?.title}}</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Instrumentations List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>Instrumentation List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new instrumentation\" (click)=\"saveInstrimentation()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                                   <!-- 1 -->\n          <th>Item.</th>                              <!-- 2 -->\n          <th>Instrumentation Tag</th>                <!-- 3 -->\n          <th>Instrument Description</th>             <!-- 4 -->\n          <th>PID Number</th>                         <!-- 5 -->\n          <th>Service Description</th>                <!-- 6 -->\n          <th>Instrument Type 1</th>                  <!-- 7 -->\n          <th>Instrument Type 2</th>                  <!-- 8 -->\n          <th>Manufacturer</th>                       <!-- 9 -->\n          <th>Data Sheet Number</th>                  <!-- 10 -->\n          <th>PO Number</th>                          <!-- 11 -->\n          <th>Model Number</th>                       <!-- 12 -->\n          <th>Status</th>                             <!-- 13 -->\n          <th>Location</th>                           <!-- 14 -->\n          <th>System</th>                             <!-- 15 -->\n          <th>I/O Type</th>                           <!-- 16 -->\n          <th>Signal Level</th>                       <!-- 17 -->\n          <th>Power Supply</th>                       <!-- 18 -->\n          <th>Instrument Function</th>                <!-- 19 -->\n          <th>Instrument Description</th>             <!-- 20 -->\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let instrumentationItem of instrumentation\">\n          <!--<td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\"><a class=\"table-cursor\"></a></td> -->                                                                  <!-- 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.itemNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                           <!-- 2 Item -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.instrumentationTag || 'New Instrumentation'}}<a class=\"table-cursor\"></a></td>   <!-- 3 Instrumentation Tag -->                                                                              <!-- 3 Cable Conduit Tag-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 4 Instrument Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPidNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                    <!-- 5 PID Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedServiceDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 6 Service Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedFirstInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>          <!-- 7 Instrument Type 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSecondInstrumentType || 'N/A'}}<a class=\"table-cursor\"></a></td>         <!-- 8 Instrument Type 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedManufacturer || 'N/A'}}<a class=\"table-cursor\"></a></td>                 <!-- 9 Manufacturer -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedDataSheetNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>              <!-- 10 Data Sheet Number-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedMrPoNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                   <!-- 11 PO Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedModelNumber || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 12 Model Number -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedStatus || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 13 Status -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedLocation || 'N/A'}}<a class=\"table-cursor\"></a></td>                     <!-- 14 Location -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSystem || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 15 System -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedIOType || 'N/A'}}<a class=\"table-cursor\"></a></td>                       <!-- 16 I/O Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedSignalLevel || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 17 Signal Level -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedPowerSupply || 'N/A'}}<a class=\"table-cursor\"></a></td>                  <!-- 18 Power Supply -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentFunction || 'N/A'}}<a class=\"table-cursor\"></a></td>           <!-- 19 Instrument Function -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/instrumentations/{{instrumentationItem._id}}\">{{instrumentationItem?.selectedInstrumentDescription || 'N/A'}}<a class=\"table-cursor\"></a></td>        <!-- 20 Instrument Description -->\n          <td>\n            <input type=\"checkbox\" [(ngModel)]=\"instrumentationItem.isChecked\" (click)=\"puchToInstrumentationArray(instrumentationItem)\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n        <div class=\"form-group\">\n          <label for=\"isChecked\">Select All</label>\n          <input type=\"checkbox\" [(ngModel)]=\"isChecked\" (click)=\"changeFlag(isChecked)\">\n        </div>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"ml-auto mr-3\">\n        <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcell()\">Export Instrumentation Index</button>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcellUIData()\" [disabled]=\"instrumentationArrayList == 0\">Export Instrumentation UI Data</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2718,11 +2872,9 @@ module.exports = "<div> <!--class=\"container\"-->\n  <div class=\"row\">\n    <
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InstrumentationListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_instrumentation_service__ = __webpack_require__("../../../../../src/app/services/instrumentation.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_file_saver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_file_saver__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_xlsx__ = __webpack_require__("../../../../xlsx/xlsx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_xlsx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_xlsx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_instrumentation_service__ = __webpack_require__("../../../../../src/app/services/instrumentation.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_excel_service__ = __webpack_require__("../../../../../src/app/services/excel.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2737,19 +2889,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { ExcelService } from '../../services/excel.service';
 
 
-//import * as XLSX from 'xlsx-style';
-//import * as XLSX from 'xlsx-style';
+//
+//import {XLSX$Utils} from 'xlsx';
+//
 
+//import { resolve, reject } from 'q';
+//import { Observable } from 'rxjs/Observable';
+//import { forkJoin } from "rxjs/observable/forkJoin";
 var InstrumentationListComponent = (function () {
-    function InstrumentationListComponent(instrumentationService, router, route, 
-        //private excelService: ExcelService,
-        spinnerService) {
+    function InstrumentationListComponent(instrumentationService, projectServise, router, route, excelService, spinnerService) {
         this.instrumentationService = instrumentationService;
+        this.projectServise = projectServise;
         this.router = router;
         this.route = route;
+        this.excelService = excelService;
         this.spinnerService = spinnerService;
         this.isChecked = false;
         this.projectId = this.route.snapshot.params['id'];
@@ -2763,6 +2918,15 @@ var InstrumentationListComponent = (function () {
             _this.instrumentation = instrumentationList.instrumentations;
             //console.log(this.instrumentation);
         }, function (err) {
+            _this.spinnerService.hide();
+            console.log(err);
+            return false;
+        });
+        this.projectServise.getProjectNameById(this.projectId).subscribe(function (project) {
+            _this.projectName = project;
+            //console.log(this.projectName);
+        }, function (err) {
+            _this.spinnerService.hide();
             console.log(err);
             return false;
         });
@@ -2770,112 +2934,28 @@ var InstrumentationListComponent = (function () {
     };
     InstrumentationListComponent.prototype.saveToExcell = function () {
         var wscols = [
-            { wch: 7 },
-            { wch: 18 },
-            { wch: 20 },
-            { wch: 10 },
-            { wch: 17 },
-            { wch: 15 },
-            { wch: 15 },
-            { wch: 12 },
-            { wch: 18 },
-            { wch: 10 },
-            { wch: 12 },
-            { wch: 7 },
-            { wch: 7 },
-            { wch: 7 },
-            { wch: 10 },
-            { wch: 15 },
-            { wch: 15 },
-            { wch: 20 },
-            { wch: 25 } //S
+            //A       //B       //C       //D       //E       //F       //G       //H       //I       //J       //K       //L       //M       //N       //O       //P
+            { wch: 7 }, { wch: 24 }, { wch: 25 }, { wch: 19 }, { wch: 22 }, { wch: 17 }, { wch: 18 }, { wch: 9 }, { wch: 9 }, { wch: 9 }, { wch: 10 }, { wch: 13 }, { wch: 14 }, { wch: 14 }, { wch: 19 }, { wch: 15 },
+            //Q         //R
+            { wch: 15 }, { wch: 17 }
         ];
-        /*const headerText = {
-          font: {
-            color: {rgb: "FF4F81BD"},
-            name: "Franklin Gothic Medium", sz: 16
-          },
-          border: {
-            left: {
-              color: {auto: 1}
-            },
-            top: {
-              color: {auto: 1}
-            },
-            right: {
-              color: {auto: 1}
-            }
-          },
-          fill: {
-            fgColor: { rgb: "FFFFFFFF"}
-          }
-        };XLSX.utils.aoa_to_sheet
-        */
-        var ws = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
-        //var ws = XLSX.utils.table_to_book(document.getElementById('exportable'));
-        //console.log(ws);
-        ws['!cols'] = wscols;
-        /*
-        for (var prop in ws) {
-          console.log( prop );
-          console.log(ws[prop]);
-          if(prop == 'A1') {
-            //ws[prop].s = headerText;
-            
-            ws[prop].s = {
-              fill: {
-                patternType: "solid", // none / solid
-                fgColor: {rgb: "FF000000"},
-                bgColor: {rgb: "FFFFFFFF"}
-                  },
-              font: {
-                name: 'Times New Roman',
-                sz: 16,
-                color: {rgb: "#FF000000"},
-                bold: false,
-                italic: false,
-                underline: false
-                  },
-              border: {
-                top: {style: "thin", color: {auto: 1}},
-                right: {style: "thin", color: {auto: 1}},
-                bottom: {style: "thin", color: {auto: 1}},
-                left: {style: "thin", color: {auto: 1}}
-              }
-            };
-          }
-        }*/
-        //}
-        //console.log(ws);
-        var wb = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_new();
-        __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_append_sheet(wb, ws, "Instrumentations List");
-        //XLSX.utils.book_append_sheet(wb, ws.Sheets.Sheet1, "People");
-        var wbout = __WEBPACK_IMPORTED_MODULE_4_xlsx__["write"](wb, {
-            bookType: 'xlsx',
-            type: 'binary',
-            cellStyles: true
-            //bookSST:true
-        });
-        console.log(wbout);
-        function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i != s.length; ++i)
-                view[i] = s.charCodeAt(i) & 0xFF;
-            return buf;
+        var projectArray = [];
+        for (var i = 0; i < this.instrumentation.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.instrumentation[i]._id);
         }
-        Object(__WEBPACK_IMPORTED_MODULE_3_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project instrumentals" + Date.now() + ".xlsx");
+        var queryString = 'instrumentations-item-list';
+        var scheetName = "Instrumentations List";
+        var controllerName = 'Instrumentations';
+        var fileName = "INSTRUMENT INDEX";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
     };
     InstrumentationListComponent.prototype.puchToInstrumentationArray = function (element) {
         if (!element.isChecked) {
-            //console.log(element.isChecked);
-            //console.log("isChecked - true");
             this.instrumentationArrayList.push(element._id);
-            console.log(this.instrumentationArrayList);
+            //console.log(this.instrumentationArrayList);
         }
         else {
-            //console.log(element.isChecked);
-            //console.log("isChecked - false");
             this.instrumentationArrayList.pop();
         }
     };
@@ -2895,116 +2975,26 @@ var InstrumentationListComponent = (function () {
             }
         }
     };
-    InstrumentationListComponent.prototype.callMethod = function (someId) {
-        this.instrumentationService.getInstrumentationItem(this.projectId, someId).subscribe(function (instrupentations) {
-            if (instrupentations.success === 'success') {
-                console.log('success');
-                console.log(instrupentations.instrumentation);
-                return instrupentations.instrumentation;
-            }
-            else {
-                console.log("errorcode");
-            }
-        }, function (err) {
-            console.log(err);
-            return false;
-        });
-    };
-    InstrumentationListComponent.prototype.loopMethod = function (projectArray) {
-        var temp = [];
-        for (var i = 0; i < projectArray.length; ++i) {
-            temp.push(this.callMethod(projectArray[i]));
-            console.log(temp);
-        }
-        console.log(temp);
-        return temp;
-    };
-    InstrumentationListComponent.prototype.completeNethod = function () {
-        var projectArray = [];
-        for (var i = 0; i < this.instrumentation.length; ++i) {
-            if (this.instrumentation[i].isChecked === true) {
-                projectArray.push(this.instrumentation[i]._id);
-            }
-        }
-        var tmp = [];
-        tmp = this.loopMethod(projectArray);
-        console.log(tmp);
-        return tmp;
-    };
     InstrumentationListComponent.prototype.saveToExcellUIData = function () {
         var wscols = [
-            { wch: 12 },
-            { wch: 18 },
-            { wch: 12 },
-            { wch: 12 },
-            { wch: 14 },
-            { wch: 18 },
-            { wch: 12 },
-            { wch: 17 },
-            { wch: 22 },
-            { wch: 20 },
-            { wch: 12 },
-            { wch: 14 },
-            { wch: 17 },
-            { wch: 17 },
-            { wch: 17 },
-            { wch: 15 },
-            { wch: 10 },
-            { wch: 10 },
-            { wch: 18 },
-            { wch: 8 },
-            { wch: 8 },
-            { wch: 8 },
-            { wch: 13 },
-            { wch: 13 },
-            { wch: 13 },
-            { wch: 9 },
-            { wch: 22 },
-            { wch: 5 },
-            { wch: 5 },
-            { wch: 5 },
-            { wch: 13 },
-            { wch: 20 },
-            { wch: 22 },
-            { wch: 20 },
-            { wch: 22 },
+            //A       //B       //C       //D       //E       //F       //G       //H       //I       //J       //K       //L       //M     //N         //O     //P
+            { wch: 7 }, { wch: 22 }, { wch: 25 }, { wch: 20 }, { wch: 22 }, { wch: 18 }, { wch: 18 }, { wch: 7 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 13 }, { wch: 15 }, { wch: 15 }, { wch: 25 }, { wch: 22 },
+            //Q       //R       //S       //T         //U       //V       //W       //X       //Y     //Z       //AA      //AB      //AC      //AD      //AE      //AF
+            { wch: 17 }, { wch: 15 }, { wch: 15 }, { wch: 20 }, { wch: 17 }, { wch: 15 }, { wch: 13 }, { wch: 15 }, { wch: 20 }, { wch: 9 }, { wch: 10 }, { wch: 12 }, { wch: 12 }, { wch: 25 }, { wch: 20 }, { wch: 25 },
+            //AG      //AH      //AI
+            { wch: 7 }, { wch: 7 }, { wch: 7 }
         ];
-        //let projectArray = this.completeNethod();
-        //console.log(projectArray);
         var projectArray = [];
         for (var i = 0; i < this.instrumentation.length; ++i) {
             if (this.instrumentation[i].isChecked === true) {
                 projectArray.push(this.instrumentation[i]._id);
             }
         }
-        console.log(projectArray);
-        this.instrumentationService.getInstrumentationsCheckList2(this.projectId, projectArray).subscribe(function (instrupentations) {
-            var ttt = instrupentations[0];
-            console.log(ttt);
-            var tmp = [];
-            for (var index = 0; index < ttt.length; ++index) {
-                tmp.push(ttt[index].instrumentationItem);
-            }
-            console.log(tmp);
-            var ws = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].json_to_sheet(tmp, { cellDates: true });
-            ws['!cols'] = wscols;
-            console.log(ws);
-            var wb = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_new();
-            __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_append_sheet(wb, ws, "Instrumentations UI List");
-            var wbout = __WEBPACK_IMPORTED_MODULE_4_xlsx__["write"](wb, {
-                bookType: 'xlsx',
-                type: 'binary',
-                cellStyles: true
-            });
-            function s2ab(s) {
-                var buf = new ArrayBuffer(s.length);
-                var view = new Uint8Array(buf);
-                for (var i = 0; i != s.length; ++i)
-                    view[i] = s.charCodeAt(i) & 0xFF;
-                return buf;
-            }
-            Object(__WEBPACK_IMPORTED_MODULE_3_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project instrumentals UI " + Date.now() + ".xlsx");
-        });
+        var queryString = 'instrumentations-item';
+        var scheetName = "Instrumentations UI List";
+        var controllerName = 'Instrumentations';
+        var fileName = "INSTRUMENT REPORT";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
     };
     InstrumentationListComponent.prototype.saveInstrimentation = function () {
         var _this = this;
@@ -3027,9 +3017,11 @@ var InstrumentationListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/instrumentation-list/instrumentation-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/instrumentation-list/instrumentation-list.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_instrumentation_service__["a" /* InstrumentationService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_instrumentation_service__["a" /* InstrumentationService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_4__services_excel_service__["a" /* ExcelService */],
             __WEBPACK_IMPORTED_MODULE_5_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
     ], InstrumentationListComponent);
     return InstrumentationListComponent;
@@ -5191,7 +5183,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div><!--class=\"container\"-->\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Sldschedules List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>SLD Schedule List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new SLD Schedule\" (click)=\"saveSldShedule()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                             \n          <th>Rev.</th>                       <!-- 1 -->\n          <th>Major Equipment Device Tag</th> <!-- 2 -->\n          <th>Equipment Description</th>      <!-- 3 -->\n          <th>Device Type</th>                <!-- 4 -->\n          <th>Frame Rating</th>               <!-- 5 -->\n          <th>Trip Rating</th>                <!-- 6 -->\n          <th>Fuse Rating</th>                <!-- 7 -->\n          <th>Contactor Type</th>             <!-- 8 -->\n          <th>Contactor Size</th>             <!-- 9 -->\n          <th>Overload Type</th>              <!-- 10 -->\n          <th>Overload Size</th>              <!-- 11 -->\n          <th>Cpt Qty</th>                    <!-- 12 -->\n          <th>Cpt Voltage</th>                <!-- 13 -->\n          <th>Cpt Rating</th>                 <!-- 14 -->\n          <th>Vt Qty</th>                     <!-- 15 -->\n          <th>Vt Voltage</th>                 <!-- 16 -->\n          <th>Vt Accuracy</th>                <!-- 17 -->\n          <th>Ct Qty</th>                     <!-- 18 -->\n          <th>Ct Ratio</th>                   <!-- 19 -->\n          <th>GF CT Ratio</th>                <!-- 20 -->\n          <th>Shunt Coil</th>                 <!-- 21 -->\n          <th>Kirk key Intrlck</th>           <!-- 22 -->\n          <th>Ground Stud</th>                <!-- 23 -->\n          <th>Pqm</th>                        <!-- 24 -->\n          <th>Fdr Pr</th>                     <!-- 25 -->\n          <th>Tx Pr</th>                      <!-- 26 -->\n          <th>Mtr Pr</th>                     <!-- 27 -->\n          <th>Ngr Pr</th>                     <!-- 28 -->\n          <th>Ind. Lts.</th>                  <!-- 29 -->\n          <th>Spc. Htr.</th>                  <!-- 30 -->\n          <th>Htr. Circ.</th>                 <!-- 31 -->\n          <th>N.O. Aux.</th>                  <!-- 32 -->\n          <th>N.C. Aux.</th>                  <!-- 33 -->\n          <th>Ipos. Rly.</th>                 <!-- 34 -->\n          <th>Local Switch / Pushbutton 1</th><!-- 35 -->\n          <th>Local Switch / Pushbutton 2</th><!-- 36 -->\n          <th>Local Switch / Pushbutton 3</th><!-- 37 -->\n          <th>Local Switch / Pushbutton 4</th><!-- 38 -->\n          <th>Field Switch / Pushbutton 1</th><!-- 39 -->\n          <th>Field Switch / Pushbutton 2</th><!-- 40 -->\n          <th>Field Switch / Pushbutton 3</th><!-- 41 -->\n          <th>Field Switch / Pushbutton 4</th><!-- 42 -->\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let sldShedule of sldSchedules\">\n          <!-- <td></td> -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td>                                        <!-- 1 false Rev -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.majorEquipmentDeviceTag}}</a></td> <!-- 2 true Major Equipment Device Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td>                                        <!-- 3 false Equipment Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedOCDevice}}</a></td>         <!-- 4 true Device Type /selectedOCDevice -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFrameRating}}</a></td>     <!-- 5 true Frame Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.tripRating}}</a></td>              <!-- 6 true Trip Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFuseRating}}</a></td>      <!-- 7 true Fuse Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedContactorType}}</a></td>   <!-- 8 true Contactor Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedContactorSize}}</a></td>   <!-- 9 true Contactor Size -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedOverloadType}}</a></td>   <!-- 10 true Overload Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.overloadSize}}</a></td>           <!-- 11 true Overload Size -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTQTY}}</a></td>         <!-- 12 true Cpt Qty -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTVoltage}}</a></td>     <!-- 13 true Cpt Voltage -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTRating}}</a></td>      <!-- 14 true Cpt Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTQTY}}</a></td>          <!-- 15 true Vt Qty -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTVoltage}}</a></td>      <!-- 16 true Vt Voltage -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTAccuracy}}</a></td>     <!-- 17 true Vt Accuracy -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCTQTY}}</a></td>          <!-- 18 true Ct Qty-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCTRatio}}</a></td>        <!-- 19 true Ct Ratio -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedGFCTRatio}}</a></td>      <!-- 20 true GF CT Ratio -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedShuntCoil}}</a></td>      <!-- 21 true Shunt Coil -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedKirkKey}}</a></td>        <!-- 22 true Kirk key Intrlck -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedGroundStud}}</a></td>     <!-- 23 true Ground Stud -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.PQM}}</a></td>                    <!-- 24 true Pqm-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.FeederPR}}</a></td>               <!-- 25 true Fdr Pr -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.TransformerPR}}</a></td>          <!-- 26 true Tx Pr/TransformerPR-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.MotorPR}}</a></td>                <!-- 27 true Mtr Pr/MotorPR -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.NGRRelay}}</a></td>               <!-- 28 true Ngr Pr/NGRRelay -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedIndicatingLights}}</a></td><!--29 true Ind. Lts. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.SpaceHeater}}</a></td>            <!-- 30 true Spc. Htr/SpaceHeater -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.HeaterCircuit}}</a></td>          <!-- 31 true Htr. Circ/HeaterCircuit -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedNOAuxContact}}</a></td>          <!-- 32 true N.O. Aux. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedNCAuxContact}}</a></td>          <!-- 33 true N.C. Aux. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedInterposRelay}}</a></td>          <!-- 34 true Ipos. Rly. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFirstValueLocalSwitchPB}}</a></td> <!-- 35 true Local Switch / Pushbutton 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedSecondValueLocalSwitchPB}}</a></td> <!-- 36 true Local Switch / Pushbutton 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedThirdValueLocalSwitchPB}}</a></td> <!-- 37 true Local Switch / Pushbutton 3 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFourthValueLocalSwitchPB}}</a></td> <!-- 38 true Local Switch / Pushbutton 4 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFirstValueFieldSwitchPB}}</a></td> <!-- 39 trueField Switch / Pushbutton 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedSecondValueFieldSwitchPB}}</a></td> <!-- 40 true Field Switch / Pushbutton 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedThirdValueFieldSwitchPB}}</a></td> <!-- 41 trueField Switch / Pushbutton 3 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFourthValueLocalFieldSwitchPB}}</a></td> <!-- 42 true Field Switch / Pushbutton 4 -->\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\" >\n    <div class=\"ml-auto\">\n      <button type=\"button\" class=\"btn btn-success\" (click)=\"saveToExcell()\">Export SLD Shedule</button>\n    </div>\n  </div>\n</div>"
+module.exports = "<div><!--class=\"container\"-->\n  <div class=\"row\" style=\"margin-left: 0px!important; margin-right: 0px!important\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard for Project {{projectName?.title}}</strong></a></li>\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Sldschedules List</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n  <div class=\"pt-2 text-center\">\n    <h1>SLD Schedule List\n      <a class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add new SLD Schedule\" (click)=\"saveSldShedule()\">\n        <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n      </a>\n    </h1>\n  </div>\n  <div class=\"row achievements-wrapper ml-3 mr-3\">\n    <table id=\"exportable\" class=\"table table-sm table-bordered table-hover table-text-style\">\n      <thead>\n        <tr>\n          <!--<th></th> -->                             \n          <th>Rev.</th>                       <!-- 1 -->\n          <th>Major Equipment Device Tag</th> <!-- 2 -->\n          <th>Equipment Description</th>      <!-- 3 -->\n          <th>Device Type</th>                <!-- 4 -->\n          <th>Frame Rating</th>               <!-- 5 -->\n          <th>Trip Rating</th>                <!-- 6 -->\n          <th>Fuse Rating</th>                <!-- 7 -->\n          <th>Contactor Type</th>             <!-- 8 -->\n          <th>Contactor Size</th>             <!-- 9 -->\n          <th>Overload Type</th>              <!-- 10 -->\n          <th>Overload Size</th>              <!-- 11 -->\n          <th>Cpt Qty</th>                    <!-- 12 -->\n          <th>Cpt Voltage</th>                <!-- 13 -->\n          <th>Cpt Rating</th>                 <!-- 14 -->\n          <th>Vt Qty</th>                     <!-- 15 -->\n          <th>Vt Voltage</th>                 <!-- 16 -->\n          <th>Vt Accuracy</th>                <!-- 17 -->\n          <th>Ct Qty</th>                     <!-- 18 -->\n          <th>Ct Ratio</th>                   <!-- 19 -->\n          <th>GF CT Ratio</th>                <!-- 20 -->\n          <th>Shunt Coil</th>                 <!-- 21 -->\n          <th>Kirk key Intrlck</th>           <!-- 22 -->\n          <th>Ground Stud</th>                <!-- 23 -->\n          <th>Pqm</th>                        <!-- 24 -->\n          <th>Fdr Pr</th>                     <!-- 25 -->\n          <th>Tx Pr</th>                      <!-- 26 -->\n          <th>Mtr Pr</th>                     <!-- 27 -->\n          <th>Ngr Pr</th>                     <!-- 28 -->\n          <th>Ind. Lts.</th>                  <!-- 29 -->\n          <th>Spc. Htr.</th>                  <!-- 30 -->\n          <th>Htr. Circ.</th>                 <!-- 31 -->\n          <th>N.O. Aux.</th>                  <!-- 32 -->\n          <th>N.C. Aux.</th>                  <!-- 33 -->\n          <th>Ipos. Rly.</th>                 <!-- 34 -->\n          <th>Local Switch / Pushbutton 1</th><!-- 35 -->\n          <th>Local Switch / Pushbutton 2</th><!-- 36 -->\n          <th>Local Switch / Pushbutton 3</th><!-- 37 -->\n          <th>Local Switch / Pushbutton 4</th><!-- 38 -->\n          <th>Field Switch / Pushbutton 1</th><!-- 39 -->\n          <th>Field Switch / Pushbutton 2</th><!-- 40 -->\n          <th>Field Switch / Pushbutton 3</th><!-- 41 -->\n          <th>Field Switch / Pushbutton 4</th><!-- 42 -->\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let sldShedule of sldSchedules\">\n          <!-- <td></td> -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td>                                        <!-- 1 false Rev -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.majorEquipmentDeviceTag}}</a></td> <!-- 2 true Major Equipment Device Tag -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\"></a></td>                                        <!-- 3 false Equipment Description -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedOCDevice}}</a></td>         <!-- 4 true Device Type /selectedOCDevice -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFrameRating}}</a></td>     <!-- 5 true Frame Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.tripRating}}</a></td>              <!-- 6 true Trip Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFuseRating}}</a></td>      <!-- 7 true Fuse Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedContactorType}}</a></td>   <!-- 8 true Contactor Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedContactorSize}}</a></td>   <!-- 9 true Contactor Size -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedOverloadType}}</a></td>   <!-- 10 true Overload Type -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.overloadSize}}</a></td>           <!-- 11 true Overload Size -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTQTY}}</a></td>         <!-- 12 true Cpt Qty -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTVoltage}}</a></td>     <!-- 13 true Cpt Voltage -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCPTRating}}</a></td>      <!-- 14 true Cpt Rating -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTQTY}}</a></td>          <!-- 15 true Vt Qty -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTVoltage}}</a></td>      <!-- 16 true Vt Voltage -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedVTAccuracy}}</a></td>     <!-- 17 true Vt Accuracy -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCTQTY}}</a></td>          <!-- 18 true Ct Qty-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedCTRatio}}</a></td>        <!-- 19 true Ct Ratio -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedGFCTRatio}}</a></td>      <!-- 20 true GF CT Ratio -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedShuntCoil}}</a></td>      <!-- 21 true Shunt Coil -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedKirkKey}}</a></td>        <!-- 22 true Kirk key Intrlck -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedGroundStud}}</a></td>     <!-- 23 true Ground Stud -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.PQM}}</a></td>                    <!-- 24 true Pqm-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.FeederPR}}</a></td>               <!-- 25 true Fdr Pr -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.TransformerPR}}</a></td>          <!-- 26 true Tx Pr/TransformerPR-->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.MotorPR}}</a></td>                <!-- 27 true Mtr Pr/MotorPR -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.NGRRelay}}</a></td>               <!-- 28 true Ngr Pr/NGRRelay -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedIndicatingLights}}</a></td><!--29 true Ind. Lts. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.SpaceHeater}}</a></td>            <!-- 30 true Spc. Htr/SpaceHeater -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.HeaterCircuit}}</a></td>          <!-- 31 true Htr. Circ/HeaterCircuit -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedNOAuxContact}}</a></td>          <!-- 32 true N.O. Aux. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedNCAuxContact}}</a></td>          <!-- 33 true N.C. Aux. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedInterposRelay}}</a></td>          <!-- 34 true Ipos. Rly. -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFirstValueLocalSwitchPB}}</a></td> <!-- 35 true Local Switch / Pushbutton 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedSecondValueLocalSwitchPB}}</a></td> <!-- 36 true Local Switch / Pushbutton 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedThirdValueLocalSwitchPB}}</a></td> <!-- 37 true Local Switch / Pushbutton 3 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFourthValueLocalSwitchPB}}</a></td> <!-- 38 true Local Switch / Pushbutton 4 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFirstValueFieldSwitchPB}}</a></td> <!-- 39 trueField Switch / Pushbutton 1 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedSecondValueFieldSwitchPB}}</a></td> <!-- 40 true Field Switch / Pushbutton 2 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedThirdValueFieldSwitchPB}}</a></td> <!-- 41 trueField Switch / Pushbutton 3 -->\n          <td class=\"table-cursor\" routerLink=\"/project/{{projectId}}/sldshedules/{{sldShedule._id}}\"><a class=\"table-cursor\">{{sldShedule?.selectedFourthValueLocalFieldSwitchPB}}</a></td> <!-- 42 true Field Switch / Pushbutton 4 -->\n          <td>\n            <input type=\"checkbox\" [(ngModel)]=\"sldShedule.isChecked\" (click)=\"puchToSldSheduleArray(sldShedule)\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <div class=\"form-group\">\n        <label for=\"isChecked\">Select All</label>\n        <input type=\"checkbox\" [(ngModel)]=\"isChecked\" (click)=\"changeFlag(isChecked)\">\n      </div>\n    </div>\n  </div>\n  <div class=\"d-flex\" >\n    <div class=\"ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcell()\">Export SLD Shedule</button>\n    </div>\n  </div>\n  <div class=\"d-flex\">\n    <div class=\"mt-1 ml-auto mr-3\">\n      <button type=\"button\" class=\"btn btn-success\" style=\"width: 250px!important\" (click)=\"saveToExcellUIData()\" [disabled]=\"sldSheduleArrayList == 0\">Export SLD Shedule UI Data</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -5202,13 +5194,11 @@ module.exports = "<div><!--class=\"container\"-->\n  <div class=\"row\">\n    <d
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SldScheduleListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_sldschedule_service__ = __webpack_require__("../../../../../src/app/services/sldschedule.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_xlsx__ = __webpack_require__("../../../../xlsx/xlsx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_xlsx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_xlsx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_file_saver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_file_saver__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_sldschedule_service__ = __webpack_require__("../../../../../src/app/services/sldschedule.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_excel_service__ = __webpack_require__("../../../../../src/app/services/excel.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5225,12 +5215,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var SldScheduleListComponent = (function () {
-    function SldScheduleListComponent(sldscheduleService, router, route, spinnerService) {
+    function SldScheduleListComponent(sldscheduleService, router, route, projectServise, spinnerService, excelService) {
         this.sldscheduleService = sldscheduleService;
         this.router = router;
         this.route = route;
+        this.projectServise = projectServise;
         this.spinnerService = spinnerService;
+        this.excelService = excelService;
+        this.isChecked = false;
         this.projectId = this.route.snapshot.params['id'];
+        this.sldSheduleArrayList = [];
     }
     SldScheduleListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -5239,75 +5233,106 @@ var SldScheduleListComponent = (function () {
             _this.sldSchedules = sldSchedulesList.sldschedules;
             console.log(_this.sldSchedules);
         }, function (err) {
+            _this.spinnerService.hide();
+            console.log(err);
+            return false;
+        });
+        this.projectServise.getProjectNameById(this.projectId).subscribe(function (project) {
+            _this.projectName = project;
+            //console.log(this.projectName);
+        }, function (err) {
+            _this.spinnerService.hide();
             console.log(err);
             return false;
         });
         this.spinnerService.hide();
     };
+    SldScheduleListComponent.prototype.puchToSldSheduleArray = function (element) {
+        if (!element.isChecked) {
+            this.sldSheduleArrayList.push(element._id);
+            //console.log(this.instrumentationArrayList);
+        }
+        else {
+            this.sldSheduleArrayList.pop();
+        }
+    };
+    SldScheduleListComponent.prototype.changeFlag = function (isCheck) {
+        if (isCheck) {
+            this.isChecked = false;
+            for (var i = 0; i < this.sldSchedules.length; ++i) {
+                this.sldSchedules[i].isChecked = false;
+                this.sldSheduleArrayList = [];
+            }
+        }
+        else {
+            this.isChecked = true;
+            for (var i = 0; i < this.sldSchedules.length; ++i) {
+                this.sldSchedules[i].isChecked = true;
+                this.sldSheduleArrayList.push(this.sldSchedules[i]._id);
+            }
+        }
+    };
     SldScheduleListComponent.prototype.saveToExcell = function () {
         var wscols = [
-            { wch: 5 },
-            { wch: 25 },
-            { wch: 20 },
-            { wch: 11 },
-            { wch: 13 },
-            { wch: 11 },
-            { wch: 11 },
-            { wch: 13 },
-            { wch: 13 },
-            { wch: 13 },
-            { wch: 13 },
-            { wch: 7 },
-            { wch: 13 },
-            { wch: 13 },
-            { wch: 7 },
-            { wch: 10 },
-            { wch: 10 },
-            { wch: 7 },
-            { wch: 7 },
-            { wch: 10 },
-            { wch: 10 },
-            { wch: 13 },
-            { wch: 11 },
-            { wch: 5 },
-            { wch: 5 },
-            { wch: 5 },
-            { wch: 6 },
-            { wch: 6 },
-            { wch: 7 },
-            { wch: 7 },
-            { wch: 9 },
-            { wch: 9 },
-            { wch: 9 },
-            { wch: 9 },
-            { wch: 25 },
-            { wch: 25 },
-            { wch: 25 },
-            { wch: 25 },
-            { wch: 25 },
-            { wch: 25 },
-            { wch: 25 },
-            { wch: 25 },
+            //A       //B       //C       //D       //E       //F       //G       //H       //I       //J       //K       //L     //M       //N       //O       //P
+            { wch: 5 }, { wch: 29 }, { wch: 23 }, { wch: 11 }, { wch: 13 }, { wch: 11 }, { wch: 12 }, { wch: 17 }, { wch: 15 }, { wch: 17 }, { wch: 15 }, { wch: 8 }, { wch: 13 }, { wch: 12 }, { wch: 7 }, { wch: 12 },
+            //Q       //R       //S       //T       //U       //V       //W       //X       //Y     //Z       //AA     //AB    //AC    //AD      //AE     //AF     //AG
+            { wch: 12 }, { wch: 7 }, { wch: 10 }, { wch: 12 }, { wch: 12 }, { wch: 15 }, { wch: 15 }, { wch: 5 }, { wch: 7 }, { wch: 5 }, { wch: 7 }, { wch: 7 }, { wch: 9 }, { wch: 9 }, { wch: 9 }, { wch: 9 }, { wch: 9 },
+            //AH      //AI      //AJ      //AK      //AL      //AM      //AN      //AO      //AP
+            { wch: 9 }, { wch: 29 }, { wch: 29 }, { wch: 29 }, { wch: 29 }, { wch: 27 }, { wch: 27 }, { wch: 27 }, { wch: 27 }
         ];
-        var ws = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
+        /*
+        var ws = XLSX.utils.table_to_book(document.getElementById('exportable')).Sheets.Sheet1;
         ws['!cols'] = wscols;
-        var wb = __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_new();
-        __WEBPACK_IMPORTED_MODULE_4_xlsx__["utils"].book_append_sheet(wb, ws, "SLD Shedule List");
-        var wbout = __WEBPACK_IMPORTED_MODULE_4_xlsx__["write"](wb, {
-            bookType: 'xlsx',
-            type: 'binary',
-            cellStyles: true
-            //bookSST:true
+        let wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "SLD Shedule List");
+        let wbout = XLSX.write(wb, {
+          bookType:'xlsx',
+          type:'binary',
+          cellStyles:true
+          //bookSST:true
         });
         console.log(wbout);
         function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i != s.length; ++i)
-                view[i] = s.charCodeAt(i) & 0xFF;
-            return buf;
+          let buf = new ArrayBuffer(s.length);
+          let view = new Uint8Array(buf);
+          for (let i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+          return buf;
         }
-        Object(__WEBPACK_IMPORTED_MODULE_5_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), "Report from project sld shedule" + Date.now() + ".xlsx");
+        importedSaveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), "Report from project sld shedule"+Date.now()+".xlsx");
+        */
+        var projectArray = [];
+        for (var i = 0; i < this.sldSchedules.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.sldSchedules[i]._id);
+        }
+        var queryString = 'sldshedule-item-list';
+        var scheetName = "SLD Schedules List";
+        var controllerName = 'Sldshadule';
+        var fileName = "SLD Schedule INDEX";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
+    };
+    SldScheduleListComponent.prototype.saveToExcellUIData = function () {
+        var wscols = [
+            //A       //B       //C       //D       //E       //F       //G       //H       //I       //J       //K       //L     //M       //N       //O       //P
+            { wch: 25 }, { wch: 25 }, { wch: 22 }, { wch: 29 }, { wch: 16 }, { wch: 10 }, { wch: 19 }, { wch: 15 }, { wch: 19 }, { wch: 13 }, { wch: 17 }, { wch: 8 }, { wch: 8 }, { wch: 12 }, { wch: 15 }, { wch: 12 },
+            //Q       //R       //S       //T       //U       //V       //W       //X       //Y       //Z       //AA     //AB     //AC        //AD      //AE     //AF     //AG
+            { wch: 12 }, { wch: 15 }, { wch: 15 }, { wch: 12 }, { wch: 13 }, { wch: 12 }, { wch: 15 }, { wch: 8 }, { wch: 12 }, { wch: 16 }, { wch: 12 }, { wch: 12 }, { wch: 12 }, { wch: 10 }, { wch: 16 }, { wch: 17 }, { wch: 17 },
+            //AH      //AI      //AJ      //AK      //AL      //AM      //AN      //AO      //AP    //AQ      //AR      //AS      //AT      //AU      //AV      //AW
+            { wch: 17 }, { wch: 7 }, { wch: 10 }, { wch: 13 }, { wch: 15 }, { wch: 17 }, { wch: 13 }, { wch: 17 }, { wch: 16 }, { wch: 16 }, { wch: 14 }, { wch: 14 }, { wch: 18 }, { wch: 6 }, { wch: 22 }, { wch: 20 },
+            //AX      //AY      //AZ      //BA      //BB      //BC
+            { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }
+        ];
+        var projectArray = [];
+        for (var i = 0; i < this.sldSchedules.length; ++i) {
+            //console.log(this.instrumentation[i]._id);
+            projectArray.push(this.sldSchedules[i]._id);
+        }
+        var queryString = 'sldshedule-item';
+        var scheetName = "SLD Shedules UI List";
+        var controllerName = 'Sldshadule';
+        var fileName = "SLD Shedule REPORT";
+        this.excelService.exportToExcell(this.projectId, this.projectName.title, projectArray, queryString, scheetName, fileName, controllerName, wscols);
     };
     SldScheduleListComponent.prototype.saveSldShedule = function () {
         var _this = this;
@@ -5330,10 +5355,12 @@ var SldScheduleListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/sld-schedule-list/sld-schedule-list.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_sldschedule_service__["a" /* SldscheduleService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_sldschedule_service__["a" /* SldscheduleService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
+            __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */],
+            __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
+            __WEBPACK_IMPORTED_MODULE_5__services_excel_service__["a" /* ExcelService */]])
     ], SldScheduleListComponent);
     return SldScheduleListComponent;
 }());
@@ -5489,6 +5516,9 @@ var AuthService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/mergeMap.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5501,10 +5531,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var CableService = (function () {
     function CableService(http) {
         this.http = http;
     }
+    CableService.prototype.getObjectsById = function (id, arrayList, queryString) {
+        var _this = this;
+        var observableBatch = [];
+        arrayList.forEach(function (key) {
+            //for dev
+            //observableBatch.push(this.http.get('http://localhost:3000/project/'+id+'/'+queryString+'/'+key).map((res) => res.json()));
+            //for deploy
+            observableBatch.push(_this.http.get('project/' + id + '/' + queryString + '/' + key).map(function (res) { return res.json(); }));
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(observableBatch);
+    };
+    CableService.prototype.getCabelExcelList = function (id, array, queryString) {
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array, queryString));
+    };
     /*getCablesList(id){
       let headers = new Headers();
       //for dev use
@@ -5664,6 +5711,9 @@ var ContactUsService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/mergeMap.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5673,6 +5723,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
+
 
 
 
@@ -5758,6 +5811,20 @@ var ControllerService = (function () {
         return this.http.delete('project/' + projectId + '/controllers/' + controllerId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
+    ControllerService.prototype.getObjectsById = function (id, arrayList, queryString) {
+        var _this = this;
+        var observableBatch = [];
+        arrayList.forEach(function (key) {
+            //for dev
+            //observableBatch.push(this.http.get('http://localhost:3000/project/'+id+'/'+queryString+'/'+key).map((res) => res.json()));
+            //for deploy
+            observableBatch.push(_this.http.get('project/' + id + '/' + queryString + '/' + key).map(function (res) { return res.json(); }));
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(observableBatch);
+    };
+    ControllerService.prototype.getControllersCheckList = function (id, array, queryString) {
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array, queryString));
+    };
     ControllerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
@@ -5777,6 +5844,9 @@ var ControllerService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/mergeMap.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5789,10 +5859,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ElectricalService = (function () {
     function ElectricalService(http) {
         this.http = http;
     }
+    ElectricalService.prototype.getObjectsById = function (id, arrayList, queryString) {
+        var _this = this;
+        var observableBatch = [];
+        arrayList.forEach(function (key) {
+            //for dev
+            //observableBatch.push(this.http.get('http://localhost:3000/project/'+id+'/'+queryString+'/'+key).map((res) => res.json()));
+            //for deploy
+            observableBatch.push(_this.http.get('project/' + id + '/' + queryString + '/' + key).map(function (res) { return res.json(); }));
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(observableBatch);
+    };
+    ElectricalService.prototype.getElectricalExcelList = function (id, array, queryString) {
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array, queryString));
+    };
     ElectricalService.prototype.getElectricals = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         //for dev use
@@ -5869,6 +5956,155 @@ var ElectricalService = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/excel.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExcelService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/mergeMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__instrumentation_service__ = __webpack_require__("../../../../../src/app/services/instrumentation.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controller_service__ = __webpack_require__("../../../../../src/app/services/controller.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__sldschedule_service__ = __webpack_require__("../../../../../src/app/services/sldschedule.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__cable_service__ = __webpack_require__("../../../../../src/app/services/cable.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__electrical_service__ = __webpack_require__("../../../../../src/app/services/electrical.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_file_saver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_file_saver__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_xlsx__ = __webpack_require__("../../../../xlsx/xlsx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_xlsx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_xlsx__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+var ExcelService = (function () {
+    function ExcelService(http, instrumentationService, controllerService, sldsheduleService, electricalService, cableService) {
+        this.http = http;
+        this.instrumentationService = instrumentationService;
+        this.controllerService = controllerService;
+        this.sldsheduleService = sldsheduleService;
+        this.electricalService = electricalService;
+        this.cableService = cableService;
+    }
+    ExcelService.prototype.xlsxSaver = function (tmp, sheetName, fileName, projectName, wscols) {
+        var ws = __WEBPACK_IMPORTED_MODULE_10_xlsx__["utils"].json_to_sheet(tmp, { cellDates: true });
+        ws['!cols'] = wscols;
+        var wb = __WEBPACK_IMPORTED_MODULE_10_xlsx__["utils"].book_new();
+        __WEBPACK_IMPORTED_MODULE_10_xlsx__["utils"].book_append_sheet(wb, ws, sheetName);
+        var wbout = __WEBPACK_IMPORTED_MODULE_10_xlsx__["write"](wb, { bookType: 'xlsx', type: 'binary', cellStyles: true });
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i != s.length; ++i)
+                view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+        }
+        var options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+        var dateNow = new Date();
+        Object(__WEBPACK_IMPORTED_MODULE_9_file_saver__["saveAs"])(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), fileName + " FROM PROJECT '" + projectName + "' - " + dateNow.toLocaleDateString("en-US", options) + ".xlsx");
+    };
+    ExcelService.prototype.exportToExcell = function (projectId, projectName, selectedArrayElements, queryString, sheetName, fileName, controllerName, wscols) {
+        var _this = this;
+        var arrayList = [];
+        if (controllerName === 'Instrumentations') {
+            this.instrumentationService.getInstrumentationsCheckList2(projectId, selectedArrayElements, queryString).subscribe(function (instrupentations) {
+                arrayList = instrupentations[0];
+                console.log(arrayList);
+                var tmp = [];
+                for (var index = 0; index < arrayList.length; ++index) {
+                    tmp.push(arrayList[index].instrumentationItem);
+                }
+                console.log(tmp);
+                _this.xlsxSaver(tmp, sheetName, fileName, projectName, wscols);
+            });
+        }
+        else if (controllerName === 'Controllers') {
+            this.controllerService.getControllersCheckList(projectId, selectedArrayElements, queryString).subscribe(function (controllersItem) {
+                arrayList = controllersItem[0];
+                console.log(arrayList);
+                var tmp = [];
+                for (var index = 0; index < arrayList.length; ++index) {
+                    tmp.push(arrayList[index].controllerItem);
+                }
+                console.log(tmp);
+                _this.xlsxSaver(tmp, sheetName, fileName, projectName, wscols);
+            });
+        }
+        else if (controllerName === 'Sldshadule') {
+            this.sldsheduleService.getSldSheduleExcelList(projectId, selectedArrayElements, queryString).subscribe(function (sldsheduleItem) {
+                arrayList = sldsheduleItem[0];
+                console.log(arrayList);
+                var tmp = [];
+                for (var index = 0; index < arrayList.length; ++index) {
+                    tmp.push(arrayList[index].sldsheduleItem);
+                }
+                console.log(tmp);
+                _this.xlsxSaver(tmp, sheetName, fileName, projectName, wscols);
+            });
+        }
+        else if (controllerName === 'Cabel') {
+            this.cableService.getCabelExcelList(projectId, selectedArrayElements, queryString).subscribe(function (cableItem) {
+                arrayList = cableItem[0];
+                console.log(arrayList);
+                var tmp = [];
+                for (var index = 0; index < arrayList.length; ++index) {
+                    tmp.push(arrayList[index].cableItem);
+                }
+                console.log(tmp);
+                _this.xlsxSaver(tmp, sheetName, fileName, projectName, wscols);
+            });
+        }
+        else if (controllerName === 'Electrical') {
+            this.electricalService.getElectricalExcelList(projectId, selectedArrayElements, queryString).subscribe(function (electricalItem) {
+                arrayList = electricalItem[0];
+                console.log(arrayList);
+                var tmp = [];
+                for (var index = 0; index < arrayList.length; ++index) {
+                    tmp.push(arrayList[index].electricalItem);
+                }
+                console.log(tmp);
+                _this.xlsxSaver(tmp, sheetName, fileName, projectName, wscols);
+            });
+        }
+        else {
+            console.log('Error');
+            return;
+        }
+    };
+    ExcelService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"],
+            __WEBPACK_IMPORTED_MODULE_4__instrumentation_service__["a" /* InstrumentationService */],
+            __WEBPACK_IMPORTED_MODULE_5__controller_service__["a" /* ControllerService */],
+            __WEBPACK_IMPORTED_MODULE_6__sldschedule_service__["a" /* SldscheduleService */],
+            __WEBPACK_IMPORTED_MODULE_8__electrical_service__["a" /* ElectricalService */],
+            __WEBPACK_IMPORTED_MODULE_7__cable_service__["a" /* CableService */]])
+    ], ExcelService);
+    return ExcelService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/instrumentation.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5892,8 +6128,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//import { Observable } from 'rxjs/Observable';
-//import { forkJoin } from "rxjs/observable/forkJoin";
 
 
 
@@ -5953,44 +6187,19 @@ var InstrumentationService = (function () {
         return this.http.get('project/' + projectId + '/instrumentations/' + instrumentationId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
-    InstrumentationService.prototype.getObjectsById = function (id, arrayList) {
+    InstrumentationService.prototype.getObjectsById = function (id, arrayList, queryString) {
         var _this = this;
         var observableBatch = [];
         arrayList.forEach(function (key) {
             //for dev
-            //observableBatch.push(this.http.get('http://localhost:3000/project/'+id+'/instrumentations-item/'+key).map((res) => res.json()));
+            //observableBatch.push(this.http.get('http://localhost:3000/project/'+id+'/'+queryString+'/'+key).map((res) => res.json()));
             //for deploy
-            observableBatch.push(_this.http.get('project/' + id + '/instrumentations-item/' + key).map(function (res) { return res.json(); }));
+            observableBatch.push(_this.http.get('project/' + id + '/' + queryString + '/' + key).map(function (res) { return res.json(); }));
         });
         return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(observableBatch);
     };
-    /*
-    getInstrumentationsCheckList(id, array): Observable<any> {
-      let headers = new Headers();
-      let instrumentation = [];
-        return Observable.forkJoin(
-          //for dev
-          
-          this.http.get('http://localhost:3000/project/'+id+'/instrumentations-item/'+array[0], {headers: headers}).map((res: any) => res.json()),
-          this.http.get('http://localhost:3000/project/'+id+'/instrumentations-item/'+array[1], {headers: headers}).map((res: any) => res.json())
-          
-          //for deploy
-          this.http.get('project/'+id+'/instrumentations-item/'+array[0], {headers: headers}).map((res: any) => res.json()),
-          this.http.get('project/'+id+'/instrumentations-item/'+array[1], {headers: headers}).map((res: any) => res.json())
-        )
-        .map((data: any[]) => {
-          let fisrt = data[0];
-          let second = data[1];
-          instrumentation.push(fisrt);
-          instrumentation.push(second);
-        return instrumentation;
-      });
-    }
-    */
-    InstrumentationService.prototype.getInstrumentationsCheckList2 = function (id, array) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        var instrumentation = [];
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array));
+    InstrumentationService.prototype.getInstrumentationsCheckList2 = function (id, array, queryString) {
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array, queryString));
     };
     InstrumentationService.prototype.updateInstrumentationItem = function (projectId, instrumentationId, instrumentationItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -6115,6 +6324,18 @@ var ProjectService = (function () {
         return this.http.get('project/' + id, { headers: headers })
             .map(function (res) { return res.json(); });
     };
+    ProjectService.prototype.getProjectNameById = function (id) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //for dev
+        /*
+        return this.http.get('http://localhost:3000/project/project-name/'+id, {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        return this.http.get('project/' + id, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
     ProjectService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
@@ -6134,6 +6355,9 @@ var ProjectService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/mergeMap.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6146,10 +6370,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var SldscheduleService = (function () {
     function SldscheduleService(http) {
         this.http = http;
     }
+    SldscheduleService.prototype.getObjectsById = function (id, arrayList, queryString) {
+        var _this = this;
+        var observableBatch = [];
+        arrayList.forEach(function (key) {
+            //for dev
+            //observableBatch.push(this.http.get('http://localhost:3000/project/'+id+'/'+queryString+'/'+key).map((res) => res.json()));
+            //for deploy
+            observableBatch.push(_this.http.get('project/' + id + '/' + queryString + '/' + key).map(function (res) { return res.json(); }));
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(observableBatch);
+    };
+    SldscheduleService.prototype.getSldSheduleExcelList = function (id, array, queryString) {
+        return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array, queryString));
+    };
     SldscheduleService.prototype.getSldScheduleList = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         //for dev use

@@ -3,6 +3,7 @@ const config = require('../config/database');
 
 //ELECTRICAL SCHEMA
 var electrucalSchema = new mongoose.Schema({
+  isChecked: {type: Boolean, default: false},
   itemNumber: String,
   dateCreate: { type: Date, default: Date.now },
   revision: {type: String, default: 'A'},
@@ -173,6 +174,7 @@ var electrucalSchema = new mongoose.Schema({
 
 //CABLE SHEMA
 const cableShema = mongoose.Schema({
+  isChecked: {type: Boolean, default: false},
     //INFO PART
   cableTagFirst: String,
   cableTagSecond: String,
@@ -385,6 +387,7 @@ const cableShema = mongoose.Schema({
 });
 
 const sldScheduleShema = mongoose.Schema({
+  isChecked: {type: Boolean, default: false},
   //Equipment Info
   selectedMajorEquipmentDevice: String, //первый элемент
   selectedEquipmentDescriptionForMajorEquipmentDevice: String, //второй элемент
@@ -626,6 +629,7 @@ const sldScheduleShema = mongoose.Schema({
 //CONTROLLER SHEMA
 const controllerShema = mongoose.Schema({
   //CONTROLLER INFO
+  isChecked: {type: Boolean, default: false},
   itemNumber: String,
   revision: {type: String, default: 'A'},
   dataAdded: { type: Date, default: Date.now },

@@ -24,7 +24,6 @@ router.get('/', function(req, res){
     });
   }
 });
-
 /*CREATE Project*/
 router.post('/project-create', (req, res, next) => {
   let newProject = new Project({
@@ -39,7 +38,6 @@ router.post('/project-create', (req, res, next) => {
     }
   });
 });
-
 /*UPDATE Project*/
 router.put('/:id', function(req, res, next) {
   Project.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -50,7 +48,6 @@ router.put('/:id', function(req, res, next) {
     }
   });
 });
-
 /* DELETE Project */
 router.delete('/:id', function(req, res, next) {
   Project.findByIdAndRemove(req.params.id, req.body, function (err, post) {
@@ -61,7 +58,6 @@ router.delete('/:id', function(req, res, next) {
     }
   });
 });
-
 /*GET Item Project*/
 router.get('/:id', function (req, res) {
   if(req.params && req.params.id){
@@ -80,13 +76,172 @@ router.get('/:id', function (req, res) {
     res.json({success: false, msg:'Failed get project'});
   }
 });
-
+/*GET Item project Name*/
+router.get('/project-name/:id', function (req, res) {
+  if(req.params && req.params.id){
+    Project
+    .findById(req.params.id)
+    .select('title')
+    .exec(function(err, project) {
+      if(!project){
+        res.json({success: true, msg:'Get item project'});
+          return;
+      } else if (err){
+        res.json({success: false, msg:'Failed get project'});
+      }
+        res.json(project);
+    });
+  } else {
+    res.json({success: false, msg:'Failed get project'});
+  }
+});
 //ELECTRICALS END POINT
+/*GET SINGLE ELECTRICALS-ITEM BY ID FOR EXCELL insert cabels*/ 
+router.get('/:id/electrical-item/:electricalid', function(req, res){
+  if (req.params && req.params.id && req.params.electricalid) {
+    Project
+      .findById(req.params.id)
+      .select('electricals') 
+      .exec(
+        function(err, project) {
+          var response, electrical;
+          var electricalItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get electrical item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get electrical item'});
+            return;
+          }
+          if (project.electricals && project.electricals.length > 0) {
+            electrical = project.electricals.id(req.params.electricalid);
+            //console.log(instrumentation);
+            electricalItem['ITEM NUMBER'] = electrical.itemNumber ||'N/A';
+            electricalItem['DATE ADDED'] = electrical.dateCreate || 'N/A';
+            electricalItem['REVISION'] = electrical.revision || 'N/A';
+            electricalItem['QUANTITY'] = electrical.quantity || 'N/A';
+            electricalItem['EQUIPMENT TYPE'] = electrical.selectedEquipmentType || 'N/A';
+            electricalItem['PID DRAWING'] = electrical.selectedPidDrawing || 'N/A';
+            electricalItem['LAYOUT DRAWING'] = electrical.selectedLayoutDrawing || 'N/A';
+            electricalItem['SLD DRAWING'] = electrical.selectedSldDraving || 'N/A';
+            electricalItem['EQUIPMENT TAG'] = electrical.equipmentTag || 'N/A';
+            electricalItem['EQUIPMENT TAG 2'] = 'N/A';
+            electricalItem['PARENT TAG'] = electrical.selectedParentTag || 'N/A';
+            electricalItem['EQUIPMENT NOTES'] = electrical.equipmentNotes || 'N/A';
+            electricalItem['LOCATION/AREA'] = electrical.selectedLocationArea || 'N/A';
+            electricalItem['EQUIPMENT DESCRIPTION'] = electrical.selectedEquipmentDescription || 'N/A';
+            electricalItem['CLONE TAG'] = 'N/A';
+            electricalItem['LENGTH(mm)'] = electrical.length || 'N/A';
+            electricalItem['DEPTH(mm)'] = electrical.depth || 'N/A';
+            electricalItem['HEIGHT(mm)'] = electrical.height || 'N/A';
+            electricalItem['X COORD(m)'] = electrical.coordForX || 'N/A';
+            electricalItem['Y COORD(m)'] = electrical.coordForY || 'N/A';
+            electricalItem['Z COORD(m)'] = electrical.coordForZ || 'N/A';
+            electricalItem['SCENARIO 1 LOAD FACTOR %'] = electrical.scenarioFirstLoadFactor || 'N/A';
+            electricalItem['HEAT DOSSIPATION (W)'] = 'N/A';
+            electricalItem['POWER SYSTEM'] = electrical.selectedPowerSystem || 'N/A';
+            electricalItem['VOLTAGE'] = electrical.selectedVoltage.name || 'N/A';
+            electricalItem['TOTAL % P.F.'] = electrical.totalPF || 'N/A';
+            electricalItem['TOTAL % EFF.'] = electrical.totalEFF || 'N/A';
+            electricalItem['NAMEPLATE RATING'] = electrical.nameplateRating || 'N/A';
+            electricalItem['UNITS'] = electrical.selectedUnits || 'N/A';
+            electricalItem['MOTOR S.F.'] = electrical.selectedMotorSF || 'N/A';
+            electricalItem['MOTOR CODE'] = electrical.selectedMotorCode || 'N/A';
+            electricalItem['SCC RATING'] = electrical.selectedSccRating || 'N/A';
+            electricalItem['ENCLOSURE RATING'] = electrical.selectedEnclosureRating || 'N/A';
+            electricalItem['LOAD FACTOR (%)'] = electrical.loadFactor || 'N/A';
+            electricalItem['LOAD DUTY'] = electrical.selectedLoadDuty || 'N/A';
+            electricalItem['AMBIENT TEMP (°C)'] = electrical.ambientTemp || 'N/A';
+            electricalItem['TERMINATION TEMP (°C)'] = electrical.selectedTerminationTemp || 'N/A';
+            electricalItem['OPERATING T MIN. (°C)'] = electrical.operationTempMin || 'N/A';
+            electricalItem['OPERATING T MAX. (°C)'] = electrical.operationTempMax || 'N/A';
+            electricalItem['INSUL. DESIGNATION'] = electrical.selectedInsulDescription || 'N/A';
+            electricalItem['HAZLOC CLASS'] = electrical.selectedHazlocClass || 'N/A';
+            electricalItem['HAZLOC ZONE'] = electrical.selectedHazlocZone || 'N/A';
+            electricalItem['HAZLOC GROUP'] = electrical.selectedHazlocGroup || 'N/A';
+            electricalItem['HAZLOC TEMPERATURE'] = electrical.selectedHazlocTemperature || 'N/A';
+            if (!electrical) {
+              res.json({success: false, msg:'Failed get electrical item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                electricalItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get electrical item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get electrical item'});
+  }
+});
+//GET CONTROLLER-SHEDULE for EXPORT TO EXCEL
+/*
+router.get('/:id/cable-item-list/:cabelId', function(req, res){
+  if (req.params && req.params.id && req.params.cabelId) {
+    Project
+      .findById(req.params.id)
+      .select('cabels') 
+      .exec(
+        function(err, project) {
+          var response, cable;
+          var cableItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get cable item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get cable item'});
+            return;
+          }
+          if (project.cabels && project.cabels.length > 0) {
+            cable = project.cabels.id(req.params.cabelId);
+            //console.log(instrumentation);
+            cableItem['REV.'] = 'N/A';
+            cableItem['CABLE CONDUIT TAG'] = 'N/A';
+            cableItem['SERVICE'] = cable.selectedService || 'N/A';
+            cableItem['LOAD(A)'] = 'N/A';
+            cableItem['VOLTS'] = cable.selectedVoltage.name || 'N/A';
+            cableItem['FROM SOURCE'] = cable.selectedCableFrom || 'N/A';
+            cableItem['TO DESTINATION'] = cable.selectedCableTo || 'N/A';
+            cableItem['CABLE/CONDUIT SIZE/TYPE'] = cable.selectedCableType || 'N/A';
+            cableItem['CABLE/CONDUIT LENTH(M) ETC.'] = 'N/A';
+            cableItem['NO OF COND.'] = cable.itemNum || 'N/A';
+            cableItem['TYPE OF COND.'] = cable.selectedItemType || 'N/A';
+            cableItem['SIZE (AWG)'] = 'N/A';
+            cableItem['INSUL'] = cable.selectedConductorInsulationType || 'N/A';
+            cableItem['INSUL VOLTS'] = cable.selectedInsulationVoltage || 'N/A';
+            cableItem['SPARE'] = 'N/A';
+            cableItem['COMPONENTS/RACEWAY/NUMBERS'] = 'N/A'; ;
+            if (!cable) {
+              res.json({success: false, msg:'Failed get cable item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                cableItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get cable item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get cable item'});
+  }
+});
+*/
+//
 /* GET ALL Electricals */
 router.get('/:id/electricals',function (req, res) {
   if(req.params){
     Project
-    .findById(req.params.id, 'electricals._id electricals.dateCreate electricals.revision electricals.equipmentTag electricals.selectedEquipmentType electricals.selectedVoltage '+
+    .findById(req.params.id, 'electricals._id electricals.isChecked electricals.dateCreate electricals.revision electricals.equipmentTag electricals.selectedEquipmentType electricals.selectedVoltage '+
     'electricals.selectedPowerSystem electricals.nameplateRating electricals.selectedUnits electricals.totalPF electricals.totalEFF electricals.selectedMotorSF '+
     'electricals.selectedMotorCode electricals.selectedLoadDuty electricals.selectedParentTag electricals.totalConectedFla electricals.totalConectedKW '+
     'electricals.totalConnectedKVAR electricals.totalConnectedKVA electricals.totalDemandFLA electricals.totalDemandKW electricals.totalDemandKVAR electricals.totalDemandKVA '+
@@ -105,7 +260,6 @@ router.get('/:id/electricals',function (req, res) {
     res.json({success: false, msg:'Failed get electrical item'});
   }
 });
-
 router.get('/:id/electrical',function (req, res){
   if(req.params){
     Project
@@ -123,7 +277,6 @@ router.get('/:id/electrical',function (req, res){
     res.json({success: false, msg:'Failed get electrical item'});
   }
 });
-
 router.get('/:id/electrical-for-sld',function (req, res){
   if(req.params){
     Project
@@ -141,7 +294,6 @@ router.get('/:id/electrical-for-sld',function (req, res){
     res.json({success: false, msg:'Failed get electrical item'});
   }
 });
-
 /* GET SINGLE Electrical BY ID */
 router.get('/:id/electricals/:electricalid', function(req, res) {
   if (req.params && req.params.id && req.params.electricalid) {
@@ -177,7 +329,6 @@ router.get('/:id/electricals/:electricalid', function(req, res) {
     res.json({success: false, msg:'Failed get electrical item'});
   }
 });
-
 /* CREATE NEW Electrical */
 router.post('/:id/electrical-create', function(req, res) {
   if (req.params.id) {
@@ -207,7 +358,6 @@ router.post('/:id/electrical-create', function(req, res) {
     res.json({success: false, msg:'Failed get electrical item'});
   }
 });
-
 /* UPDATE Electrical*/
 router.patch('/:id/electrical-update/:electricalid', function(req, res) {
   if (req.params && req.params.id && req.params.electricalid) {
@@ -303,7 +453,6 @@ router.patch('/:id/electrical-update/:electricalid', function(req, res) {
     return;
   }
 });
-
 /* DELETE Electrical by ID*/
 router.delete('/:id/electricals/:electricalid', function (req, res) { 
   if (!req.params && !req.params.id && !req.params.electricalid) {
@@ -338,13 +487,148 @@ router.delete('/:id/electricals/:electricalid', function (req, res) {
     }
   );
 });
-
 //CABLES
+/*GET SINGLE CABLE-ITEM BY ID FOR EXCELL insert cabels*/ 
+router.get('/:id/cable-item/:cabelId', function(req, res){
+  if (req.params && req.params.id && req.params.cabelId) {
+    Project
+      .findById(req.params.id)
+      .select('cabels') 
+      .exec(
+        function(err, project) {
+          var response, cable;
+          var cableItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get cable item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get cable item'});
+            return;
+          }
+          if (project.cabels && project.cabels.length > 0) {
+            cable = project.cabels.id(req.params.cabelId);
+            //console.log(instrumentation);
+            cableItem['CABLE CONDUIT TAG'] = 'N/A';
+            cableItem['CABLE FROM'] = cable.selectedCableFrom || 'N/A';
+            cableItem['CABLE TO'] = cable.selectedCableTo || 'N/A';
+            cableItem['SYSTEM'] = cable.selectedPowerSystem || 'N/A';
+            cableItem['CONDUCTOR MATERIAL'] = cable.selectedConductorMaterial.name || 'N/A';
+            cableItem['CIRCUIT VOLTAGE'] = cable.selectedVoltage.name || 'N/A';
+            cableItem['SERVICE'] = cable.selectedService || 'N/A';
+            cableItem['MAX. AMB. TEMP.'] = cable.selectedMaxAmbientTemp || 'N/A';
+            cableItem['CABLE TYPE'] = cable.selectedCableType || 'N/A';
+            cableItem['INSULATION VOLTAGE'] = cable.selectedInsulationVoltage || 'N/A';
+            cableItem['INS. RATING'] = cable.selectedInsulationRating || 'N/A';
+            cableItem['CONDUCTOR INS. TYPE'] = cable.selectedConductorInsulationType || 'N/A';
+            cableItem['INS. TEMP. RATING'] = cable.selectedInsulationTemperatureRating.name || 'N/A';
+            cableItem['SHIELD'] = cable.selectedShield || 'N/A';
+            cableItem['ARMOUR'] = cable.selectedArmour || 'N/A';
+            cableItem['KG/M'] = cable.kgPerMetr || 'N/A'; ;
+            cableItem['OUT JACKET'] = cable.outJacket || 'N/A';
+            cableItem['JACKET COLOR'] = cable.selectedJacketColor || 'N/A';
+            cableItem['RACEWAY'] = cable.selectedRaceway || 'N/A';
+            cableItem['FT. RATING'] = cable.selectedFtRating || 'N/A';
+            cableItem['WIRE COLOR'] = cable.selectedWireColor || 'N/A';
+            cableItem['APPROVAL'] = cable.selectedApproval || 'N/A';
+            cableItem['O.D.'] = cable.od || 'N/A';
+            cableItem['No'] = cable.itemNum || 'N/A';
+            cableItem['TYPE'] = cable.selectedItemType || 'N/A';
+            cableItem['SIZE'] = cable.selectedCableSize || 'N/A';
+            cableItem['INSTALL METHOD'] = cable.selectedInstallMethod || 'N/A';
+            cableItem['SPACING'] = cable.selectedSpacing || 'N/A';
+            cableItem['SPACING CORRECTION'] = cable.selectedSpacingCorrection || 'N/A';
+            cableItem['TEMP. CORRECTION'] = cable.tempCorrection || 'N/A';
+            cableItem['CEC 28-104'] = cable.selectedCec || 'N/A';
+            cableItem['CORRECTED COND. AMP.'] = cable.correctedCondAmp || 'N/A';
+            cableItem['NO. OF RUNS PER PHASE'] = cable.numberOfRunsPerPhase || 'N/A';
+            cableItem['FEEDER AMPACITY'] = cable.feederAmpacity || 'N/A';
+            cableItem['TOTAL LENGTH'] = cable.cableLenth || 'N/A';
+            cableItem['VOLTAGE DROP (%)'] = cable.voltageDropPercent || 'N/A';
+            cableItem['CONNECTED FLA'] = cable.connectedFLA || 'N/A';
+            cableItem['AMPACITY MULTIPLIER'] = cable.selectedAmpacityMultiplier || 'N/A';
+            cableItem['MIN. COND. AMP.'] = cable.minCondAmp || 'N/A';
+            cableItem['COND. AMPACITY'] = cable.condAmpacity || 'N/A';
+            cableItem['O/C AMP RATING'] = cable.ocAmpRating || 'N/A';
+            cableItem['INTERNAL NOTES'] = cable.internalNotes || 'N/A';
+            if (!cable) {
+              res.json({success: false, msg:'Failed get cable item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                cableItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get cable item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get cable item'});
+  }
+});
+//GET CONTROLLER-SHEDULE for EXPORT TO EXCEL
+router.get('/:id/cable-item-list/:cabelId', function(req, res){
+  if (req.params && req.params.id && req.params.cabelId) {
+    Project
+      .findById(req.params.id)
+      .select('cabels') 
+      .exec(
+        function(err, project) {
+          var response, cable;
+          var cableItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get cable item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get cable item'});
+            return;
+          }
+          if (project.cabels && project.cabels.length > 0) {
+            cable = project.cabels.id(req.params.cabelId);
+            //console.log(instrumentation);
+            cableItem['REV.'] = 'N/A';
+            cableItem['CABLE CONDUIT TAG'] = 'N/A';
+            cableItem['SERVICE'] = cable.selectedService || 'N/A';
+            cableItem['LOAD(A)'] = 'N/A';
+            cableItem['VOLTS'] = cable.selectedVoltage.name || 'N/A';
+            cableItem['FROM SOURCE'] = cable.selectedCableFrom || 'N/A';
+            cableItem['TO DESTINATION'] = cable.selectedCableTo || 'N/A';
+            cableItem['CABLE/CONDUIT SIZE/TYPE'] = cable.selectedCableType || 'N/A';
+            cableItem['CABLE/CONDUIT LENTH(M) ETC.'] = 'N/A';
+            cableItem['NO OF COND.'] = cable.itemNum || 'N/A';
+            cableItem['TYPE OF COND.'] = cable.selectedItemType || 'N/A';
+            cableItem['SIZE (AWG)'] = 'N/A';
+            cableItem['INSUL'] = cable.selectedConductorInsulationType || 'N/A';
+            cableItem['INSUL VOLTS'] = cable.selectedInsulationVoltage || 'N/A';
+            cableItem['SPARE'] = 'N/A';
+            cableItem['COMPONENTS/RACEWAY/NUMBERS'] = 'N/A'; ;
+            if (!cable) {
+              res.json({success: false, msg:'Failed get cable item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                cableItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get cable item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get cable item'});
+  }
+});
 /* GET ALL Cabels */
 router.get('/:id/cables',function (req, res) {
   if(req.params){
     Project
-    .findById(req.params.id, 'cabels._id cabels.cableTagFirst cabels.cableTagSecond cabels.cableTagThird cabels.cableTagFourth cabels.selectedCableTagIndex '+
+    .findById(req.params.id, 'cabels._id cabels.isChecked cabels.cableTagFirst cabels.cableTagSecond cabels.cableTagThird cabels.cableTagFourth cabels.selectedCableTagIndex '+
     'cabels.selectedService cabels.selectedVoltage cabels.selectedCableType cabels.itemNum cabels.selectedCableFrom cabels.selectedCableTo cabels.cableLenth '+
     'cabels.itemNum cabels.selectedItemType cabels.selectedCableSize cabels.selectedConductorInsulationType cables.selectedInsulationVoltage')
     .exec(function(err, project) {
@@ -360,9 +644,6 @@ router.get('/:id/cables',function (req, res) {
     res.json({success: false, msg:'Failed get electrical item'});
   }
 });
-/*router.get('/:id/cables-list', function (req, res){
-
-});*/
 /* CREATE NEW Cable */
 router.post('/:id/cable-create', function(req, res) {
   if (req.params.id) {
@@ -543,11 +824,188 @@ router.delete('/:id/cables/:cableId', function (req, res) {
 });
 
 //SLD-SCHEDULE
+//
+/*GET SINGLE SLD-SHEDULE-ITEM BY ID FOR EXCELL insert controller*/ 
+router.get('/:id/sldshedule-item/:sldscheduleId', function(req, res){
+  if (req.params && req.params.id && req.params.sldscheduleId) {
+    Project
+      .findById(req.params.id)
+      .select('sldschedules') 
+      .exec(
+        function(err, project) {
+          var response, sldshedule;
+          var sldsheduleItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get sld-shedule item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get sld-shedule item'});
+            return;
+          }
+          if (project.sldschedules && project.sldschedules.length > 0) {
+            sldshedule = project.sldschedules.id(req.params.sldscheduleId);
+            //console.log(instrumentation);
+            sldsheduleItem['MAJOR EQUIPMENT DEVICE'] = sldshedule.selectedMajorEquipmentDevice || 'N/A';
+            sldsheduleItem['EQUIPMENT DESCRIPTION'] = sldshedule.selectedEquipmentDescriptionForMajorEquipmentDevice || 'N/A';
+            sldsheduleItem['MAJOR EQUIPMENT TAG'] = sldshedule.selectedMajorEquipmentTag || 'N/A';
+            sldsheduleItem['EQUIPMENT DESCRIPTION'] = sldshedule.selectedEquipmentDescriptionForMajorEquipmentTag || 'N/A';
+            sldsheduleItem['MAJOR EQUIPMENT DEVICE TAG'] = sldshedule.majorEquipmentDeviceTag || 'New SLD Schedule';
+            sldsheduleItem['SYSTEM VOLTAGE'] = sldshedule.selectedSystemVoltage || 'N/A';
+            sldsheduleItem['INCOMER'] = sldshedule.incomer || 'N/A';
+            sldsheduleItem['LIGHTNING ARRESTOR'] = sldshedule.lightningArrestor || 'N/A';
+            sldsheduleItem['FEEDER ENTRY'] = sldshedule.selectedFeederEntry || 'N/A';
+            sldsheduleItem['SURGE PROTECTION'] = sldshedule.surgeProtection || 'N/A';
+            sldsheduleItem['O/C DEVICE'] = sldshedule.selectedOCDevice || 'N/A';
+            sldsheduleItem['CONTACTOR TYPE'] = sldshedule.selectedContactorType || 'N/A';
+            sldsheduleItem['CPT QTY'] = sldshedule.selectedCPTQTY || 'N/A';
+            sldsheduleItem['CT QTY'] = sldshedule.selectedCTQTY || 'N/A';
+            sldsheduleItem['TRIP RATING'] = sldshedule.tripRating || 'N/A';
+            sldsheduleItem['CONTACTOR SIZE'] = sldshedule.selectedContactorSize || 'N/A'; ;
+            sldsheduleItem['CPT VOLTAGE'] = sldshedule.selectedCPTVoltage || 'N/A';
+            sldsheduleItem['CT RATIO'] = sldshedule.selectedCTRatio || 'N/A';
+            sldsheduleItem['FRAME RATING'] = sldshedule.selectedFrameRating || 'N/A';
+            sldsheduleItem['OVERLOAD TYPE'] = sldshedule.selectedOverloadType || 'N/A';
+            sldsheduleItem['CPT RATING'] = sldshedule.selectedCPTRating || 'N/A';
+            sldsheduleItem['CT ACCURACY'] = sldshedule.selectedCTAccuracy || 'N/A';
+            sldsheduleItem['FUSE RATING'] = sldshedule.selectedFuseRating || 'N/A';
+            sldsheduleItem['OVERLOAD SIZE'] = sldshedule.overloadSize || 'N/A';
+            sldsheduleItem['VT QTY'] = sldshedule.selectedVTQTY || 'N/A';
+            sldsheduleItem['GFCT RATIO'] = sldshedule.selectedGFCTRatio || 'N/A';
+            sldsheduleItem['SWITCH RATING'] = sldshedule.selectedSwitchRating || 'N/A';
+            sldsheduleItem['VT VOLTAGE'] = sldshedule.selectedVTVoltage || 'N/A';
+            sldsheduleItem['SHUNT COIL'] = sldshedule.selectedShuntCoil || 'N/A';
+            sldsheduleItem['VT ACCURACY'] = sldshedule.selectedVTAccuracy || 'N/A';
+            sldsheduleItem['KIRK KEY'] = sldshedule.selectedKirkKey || 'N/A';
+            sldsheduleItem['GROUND STUD'] = sldshedule.selectedGroundStud || 'N/A';
+            sldsheduleItem['TRANSFORMER PR'] = sldshedule.TransformerPR || 'N/A';
+            sldsheduleItem['INDICATING LIGHTS'] = sldshedule.selectedIndicatingLights || 'N/A';
+            sldsheduleItem['N.O. AUX CONTACT'] = sldshedule.selectedNOAuxContact || 'N/A';
+            sldsheduleItem['PQM'] = sldshedule.PQM || 'N/A';
+            sldsheduleItem['MOTOR PR'] = sldshedule.MotorPR || 'N/A';
+            sldsheduleItem['SPACE HEATER'] = sldshedule.SpaceHeater || 'N/A';
+            sldsheduleItem['N.C. AUX CONTACT'] = sldshedule.selectedNCAuxContact || 'N/A';
+            sldsheduleItem['FEEDER PR'] = sldshedule.FeederPR || 'N/A';
+            sldsheduleItem['NGR RELAY'] = sldshedule.NGRRelay || 'N/A';
+            sldsheduleItem['HEATER CIRCUIT'] = sldshedule.HeaterCircuit || 'N/A';
+            sldsheduleItem['INTERPOS. RELAY'] = sldshedule.selectedInterposRelay || 'N/A';
+            sldsheduleItem['PDP Detail - Panel'] = sldshedule.selectedFirstPanelValue || 'N/A';
+            sldsheduleItem['PDP Detail - 2'] = sldshedule.selectedSecondPanelValue || 'N/A';
+            sldsheduleItem['PDP Detail - 3'] = sldshedule.selectedThirdPanelValue || 'N/A';
+            sldsheduleItem['CIRCUIT NUMBERS'] = sldshedule.CircuitNumbers || 'N/A';
+            sldsheduleItem['CFG'] = sldshedule.CFG || 'N/A';
+            sldsheduleItem['LOCAL SWITCH/PB - 1'] = sldshedule.selectedFirstValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['LOCAL SWITCH/PB - 2'] = sldshedule.selectedSecondValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['LOCAL SWITCH/PB - 3'] = sldshedule.selectedThirdValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['LOCAL SWITCH/PB - 4'] = sldshedule.selectedFourthValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH/PB - 1'] = sldshedule.selectedFirstValueFieldSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH/PB - 2'] = sldshedule.selectedSecondValueFieldSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH/PB - 3'] = sldshedule.selectedThirdValueFieldSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH/PB - 4'] = sldshedule.selectedFourthValueLocalFieldSwitchPB || 'N/A';
+            if (!sldshedule) {
+              res.json({success: false, msg:'Failed get sld-shedule  item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                sldsheduleItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get sld-shedule  item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get instrumentations item'});
+  }
+});
+//GET CONTROLLER-SHEDULE for EXPORT TO EXCEL
+router.get('/:id/sldshedule-item-list/:sldscheduleId', function(req, res){
+  if (req.params && req.params.id && req.params.sldscheduleId) {
+    Project
+      .findById(req.params.id)
+      .select('sldschedules') 
+      .exec(
+        function(err, project) {
+          var response, sldshedule;
+          var sldsheduleItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get sld-shedule item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get sld-shedule item'});
+            return;
+          }
+          if (project.sldschedules && project.sldschedules.length > 0) {
+            sldshedule = project.sldschedules.id(req.params.sldscheduleId);
+            //console.log(instrumentation);
+            sldsheduleItem['REV.'] = 'N/A';
+            sldsheduleItem['MAJOR EQUIPMENT DEVICE TAG'] = sldshedule.majorEquipmentDeviceTag || "";
+            sldsheduleItem['EQUIPMENT DESCRIPTION'] = 'N/A';
+            sldsheduleItem['DEVICE TYPE'] = sldshedule.selectedOCDevice || 'N/A';
+            sldsheduleItem['FRAME RATING'] = sldshedule.selectedFrameRating || 'N/A';
+            sldsheduleItem['TRIP RATING'] = sldshedule.tripRating || 'N/A';
+            sldsheduleItem['FUSE RATING'] = sldshedule.selectedFuseRating || 'N/A';
+            sldsheduleItem['CONTACTOR TYPE'] = sldshedule.selectedContactorType || 'N/A';
+            sldsheduleItem['CONTACTOR SIZE'] = sldshedule.selectedContactorSize || 'N/A';
+            sldsheduleItem['OVERLOAD TYPE'] = sldshedule.selectedOverloadType || 'N/A';
+            sldsheduleItem['OVERLOAD SIZE'] = sldshedule.overloadSize || 'N/A';
+            sldsheduleItem['CPT QTY'] = sldshedule.selectedCPTQTY || 'N/A';
+            sldsheduleItem['CPT VOLTAGE'] = sldshedule.selectedCPTVoltage || 'N/A';
+            sldsheduleItem['CPT RATING'] = sldshedule.selectedCPTRating || 'N/A';
+            sldsheduleItem['VT QTY'] = sldshedule.selectedVTQTY || 'N/A';
+            sldsheduleItem['VT VOLTAGE'] = sldshedule.selectedVTVoltage || 'N/A'; ;
+            sldsheduleItem['VT ACCURACY'] = sldshedule.selectedVTAccuracy || 'N/A';
+            sldsheduleItem['Ct QTY'] = sldshedule.selectedCTQTY || 'N/A';
+            sldsheduleItem['CT RATIO'] = sldshedule.selectedCTRatio || 'N/A';
+            sldsheduleItem['GF CT RATIO'] = sldshedule.selectedGFCTRatio || 'N/A';
+            sldsheduleItem['SHUNT COIL'] = sldshedule.selectedShuntCoil || 'N/A';
+            sldsheduleItem['KIRK KEY INTRLCK'] = sldshedule.selectedKirkKey || 'N/A';
+            sldsheduleItem['GROUND STUD'] = sldshedule.selectedGroundStud || 'N/A';
+            sldsheduleItem['PQM'] = sldshedule.PQM || 'N/A';
+            sldsheduleItem['FDR PR'] = sldshedule.FeederPR || 'N/A';
+            sldsheduleItem['TX PR'] = sldshedule.TransformerPR || 'N/A';
+            sldsheduleItem['MTR PR'] = sldshedule.MotorPR || 'N/A';
+            sldsheduleItem['NGR PR'] = sldshedule.NGRRelay || 'N/A';
+            sldsheduleItem['IND. LTS.'] = sldshedule.selectedIndicatingLights || 'N/A';
+            sldsheduleItem['SPC. HTR.'] = sldshedule.SpaceHeater || 'N/A';
+            sldsheduleItem['HTR. CIRC.'] = sldshedule.HeaterCircuit || 'N/A';
+            sldsheduleItem['N.O. AUX.'] = sldshedule.selectedNOAuxContact || 'N/A';
+            sldsheduleItem['N.C. AUX.'] = sldshedule.selectedNCAuxContact || 'N/A';
+            sldsheduleItem['IPOS. RLY.'] = sldshedule.selectedInterposRelay || 'N/A';
+            sldsheduleItem['LOCAL SWITCH / PUSHBUTTON 1'] = sldshedule.selectedFirstValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['LOCAL SWITCH / PUSHBUTTON 2'] = sldshedule.selectedSecondValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['LOCAL SWITCH / PUSHBUTTON 3'] = sldshedule.selectedThirdValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['LOCAL SWITCH / PUSHBUTTON 4'] = sldshedule.selectedFourthValueLocalSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH / PUSHBUTTON 1'] = sldshedule.selectedFirstValueFieldSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH / PUSHBUTTON 2'] = sldshedule.selectedSecondValueFieldSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH / PUSHBUTTON 3'] = sldshedule.selectedThirdValueFieldSwitchPB || 'N/A';
+            sldsheduleItem['FIELD SWITCH / PUSHBUTTON 4'] = sldshedule.selectedFourthValueLocalFieldSwitchPB || 'N/A';
+            if (!sldshedule) {
+              res.json({success: false, msg:'Failed get sld-shedule item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                sldsheduleItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get sld-shedule item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get sld-shedule item'});
+  }
+});
 /* get ALL sldshedules for SLDSCEDULES-LIST*/
 router.get('/:id/sld-schedules-list', function (req, res){
   if(req.params){
     Project
-    .findById(req.params.id, 'sldschedules._id sldschedules.majorEquipmentDeviceTag sldschedules.selectedOCDevice '+ //пропустил Rev. и Equipment Description
+    .findById(req.params.id, 'sldschedules._id sldschedules.isChecked sldschedules.majorEquipmentDeviceTag sldschedules.selectedOCDevice '+ //пропустил Rev. и Equipment Description
     'sldschedules.selectedFrameRating sldschedules.tripRating sldschedules.selectedFuseRating sldschedules.selectedContactorType sldschedules.selectedContactorSize '+
     'sldschedules.selectedOverloadType sldschedules.overloadSize sldschedules.selectedCPTQTY sldschedules.selectedCPTVoltage sldschedules.selectedCPTRating sldschedules.selectedVTQTY '+
     'sldschedules.selectedVTVoltage sldschedules.selectedVTAccuracy sldschedules.selectedCTQTY sldschedules.selectedCTRatio sldschedules.selectedGFCTRatio sldschedules.selectedShuntCoil '+
@@ -772,11 +1230,148 @@ router.delete('/:id/sld-schedules/:sldScheduleId', function (req, res) {
 });
 
 //CONTROLLER-SHEDULE
+/*GET SINGLE CONTROLLER-SHEDULE-ITEM BY ID FOR EXCELL*/
+router.get('/:id/controllers-item/:controllerId', function(req, res){
+  if (req.params && req.params.id && req.params.controllerId) {
+    Project
+      .findById(req.params.id)
+      .select('controllers') 
+      .exec(
+        function(err, project) {
+          var response, controller;
+          var controllerItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get controllers item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get controllers item'});
+            return;
+          }
+          if (project.controllers && project.controllers.length > 0) {
+            controller = project.controllers.id(req.params.controllerId);
+            //console.log(instrumentation);
+            controllerItem['ITEM NUMBER'] = controller.itemNumber || 'N/A';
+            controllerItem['REVISION'] = controller.revision || "New Instrumentation";
+            controllerItem['DATE ADDED'] = controller.dataAdded || 'N/A';
+            controllerItem['CONTROLS EQUIPMENT TAG 1'] = controller.controlsEquipmentTagFirst || 'N/A';
+            controllerItem['CONTROLS EQUIPMENT TAG 2'] = controller.controlsEquipmentTagSecond || 'N/A';
+            controllerItem['CONTROLS EQUIPMENT PARENT TAG'] = controller.selectedControlsEquipmentParentTag || 'N/A';
+            controllerItem['LOCATION'] = controller.selectedLocation || 'N/A';
+            controllerItem['DATA SHEET UMBER'] = controller.selectedDataSheetNumber || 'N/A';
+            controllerItem['LAYOUT DRAWING'] = controller.selectedLayoutDraving || 'N/A';
+            controllerItem['SCHEMANTIC DRAWING'] = controller.selectedSchematicDraving || 'N/A';
+            controllerItem['EQUIPMENT TYPE'] = controller.selectedEquipmentType || 'N/A';
+            controllerItem['CONTROLLER TYPE'] = controller.selectedControllerType.name || 'N/A';
+            controllerItem['CONTROLLER FUNCTION'] = controller.selectedControllerFunction.name || 'N/A';
+            controllerItem['CONTROLLER MANUFACTURER'] = controller.selectedControllerManufacturer.name || 'N/A';
+            controllerItem['CONTROLLER SERIES'] = controller.selectedControllerSeries.name || 'N/A';
+            controllerItem['CLONE EQUIPMENT TYPE'] = controller.selectedCloneEquipmentType.name || 'N/A'; ;
+            controllerItem['EQUIPMENT MODEL'] = controller.selectedEquipmentModel.name || 'N/A';
+            controllerItem['NODE'] = controller.node || 'N/A';
+            controllerItem['CHASSIS'] = controller.chassis || 'N/A';
+            controllerItem['SLOT'] = controller.slot || 'N/A';
+            controllerItem['DATA'] = controller.data || 'N/A';
+            controllerItem['IP ADDRESS'] = controller.selectedIPAdress.name || 'N/A';
+            controllerItem['I/O PER CARD'] = controller.selectedIOPerCard.name || 'N/A';
+            controllerItem['RELAY QUANTITY'] = controller.relayQuantity || 'N/A';
+            controllerItem['DC POWER'] = controller.dcPower || 'N/A';
+            controllerItem['ESD POWER'] = controller.esdPower || 'N/A';
+            controllerItem['I/O TAG'] = controller.selectedIOTag.name || 'N/A';
+            controllerItem['I/O TYPE'] = controller.selectedIOType.name || 'N/A';
+            controllerItem['I/O DESCRIPTION'] = controller.selectedIODescription.name || 'N/A';
+            controllerItem['RELAY I/O TAG'] = controller.selectedRelayIODescription.name || 'N/A';
+            controllerItem['RELAY I/O TYPE'] = controller.selectedRelayIOType.name || 'N/A';
+            controllerItem['RELAY I/O DESCRIPTION'] = controller.selectedIODescriptionRelay.name || 'N/A';
+            controllerItem['CONTROLLER TAG'] = controller.selectedControllerTag || 'N/A';
+            controllerItem['RACK#'] = controller.selectedRack || 'N/A';
+            if (!controller) {
+              res.json({success: false, msg:'Failed get controllers item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                controllerItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get instrumentations item'});
+  }
+});
+//GET CONTROLLER-SHEDULE for EXPORT TO EXCEL
+router.get('/:id/controllers-item-list/:controllerId', function(req, res){
+  if (req.params && req.params.id && req.params.controllerId) {
+    Project
+      .findById(req.params.id)
+      .select('controllers') 
+      .exec(
+        function(err, project) {
+          var response, controller;
+          var controllersItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get controller item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get controller item'});
+            return;
+          }
+          if (project.controllers && project.controllers.length > 0) {
+            controller = project.controllers.id(req.params.controllerId);
+            //console.log(instrumentation);
+            controllersItem['REV.'] = controller.revision || 'N/A';
+            controllersItem['CONTROLS EQUIPMENT TAG'] = controller.controlsEquipmentTagFirst || "New Controller";
+            controllersItem['CONTROLS EQUIPMENT PARENT TAG'] = controller.selectedControlsEquipmentParentTag || 'N/A';
+            controllersItem['CONTROLLER TYPE'] = controller.selectedControllerType.name || 'N/A';
+            controllersItem['CONTROLLER MANUFACTURER'] = controller.selectedControllerManufacturer.name || 'N/A';
+            controllersItem['CONTROLLER FUNCTION'] = controller.selectedControllerFunction.name || 'N/A';
+            controllersItem['CONTROLLER SERIES'] = controller.selectedControllerSeries.name || 'N/A';
+            controllersItem['EQUIPMENT TYPE'] = controller.selectedEquipmentType || 'N/A';
+            controllersItem['CLONE EQUIPMENT TYPE'] = controller.selectedCloneEquipmentType.name || 'N/A';
+            controllersItem['EQUIPMENT MODEL'] = controller.selectedEquipmentModel.name || 'N/A';
+            controllersItem['NODE'] = controller.node || 'N/A';
+            controllersItem['CHASSIS'] = controller.chassis || 'N/A';
+            controllersItem['SLOT'] = controller.slot || 'N/A';
+            controllersItem['DATA'] = controller.data || 'N/A';
+            controllersItem['IP ADDRESS'] = controller.selectedIPAdress.name || 'N/A';
+            controllersItem['I/O PER CARD'] = controller.selectedIOPerCard.name || 'N/A'; ;
+            controllersItem['DC POWER'] = controller.dcPower || 'N/A';
+            controllersItem['RELAY QUANTITY'] = controller.relayQuantity || 'N/A';
+            controllersItem['ESD POWER'] = controller.esdPower || 'N/A';
+            controllersItem['I/O TAG'] = controller.selectedIOTag.name || 'N/A';
+            controllersItem['I/O TYPE'] = controller.selectedIOType.name || 'N/A';
+            controllersItem['I/O DESCRIPTION'] = controller.selectedIODescription.name || 'N/A';
+            controllersItem['RELAY I/O TAG'] = controller.selectedRelayIODescription.name || 'N/A';
+            controllersItem['RELAY I/O TYPE'] = controller.selectedRelayIOType.name || 'N/A';
+            controllersItem['RELAY I/O DESCRIPTION'] = controller.selectedIODescriptionRelay.name || 'N/A';
+            if (!controller) {
+              res.json({success: false, msg:'Failed get controllers item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                controllersItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get controllers item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get controllers item'});
+  }
+});
 /* get ALL controllers for CONTROLLERS-LIST*/
 router.get('/:id/controllers-list', function (req, res){
   if(req.params){
     Project
-    .findById(req.params.id, 'controllers._id controllers.revision controllers.controlsEquipmentTagFirst controllers.selectedControlsEquipmentParentTag'+
+    .findById(req.params.id, 'controllers._id controllers.isChecked controllers.revision controllers.controlsEquipmentTagFirst controllers.selectedControlsEquipmentParentTag'+
     'controllers.selectedControllerType.name controllers.selectedControllerManufacturer.name controllers.selectedControllerFunction.name '+
     'controllers.selectedControllerSeries.name controllers.selectedEquipmentType controllers.selectedCloneEquipmentType.name controllers.selectedEquipmentModel.name'+
     'controllers.node controllers.chassis controllers.slot controllers.data controllers.selectedIPAdress.name controllers.selectedIOPerCard.name'+
@@ -1069,6 +1664,64 @@ router.post('/:id/instrumentation-create', function(req, res){
   }
 });
 
+//GET INSTRIMENTATION for EXPORT TO EXCEL
+router.get('/:id/instrumentations-item-list/:instrumentationId', function(req, res){
+  if (req.params && req.params.id && req.params.instrumentationId) {
+    Project
+      .findById(req.params.id)
+      .select('instrumentations') 
+      .exec(
+        function(err, project) {
+          var response, instrumentation;
+          var instrumentationItem = {}; 
+          if (!project) {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+            return;
+          } else if (err) {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+            return;
+          }
+          if (project.instrumentations && project.instrumentations.length > 0) {
+            instrumentation = project.instrumentations.id(req.params.instrumentationId);
+            //console.log(instrumentation);
+            instrumentationItem['ITEM.'] = instrumentation.itemNumber || 'N/A';
+            instrumentationItem['INSTRUMENTATION TAG'] = instrumentation.instrumentationTag || "New Instrumentation";
+            instrumentationItem['INSTRUMENT DESCRIPTION'] =  instrumentation.selectedInstrumentDescription || 'N/A';
+            instrumentationItem['SERVICE DESCRIPTION'] = instrumentation.selectedServiceDescription || 'N/A';
+            instrumentationItem['INSTRUMENT FUNCTION'] = instrumentation.selectedInstrumentFunction || 'N/A';
+            instrumentationItem['INSTRUMENT TYPE 1'] = instrumentation.selectedFirstInstrumentType || 'N/A';
+            instrumentationItem['INSTRUMENT TYPE 2'] = instrumentation.selectedSecondInstrumentType || 'N/A';
+            instrumentationItem['STATUS'] = instrumentation.selectedStatus || 'N/A';
+            instrumentationItem['LOCATION'] = instrumentation.selectedLocation || 'N/A';
+            instrumentationItem['SYSTEM'] = instrumentation.selectedSystem || 'N/A';
+            instrumentationItem['I/O TYPE'] = instrumentation.selectedIOType || 'N/A';
+            instrumentationItem['SIGNAL LEVEL'] = instrumentation.selectedSignalLevel || 'N/A';
+            instrumentationItem['POWER SUPPLY'] = instrumentation.selectedPowerSupply || 'N/A';
+            instrumentationItem['PID NUMBER'] = instrumentation.selectedPidNumber || 'N/A';
+            instrumentationItem['DATA SHEET NUMBER'] = instrumentation.selectedDataSheetNumber || 'N/A';
+            instrumentationItem['MODEL NUMBER'] = instrumentation.selectedModelNumber || 'N/A'; ;
+            instrumentationItem['PO NUMBER'] = instrumentation.selectedMrPoNumber || 'N/A';
+            instrumentationItem['MANUFACTURER'] = instrumentation.selectedManufacturer || 'N/A';
+            if (!instrumentation) {
+              res.json({success: false, msg:'Failed get instrumentations item'});
+            } else {
+              response = {
+                status  : 200,
+                success : 'success',
+                instrumentationItem
+              };
+              res.json(response);
+            }
+          } else {
+            res.json({success: false, msg:'Failed get instrumentations item'});
+          }
+        }
+    );
+  } else {
+    res.json({success: false, msg:'Failed get instrumentations item'});
+  }
+});
+
 /*GET SINGLE INSTRUMENTSTION-ITEM BY ID FOR EXCELL*/
 router.get('/:id/instrumentations-item/:instrumentationId', function(req, res){
   if (req.params && req.params.id && req.params.instrumentationId) {
@@ -1089,42 +1742,41 @@ router.get('/:id/instrumentations-item/:instrumentationId', function(req, res){
           if (project.instrumentations && project.instrumentations.length > 0) {
             instrumentation = project.instrumentations.id(req.params.instrumentationId);
             //console.log(instrumentation);
-            instrumentationItem.Item_Number = instrumentation.itemNumber || 'N/A';
-            instrumentationItem.Instrumentation_Tag = instrumentation.instrumentationTag || "New Instrumentation";
-            instrumentationItem.Hazloc_Class = instrumentation.selectedHazlocClass || 'N/A';
-            instrumentationItem.Hazloc_Zone = instrumentation.selectedHazlocZone || 'N/A';
-            instrumentationItem.Hazloc_Group = instrumentation.selectedHazlocGroup || 'N/A';
-            instrumentationItem.Hazloc_Temperature = instrumentation.selectedHazlocTemperature || 'N/A';
-            instrumentationItem.Pid_Number = instrumentation.selectedPidNumber || 'N/A';
-            instrumentationItem.Service_Description = instrumentation.selectedServiceDescription || 'N/A';
-            instrumentationItem.Line_Equipment_Number = instrumentation.selectedLineEquipmentNumber || 'N/A';
-            instrumentationItem.Instrument_Type_1 = instrumentation.selectedFirstInstrumentType || 'N/A';
-            instrumentationItem.Manufacturer = instrumentation.selectedManufacturer || 'N/A';
-            instrumentationItem.Model_Number = instrumentation.selectedModelNumber || 'N/A';
-            instrumentationItem.Data_Sheet_Number = instrumentation.selectedDataSheetNumber || 'N/A';
-            instrumentationItem.MR_PO_Number = instrumentation.selectedMrPoNumber || 'N/A';
-            instrumentationItem.Installation_Detail = instrumentation.selectedInstallationDetail || 'N/A';
-            instrumentationItem.Wiring_Drawing = instrumentation.selectedWiringDrawing || 'N/A';
-            instrumentationItem.Location = instrumentation.selectedLocation || 'N/A';
-            instrumentationItem.System = instrumentation.selectedSystem || 'N/A';
-            instrumentationItem.Instrument_Type_2 = instrumentation.selectedSecondInstrumentType || 'N/A';
-            instrumentationItem.Status = instrumentation.selectedStatus || 'N/A';
-            instrumentationItem.Vendor = instrumentation.selectedVendor || 'N/A';
-            instrumentationItem.Cost = instrumentation.cost || 0;
-            instrumentationItem.Supplied_By = instrumentation.selectedSuppliedBy || 'N/A';
-            instrumentationItem.Installed_By = instrumentation.selectedInstalledBy || 'N/A';
-            instrumentationItem.Signal_Level = instrumentation.selectedSignalLevel || 'N/A';
-            instrumentationItem.IO_Type = instrumentation.selectedIOType || 'N/A';
-            instrumentationItem.Data_Instrument_Added = instrumentation.dateInstrumentAdded || 'N/A';
-            instrumentationItem.X = instrumentation.coordForX || 0;
-            instrumentationItem.Y = instrumentation.coordForY || 0;
-            instrumentationItem.Z = instrumentation.coordForZ || 0;
-            instrumentationItem.Power_Supply = instrumentation.selectedPowerSupply || 'N/A';
-            instrumentationItem.Instrument_Function = instrumentation.selectedInstrumentFunction || 'N/A';
-            instrumentationItem.Instrumentation_Notes = instrumentation.instrumentationNotes || 'N/A';
-            instrumentationItem.Internal_Notes = instrumentation.internalNotes || 'N/A';
-            instrumentationItem.Instrument_Description = instrumentation.selectedInstrumentDescription || 'N/A';
-            //console.log(instrumentationItem);
+            instrumentationItem['ITEM.'] = instrumentation.itemNumber || 'N/A';
+            instrumentationItem['INSTRUMENTATION TAG'] = instrumentation.instrumentationTag || "New Instrumentation";
+            instrumentationItem['INSTRUMENT DESCRIPTION'] =  instrumentation.selectedInstrumentDescription || 'N/A';
+            instrumentationItem['SERVICE DESCRIPTION'] = instrumentation.selectedServiceDescription || 'N/A';
+            instrumentationItem['INSTRUMENT FUNCTION'] = instrumentation.selectedInstrumentFunction || 'N/A';
+            instrumentationItem['INSTRUMENT TYPE 1'] = instrumentation.selectedFirstInstrumentType || 'N/A';
+            instrumentationItem['INSTRUMENT TYPE 2'] = instrumentation.selectedSecondInstrumentType || 'N/A';
+            instrumentationItem['STATUS'] = instrumentation.selectedStatus || 'N/A';
+            instrumentationItem['LOCATION'] = instrumentation.selectedLocation || 'N/A';
+            instrumentationItem['SYSTEM'] = instrumentation.selectedStatus || 'N/A';
+            instrumentationItem['I/O TYPE'] = instrumentation.selectedIOType || 'N/A';
+            instrumentationItem['SIGNAL LEVEL'] = instrumentation.selectedSignalLevel || 'N/A';
+            instrumentationItem['POWER SUPPLY'] = instrumentation.selectedPowerSupply || 'N/A';
+            instrumentationItem['PID NUMBER'] = instrumentation.selectedPidNumber || 'N/A';
+            instrumentationItem['LINE EQUIPMENT NUMBER'] = instrumentation.selectedLineEquipmentNumber || 'N/A';
+            instrumentationItem['DATA SHEET NUMBER'] = instrumentation.selectedDataSheetNumber || 'N/A'; ;
+            instrumentationItem['MODEL NUMBER'] = instrumentation.selectedModelNumber || 'N/A';
+            instrumentationItem['PO NUMBER'] = instrumentation.selectedMrPoNumber || 'N/A';
+            instrumentationItem['MANUFACTURER'] = instrumentation.selectedManufacturer || 'N/A';
+            instrumentationItem['INSTALLATION DETAIL'] = instrumentation.selectedInstallationDetail || 'N/A';
+            instrumentationItem['WRITING DRAWING'] = instrumentation.selectedWiringDrawing || 'N/A';
+            instrumentationItem['HAZLOC CLASS'] = instrumentation.selectedHazlocClass || 'N/A';
+            instrumentationItem['HAZLOC ZONE'] = instrumentation.selectedHazlocZone || 'N/A';
+            instrumentationItem['HAZLOC GROUP'] = instrumentation.selectedHazlocGroup || 'N/A';
+            instrumentationItem['HAZLOC TEMPERATURE'] = instrumentation.selectedHazlocTemperature || 'N/A';
+            instrumentationItem['VENDOR'] = instrumentation.selectedVendor || 'N/A';
+            instrumentationItem['COST'] = instrumentation.cost || 0;
+            instrumentationItem['SUPPLIED BY'] = instrumentation.selectedSuppliedBy || 'N/A';
+            instrumentationItem['INSTALED BY'] = instrumentation.selectedInstalledBy || 'N/A';
+            instrumentationItem['INSTRUMENTATION NOTES'] = instrumentation.instrumentationNotes || 'N/A';
+            instrumentationItem['INTERNAL NOTES'] = instrumentation.internalNotes || 'N/A';
+            instrumentationItem['DATA INSTRUMENT ADDED'] = instrumentation.dateInstrumentAdded || 'N/A' || 'N/A';
+            instrumentationItem['X'] = instrumentation.coordForX || 0;
+            instrumentationItem['Y'] = instrumentation.coordForY || 0;
+            instrumentationItem['Z'] = instrumentation.coordForZ || 0;
             if (!instrumentation) {
               res.json({success: false, msg:'Failed get instrumentations item'});
             } else {
