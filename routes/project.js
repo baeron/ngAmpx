@@ -369,7 +369,7 @@ router.patch('/:id/electrical-update/:electricalid', function(req, res) {
           electrical = project.electricals.id(req.params.electricalid);     
       //Equipment Entry
           //item number
-          electrical.dateCreate = req.body.dateCreate;
+          //electrical.dateCreate = req.body.dateCreate;
           //console.log(electrical.dateCreate);
           electrical.quantity = req.body.quantity;
           electrical.revision = req.body.revision;
