@@ -1371,7 +1371,7 @@ router.get('/:id/controllers-item-list/:controllerId', function(req, res){
 router.get('/:id/controllers-list', function (req, res){
   if(req.params){
     Project
-    .findById(req.params.id, 'controllers._id controllers.isChecked controllers.revision controllers.controlsEquipmentTagFirst controllers.selectedControlsEquipmentParentTag'+
+    .findById(req.params.id, 'controllers._id controllers.isChecked controllers.revision  controllers.controlsEquipmentTagFirst controllers.selectedControlsEquipmentParentTag'+
     'controllers.selectedControllerType.name controllers.selectedControllerManufacturer.name controllers.selectedControllerFunction.name '+
     'controllers.selectedControllerSeries.name controllers.selectedEquipmentType controllers.selectedCloneEquipmentType.name controllers.selectedEquipmentModel.name'+
     'controllers.node controllers.chassis controllers.slot controllers.data controllers.selectedIPAdress.name controllers.selectedIOPerCard.name'+
@@ -1955,4 +1955,161 @@ router.delete('/:id/instrumentations/:instrumentationId', function (req, res){
     }
   );
 });
+
+//IO ASSIGNMENT
+/*CREATE NEW IO ASSIGNMENT*/
+router.post('/:id/io_assignment-create', function(req, res){
+  if (req.params.id) {
+    Project
+      .findById(req.params.id)
+      .select('ioAssignments')
+      .exec(
+        function(err, project) {
+          if (err) {
+            res.json({success: false, msg:'Failed get ioAssignment item'});
+          } else {
+            if (!project) {
+              res.json({success: false, msg:'Failed get ioAssignment item'});
+            } else {
+              project.ioAssignments.push({});
+              project.save(function(err, project) {
+              if (err) {
+                res.json({success: false, msg:'Failed get ioAssignment item'});
+              } else {
+                res.json(project.ioAssignments);
+            }
+          });
+        }
+      }
+    });
+  } else {
+    res.json({success: false, msg:'Failed get ioAssignment item'});
+  }
+});
+
+/*GET ALL IO ASSIGNMENT */
+router.get('/:id/ioassignments', function (req, res) {
+  if(req.params){
+    Project
+      .findById(req.params.id, 'instrumentations.instrumentationTag controllers.controlsEquipmentTagFirst ioAssignments')
+      .exec(function(err, project) {
+        if(!project){
+          res.json({ success: false, msg: 'Failed get ioassignment item'});
+          return;
+        } else if (err) {
+          res.json({success: false, msg: 'Failed get ioassignment item'})
+        }
+        console.log(project);
+        res.json(project);
+      });
+  } else {}
+});
+//
+router.patch('/:id/io_assignment-update', function (req, res){
+  if (req.params && req.params.id) {
+    Project
+      .findById(req.params.id)
+      .select('ioAssignments')
+      .exec(
+        function(err, project) {
+          var response, ioAssignment;
+          ioAssignment = {};
+          ioAssignment.fullDescription = [];
+          ioAssignment.selectedController = req.body.selectedController;
+          ioAssignment.selectedTag = req.body.selectedTag;
+          if(project.ioAssignments.length === 0){
+            project.ioAssignments = [];
+            ioAssignment.selectedTag = req.body.selectedTag;
+            var user = JSON.parse(req.body.fullDescription);
+            var peopleArray = Object.keys(user).map(i => user[i]);
+            ioAssignment.fullDescription = peopleArray;
+            for(var j=0; j<ioAssignment.fullDescription.length; ++j){
+              var tempIOTF = ioAssignment.fullDescription[j].ioTypeFirst;
+              ioAssignment.fullDescription[j].ioTypeFirst = [];
+              var ioTF = Object.keys(tempIOTF).map(w => tempIOTF[w]);
+              ioAssignment.fullDescription[j].ioTypeFirst = ioTF;
+              var tempIOTS = ioAssignment.fullDescription[j].ioTypeSecond;
+              var ioTS = Object.keys(tempIOTS).map(x => tempIOTS[x]);
+              ioAssignment.fullDescription[j].ioTypeSecond = [];
+              ioAssignment.fullDescription[j].ioTypeSecond = ioTS;
+              var tempIOTTh = ioAssignment.fullDescription[j].ioTypeThird;
+              var ioTTh = Object.keys(tempIOTTh).map(y => tempIOTTh[y]);
+              ioAssignment.fullDescription[j].ioTypeThird = [];
+              ioAssignment.fullDescription[j].ioTypeThird = ioTTh;
+              var tempIOTF = ioAssignment.fullDescription[j].ioTypeFourth;
+              var ioTF = Object.keys(tempIOTF).map(z => tempIOTF[z]);
+              ioAssignment.fullDescription[j].ioTypeFourth = [];
+              ioAssignment.fullDescription[j].ioTypeFourth = ioTF;
+            }
+            project.ioAssignments.push(ioAssignment);
+          } else {
+            for(var k = 0; k<project.ioAssignments.length; ++k){
+              var ttt = project.ioAssignments[k];
+              if(req.body.selectedController === ttt.selectedController ){
+                var newFullDescription = JSON.parse(req.body.fullDescription);
+                var newFullDescriptionArray = Object.keys(newFullDescription).map(i => newFullDescription[i]);
+                ioAssignment.fullDescription = newFullDescriptionArray;
+                for(var j=0; j<ioAssignment.fullDescription.length; ++j){
+                  var tempIOTF = ioAssignment.fullDescription[j].ioTypeFirst;
+                  ioAssignment.fullDescription[j].ioTypeFirst = [];
+                  var ioTF = Object.keys(tempIOTF).map(w => tempIOTF[w]);
+                  ioAssignment.fullDescription[j].ioTypeFirst = ioTF;
+                  var tempIOTS = ioAssignment.fullDescription[j].ioTypeSecond;
+                  var ioTS = Object.keys(tempIOTS).map(x => tempIOTS[x]);
+                  ioAssignment.fullDescription[j].ioTypeSecond = [];
+                  ioAssignment.fullDescription[j].ioTypeSecond = ioTS;
+                  var tempIOTTh = ioAssignment.fullDescription[j].ioTypeThird;
+                  var ioTTh = Object.keys(tempIOTTh).map(y => tempIOTTh[y]);
+                  ioAssignment.fullDescription[j].ioTypeThird = [];
+                  ioAssignment.fullDescription[j].ioTypeThird = ioTTh;
+                  var tempIOTF = ioAssignment.fullDescription[j].ioTypeFourth;
+                  var ioTF = Object.keys(tempIOTF).map(z => tempIOTF[z]);
+                  ioAssignment.fullDescription[j].ioTypeFourth = [];
+                  ioAssignment.fullDescription[j].ioTypeFourth = ioTF;
+                }
+                var index = k;
+                project.ioAssignments.splice(index, 1, ioAssignment);
+              } else {
+                ioAssignment.selectedTag = req.body.selectedTag;
+                var user = JSON.parse(req.body.fullDescription);
+                var peopleArray = Object.keys(user).map(i => user[i]);
+                ioAssignment.fullDescription = peopleArray;
+                for(var j=0; j<ioAssignment.fullDescription.length; ++j){
+                  var tempIOTF = ioAssignment.fullDescription[j].ioTypeFirst;
+                  ioAssignment.fullDescription[j].ioTypeFirst = [];
+                  var ioTF = Object.keys(tempIOTF).map(w => tempIOTF[w]);
+                  ioAssignment.fullDescription[j].ioTypeFirst = ioTF;
+                  var tempIOTS = ioAssignment.fullDescription[j].ioTypeSecond;
+                  var ioTS = Object.keys(tempIOTS).map(x => tempIOTS[x]);
+                  ioAssignment.fullDescription[j].ioTypeSecond = [];
+                  ioAssignment.fullDescription[j].ioTypeSecond = ioTS;
+                  var tempIOTTh = ioAssignment.fullDescription[j].ioTypeThird;
+                  var ioTTh = Object.keys(tempIOTTh).map(y => tempIOTTh[y]);
+                  ioAssignment.fullDescription[j].ioTypeThird = [];
+                  ioAssignment.fullDescription[j].ioTypeThird = ioTTh;
+                  var tempIOTF = ioAssignment.fullDescription[j].ioTypeFourth;
+                  var ioTF = Object.keys(tempIOTF).map(z => tempIOTF[z]);
+                  ioAssignment.fullDescription[j].ioTypeFourth = [];
+                  ioAssignment.fullDescription[j].ioTypeFourth = ioTF;
+                }
+                project.ioAssignments.push(ioAssignment);
+              }
+            }
+          }
+          project.save(function(err, project) {
+            if (err) {
+              res.json({success: false, msg:'Failed get ioAssignment item'});
+            } else {
+              res.json(project.ioAssignments);
+          }
+        });
+      });
+    } else {
+      sendJSONresponse(res, 404, {
+        "message": "Not found, project or controller id"
+      });
+      return;
+    }
+});
+
 module.exports = router;

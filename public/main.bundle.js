@@ -126,6 +126,8 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_instrumentation_list_instrumentation_list_component__ = __webpack_require__("../../../../../src/app/components/instrumentation-list/instrumentation-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__components_instrumentation_item_instrumentation_item_component__ = __webpack_require__("../../../../../src/app/components/instrumentation-item/instrumentation-item.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_excel_service__ = __webpack_require__("../../../../../src/app/services/excel.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__components_io_assignment_io_assignment_component__ = __webpack_require__("../../../../../src/app/components/io-assignment/io-assignment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__services_io_assignment_service__ = __webpack_require__("../../../../../src/app/services/io-assignment.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -192,6 +194,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 //EXCELL service
 
+//IO ASSIGNMENT
+
+
 //TODO move to separate component
 var appRoutes = [
     //main pages
@@ -221,6 +226,8 @@ var appRoutes = [
     //instrumentation index
     { path: 'project/:id/instrumentations', component: __WEBPACK_IMPORTED_MODULE_43__components_instrumentation_list_instrumentation_list_component__["a" /* InstrumentationListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
     { path: 'project/:id/instrumentations/:instrumentationId', component: __WEBPACK_IMPORTED_MODULE_44__components_instrumentation_item_instrumentation_item_component__["a" /* InstrumentationItemComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
+    //IO Assignment
+    { path: 'project/:id/ioassignment', component: __WEBPACK_IMPORTED_MODULE_46__components_io_assignment_io_assignment_component__["a" /* IoAssignmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] },
     //profile
     { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_16__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__["a" /* AuthGuard */]] }
 ];
@@ -255,7 +262,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_40__components_controller_item_controller_item_component__["a" /* ControllerItemComponent */],
                 __WEBPACK_IMPORTED_MODULE_41__components_modals_controller_modal_controller_modal_component__["a" /* ControllerModalComponent */],
                 __WEBPACK_IMPORTED_MODULE_43__components_instrumentation_list_instrumentation_list_component__["a" /* InstrumentationListComponent */],
-                __WEBPACK_IMPORTED_MODULE_44__components_instrumentation_item_instrumentation_item_component__["a" /* InstrumentationItemComponent */]
+                __WEBPACK_IMPORTED_MODULE_44__components_instrumentation_item_instrumentation_item_component__["a" /* InstrumentationItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_46__components_io_assignment_io_assignment_component__["a" /* IoAssignmentComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -279,7 +287,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_38__services_controller_service__["a" /* ControllerService */],
                 __WEBPACK_IMPORTED_MODULE_42__services_instrumentation_service__["a" /* InstrumentationService */],
                 __WEBPACK_IMPORTED_MODULE_15__services_contact_us_service__["a" /* ContactUsService */],
-                __WEBPACK_IMPORTED_MODULE_45__services_excel_service__["a" /* ExcelService */]
+                __WEBPACK_IMPORTED_MODULE_45__services_excel_service__["a" /* ExcelService */],
+                __WEBPACK_IMPORTED_MODULE_47__services_io_assignment_service__["a" /* IoAssignmentService */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
         })
@@ -3031,6 +3040,188 @@ var InstrumentationListComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/io-assignment/io-assignment.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/io-assignment/io-assignment.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<div *ngIf=\"ioassignments\">\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <hr/>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <form (ngSubmit)=\"saveIOAssignment(ioAssignmentForm.value)\" #ioAssignmentForm=\"ngForm\">\n        <div class=\"row\">\n          <div class=\"col-6\">\n            <label for=\"itemNumber\">Tag</label>\n            <select\n              [disabled]=\"ioassignments.instrumentations.length == 0\"\n              id=\"selectedTag\"\n              class=\"form-control\"\n              [(ngModel)]=\"ioassignments.selectedTag\"\n              name=\"selectedTag\"\n            >\n              <option\n                *ngFor=\"let currentInstrumentations of ioassignments.instrumentations\" \n                [ngValue]=\"currentInstrumentations.instrumentationTag\"\n                [selected]=\"currentInstrumentations.instrumentationTag==selectedTag\"\n              >\n                {{currentInstrumentations.instrumentationTag}}\n              </option>\n            </select>\n          </div>\n          <div class=\"col-6\">\n            <label for=\"itemNumber\">Controller</label>\n            <select\n              [disabled]=\"ioassignments.controllers.length == 0\"\n              id=\"selectedController\"\n              class=\"form-control\"\n              [(ngModel)]=\"ioassignments.selectedController\"\n              name=\"selectedController\"\n              (change)=\"ioassignmentsControllerChange(ioassignments.selectedTag, ioassignments.selectedController)\"\n            >\n              <option\n                *ngFor=\"let currentController of ioassignments.controllers\" \n                [ngValue]=\"currentController.controlsEquipmentTagFirst\"\n                [selected]=\"currentController.controlsEquipmentTagFirst==selectedController\"\n              >\n                {{currentController.controlsEquipmentTagFirst}}\n              </option>\n            </select>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-12\">\n            <table class=\"table table-striped table-bordered\">\n              <thead>\n                <tr>\n                  <th colspan=\"4\">IoType</th>\n                  <th colspan=\"2\">IoTag</th>\n                  <th>I/O Description</th>\n                  <th>Chassis</th>\n                  <th>Slot</th>\n                  <th>Data</th>\n                </tr>\n              </thead>\n              <tbody *ngIf=\"changeIOAssigmentTableAfterChangeTagAndController\">\n                <tr *ngFor=\"let field of changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription; let i = index\">\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"field.selectedIoTypeFirst\"\n                      name=\"{{field.selectedIoTypeFirst}}\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeFirst of field.ioTypeFirst\" \n                        [ngValue]=\"currentIoTypeFirst\"\n                        [selected]=\"currentIoTypeFirst==field.selectedIoTypeFirst\"\n                      >\n                        {{currentIoTypeFirst}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"field.selectedIoTypeSecond\"\n                      name=\"{{field.selectedIoTypeSecond}}\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeSecond of field.ioTypeSecond\" \n                        [ngValue]=\"currentIoTypeSecond\"\n                        [selected]=\"currentIoTypeSecond==field.selectedIoTypeSecon\"\n                      >\n                        {{currentIoTypeSecond}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"field.selectedIoTypeThird\"\n                      name=\"{{field.selectedIoTypeThird}}\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeThird of field.ioTypeThird\" \n                        [ngValue]=\"currentIoTypeThird\"\n                        [selected]=\"currentIoTypeThird==field.selectedIoTypeThird\"\n                      >\n                        {{currentIoTypeThird}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"field.selectedIoTypeFourth\"\n                      name=\"{{field.selectedIoTypeFourth}}\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeFourth of field.ioTypeFourth\" \n                        [ngValue]=\"currentIoTypeFourth\"\n                        [selected]=\"currentIoTypeThird==field.selectedIoTypeFourth\"\n                      >\n                        {{currentIoTypeFourth}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <input [(ngModel)]=\"field.ioTagFirst\" class=\"form-control\" type=\"text\" name=\"{{field.ioTagFirst}}\" />\n                  </td>\n                  <td>\n                    <input [(ngModel)]=\"field.ioTagSecond\" class=\"form-control\" type=\"text\" name=\"{{field.ioTagSecond}}\" />\n                  </td>\n                  <td>\n                    <input [(ngModel)]=\"field.ioDescription\" class=\"form-control\" type=\"text\" name=\"{{field.ioDescription}}\" />\n                  </td>\n                  <td>\n                    <input [(ngModel)]=\"field.chassis\" class=\"form-control\" type=\"text\" name=\"{{field.chassis}}\" />\n                  </td>\n                  <td>\n                    <input [(ngModel)]=\"field.slot\" class=\"form-control\" type=\"text\" name=\"{{field.slot}}\" />\n                  </td>\n                  <td>\n                    <input [(ngModel)]=\"field.data\" class=\"form-control\" type=\"text\" name=\"{{field.data}}\" />\n                  </td>\n                  <td>\n                    <button class=\"btn btn-default\"  type=\"button\" (click)=\"deleteFieldValue2(i)\">Delete</button>\n                  </td>\n                </tr>\n                <tr>\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"newAttribute.selectedIoTypeFirst\"\n                      name=\"selectedIoTypeFirst\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeFirst of newAttribute.ioTypeFirst\" \n                        [ngValue]=\"currentIoTypeFirst\"\n                        [selected]=\"currentIoTypeFirst==selectedIoTypeFirst\"\n                      >\n                        {{currentIoTypeFirst}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"newAttribute.selectedIoTypeSecond\"\n                      name=\"selectedIoTypeSecond\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeSecond of newAttribute.ioTypeSecond\" \n                        [ngValue]=\"currentIoTypeSecond\"\n                        [selected]=\"currentIoTypeFirst==selectedIoTypeSecond\"\n                      >\n                        {{currentIoTypeSecond}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"newAttribute.selectedIoTypeThird\"\n                      name=\"selectedIoTypeThird\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeThird of newAttribute.ioTypeThird\" \n                        [ngValue]=\"currentIoTypeThird\"\n                        [selected]=\"currentIoTypeThird==selectedIoTypeThird\"\n                      >\n                        {{currentIoTypeThird}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <select\n                      class=\"form-control\"\n                      [(ngModel)]=\"newAttribute.selectedIoTypeFourth\"\n                      name=\"selectedIoTypeFourth\"\n                    >\n                      <option\n                        *ngFor=\"let currentIoTypeFourth of newAttribute.ioTypeFourth\" \n                        [ngValue]=\"currentIoTypeFourth\"\n                        [selected]=\"currentIoTypeThird==selectedIoTypeFourth\"\n                      >\n                        {{currentIoTypeFourth}}\n                      </option>\n                    </select>\n                  </td>\n                  <td>\n                    <input class=\"form-control\" type=\"text\" id=\"ioTagFirst\" [(ngModel)]=\"newAttribute.ioTagFirst\" name=\"ioTagFirst\" />\n                  </td>\n                  <td>\n                    <input class=\"form-control\" type=\"text\" id=\"ioTagSecond\" [(ngModel)]=\"newAttribute.ioTagSecond\" name=\"ioTagSecond\" />\n                  </td>\n                  <td>\n                    <input class=\"form-control\" type=\"text\" id=\"ioDescription\" [(ngModel)]=\"newAttribute.ioDescription\" name=\"ioDescription\" />\n                  </td>\n                  <td>\n                    <input class=\"form-control\" type=\"text\" id=\"chassis\" [(ngModel)]=\"newAttribute.chassis\" name=\"chassis\" />\n                  </td>\n                  <td>\n                    <input class=\"form-control\" type=\"text\" id=\"slot\" [(ngModel)]=\"newAttribute.slot\" name=\"slot\" />\n                  </td>\n                  <td>\n                    <input class=\"form-control\" type=\"text\" id=\"data\" [(ngModel)]=\"newAttribute.data\" name=\"data\" />\n                  </td>\n                  <td>\n                    <button class=\"btn btn-default\" type=\"button\" (click)=\"addFieldValue2(i)\">Add</button>\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n        <div class=\"d-flex justify-content-end\">\n          <div class=\"p-2 form-group\">\n            <button type=\"submit\" class=\"btn btn-success\">Update/Create</button>\n          </div>\n        </div>\n      </form>\n      </div>\n    </div>\n  </div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/io-assignment/io-assignment.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IoAssignmentComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_io_assignment_service__ = __webpack_require__("../../../../../src/app/services/io-assignment.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var IoAssignmentComponent = (function () {
+    function IoAssignmentComponent(fb, ioAssignmentService, spinnerService, router, route) {
+        this.fb = fb;
+        this.ioAssignmentService = ioAssignmentService;
+        this.spinnerService = spinnerService;
+        this.router = router;
+        this.route = route;
+        this.newAttribute = {};
+        this.fieldArray = [];
+        this.changeIOAssigmentTableAfterChangeTagAndController = [];
+        this.projectId = this.route.snapshot.params['id'];
+        this.newAttribute = {};
+        this.newAttribute.ioTypeFirst = ['DI', 'DO', 'AI', 'IAI', 'H-AI', 'AO', 'H-AO', 'RTD', 'TC'];
+        this.newAttribute.selectedIoTypeFirst = '';
+        this.newAttribute.ioTypeSecond = ['A', 'B', 'E', 'F', 'I', 'J', 'K', 'L', 'P', 'PD', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z'];
+        this.newAttribute.selectedIoTypeSecond = '';
+        this.newAttribute.ioTypeThird = ['I', 'R', 'S'];
+        this.newAttribute.ioTypeFourth = ['E', 'H', 'HH', 'L', 'LL', 'S', 'T', 'Y'];
+        this.newAttribute.selectedIoTypeFourth = '';
+    }
+    IoAssignmentComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.ioAssignmentService.getIoAssignmentList(this.projectId).subscribe(function (ioAssignmentList) {
+            _this.ioassignments = ioAssignmentList;
+            _this.changeIOAssigmentTableAfterChangeTagAndController.push(_this.newAttribute);
+            _this.spinnerService.hide();
+        }, function (err) {
+            console.log(err);
+            return false;
+        });
+    };
+    IoAssignmentComponent.prototype.ioassignmentsTagChange = function (info) {
+        console.log(info);
+    };
+    IoAssignmentComponent.prototype.ioassignmentsControllerChange = function (selectedTag, selectedController) {
+        var _this = this;
+        if (selectedTag) {
+            this.changeIOAssigmentTableAfterChangeTagAndController = this.ioassignments.ioAssignments.filter(function (et) { return et.selectedController == _this.ioassignments.selectedController; });
+            if (this.changeIOAssigmentTableAfterChangeTagAndController.length === 0) {
+                this.changeIOAssigmentTableAfterChangeTagAndController.push(this.newAttribute);
+                return;
+            }
+            else {
+                this.changeIOAssigmentTableAfterChangeTagAndController;
+            }
+        }
+        else {
+            return;
+        }
+    };
+    IoAssignmentComponent.prototype.addFieldValue2 = function (index) {
+        if (!this.changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription) {
+            this.changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription = [];
+            this.changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription.push(this.newAttribute);
+        }
+        else {
+            this.changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription.push(this.newAttribute);
+        }
+        this.newAttribute = {};
+        this.newAttribute.ioTypeFirst = ['DI', 'DO', 'AI', 'IAI', 'H-AI', 'AO', 'H-AO', 'RTD', 'TC'];
+        this.newAttribute.selectedIoTypeFirst = '';
+        this.newAttribute.ioTypeSecond = ['A', 'B', 'E', 'F', 'I', 'J', 'K', 'L', 'P', 'PD', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z'];
+        this.newAttribute.selectedIoTypeSecond = '';
+        this.newAttribute.ioTypeThird = ['I', 'R', 'S'];
+        this.newAttribute.selectedIoTypeThird = '';
+        this.newAttribute.ioTypeFourth = ['E', 'H', 'HH', 'L', 'LL', 'S', 'T', 'Y'];
+        this.newAttribute.selectedIoTypeFourth = '';
+    };
+    IoAssignmentComponent.prototype.deleteFieldValue2 = function (index) {
+        this.changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription.splice(index, 1);
+    };
+    IoAssignmentComponent.prototype.cleanStringify = function (object) {
+        if (object && typeof object === 'object') {
+            object = copyWithoutCircularReferences([object], object);
+        }
+        return JSON.stringify(object);
+        function copyWithoutCircularReferences(references, object) {
+            var cleanObject = {};
+            Object.keys(object).forEach(function (key) {
+                var value = object[key];
+                if (value && typeof value === 'object') {
+                    if (references.indexOf(value) < 0) {
+                        references.push(value);
+                        cleanObject[key] = copyWithoutCircularReferences(references, value);
+                        references.pop();
+                    }
+                    else {
+                        cleanObject[key] = '###_Circular_###';
+                    }
+                }
+                else if (typeof value !== 'function') {
+                    cleanObject[key] = value;
+                }
+            });
+            return cleanObject;
+        }
+    };
+    IoAssignmentComponent.prototype.saveIOAssignment = function (data) {
+        var _this = this;
+        this.formData = {};
+        this.formData.selectedController = data.selectedController;
+        this.formData.selectedTag = data.selectedTag;
+        this.formData.fullDescription = [];
+        var fullDescription = this.changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription;
+        var temp = this.cleanStringify(this.changeIOAssigmentTableAfterChangeTagAndController[0].fullDescription);
+        this.formData.fullDescription = temp;
+        this.ioAssignmentService.updateIOAssignment(this.projectId, this.formData).subscribe(function (res) {
+            _this.spinnerService.hide();
+            _this.router.navigate(['project', _this.projectId]);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    IoAssignmentComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-io-assignment',
+            template: __webpack_require__("../../../../../src/app/components/io-assignment/io-assignment.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/io-assignment/io-assignment.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"],
+            __WEBPACK_IMPORTED_MODULE_2__services_io_assignment_service__["a" /* IoAssignmentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]])
+    ], IoAssignmentComponent);
+    return IoAssignmentComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/login/login.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4332,7 +4523,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/project-dashboard/project-dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container text-style\" *ngIf=\"project\">\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <!--<li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>-->\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Dashboard for Project {{project.title}}</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n<!--\n    <ol class=\"breadcrumb\">\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" routerLink=\"/projects\">Projects</a></li>\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project-edit', projectId]\">{{project.title}}</a></li>\n      <li class=\"breadcrumb-item active\">Dashboard</li>\n    </ol>\n-->\n    <div class=\"d-flex justify-content-center pt-3\">\n      <h1>Project <strong>{{project.title}}</strong></h1>\n    </div>\n    <div class=\"d-flex justify-content-center pt-2\">\n      <h4>To start working</h4>\n    </div>\n    <div class=\"d-flex justify-content-center\">\n      <div class=\"d-flex flex-column\">\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'electricals']\">\n            <strong>\n              Electrical Load List\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">Electrical Equipment List</div>\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'cables']\">\n            <strong>\n              Cable Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'sldshedules']\">\n            <strong>\n              Single Line Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'controllers']\">\n            <strong>\n              Controllers Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'instrumentations']\">\n            <strong>\n              Instrumentation Index\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">IO Assignment</div>\n        <div class=\"p-2 h5 temporary-text-style\">IO List</div>\n      </div>\n    </div>    \n  </div>"
+module.exports = "<div class=\"container text-style\" *ngIf=\"project\">\n  <div class=\"row\">\n    <div class=\"col-12\">\n      <nav aria-label=\"breadcrumb\">\n        <ol class=\"breadcrumb\" style=\"background-color: white!important\">\n          <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project']\"><strong>Projects List</strong></a></li>\n          <!--<li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" style=\"color: black!important \" [routerLink]=\"['/project', projectId]\"><strong>Dashboard</strong></a></li>-->\n          <li class=\"breadcrumb-item active\" aria-current=\"page\">Dashboard for Project {{project.title}}</li>\n        </ol>\n      </nav>\n    </div>\n  </div>\n<!--\n    <ol class=\"breadcrumb\">\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" routerLink=\"/projects\">Projects</a></li>\n      <li class=\"breadcrumb-item\"><a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project-edit', projectId]\">{{project.title}}</a></li>\n      <li class=\"breadcrumb-item active\">Dashboard</li>\n    </ol>\n-->\n    <div class=\"d-flex justify-content-center pt-3\">\n      <h1>Project <strong>{{project.title}}</strong></h1>\n    </div>\n    <div class=\"d-flex justify-content-center pt-2\">\n      <h4>To start working</h4>\n    </div>\n    <div class=\"d-flex justify-content-center\">\n      <div class=\"d-flex flex-column\">\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'electricals']\">\n            <strong>\n              Electrical Load List\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">Electrical Equipment List</div>\n        <div class=\"p-2 h5\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'cables']\">\n            <strong>\n              Cable Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'sldshedules']\">\n            <strong>\n              Single Line Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'controllers']\">\n            <strong>\n              Controllers Schedule\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'instrumentations']\">\n            <strong>\n              Instrumentation Index\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">\n          <!--[routerLink]=\"['/project', projectId, 'ioassignment']\" -->\n          <!--(click)=\"createIOAssignment()\"-->\n          <a class=\"cursor-style disable-decoration text-style\" [routerLink]=\"['/project', projectId, 'ioassignment']\">\n            <strong>\n              IO Assignment\n            </strong>\n          </a>\n        </div>\n        <div class=\"p-2 h5 temporary-text-style\">IO List</div>\n      </div>\n    </div>    \n  </div>"
 
 /***/ }),
 
@@ -4344,8 +4535,9 @@ module.exports = "<div class=\"container text-style\" *ngIf=\"project\">\n  <div
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_project_service__ = __webpack_require__("../../../../../src/app/services/project.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_io_assignment_service__ = __webpack_require__("../../../../../src/app/services/io-assignment.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__ = __webpack_require__("../../../../ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4359,11 +4551,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProjectDashboardComponent = (function () {
-    function ProjectDashboardComponent(route, projectService, spinnerService) {
-        this.route = route;
+    function ProjectDashboardComponent(
+        //private route: ActivatedRoute,
+        projectService, ioAssignmentService, spinnerService, router, route) {
         this.projectService = projectService;
+        this.ioAssignmentService = ioAssignmentService;
         this.spinnerService = spinnerService;
+        this.router = router;
+        this.route = route;
         this.projectId = this.route.snapshot.params['id'];
     }
     ProjectDashboardComponent.prototype.ngOnInit = function () {
@@ -4377,15 +4574,33 @@ var ProjectDashboardComponent = (function () {
             return false;
         });
     };
+    ProjectDashboardComponent.prototype.createIOAssignment = function () {
+        var _this = this;
+        console.log('call createIOAssignment method');
+        this.spinnerService.show();
+        this.ioAssignment = {};
+        this.ioAssignment.length = 0;
+        this.ioAssignmentService.createIoAssignment(this.projectId, this.ioAssignment).subscribe(function (res) {
+            var id = res['_id'];
+            //let responseId = res[res.length-1]['_id']
+            var routeToIOAssignment = '/project/' + _this.route.snapshot.params['id'] + '/ioassignment/';
+            _this.spinnerService.hide();
+            _this.router.navigate([routeToIOAssignment]);
+        }, function (err) {
+            console.log(err);
+        });
+    };
     ProjectDashboardComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-project-dashboard',
             template: __webpack_require__("../../../../../src/app/components/project-dashboard/project-dashboard.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/project-dashboard/project-dashboard.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */],
-            __WEBPACK_IMPORTED_MODULE_3_ng4_loading_spinner__["Ng4LoadingSpinnerService"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_project_service__["a" /* ProjectService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_io_assignment_service__["a" /* IoAssignmentService */],
+            __WEBPACK_IMPORTED_MODULE_4_ng4_loading_spinner__["Ng4LoadingSpinnerService"],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], ProjectDashboardComponent);
     return ProjectDashboardComponent;
 }());
@@ -5445,26 +5660,26 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         //for dev use
-        /*
-        return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
-        .map(res => res.json());
-        */
-        //for deploy use
-        return this.http.post('users/register', user, { headers: headers })
+        return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
+        //for deploy use
+        /*
+        return this.http.post('users/register', user, {headers: headers})
+          .map(res => res.json());
+        */
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         //for dev use
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers })
+            .map(function (res) { return res.json(); });
+        //for deploy use
         /*
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers})
+        return this.http.post('users/authenticate', user, {headers: headers})
           .map(res => res.json());
         */
-        //for deploy use
-        headers.append('Content-Type', 'application/json');
-        return this.http.post('users/authenticate', user, { headers: headers })
-            .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
@@ -5552,96 +5767,75 @@ var CableService = (function () {
     CableService.prototype.getCabelExcelList = function (id, array, queryString) {
         return __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].forkJoin(this.getObjectsById(id, array, queryString));
     };
-    /*getCablesList(id){
-      let headers = new Headers();
-      //for dev use
-      
-      headers.append('Content-Type', 'application/json');
-      return this.http.get('http://localhost:3000/project/'+id+'/cables-list', {headers: headers})
-        .map(res => res.json());
-      
-        //for deploy
-      /*
-      headers.append('Content-Type', 'application/json');
-      return this.http.get('project/'+id+'/cables-list', {headers: headers})
-        .map(res => res.json());
-      */
-    //}
     CableService.prototype.getCables = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/cables', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/cables', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     CableService.prototype.getElectricalName = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/electrical', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/electrical', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     CableService.prototype.createCable = function (id, cable) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/'+id+'/cable-create/', cable, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.post('project/' + id + '/cable-create/', cable, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     CableService.prototype.getCableItem = function (projectId, cableId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/cables/'+cableId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/cables/' + cableId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     CableService.prototype.updateCabelItem = function (projectId, cabelId, cabelItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/cable-update/'+cabelId, cabelItem, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('project/' + projectId + '/cable-update/' + cabelId, cabelItem, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     CableService.prototype.deleteCableItem = function (projectId, cableId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/' + projectId + '/cables/' + cableId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + projectId + '/cables/' + cableId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -5735,79 +5929,73 @@ var ControllerService = (function () {
     }
     ControllerService.prototype.getControllersList = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
           return this.http.get('http://localhost:3000/project/'+id+'/controllers-list', {headers: headers})
             .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/controllers-list', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ControllerService.prototype.getControllers = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/controllers', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/controllers', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ControllerService.prototype.createController = function (id, controller) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/'+id+'/controller-create/', controller, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.post('project/' + id + '/controller-create/', controller, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ControllerService.prototype.getControllerItem = function (projectId, controllerId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/controllers/'+controllerId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/controllers/' + controllerId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ControllerService.prototype.updateControllerItem = function (projectId, controllerId, controllerItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/controller-update/'+controllerId, controllerItem, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('project/' + projectId + '/controller-update/' + controllerId, controllerItem, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ControllerService.prototype.deleteControllerItem = function (projectId, controllerId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/' + projectId + '/controllers/' + controllerId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + projectId + '/controllers/' + controllerId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -5882,66 +6070,61 @@ var ElectricalService = (function () {
     };
     ElectricalService.prototype.getElectricals = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/electricals', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/electricals', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ElectricalService.prototype.createElectrical = function (id, electrical) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/'+id+'/electrical-create/', electrical, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.post('project/' + id + '/electrical-create/', electrical, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ElectricalService.prototype.getElectricalItem = function (projectId, electricalId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/electricals/'+electricalId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/electricals/' + electricalId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ElectricalService.prototype.updateElectricalItem = function (projectId, electricalId, electricalItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/electrical-update/'+electricalId, electricalItem, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('project/' + projectId + '/electrical-update/' + electricalId, electricalItem, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ElectricalService.prototype.deleteElectricalItem = function (projectId, electricalId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/' + projectId + '/electricals/' + electricalId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + projectId + '/electricals/' + electricalId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -6137,53 +6320,49 @@ var InstrumentationService = (function () {
     }
     InstrumentationService.prototype.getInstrumentationsList = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
           return this.http.get('http://localhost:3000/project/'+id+'/instrumentations-list', {headers: headers})
             .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/instrumentations-list', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     InstrumentationService.prototype.getInstrumentations = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/instrumentations', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/instrumentations', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     InstrumentationService.prototype.createInstrumentstion = function (id, instrumentation) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/'+id+'/instrumentation-create/', instrumentation, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.post('project/' + id + '/instrumentation-create/', instrumentation, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     InstrumentationService.prototype.getInstrumentationItem = function (projectId, instrumentationId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/instrumentations/'+instrumentationId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/instrumentations/' + instrumentationId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -6203,27 +6382,25 @@ var InstrumentationService = (function () {
     };
     InstrumentationService.prototype.updateInstrumentationItem = function (projectId, instrumentationId, instrumentationItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/instrumentation-update/'+instrumentationId, instrumentationItem, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('project/' + projectId + '/instrumentation-update/' + instrumentationId, instrumentationItem, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     InstrumentationService.prototype.deleteInstrumentationItem = function (projectId, instrumentationId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/' + projectId + '/instrumentations/' + instrumentationId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + projectId + '/instrumentations/' + instrumentationId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -6232,6 +6409,77 @@ var InstrumentationService = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
     ], InstrumentationService);
     return InstrumentationService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/io-assignment.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IoAssignmentService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var IoAssignmentService = (function () {
+    function IoAssignmentService(http) {
+        this.http = http;
+    }
+    IoAssignmentService.prototype.getIoAssignmentList = function (id) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //for dev use
+        /*
+          return this.http.get('http://localhost:3000/project/'+id+'/ioassignments', {headers: headers})
+            .map(res => res.json());
+        */
+        //for deploy
+        return this.http.get('project/' + id + '/ioassignments', { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    IoAssignmentService.prototype.createIoAssignment = function (id, ioAssignment) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //for dev use
+        /*
+        return this.http.post('http://localhost:3000/project/'+id+'/io_assignment-create/', ioAssignment, {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        return this.http.post('project/' + id + '/io_assignment-create/', ioAssignment, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    IoAssignmentService.prototype.updateIOAssignment = function (projectId, data) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //for dev
+        /*
+        return this.http.patch('http://localhost:3000/project/'+ projectId+'/io_assignment-update/', data, {headers: headers})
+          .map(res => res.json());
+        */
+        //for deploy
+        return this.http.patch('project/' + projectId + '/io_assignment-update/', data, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    IoAssignmentService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+    ], IoAssignmentService);
+    return IoAssignmentService;
 }());
 
 
@@ -6264,27 +6512,25 @@ var ProjectService = (function () {
     }
     ProjectService.prototype.getProject = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ProjectService.prototype.postProject = function (project) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/project-create', project, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.post('project/project-create', project, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -6300,9 +6546,9 @@ var ProjectService = (function () {
     };
     ProjectService.prototype.deleteProject = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/'+ id, {headers: headers})
           .map(res => res.json());
         */
@@ -6313,14 +6559,13 @@ var ProjectService = (function () {
     };
     ProjectService.prototype.getProjectById = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -6393,92 +6638,85 @@ var SldscheduleService = (function () {
     };
     SldscheduleService.prototype.getSldScheduleList = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/sld-schedules-list', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/sld-schedules-list', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     SldscheduleService.prototype.getSldSchedule = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/sld-schedules', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/sld-schedules', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     SldscheduleService.prototype.createSldSchedule = function (id, sldschedule) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.post('http://localhost:3000/project/'+id+'/sld-schedule-create/', sldschedule, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.post('project/' + id + '/sld-schedule-create/', sldschedule, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     SldscheduleService.prototype.getSldScheduleItem = function (projectId, sldscheduleId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+projectId+'/sld-schedules/'+sldscheduleId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + projectId + '/sld-schedules/' + sldscheduleId, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     SldscheduleService.prototype.getElectricalName = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.get('http://localhost:3000/project/'+id+'/electrical-for-sld', {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.get('project/' + id + '/electrical-for-sld', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     SldscheduleService.prototype.updateSldScheduleItem = function (projectId, sldScheduleId, scheduleItem) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('http://localhost:3000/project/'+ projectId+'/sld-schedule-update/'+sldScheduleId, scheduleItem, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.patch('project/' + projectId + '/sld-schedule-update/' + sldScheduleId, scheduleItem, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     SldscheduleService.prototype.deleteSldScheduleItem = function (projectId, sldScheduleId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
         //for dev use
         /*
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:3000/project/' + projectId + '/sld-schedules/' + sldScheduleId, {headers: headers})
           .map(res => res.json());
         */
         //for deploy
-        headers.append('Content-Type', 'application/json');
         return this.http.delete('project/' + projectId + '/sld-schedules/' + sldScheduleId, { headers: headers })
             .map(function (res) { return res.json(); });
     };

@@ -1576,13 +1576,66 @@ const instrumentationSchema = mongoose.Schema({
     type: Array,
     'default': ["CONTROL", "ON/OFF", "INDICATING", "CALCULATING", "SAFETY SYSTEM", "SHUTDOWN", "SOFT"]
   },
-  selectedInstrumentFunction: String,
+  selectedController: String,
   instrumentationNotes: String,
   internalNotes: String,
   instrumentDescription: [{type: String}],
   selectedInstrumentDescription: String,
   newTag: String
 });
+//IO Assignment
+var ioAssignmentSchema = new mongoose.Schema({
+  selectedTag: String,
+  selectedController: String,
+  fullDescription: {
+    type: Array,
+    'default': [
+      {
+        ioTypeFirst: {
+          type: Array,
+          'default': ['DI', 'DO', 'AI', 'IAI', 'H-IA', 'AO', 'H-AO', 'RTD', 'TC']
+        },
+        ioTypeSecond: {
+          type: Array,
+          'default': ['A', 'B', 'E', 'F', 'I', 'J', 'K', 'L', 'P', 'PD', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z']
+        },
+        ioTypeThird: {
+          type: Array,
+          'default': ['I', 'R', 'S']
+        },
+        ioTypeForth: {
+          type: Array,
+          'default': ['E', 'H', 'HH', 'L', 'LL', 'S', 'T', 'Y']
+        },
+        ioTagFirst: {
+          type: String,
+          'default': ""
+        },
+        ioTagSecond: {
+          type: String,
+          'default': ""
+        },
+        ioDescription: {
+          type: String,
+          default: ""
+        },
+        chassis:{
+          type: String,
+          default: ""
+        },
+        slot: {
+          type: String,
+          default: ""
+        },
+        data: {
+          type: String,
+          default: ""
+        }
+      }
+    ]
+  },
+});
+
 //PROJECT SHEMA
 const ProjectSchema = mongoose.Schema({
   title: String,
@@ -1590,7 +1643,8 @@ const ProjectSchema = mongoose.Schema({
   cabels: [cableShema],
   sldschedules: [sldScheduleShema],
   controllers: [controllerShema],
-  instrumentations: [instrumentationSchema]
+  instrumentations: [instrumentationSchema],
+  ioAssignments: [ioAssignmentSchema]
   //date_create: { type: Date, default: Date.now },
   //updated_date: { type: Date, default: Date.now },
 });
