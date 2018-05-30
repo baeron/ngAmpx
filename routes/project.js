@@ -95,6 +95,7 @@ router.get('/project-name/:id', function (req, res) {
     res.json({success: false, msg:'Failed get project'});
   }
 });
+
 //ELECTRICALS END POINT
 /*GET SINGLE ELECTRICALS-ITEM BY ID FOR EXCELL insert cabels*/ 
 router.get('/:id/electrical-item/:electricalid', function(req, res){
@@ -241,7 +242,8 @@ router.get('/:id/cable-item-list/:cabelId', function(req, res){
 router.get('/:id/electricals',function (req, res) {
   if(req.params){
     Project
-    .findById(req.params.id, 'electricals._id electricals.isChecked electricals.dateCreate electricals.revision electricals.equipmentTag electricals.selectedEquipmentType electricals.selectedVoltage '+
+    .findById(req.params.id, 'electricals._id electricals.isChecked electricals.dateCreate electricals.revision electricals.equipmentTag electricals.equipmentTag2 ' +
+    'electricals.selectedEquipmentType electricals.selectedVoltage '+
     'electricals.selectedPowerSystem electricals.nameplateRating electricals.selectedUnits electricals.totalPF electricals.totalEFF electricals.selectedMotorSF '+
     'electricals.selectedMotorCode electricals.selectedLoadDuty electricals.selectedParentTag electricals.totalConectedFla electricals.totalConectedKW '+
     'electricals.totalConnectedKVAR electricals.totalConnectedKVA electricals.totalDemandFLA electricals.totalDemandKW electricals.totalDemandKVAR electricals.totalDemandKVA '+
@@ -382,6 +384,7 @@ router.patch('/:id/electrical-update/:electricalid', function(req, res) {
           electrical.sldDraving = req.body.sldDraving;
           electrical.selectedSldDraving = req.body.selectedSldDraving;
           electrical.equipmentTag = req.body.equipmentTag || 'New Electrical';
+          electrical.equipmentTag2 = req.body.equipmentTag2;
           electrical.locationArea = req.body.locationArea;
           electrical.selectedLocationArea = req.body.selectedLocationArea;
           electrical.equipmentDescription = req.body.equipmentDescription;
@@ -596,8 +599,8 @@ router.get('/:id/cable-item-list/:cabelId', function(req, res){
             cableItem['VOLTS'] = cable.selectedVoltage.name || 'N/A';
             cableItem['FROM SOURCE'] = cable.selectedCableFrom || 'N/A';
             cableItem['TO DESTINATION'] = cable.selectedCableTo || 'N/A';
-            cableItem['CABLE/CONDUIT SIZE/TYPE'] = cable.selectedCableType || 'N/A';
-            cableItem['CABLE/CONDUIT LENTH(M) ETC.'] = 'N/A';
+            cableItem['CABLE/CONDUIT TYPE'] = cable.selectedCableType || 'N/A';
+            cableItem['LENGTH'] = 'N/A';
             cableItem['NO OF COND.'] = cable.itemNum || 'N/A';
             cableItem['TYPE OF COND.'] = cable.selectedItemType || 'N/A';
             cableItem['SIZE (AWG)'] = 'N/A';

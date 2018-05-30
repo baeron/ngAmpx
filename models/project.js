@@ -22,6 +22,7 @@ var electrucalSchema = new mongoose.Schema({
   sldDraving: [{ type: String}],
   selectedSldDraving: String,
   equipmentTag: {type: String},
+  equipmentTag2: {type: String},
   chiildList: {
     type: Array,
     'default': []
@@ -47,10 +48,11 @@ var electrucalSchema = new mongoose.Schema({
     type: Array,
     'default': ['AC-3P', 'AC-1P', 'DC']
   },
-  selectedPowerSystem: {type: String, default: 'AC-3P'},
+  selectedPowerSystem: {type: String},
   voltage: {
     type: Array,
     'default': [
+        {name: '', powerSystemType: ''},
         {name: '4160 VAC', powerSystemType: 'AC-3P'},
         {name: '600 VAC', powerSystemType: 'AC-3P'},
         {name: '480 VAC', powerSystemType: 'AC-3P'},
@@ -70,8 +72,8 @@ var electrucalSchema = new mongoose.Schema({
   selectedVoltage: {
     type: Object,
     'default': {
-      name: '4160 VAC',
-      powerSystemType: 'AC-3P'
+      name: '',
+      powerSystemType: ''
     }
   },
   totalPF: {type: Number, default: 0},
@@ -81,33 +83,33 @@ var electrucalSchema = new mongoose.Schema({
     type: Array,
     'default': ['A', 'HP', 'KW', 'KVA']
   },
-  selectedUnits: {type: String, default: 'A'},
+  selectedUnits: {type: String, default: ''},
   motorSF:{
     type: Array,
     'default': [1, 1.15, 1.25, 1.35]
   },
-  selectedMotorSF: {type: Number, default: 1},
+  selectedMotorSF: {type: Number},
   motorCode: {
     type: Array,
     'default': [
       "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "R", "S", "U", "V"
     ]
   },
-  selectedMotorCode: {type: String, default: "A"},
+  selectedMotorCode: {type: String},
   sccRating: {
     type: Array,
     'default': [
       "10 KA", "18 KA", "22 KA", "42 KA", "50 KA", "65 KA", "100 KA"
     ]
   },
-  selectedSccRating: {type: String, default: "10 KA"},
+  selectedSccRating: {type: String},
   enclosureRating: {
     type: Array,
     'default': [
       "NEMA 1", "NEMA 2", "NEMA 3", "NEMA 3R", "NEMA 4", "NEMA 4X", "NEMA 12", "NEMA 13", "WPI", "WPII", "TEFC", "TEFV"
     ]
   },
-  selectedEnclosureRating: {type: String, default: "NEMA 1"},
+  selectedEnclosureRating: {type: String},
   loadFactor: {type: Number, default: 0},
   loadDuty: {
     type: Array,
@@ -115,7 +117,7 @@ var electrucalSchema = new mongoose.Schema({
       "Continuous", "Intermitent", "Spare"
     ]
   },
-  selectedLoadDuty: {type: String, default: "Continuous"},
+  selectedLoadDuty: {type: String},
   ambientTemp: {type: Number},
   terminationTemp: 
   {
@@ -247,7 +249,7 @@ const cableShema = mongoose.Schema({
   selectedService: String,
   maxAmbientTempArray: {
     type: Array,
-    'default': ["35 \u00B0С", "40 \u00B0С", "45 \u00B0С", "50 \u00B0С", "55 \u00B0С", "60 \u00B0С", "65 \u00B0С",
+    'default': ["30 \u00B0С", "35 \u00B0С", "40 \u00B0С", "45 \u00B0С", "50 \u00B0С", "55 \u00B0С", "60 \u00B0С", "65 \u00B0С",
       "75 \u00B0С", "80 \u00B0С", "90 \u00B0С", "100 \u00B0С", "110 \u00B0С", "120 \u00B0С", "130 \u00B0С", "140 \u00B0С"
     ]
   },
@@ -478,7 +480,7 @@ const sldScheduleShema = mongoose.Schema({
   overloadSize: Number,
   VTQTY: {
     type: Array,
-    'default': [""]
+    'default': [0, 1, 2, 3]
   },
   selectedVTQTY: String,
   GFCTRatio: {
