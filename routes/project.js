@@ -1168,9 +1168,13 @@ router.patch('/:id/sld-schedule-update/:sldScheduleId', function(req, res) {
         sldschedule.HeaterCircuit = req.body.HeaterCircuit;
         sldschedule.selectedInterposRelay = req.body.selectedInterposRelay;
       // PDP Detail
+        sldschedule.firstPanelValue = req.body.firstPanelValue;
         sldschedule.selectedFirstPanelValue = req.body.selectedFirstPanelValue;
+        sldschedule.secondPanelValue = req.body.secondPanelValue;
         sldschedule.selectedSecondPanelValue = req.body.selectedSecondPanelValue;
+        sldschedule.thirdPanelValue = req.body.thirdPanelValue;
         sldschedule.selectedThirdPanelValue = req.body.selectedThirdPanelValue;
+        //sldschedule.selectedThirdPanelValue = req.body.selectedThirdPanelValue;
         sldschedule.CircuitNumbers = req.body.CircuitNumbers;
         sldschedule.CFG = req.body.CFG;
       //Field Switch/PB
