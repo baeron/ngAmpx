@@ -4,23 +4,24 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
+mongoose.plugin(schema => { schema.options.usePushEach = true });
 const config = require('./config/database');
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 
+const app = express();
+mongoose.Promise = global.Promise;
 // Connect To Database
 mongoose.connect(config.database);
 
 // On Connection
 mongoose.connection.on('connected', () => {
-  console.log('Connected to database '+config.database);
+  console.log('Connected to database '+ config.database);
 });
 
 // On Error
-mongoose.connection.on('error', (err) => {
-  console.log('Database error: '+err);
+mongoose.connection.on('error', (err) => { 
+  console.log('Database error: ' + err);
 });
-
-const app = express();
 
 const users = require('./routes/users');
 const project = require('./routes/project');
